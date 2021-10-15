@@ -19,7 +19,7 @@ app.use(express.static(publicDirectory));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Use token as middleware
+// Use token as middlewareadssaassds
 app.use(function (req, res, next) {
     res.header(
         "Access-Control-Allow-Headers",
