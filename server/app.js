@@ -2,33 +2,39 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
+dotenv.config({ path: path.join(__dirname, ".env.local") });
 const cors = require("cors");
-const app = express();
-dotenv.config({ path: "./.env" });
 
+// options
 const corsOption = {
     origin: "http://localhost:8080",
     credentials: true,
 };
-// set routes
-const router = require("./src/routes");
-const publicDirectory = path.join(__dirname, "./src/public");
 
+const router = require("./routes");
+
+// 서버생성
+const app = express();
+
+// 서버 기능추가
 app.use(cors(corsOption));
-app.use(express.static(publicDirectory));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// 라우터 사용
 
-// Use token as middlewareadssaassds
-app.use(function (req, res, next) {
-    res.header(
-        "Access-Control-Allow-Headers",
-        "x-access-token, Origin, Content-Type, Accept"
-    );
-    next();
-});
+// Parse JSON bodies (as sent by API clients)
+app.use(
+    express.json({
+        limit: "50mb",
+    })
+);
 
-// Define Routes or Controller = middle ware
 app.use("/", router);
-
+// Use token as middlewareadssaassds
+// app.use(function (req, res, next) {
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "x-access-token, Origin, Content-Type, Accept"
+//     );
+//     console.log(__dirname);
+//     next();
+// });
 module.exports = app;

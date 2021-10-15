@@ -6,6 +6,7 @@ import Possible from '../views/Possible.vue'
 import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
+import Test from '../views/Test.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
         path: '/trade',
         name: 'Trade',
         component: Trade
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: Test
     }
 ]
 
