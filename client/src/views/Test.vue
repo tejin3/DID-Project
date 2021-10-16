@@ -62,7 +62,6 @@ export default {
             console.log(event.target.files)
             // let name = ''
             // let data = null
-
             // if (files) {
             //     name = files[0].name
             //     data = this.$base64(files[0])
@@ -81,8 +80,12 @@ export default {
             // if (error) {
             //     return alert('이미지 업로드 실패했습니다. 다시 시도하세요.')
             // }
-
             // alert('이미지가 업로드 되었습니다.')
+        },
+        async fileTransfer() {
+            // var formData = new FormData() // Currently empty
+            // formData.append(name, value, filename);
+            // formData.append('userpic', myFileInput.files[0], 'chris.jpg')
         }
     }
 }
