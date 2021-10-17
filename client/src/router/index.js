@@ -7,36 +7,43 @@ import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 
+import DefaultLayout from '../layouts/default/Index'
+
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
-        name: 'main',
-        component: Main
-    },
-    {
-        path: '/possible',
-        name: 'possible',
-        component: Possible
-    },
-    {
-        path: '/mypage',
-        name: 'mypage',
-        component: MyPage
-    },
-    {
-        path: '/survey',
-        name: 'survey',
-        component: Survey
-    },
-    {
-        path: '/trade',
-        name: 'Trade',
-        component: Trade
+        component: DefaultLayout,
+        children: [
+            {
+                path: '/',
+                name: 'Main',
+                component: Main
+            },
+            {
+                path: '/possible',
+                name: 'Possible',
+                component: Possible
+            },
+            {
+                path: '/mypage',
+                name: 'mypage',
+                component: MyPage
+            },
+            {
+                path: '/survey',
+                name: 'Survey',
+                component: Survey
+            },
+            {
+                path: '/trade',
+                name: 'Trade',
+                component: Trade
+            }
+        ]
     }
 ]
-
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
