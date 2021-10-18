@@ -1,28 +1,30 @@
 <template>
     <div>
         <v-app-bar app>
-            <v-toolbar-title>Awesome Shop</v-toolbar-title>
+            <router-link class="text-decoration-none" to="/">
+                WeDIDsurvey
+            </router-link>
 
             <v-spacer></v-spacer>
 
-            <span class="hidden-sm-and-up">
+            <!-- <span class="hidden-sm-and-up">
                 <v-btn @click.stop="drawer = !drawer">
                     Menu
                 </v-btn>
-            </span>
+            </span> -->
 
             <v-toolbar-items class="hidden-xs-only">
-                <v-btn to="/" text>
+                <v-btn to="possible" text>
                     <v-icon small left>fa-home</v-icon>
-                    Home
+                    조사참여
                 </v-btn>
-                <v-btn to="store" text>
+                <v-btn to="trade" text>
                     <v-icon small left>fa-shopping-basket</v-icon>
-                    Store
+                    쿠폰교환
                 </v-btn>
-                <v-btn to="cart" text>
+                <v-btn text>
                     <v-icon small left>fa-shopping-cart</v-icon>
-                    Cart
+                    지갑연결
                 </v-btn>
             </v-toolbar-items>
         </v-app-bar>
