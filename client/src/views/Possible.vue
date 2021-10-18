@@ -2,53 +2,59 @@
     <!-- 버튼 -->
     <v-container fluid>
         <v-container class="my-10">
-            <v-btn color="warning" dark x-large>
+            <v-btn class="ma-5" elevation="5" color="warning" dark x-large>
                 전체 설문
             </v-btn>
-            <v-btn color="warning" dark x-large>
+            <v-btn elevation="5" color="warning" dark x-large>
                 참여 가능한 설문
             </v-btn>
         </v-container>
         <!-- 설문지 카드 섹션 -->
         <v-container>
-            <v-card class="mx-auto" max-width="344">
-                <v-img src="@/assets/surveyImg1.jpg" height="200px"></v-img>
+            <v-row>
+                <v-col :key="i" v-for="(d, i) in surveys">
+                    <v-card elevation="3" class="mx-auto" max-width="344">
+                        <v-img
+                            src="@/assets/surveyImg1.jpg"
+                            height="200px"
+                        ></v-img>
 
-                <v-card-title>
-                    전자 제품 관련 조사
-                </v-card-title>
+                        <v-card-title> {{ d.title }} </v-card-title>
 
-                <v-card-subtitle> 적립금 | 쿠폰 </v-card-subtitle>
+                        <v-card-subtitle>
+                            적립금: {{ d.price }} | 쿠폰: {{ d.coupon }}
+                        </v-card-subtitle>
 
-                <v-card-subtitle>
-                    설문기간
-                </v-card-subtitle>
+                        <v-card-subtitle>
+                            {{ d.period }}
+                        </v-card-subtitle>
 
-                <v-card-actions>
-                    <v-btn color="orange lighten-2" text>
-                        상세 내용
-                    </v-btn>
+                        <v-card-actions>
+                            <v-btn color="orange lighten-2" text>
+                                상세 내용
+                            </v-btn>
 
-                    <v-spacer></v-spacer>
+                            <v-spacer></v-spacer>
 
-                    <v-btn icon @click="show = !show">
-                        <v-icon>{{
-                            show ? 'mdi-chevron-up' : 'mdi-chevron-down'
-                        }}</v-icon>
-                    </v-btn>
-                </v-card-actions>
+                            <v-btn icon @click="show = !show">
+                                <v-icon>{{
+                                    show ? 'mdi-chevron-up' : 'mdi-chevron-down'
+                                }}</v-icon>
+                            </v-btn>
+                        </v-card-actions>
 
-                <v-expand-transition>
-                    <div v-show="show">
-                        <v-divider></v-divider>
+                        <v-expand-transition>
+                            <div v-show="show">
+                                <v-divider></v-divider>
 
-                        <v-card-text>
-                            조사기간 :
-                            <br />가전 제품 구입 관련 전반적 U&A 설문입니다.
-                        </v-card-text>
-                    </div>
-                </v-expand-transition>
-            </v-card>
+                                <v-card-text>
+                                    {{ d.detail }}
+                                </v-card-text>
+                            </div>
+                        </v-expand-transition>
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-container>
     </v-container>
 </template>
@@ -57,7 +63,41 @@ export default {
     name: 'Possible',
     components: {},
     data: () => ({
-        show: false
+        show: false,
+        surveys: [
+            {
+                title: '전자 제품 관련 조사',
+                image: './assets/surveyImg1.jpg',
+                price: '0.03ETH',
+                coupon: '1',
+                period: '2021.11.18 ~ 2021.11.26',
+                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+            },
+            {
+                title: '전자 제품 관련 조사',
+                image: './assets/surveyImg1.jpg',
+                price: '0.03ETH',
+                coupon: '1',
+                period: '2021.11.18 ~ 2021.11.26',
+                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+            },
+            {
+                title: '전자 제품 관련 조사',
+                image: './assets/surveyImg1.jpg',
+                price: '0.03ETH',
+                coupon: '1',
+                period: '2021.11.18 ~ 2021.11.26',
+                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+            },
+            {
+                title: '전자 제품 관련 조사',
+                image: './assets/surveyImg1.jpg',
+                price: '0.03ETH',
+                coupon: '1',
+                period: '2021.11.18 ~ 2021.11.26',
+                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+            }
+        ]
     }),
     setup() {},
     created() {},
