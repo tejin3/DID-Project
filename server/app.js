@@ -18,8 +18,6 @@ const app = express();
 
 // 서버 기능추가
 app.use(cors(corsOption));
-// 라우터 사용
-
 // Parse JSON bodies (as sent by API clients)
 app.use(
     express.json({

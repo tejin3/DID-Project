@@ -1,54 +1,63 @@
 <template>
     <div>
-        <v-container>
-            <input type="text" name="" id="" />
-            <v-btn block>
-                Block Button
-            </v-btn>
+        <ProfileHeader />
 
-            <v-card class="mx-auto" color="#26c6da" dark max-width="400">
-                <v-card-title>
-                    TITLE
-                </v-card-title>
-                <v-card-text class="text-h5 font-weight-bold">
-                    {{ sampleData }}
-                </v-card-text>
-                <v-card-actions class="justify-center">
-                    <v-btn class="mx-auto" @click="testAxios">
-                        Click
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-            <v-file-input
-                counter
-                show-size
-                truncate-length="15"
-                @change="testUpload"
-            >
-                abc
-            </v-file-input>
-            <FilePond />
-        </v-container>
+        <!-- 유저 프로필 상세 내용 -->
+        <v-row style="border:solid blue 3px">
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-row>
+                    <v-col sm="6" md="4">
+                        <v-card outlined>
+                            지급된 이더
+                        </v-card>
+                    </v-col>
+                    <v-col sm="6" md="4">
+                        <v-card outlined>
+                            지급된 쿠폰
+                        </v-card>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col sm="6" md="4">
+                        <v-card outlined>
+                            지급된 이더
+                        </v-card>
+                    </v-col>
+                    <v-col sm="6" md="4">
+                        <v-card outlined>
+                            지급된 쿠폰
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-col>
+        </v-row>
     </div>
 </template>
 <script>
-import FilePond from '@/components/FilePond'
+// import MyPond from '@/components/Cards/MyPond'
+import ProfileHeader from '@/components/MyPage/ProfileHeader'
+
 export default {
-    components: { FilePond },
     name: '',
-    Components: {
-        FilePond
-    },
+    components: { ProfileHeader },
     data() {
         return {
             sampleData: 'abc'
         }
     },
-    setup() {},
-    created() {},
+    computed: {},
     mounted() {},
     unmounted() {},
     methods: {
+        async copyAddress() {
+            try {
+                const userAddress = this.userAddress
+                await navigator.clipboard.writeText(userAddress)
+                console.log('Successfully, Address Copy!')
+            } catch (err) {
+                console.error('Failed to copy: ', err)
+            }
+        },
         testAxios() {
             console.log(this.sampleData)
             this.$api('/test', 'post', {
