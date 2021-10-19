@@ -1,31 +1,60 @@
 <template>
     <v-sheet>
         <v-container class="fill-height">
-            <v-row>
+            <v-row justify="center" class="text-center">
                 <v-col>
                     <!-- 프로필 카드 -->
-                    <v-card>
+                    <v-card class="text-center">
                         <!-- 유저 프로필 이미지 -->
-                        <v-col class="text-center">
-                            <v-avatar color="primary" size="150">
+                        <v-col>
+                            <!-- 화면이 클 때 -->
+                            <v-avatar
+                                class="hidden-xs-only"
+                                color="primary"
+                                size="150"
+                            >
                                 <span class="white--text display-2">User</span>
+                            </v-avatar>
+                            <!-- 화면이 작을 때 -->
+                            <v-avatar
+                                class="hidden-sm-and-up"
+                                color="primary"
+                                size="100"
+                            >
+                                <span class="white--text display-1"
+                                    >small
+                                </span>
                             </v-avatar>
                         </v-col>
                         <!-- 유저 프로필 이름 -->
-                        <v-card-title id="profile" class="justify-center">
+                        <v-card-title class="justify-center">
+                            <!-- 화면이 클 때 -->
                             <h1 class="tittle mb-3 hidden-xs-only">
                                 User name
                             </h1>
                             <!-- 화면이 작을 때 -->
-                            <h1 class="display-1 mb-3 hidden-sm-and-up">
-                                My Profile
+                            <h1
+                                class="display-1 font-weight-bold mb-3 hidden-sm-and-up"
+                            >
+                                small user name
                             </h1>
                         </v-card-title>
                         <!-- 유저 어드레스 -->
-                        <v-card-text class="text-center">
-                            <v-btn @click="copyAddress">
+                        <v-card-text>
+                            <!-- 화면이 클 때-->
+                            <v-btn class=" hidden-xs-only" @click="copyAddress">
                                 <span class="mr-3">{{
-                                    trucatedUserAddress
+                                    truncatedUserAddress2
+                                }}</span>
+                                <v-icon>mdi-content-copy</v-icon>
+                            </v-btn>
+                            <!-- 화면이 작을 때 -->
+                            <v-btn
+                                class="hidden-sm-and-up"
+                                @click="copyAddress"
+                            >
+                                <span class="mr-3">{{
+                                    truncatedUserAddress
                                 }}</span>
                                 <v-icon>mdi-content-copy</v-icon>
                             </v-btn>
@@ -55,11 +84,18 @@ module.exports = {
         }
     },
     computed: {
-        trucatedUserAddress() {
+        truncatedUserAddress() {
+            return (
+                this.userAddress.slice(0, 5) +
+                '...' +
+                this.userAddress.slice(-3)
+            )
+        },
+        truncatedUserAddress2() {
             return (
                 this.userAddress.slice(0, 7) +
-                '...' +
-                this.userAddress.slice(-4)
+                '......' +
+                this.userAddress.slice(-7)
             )
         }
     }
