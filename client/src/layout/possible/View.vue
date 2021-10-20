@@ -62,6 +62,7 @@
 <script>
 export default {
     name: 'PossibleView',
+
     data: () => ({
         show: false,
         surveys: [

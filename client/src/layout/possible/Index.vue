@@ -8,7 +8,7 @@
 import PossibleView from './View.vue'
 export default {
     name: 'PossibleLayout',
-    component: { PossibleView }
+    components: { PossibleView }
 }
 </script>
 

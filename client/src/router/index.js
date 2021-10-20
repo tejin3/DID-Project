@@ -7,6 +7,9 @@ import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 
+import PossibleLayout from '../layout/possible/Index.vue'
+// import PossibleView from '../layout/possible/View.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,11 +18,7 @@ const routes = [
         name: 'main',
         component: Main
     },
-    {
-        path: '/possible',
-        name: 'possible',
-        component: Possible
-    },
+
     {
         path: '/mypage',
         name: 'mypage',
@@ -34,6 +33,17 @@ const routes = [
         path: '/trade',
         name: 'Trade',
         component: Trade
+    },
+    {
+        path: '/possible',
+        component: Possible,
+        children: [
+            {
+                path: '/possible',
+                name: 'possible',
+                component: PossibleLayout
+            }
+        ]
     }
 ]
 
