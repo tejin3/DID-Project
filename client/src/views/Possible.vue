@@ -1,21 +1,12 @@
 <template>
-    <div>
-        <h1>This is a Possible page</h1>
-    </div>
+    <v-container>
+        <PossibleLayout />
+    </v-container>
 </template>
 <script>
+import PossibleLayout from '../layout/possible/Index'
 export default {
-    name: 'Possible',
-    components: {},
-    data() {
-        return {
-            sampleData: ''
-        }
-    },
-    setup() {},
-    created() {},
-    mounted() {},
-    unmounted() {},
-    methods: {}
+    name: '',
+    components: { PossibleLayout }
 }
 </script>

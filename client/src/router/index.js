@@ -8,12 +8,14 @@ import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 
 import DefaultLayout from '../layouts/default/Index'
+import PossibleLayout from '../layout/possible/Index.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
+
         component: DefaultLayout,
         children: [
             {
@@ -23,8 +25,14 @@ const routes = [
             },
             {
                 path: '/possible',
-                name: 'Possible',
-                component: Possible
+                component: Possible,
+                children: [
+                    {
+                        path: '/possible',
+                        name: 'possible',
+                        component: PossibleLayout
+                    }
+                ]
             },
             {
                 path: '/mypage',
