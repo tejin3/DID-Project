@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <h1>This is a Trade page</h1>
-    </div>
+    <v-container fluid>
+        <TradeLayout />
+    </v-container>
 </template>
+
 <script>
+import TradeLayout from '../layouts/trade/index'
 export default {
     name: '',
-    components: {},
+    components: { TradeLayout },
     data() {
-        return {
-            sampleData: ''
-        }
+        return {}
     },
     setup() {},
     created() {},
@@ -19,3 +19,4 @@ export default {
     methods: {}
 }
 </script>
+<style scoped></style>

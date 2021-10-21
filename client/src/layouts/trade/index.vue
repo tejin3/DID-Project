@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <h1>This is a Survey page</h1>
-    </div>
+    <v-app>
+        <TradeView />
+    </v-app>
 </template>
 <script>
+import TradeView from './View.vue'
 export default {
-    name: 'Survey',
-    components: {},
+    name: 'TradeLayout',
+    components: { TradeView },
     data() {
         return {
             sampleData: ''

@@ -1,11 +1,7 @@
-<template>
-    <div>
-        <h1>This is a Survey page</h1>
-    </div>
-</template>
+<template> </template>
 <script>
 export default {
-    name: 'Survey',
+    name: '',
     components: {},
     data() {
         return {
