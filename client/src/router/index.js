@@ -8,7 +8,7 @@ import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 
 import DefaultLayout from '../layouts/default/Index'
-import PossibleLayout from '../layout/possible/Index.vue'
+import PossibleLayout from '../layouts/possible/Index.vue'
 
 Vue.use(VueRouter)
 
