@@ -72,6 +72,7 @@ export default {
                 coupon: '1',
                 period: '2021.11.18 ~ 2021.11.26',
                 detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+                isShow:false
             },
             {
                 title: '전자 제품 관련 조사',
@@ -80,6 +81,8 @@ export default {
                 coupon: '1',
                 period: '2021.11.18 ~ 2021.11.26',
                 detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+                isShow:false
+
             },
             {
                 title: '전자 제품 관련 조사',
@@ -88,6 +91,8 @@ export default {
                 coupon: '1',
                 period: '2021.11.18 ~ 2021.11.26',
                 detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+                isShow:false
+
             },
             {
                 title: '전자 제품 관련 조사',
@@ -96,6 +101,7 @@ export default {
                 coupon: '1',
                 period: '2021.11.18 ~ 2021.11.26',
                 detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.'
+                isShow:false
             }
         ]
     }),
