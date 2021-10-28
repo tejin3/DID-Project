@@ -1,0 +1,110 @@
+{
+  //주민등록증
+  "id": "http://public.administration/credentials/24532",
+
+  "type": ["VerifiableCredential", "IDCredential"],
+
+  "issuer": "https://public.administration/issuers/982349",
+
+  "issuanceDate": "2021-10-01T19:73:24Z",
+
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+
+    "IDOf": {
+      "id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
+      "name": [
+        {
+          "value": "진 켈리",
+          "lang": "ko"
+        }
+      ],
+      "age": [
+        {
+          "value": "23",
+          "lang": "ko"
+        }
+      ],
+      "address": [
+        {
+          "value": "서울, 대한민국",
+          "lang": "ko"
+        }
+      ]
+    }
+  }
+}
+
+
+//패션
+"id": "http://mushinsa/credentials/14532", // 사용자가 우리 서비스에서 의류를 한달에 50만원 가량 지불했어를 확인시켜주는 문서
+
+"type": ["VerifiableCredential", "ShopCredential"],
+
+"issuer": "https://mushinsa/issuers/562349", // 미리 합의된 데이터를 모아놓는다. EX. 우리 이런 형식의 JSON으로 쓸거니까 너네도 여기 맞춰서 보내
+
+"issuanceDate": "2021-09-01T13:55:24Z",
+
+"credentialSubject": {
+  "id": "did:example:ebfeb1f712ebc6f1c276e12ec21", // user did
+
+  "fashionOf": {
+    "id": "did:example:c276e12ec21ebfeb1f712ebc6f1", //무신사 did
+    "Amount": [
+      {
+        "value": "500000",
+        "lang": "ko"
+      },
+    ],
+    "onOffline": [
+      {
+        "value": "온라인",
+        "lang": "ko"
+      },
+    ],
+    "product": [ㄴ
+      {
+        "value": "액세서리",
+        "lang": "ko"
+      },
+    ]
+  }
+}
+
+
+  // 국민 보험 공단
+  "id": "http://job.insurance/credentials/14532",
+
+  "type": ["VerifiableCredential", "InsuranceCredential"],
+
+  "issuer": "https://job.insurance/issuers/2362349",
+
+  "issuanceDate": "2021-10-01T19:73:24Z",
+
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+
+    "insuranceOf": {
+      "id": "did:example:c276e12ec21ebffdre6712ebc6f1",
+      "occupation": [
+        {
+          "value": "IT",
+          "lang": "ko"
+        }
+      ],
+      "income": [
+        {
+          "value": "80000000",
+          "lang": "ko"
+        }
+      ],
+      "location": [
+        {
+          "value": "서울",
+          "lang": "ko"
+        }
+      ]
+    }
+  }
+
+  
