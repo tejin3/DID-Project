@@ -4,7 +4,7 @@
     </v-container>
 </template>
 <script>
-import PossibleLayout from '../layout/possible/Index'
+import PossibleLayout from '../layouts/possible/Index'
 export default {
     name: '',
     components: { PossibleLayout }
