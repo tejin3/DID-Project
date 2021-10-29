@@ -27,10 +27,8 @@
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys">
                     <v-card elevation="3" class="mx-auto" max-width="344">
-                        <v-img
-                            src="@/assets/surveyImg1.jpg"
-                            height="200px"
-                        ></v-img>
+                        <v-img>{{ d.image }}</v-img>
+                        <v-img src="`${d.image}`" height="200px"></v-img>
 
                         <v-card-title> {{ d.title }} </v-card-title>
 
@@ -68,54 +66,6 @@
                 </v-col>
             </v-row>
         </v-container>
-        <!-- 맞춤 설문 -->
-        <v-container v-if="revealPart === revealPart">
-            <v-row>
-                <v-col :key="i" v-for="(d, i) in surveys2">
-                    <v-card elevation="3" class="mx-auto" max-width="344">
-                        <v-img
-                            src="@/assets/surveyImg2.jpg"
-                            height="200px"
-                        ></v-img>
-
-                        <v-card-title> {{ d.title }} </v-card-title>
-
-                        <v-card-subtitle>
-                            적립금: {{ d.price }} | 쿠폰: {{ d.coupon }}
-                        </v-card-subtitle>
-
-                        <v-card-subtitle>
-                            {{ d.period }}
-                        </v-card-subtitle>
-
-                        <v-card-actions>
-                            <v-btn color="orange lighten-2" text>
-                                상세 내용
-                            </v-btn>
-
-                            <v-spacer></v-spacer>
-                            <v-btn icon @click="d.show = !d.show">
-                                <v-icon>{{
-                                    d.show
-                                        ? 'mdi-chevron-up'
-                                        : 'mdi-chevron-down'
-                                }}</v-icon>
-                            </v-btn>
-                        </v-card-actions>
-
-                        <v-expand-transition>
-                            <div v-show="d.show">
-                                <v-divider></v-divider>
-
-                                <v-card-text>
-                                    {{ d.detail }}
-                                </v-card-text>
-                            </div>
-                        </v-expand-transition>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
     </v-container>
 </template>
 
@@ -129,46 +79,28 @@ export default {
         revealCard2: false,
         surveys: [
             {
-                title: '전자 제품 관련 조사',
-                image: './assets/surveyImg1.jpg',
-                price: '2,000원',
+                title: '패션 관련 조사',
+                image: '../../assets/surveyImg3.jpg',
+                price: '5,000원',
                 coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+                period: '2021.11.23 ~ 2021.12.13',
+                detail:
+                    '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
                 isShow: false
             },
             {
-                title: '전자 제품 관련 조사',
-                image: './assets/surveyImg1.jpg',
-                price: '2,000원',
+                title: '인터넷 은행 관련 조사',
+                image: '../../assets/surveyImg4.jpg',
+                price: '4,500원',
                 coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+                period: '2021.11.16 ~ 2021.11.25',
+                detail:
+                    '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
                 isShow: false
             },
-            {
-                title: '전자 제품 관련 조사',
-                image: './assets/surveyImg1.jpg',
-                price: '2,000원',
-                coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                title: '전자 제품 관련 조사',
-                image: './assets/surveyImg1.jpg',
-                price: '2,000원',
-                coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            }
-        ],
-        survey2: [
             {
                 title: '문화 및 여가 생활 관련 조사',
-                image: './assets/surveyImg2.jpg',
+                image: '../../assets/surveyImg2.jpg',
                 price: '1,500원',
                 coupon: '1',
                 period: '2021.11.15 ~ 2021.11.30',
@@ -176,12 +108,12 @@ export default {
                 isShow: false
             },
             {
-                title: '문화 및 여가 생활 관련 조사',
-                image: './assets/surveyImg2.jpg',
-                price: '1,500원',
+                title: '전자 제품 관련 조사',
+                image: '../../assets/surveyImg1.jpg',
+                price: '2,000원',
                 coupon: '1',
-                period: '2021.11.15 ~ 2021.11.30',
-                detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+                period: '2021.11.18 ~ 2021.11.26',
+                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
                 isShow: false
             }
         ]
