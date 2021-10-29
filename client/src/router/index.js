@@ -10,6 +10,8 @@ import Trade from '../views/Trade.vue'
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index.vue'
 
+import Test from '../views/Test.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -48,6 +50,11 @@ const routes = [
                 path: '/trade',
                 name: 'Trade',
                 component: Trade
+            },
+            {
+                path: '/test',
+                name: 'Test',
+                component: Test
             }
         ]
     }
