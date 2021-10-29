@@ -22,13 +22,14 @@
                 참여 가능한 설문
             </v-btn>
         </v-container>
+
         <!-- 전체 설문 -->
         <v-container v-if="revealAll === revealAll">
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys">
                     <v-card elevation="3" class="mx-auto" max-width="344">
-                        <v-img>{{ d.image }}</v-img>
-                        <v-img src="`${d.image}`" height="200px"></v-img>
+                        <!-- <v-img>{{ d.image }}</v-img> -->
+                        <v-img :src="`${d.image}`" height="200px"></v-img>
 
                         <v-card-title> {{ d.title }} </v-card-title>
 
@@ -80,7 +81,7 @@ export default {
         surveys: [
             {
                 title: '패션 관련 조사',
-                image: '../../assets/surveyImg3.jpg',
+                image: require('../../assets/img/surveyImg3.jpg'),
                 price: '5,000원',
                 coupon: '1',
                 period: '2021.11.23 ~ 2021.12.13',
@@ -90,7 +91,7 @@ export default {
             },
             {
                 title: '인터넷 은행 관련 조사',
-                image: '../../assets/surveyImg4.jpg',
+                image: require('../../assets/img/surveyImg4.jpg'),
                 price: '4,500원',
                 coupon: '1',
                 period: '2021.11.16 ~ 2021.11.25',
@@ -100,7 +101,7 @@ export default {
             },
             {
                 title: '문화 및 여가 생활 관련 조사',
-                image: '../../assets/surveyImg2.jpg',
+                image: require('../../assets/img/surveyImg2.jpg'),
                 price: '1,500원',
                 coupon: '1',
                 period: '2021.11.15 ~ 2021.11.30',
@@ -109,7 +110,7 @@ export default {
             },
             {
                 title: '전자 제품 관련 조사',
-                image: '../../assets/surveyImg1.jpg',
+                image: require('../../assets/img/surveyImg1.jpg'),
                 price: '2,000원',
                 coupon: '1',
                 period: '2021.11.18 ~ 2021.11.26',
