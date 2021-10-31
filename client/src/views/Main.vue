@@ -1,6 +1,13 @@
 <template>
     <!-- <HelloWorld /> -->
     <v-container fluid>
+        <img
+            src="@/assets/img/blob.svg"
+            alt="some file"
+            height="100"
+            width="100"
+            style="color:green;"
+        />
         <v-row>
             <v-col cols="6">
                 <v-card class="mx-auto" max-width="500">
