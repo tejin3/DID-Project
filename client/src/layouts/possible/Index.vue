@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <PossibleView />
+        <possible-view />
     </v-container>
 </template>
 

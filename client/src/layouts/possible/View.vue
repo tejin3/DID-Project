@@ -32,8 +32,7 @@
             </v-btn>
         </v-container>
 
-        <!-- 전체 설문 -->
-        <v-container v-if="showBtn">
+        <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
                     <v-card elevation="3" class="mx-auto" max-width="344">
@@ -91,30 +90,34 @@ export default {
 
     data: () => ({
         show: false,
-        showBtn: true,
         isShow: false,
-        surveys: [],
-        showSurveys: []
+        surveys: []
     }),
     setup() {},
     created() {},
     mounted() {
         // 첫 화면에 보여진다
-        this.getSuvery()
+        console.log('안녕')
+
+        this.getSurvey()
     },
     unmounted() {},
     methods: {
-        // 모든 설문지 보여준다
-        async getSuvery() {
+        // 모든 젤 처음 설문지 보여준다
+        async getSurvey() {
+            console.log('여기')
             this.surveys = await this.$get('/surveys')
+            console.log('여기1')
         },
-        // isShow가 true인 것만 보여준다
+        // isShow가 true인 것만 보여준다 (조건)
         async canSurvey() {
             this.surveys = await this.$get('/surveys?isShow=true')
+            console.log('여기2')
         },
         // 모든 설문지 보여준다
         allSurvey() {
-            this.getSuvery()
+            this.getSurvey()
+            console.log('여기3')
         },
         async createSurvey() {
             const r = await this.$post('/surveys', {
@@ -126,12 +129,14 @@ export default {
                 detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
                 isShow: true
             })
+            console.log('여기4')
 
             console.log(r)
-            this.getSuvery()
+            // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
+            this.getSurvey()
+            console.log('여기5')
         }
     }
 }
 </script>
-
 <style></style>

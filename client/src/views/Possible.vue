@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <PossibleLayout />
+        <possible-layout />
         <img
             src="@/assets/img/blob.svg"
             alt="some file"
