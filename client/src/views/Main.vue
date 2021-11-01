@@ -1,173 +1,125 @@
 <template>
-    <!-- <HelloWorld /> -->
-    <v-container fluid>
-        <img
-            src="@/assets/img/blob.svg"
-            alt="some file"
-            height="100"
-            width="100"
-            style="color:green;"
-        />
-        <v-row>
-            <v-col cols="6">
-                <v-card class="mx-auto" max-width="500">
-                    <v-system-bar color="indigo darken-2" dark>
-                        <v-spacer></v-spacer>
+    <v-app>
+        <v-main>
+            <v-row>
+                <v-col
+                    class="align-content-space-between layout wrap"
+                    cols="12"
+                    md="6"
+                >
+                    <base-bubble-1
+                        style="transform: rotate(180deg) translateY(25%)"
+                    />
 
-                        <v-icon>mdi-window-minimize</v-icon>
-
-                        <v-icon>mdi-window-maximize</v-icon>
-
-                        <v-icon>mdi-close</v-icon>
-                    </v-system-bar>
-
-                    <v-toolbar color="indigo" dark>
-                        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                        <v-toolbar-title>Discover</v-toolbar-title>
-
-                        <v-spacer></v-spacer>
-
-                        <v-btn icon>
-                            <v-icon>mdi-magnify</v-icon>
-                        </v-btn>
-                    </v-toolbar>
-
-                    <v-container fluid>
-                        <v-row dense>
-                            <v-col
-                                v-for="card in cards"
-                                :key="card.title"
-                                :cols="card.flex"
+                    <v-row align="center" justify="center">
+                        <v-col cols="10" md="6">
+                            <h2>We DID survey</h2>
+                            <p class="mt-2">
+                                = 당신의 똑똑한 생각을 나눠주세요! 지금 서베이에
+                                참여해서 맡겨놓은 상금과 상품을 가져가세요
+                            </p>
+                            <v-btn color="secondary" elevation="2"
+                                >Get start!</v-btn
                             >
-                                <v-card>
-                                    <v-img
-                                        :src="card.src"
-                                        class="white--text align-end"
-                                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                                        height="200px"
-                                    >
-                                        <v-card-title
-                                            v-text="card.title"
-                                        ></v-card-title>
-                                    </v-img>
+                        </v-col>
+                    </v-row>
 
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
+                    <base-bubble-2
+                        style="transform: rotate(180deg) translate(-200px, -15%)"
+                    />
+                </v-col>
 
-                                        <v-btn icon>
-                                            <v-icon>mdi-heart</v-icon>
-                                        </v-btn>
+                <v-col md="5">
+                    <MainCarousel />
+                </v-col>
+            </v-row>
 
-                                        <v-btn icon>
-                                            <v-icon>mdi-bookmark</v-icon>
-                                        </v-btn>
+            <v-container fluid>
+                <v-sheet
+                    class="d-flex align-center py-16 mt-6"
+                    color="#F9EFE5"
+                    height="420"
+                >
+                    <v-container>
+                        <v-responsive width="300">
+                            <h3 class="text-h4">
+                                Try experimental new features
+                            </h3>
 
-                                        <v-btn icon>
-                                            <v-icon>mdi-share-variant</v-icon>
-                                        </v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-col>
-                        </v-row>
+                            <p class="mt-4 text-medium-emphasis">
+                                For a limited time, Premium members can try out
+                                new features that we’re working on. Share your
+                                feedback to help us build a better YouTube.
+                            </p>
+                        </v-responsive>
                     </v-container>
-                </v-card>
-            </v-col>
-            <v-col cols="6">
-                <v-card class="mx-auto" max-width="500">
-                    <v-system-bar color="indigo darken-2" dark>
-                        <v-spacer></v-spacer>
-
-                        <v-icon>mdi-window-minimize</v-icon>
-
-                        <v-icon>mdi-window-maximize</v-icon>
-
-                        <v-icon>mdi-close</v-icon>
-                    </v-system-bar>
-
-                    <v-toolbar color="indigo" dark>
-                        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                        <v-toolbar-title>Discover</v-toolbar-title>
-
-                        <v-spacer></v-spacer>
-
-                        <v-btn icon>
-                            <v-icon>mdi-magnify</v-icon>
-                        </v-btn>
-                    </v-toolbar>
-
-                    <v-container fluid>
-                        <v-row dense>
-                            <v-col
-                                v-for="card in cards"
-                                :key="card.title"
-                                :cols="card.flex"
-                            >
-                                <v-card>
-                                    <v-img
-                                        :src="card.src"
-                                        class="white--text align-end"
-                                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                                        height="200px"
-                                    >
-                                        <v-card-title
-                                            v-text="card.title"
-                                        ></v-card-title>
-                                    </v-img>
-
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-heart</v-icon>
-                                        </v-btn>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-bookmark</v-icon>
-                                        </v-btn>
-
-                                        <v-btn icon>
-                                            <v-icon>mdi-share-variant</v-icon>
-                                        </v-btn>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-col>
-                        </v-row>
+                </v-sheet>
+            </v-container>
+            <v-container fluid>
+                <v-sheet
+                    class="d-flex align-center py-16"
+                    color="#F3D4D0"
+                    height="420"
+                >
+                    <v-container class="pl-12">
+                        <v-responsive width="700">
+                            <v-img
+                                src="https://picsum.photos/id/11/500/300"
+                                max-height="300"
+                                max-width="500"
+                                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                            ></v-img>
+                        </v-responsive>
                     </v-container>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+                    <v-container>
+                        <v-responsive width="300">
+                            <h3 class="text-h4">
+                                Try experimental new features
+                            </h3>
+
+                            <p class="mt-4 text-medium-emphasis">
+                                For a limited time, Premium members can try out
+                                new features that we’re working on. Share your
+                                feedback to help us build a better YouTube.
+                            </p>
+                        </v-responsive>
+                    </v-container>
+                </v-sheet>
+            </v-container>
+            <v-container fluid>
+                <v-sheet
+                    class="d-flex align-center py-16"
+                    color="#FEF9F3"
+                    height="420"
+                >
+                    <v-container>
+                        <v-responsive width="300">
+                            <h3 class="text-h4">
+                                Try experimental new features
+                            </h3>
+
+                            <p class="mt-4 text-medium-emphasis">
+                                For a limited time, Premium members can try out
+                                new features that we’re working on. Share your
+                                feedback to help us build a better YouTube.
+                            </p>
+                        </v-responsive>
+                    </v-container>
+                </v-sheet>
+            </v-container>
+        </v-main>
+    </v-app>
 </template>
 
 <script>
-// import HelloWorld from '../components/HelloWorld'
+import MainCarousel from '../layouts/main/Carousel.vue'
 
 export default {
     name: 'Main',
 
     components: {
-        // HelloWorld
+        MainCarousel
     },
-    data: () => ({
-        cards: [
-            {
-                title: 'Pre-fab homes',
-                src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',
-                flex: 12
-            },
-            {
-                title: 'Favorite road trips',
-                src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-                flex: 6
-            },
-            {
-                title: 'Best airlines',
-                src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg',
-                flex: 6
-            }
-        ]
-    })
+    data: () => ({})
 }
 </script>
