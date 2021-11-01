@@ -3,7 +3,7 @@
 
 pragma solidity 0.8.9;
 
-contract makeSurvey {
+contract requestOrder {
     
     address public owner;    // 조사 업체
     struct survey {
@@ -12,7 +12,7 @@ contract makeSurvey {
         uint howManyCount;      //원하는 설문 수량만큼만 비용을 지불하기 위해
         address company;       // 의뢰업체
     }     // 설문에 관한 정보를 모아둘 구조체
-    mapping (uint => address[]) public surveyUser;     // 중복수령을 막기위해 설문번호와 주소 맵핑
+   
     survey[] public surveyData;     // 구조체 배열
     uint public surveyNumber = 0;     // 설문 번호
     event addSurvey(uint, uint, address, uint);     // 설문번호, 설문 한번당 지불할 비용, 의뢰업체, 원하는 설문 수량 이벤트
@@ -28,11 +28,7 @@ contract makeSurvey {
       surveyNumber++;       // 다음 설문번호 자동 셋팅
     }
  
-    function record (uint _surveyNum) public{
-        require(surveyData[_surveyNum].howManyCount < surveyData[_surveyNum].howMany);         // 의뢰업체가 원하는 수 만큼만 설문비용 지불하도록
-        surveyUser[_surveyNum].push(tx.origin);     // 누가 설문에 참여했는지 기록
-        surveyData[_surveyNum].howManyCount++;         // 의뢰업체가 원하는 수 만큼만 설문비용 지불하도록
-    }
+   
 }
 
 
