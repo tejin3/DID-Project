@@ -9,8 +9,16 @@
                 <h2>{{ result }}</h2>
             </v-col>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="getEncryptionPublicKey">
+                    암호화된 공개키
+                </v-btn>
+                <h2>
+                    {{ encryptionPublicKey }}
+                </h2>
+            </v-col>
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="encryptedMessage">
-                    Click me
+                    Click me(암호화)
                 </v-btn>
                 <h2>
                     {{ encMsg }}
@@ -18,7 +26,7 @@
             </v-col>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="decrypt">
-                    Click me
+                    Click me(복호화)
                 </v-btn>
                 <h2>
                     {{ decMsg }}
@@ -42,6 +50,8 @@ export default {
             otherPublicKey: 'ZROBC1WIHbz94PZ4dyUz+qOKaaNwKn1VD0QIG+p4/B4=',
             // 태진
             otherPublicKey1: 'QRP+GE9afIUni+KAsxdFm6+k/vdmAs65jSwqxGa3dAs=',
+            encryptionPublicKey: '',
+            accountTest: '',
             encMsg: '',
             decMsg: '',
             vp: {
@@ -95,6 +105,7 @@ export default {
                 balance
             }
             this.result = result
+            this.accountTest = result.coinbase
         },
         encryptedMessage() {
             const sigUtil = require('eth-sig-util')
@@ -102,7 +113,7 @@ export default {
             const buf = Buffer.from(
                 JSON.stringify(
                     sigUtil.encrypt(
-                        this.otherPublicKey1,
+                        this.encryptionPublicKey,
                         { data: msg },
                         'x25519-xsalsa20-poly1305'
                     )
@@ -162,6 +173,32 @@ export default {
             // var formData = new FormData() // Currently empty
             // formData.append(name, value, filename);
             // formData.append('userpic', myFileInput.files[0], 'chris.jpg')
+        },
+
+        getEncryptionPublicKey() {
+            // console.log('1', this.web3)
+            // console.log('2', this.ethereum)
+            // console.log('3', this.web3.ethereum)
+            // console.log('4', window.ethereum)
+
+            window.ethereum
+                .request({
+                    method: 'eth_getEncryptionPublicKey',
+                    params: [this.accountTest] // you must have access to the specified account
+                })
+                .then(result => {
+                    this.encryptionPublicKey = result
+                })
+                .catch(error => {
+                    if (error.code === 4001) {
+                        // EIP-1193 userRejectedRequest error
+                        console.log(
+                            "We can't encrypt anything without the key."
+                        )
+                    } else {
+                        console.error(error)
+                    }
+                })
         }
     }
 }
