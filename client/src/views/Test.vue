@@ -1,8 +1,12 @@
 <template>
     <div>
-        <ProfileHeader />
+        <my-pond />
 
         <!-- 유저 프로필 상세 내용 -->
+        <div>
+            <v-divided></v-divided>
+            구분선
+        </div>
         <v-row>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <h1>test</h1>
@@ -29,13 +33,14 @@
     </div>
 </template>
 <script>
-// import MyPond from '@/components/Cards/MyPond'
-import ProfileHeader from '@/components/MyPage/ProfileHeader'
+// import MyPond from '../components/MyPond'
+import MyPond from '@/components/MyPond'
+// import ProfileHeader from '@/components/MyPage/ProfileHeader'
 import Web3 from 'web3'
 
 export default {
     name: '',
-    components: { ProfileHeader },
+    components: { MyPond },
     data() {
         return {
             sampleData: 'abc',
