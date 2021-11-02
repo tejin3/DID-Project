@@ -6,7 +6,7 @@
 
   "issuer": "https://public.administration/issuers/982349",
 
-  "issuanceDate": "2021-10-01T19:73:24Zz",
+  "issuanceDate": "2021-10-01T19:73:24Z",
 
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
