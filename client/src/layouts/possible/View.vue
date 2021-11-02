@@ -43,10 +43,12 @@
                     >
                         <!-- {{ $vuetify.breakpoint.name }} -->
                         <!-- <v-img>{{ d.image }}</v-img> -->
-                        <v-img
-                            :src="require(`@/assets/img/${d.image}`)"
-                            height="200px"
-                        ></v-img>
+                        <router-link class="text-decoration-none" to="/survey">
+                            <v-img
+                                :src="require(`@/assets/img/${d.image}`)"
+                                height="200px"
+                            ></v-img>
+                        </router-link>
 
                         <v-card-title class="text-h6">
                             {{ d.title }}
