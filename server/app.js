@@ -1,34 +1,34 @@
 "use strict";
+require("dotenv").config({ path: ".env.local" });
+const { PORT, HOSTNAME } = process.env;
 const express = require("express");
-const path = require("path");
-const dotenv = require("dotenv");
 const cors = require("cors");
-const app = express();
-dotenv.config({ path: "./.env" });
 
+// options
 const corsOption = {
     origin: "http://localhost:8080",
     credentials: true,
 };
-// set routes
-const router = require("./src/routes");
-const publicDirectory = path.join(__dirname, "./src/public");
 
+const app = express();
+
+// cors setting
 app.use(cors(corsOption));
-app.use(express.static(publicDirectory));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // default is true
+app.use(
+    express.json({
+        limit: "50mb",
+    })
+);
+app.use("/", require("./src/routes"));
+app.use("/paper", require("./src/routes/paper"));
+app.use("/uploads", express.static("uploads"));
 
-// Use token as middleware
-app.use(function (req, res, next) {
-    res.header(
-        "Access-Control-Allow-Headers",
-        "x-access-token, Origin, Content-Type, Accept"
-    );
-    next();
+// app.use(morgan("dev"));
+
+app.listen(PORT, HOSTNAME, () => {
+    console.log(`\r
+    Server running at 
+    >>> http://${HOSTNAME}:${PORT} <<<
+    `);
 });
-
-// Define Routes or Controller = middle ware
-app.use("/", router);
-
-module.exports = app;

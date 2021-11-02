@@ -6,6 +6,7 @@ import Possible from '../views/Possible.vue'
 import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
+import Test from '../views/Test.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index.vue'
