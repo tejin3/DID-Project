@@ -168,6 +168,12 @@ export default {
     },
     unmounted() {},
     methods: {
+        getVC() {
+            var vc  = localStorage.adssadadadsa
+            복호화
+
+            
+        },
         // 제일  처음 모든 설문지 보여준다
         async getSurvey() {
             this.surveys = await this.$get('/surveys')
