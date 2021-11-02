@@ -1,5 +1,14 @@
 {
   //주민등록증
+  // "@context": [
+  //   "https://www.w3.org/2018/credentials/v1",
+  // ],
+  "id": "http://public.administration/credentials/24532",
+
+  "type": ["VerifiableCredential", "IDCredential"], //검증가능한신원자격증명, 진켈리의주민등록신원자격증명
+
+  "issuer": "https://public.administration/issuers/982349", //발급해준기관
+
   "id": "http://public.administration/credentials/24532",
 
   "type": ["VerifiableCredential", "IDCredential"],
@@ -10,6 +19,10 @@
 
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    // "@context": [
+    //   "https://www.w3.org/2018/credentials/examples/v1" //여기에 필요한 정보들이 아래에 다 나온다
+    // ],
+
 
     "userOf": {
       "id": "did:example:c276e12ec21ebfeb1f712ebc6f1",
@@ -34,16 +47,15 @@
     }
   }
 }
-
-
-//패션
+//패션                                      //발급해주는 기관 
 "id": "http://mushinsa/credentials/14532", // 사용자가 우리 서비스에서 의류를 한달에 50만원 가량 지불했어를 확인시켜주는 문서
 
-"type": ["VerifiableCredential", "ShopCredential"],
+//어떤 자격증을 필요로하냐? 
+"type": ["VerifiableCredential", "ShopCredential"], //검증가능한 신원증명, 
 
 "issuer": "https://mushinsa/issuers/562349", // 미리 합의된 데이터를 모아놓는다. EX. 우리 이런 형식의 JSON으로 쓸거니까 너네도 여기 맞춰서 보내
 
-"issuanceDate": "2021-09-01T13:55:24Z",
+"issuanceDate": "2021-09-01T13:55:24Z", //발급된 날짜
 
 "credentialSubject": {
   "id": "did:example:ebfeb1f712ebc6f1c276e12ec21", // user did
