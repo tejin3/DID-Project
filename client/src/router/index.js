@@ -12,7 +12,6 @@ import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
 import MyPageLayout from '../layouts/mypage/Index'
 
-import Test from '../views/Test.vue'
 import Test1 from '../views/Test1.vue'
 
 Vue.use(VueRouter)
