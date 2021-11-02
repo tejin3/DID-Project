@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify'
 import api from './api.js'
 
 Vue.mixin(api)
+
 Vue.config.productionTip = false
 
 new Vue({

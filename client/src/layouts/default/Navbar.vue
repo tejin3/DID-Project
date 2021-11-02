@@ -15,15 +15,12 @@
 
             <v-toolbar-items class="hidden-xs-only">
                 <v-btn to="possible" text>
-                    <v-icon small left>fa-home</v-icon>
                     조사참여
                 </v-btn>
                 <v-btn to="trade" text>
-                    <v-icon small left>fa-shopping-basket</v-icon>
                     쿠폰교환
                 </v-btn>
                 <v-btn text>
-                    <v-icon small left>fa-shopping-cart</v-icon>
                     지갑연결
                 </v-btn>
             </v-toolbar-items>
