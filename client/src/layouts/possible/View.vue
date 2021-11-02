@@ -105,7 +105,9 @@ export default {
     }),
     setup() {},
     created() {},
-    mounted() {},
+    mounted() {
+        // this.$api('survey')
+    },
     unmounted() {},
     methods: {}
 }
