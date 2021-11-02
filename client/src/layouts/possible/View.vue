@@ -175,7 +175,7 @@ export default {
         // isShow가 true인 것만 보여준다 (조건)
         // 설문 조건 넣는 함수
         async canSurvey() {
-            this.surveys = await this.$get('/surveys?isShow=true')
+            this.surveys = await this.$get('/surveys?isShow=false')
         },
         // 모든 설문지 보여준다
         allSurvey() {
