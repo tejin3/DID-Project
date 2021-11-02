@@ -122,4 +122,4 @@ const login = (req, res, next) => {
     );
 };
 
-module.exports = { index, show, store, update, destory, login };
+module.exports = { index, show, store, update, destroy, login };
