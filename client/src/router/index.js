@@ -6,6 +6,7 @@ import Possible from '../views/Possible.vue'
 import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
+import Company from '../views/Company.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index.vue'
@@ -61,6 +62,14 @@ const routes = [
                 path: '/test1',
                 name: 'Test1',
                 component: Test1
+            },
+            {
+                path: '/company',
+                name: 'Company',
+                component: Company,
+                props: {
+                    listUp: true
+                }
             }
         ]
     }
