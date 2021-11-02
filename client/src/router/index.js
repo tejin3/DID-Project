@@ -11,6 +11,7 @@ import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index.vue'
 
 import Test from '../views/Test.vue'
+import Test1 from '../views/Test1.vue'
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,11 @@ const routes = [
                 path: '/test',
                 name: 'Test',
                 component: Test
+            },
+            {
+                path: '/test1',
+                name: 'Test1',
+                component: Test1
             }
         ]
     }
