@@ -9,7 +9,8 @@ export default new Vuex.Store({
     // state : {}
     state() {
         return {
-            web3: {}
+            web3: {},
+            survey: []
         }
     },
     mutations: {},

@@ -35,14 +35,22 @@
         <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
-                    <v-card elevation="3" class="mx-auto" max-width="344">
+                    <v-card
+                        elevation="3"
+                        class="mx-auto"
+                        max-width="344"
+                        :height="height"
+                    >
+                        <!-- {{ $vuetify.breakpoint.name }} -->
                         <!-- <v-img>{{ d.image }}</v-img> -->
-                        <v-img
-                            :src="require(`@/assets/img/${d.image}`)"
-                            height="200px"
-                        ></v-img>
+                        <router-link class="text-decoration-none" to="/survey">
+                            <v-img
+                                :src="require(`@/assets/img/${d.image}`)"
+                                height="200px"
+                            ></v-img>
+                        </router-link>
 
-                        <v-card-title>
+                        <v-card-title class="text-h6">
                             {{ d.title }}
                         </v-card-title>
 
@@ -55,7 +63,11 @@
                         </v-card-subtitle>
 
                         <v-card-actions>
-                            <v-btn color="orange lighten-2" text>
+                            <v-btn
+                                color="orange lighten-2"
+                                text
+                                @click="d.isShow = !d.isShow"
+                            >
                                 상세 내용
                             </v-btn>
 
@@ -72,7 +84,7 @@
                         <v-expand-transition>
                             <div v-show="d.isShow">
                                 <v-divider></v-divider>
-                                <v-card-text>
+                                <v-card-text class="text-justify">
                                     {{ d.detail }}
                                 </v-card-text>
                             </div>
@@ -100,7 +112,7 @@ export default {
                 coupon: '1',
                 period: '2021.11.15 ~ 2021.11.30',
                 detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-                isShow: true
+                isShow: false
             },
             {
                 id: 2,
@@ -136,6 +148,20 @@ export default {
             }
         ]
     }),
+    // computed: {
+    //     height() {
+    //         switch (this.$vuetify.breakpoint.name) {
+    //             case 'xs':
+    //                 return 100
+    //             case 'md':
+    //                 return 200
+    //             case 'lg':
+    //                 return 300
+    //             default:
+    //                 return 300
+    //         }
+    //     }
+    // },
     setup() {},
     created() {},
     mounted() {
@@ -144,6 +170,12 @@ export default {
     },
     unmounted() {},
     methods: {
+        getVC() {
+            var vc  = localStorage.adssadadadsa
+            복호화
+
+            
+        },
         // 제일  처음 모든 설문지 보여준다
         async getSurvey() {
             this.surveys = await this.$get('/surveys')
@@ -151,7 +183,7 @@ export default {
         // isShow가 true인 것만 보여준다 (조건)
         // 설문 조건 넣는 함수
         async canSurvey() {
-            this.surveys = await this.$get('/surveys?isShow=true')
+            this.surveys = await this.$get('/surveys?isShow=false')
         },
         // 모든 설문지 보여준다
         allSurvey() {
