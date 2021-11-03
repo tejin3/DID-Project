@@ -14,7 +14,7 @@
                         <!-- <template>
                             <v-container fluid> -->
                         <v-text-field
-                            :answers="answers"
+                            v-model="answers"
                             color="yellow  darken-2"
                             label="입력해주세요"
                             placeholder="Start typing..."
@@ -32,6 +32,9 @@
                 <!-- <v-card-title v-text="item.question"> </v-card-title> -->
             </v-carousel>
         </template>
+        <div>
+            {{ answers }}
+        </div>
     </div>
     <!--오른쪽 설문조사 끝-->
 </template>
@@ -44,7 +47,7 @@ export default {
         return {
             value: '',
             custom: true,
-            answers: [],
+            answers: '',
             items: [
                 {
                     question: '1.온라인쇼핑을 자주 하는 이유는 무엇입니까?',
@@ -82,8 +85,21 @@ export default {
     methods: {
         async complete() {
             console.log('answer is', this.answers)
-            // await this.$api(url, method, this.answer)
+
+            this.$api('/survey', 'post', {
+                param: [
+                    {
+                        question_id: 1,
+                        answer_value: this.answers,
+                        answer_account: 'bye'
+                    }
+                ]
+            })
         }
+
+        // this.$api(/)
+        // console.log('answer is', this.answers)
+        // await this.$api(url, method, this.answer)
     }
 }
 </script>

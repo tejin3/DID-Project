@@ -133,14 +133,9 @@ export default {
     unmounted() {},
     methods: {
         // getVC() {
-<<<<<<< HEAD
-        //     var vc = localStorage.adssadadadsa
-        //     복호화
-=======
         //     var vc  = localStorage.adssadadadsa
         //     복호화
 
->>>>>>> 3e27f648d6801bab69e34e6789a3f060ce290305
         // },
         // 제일  처음 모든 설문지 보여준다
         async getSurvey() {
