@@ -1,186 +1,273 @@
 <template>
     <div>
-        <my-pond />
-
+        <ProfileHeader />
         <!-- 유저 프로필 상세 내용 -->
-        <div>
-            <v-divided></v-divided>
-            구분선
-        </div>
         <v-row>
+            <!-- <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <p>{{ verifiableCredentials }}</p>
+                <p>{{ vc }}</p>
+            </v-col> -->
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
-                <h1>test</h1>
-                <h2>{{ result }}</h2>
+                <v-btn elevation="2" @click="encryptHandler">
+                    암호화된 공개키 획득
+                </v-btn>
+            </v-col>
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="decrypt">
+                    로컬 VC 획득
+                </v-btn>
+                <h2>
+                    {{ myVC }}
+                </h2>
+            </v-col>
+            <!-- <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="getEncryptionPublicKey">
+                    암호화된 공개키
+                </v-btn>
+                <h2>
+                    {{ encryptionPublicKey }}
+                </h2>
             </v-col>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="encryptedMessage">
-                    Click me
+                    암호화
                 </v-btn>
                 <h2>
                     {{ encMsg }}
                 </h2>
             </v-col>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
-                <v-btn elevation="2" @click="decrypt">
-                    Click me
+                <v-btn elevation="2" @click="setLocal">
+                    로컬스토리지에 저장
+                </v-btn>
+            </v-col>
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="decrypt1">
+                    Click me(복호화)
                 </v-btn>
                 <h2>
-                    {{ decMsg }}
+                    {{ decMsg1 }}
                 </h2>
-                test2
-            </v-col>
+            </v-col> -->
         </v-row>
     </div>
 </template>
 <script>
-// import MyPond from '../components/MyPond'
-import MyPond from '@/components/MyPond'
-// import ProfileHeader from '@/components/MyPage/ProfileHeader'
-import Web3 from 'web3'
+import ProfileHeader from '@/components/MyPage/ProfileHeader'
 
 export default {
     name: '',
-    components: { MyPond },
+    components: { ProfileHeader },
     data() {
         return {
-            sampleData: 'abc',
-            web3: null,
-            result: null,
-            otherPublicKey: 'ZROBC1WIHbz94PZ4dyUz+qOKaaNwKn1VD0QIG+p4/B4=',
-            encMsg: '',
-            decMsg: '',
-            vp: {
-                id: 'http://public.administration/credentials/24532',
-
-                type: ['VerifiableCredential', 'IDCredential'],
-
-                issuer: 'https://public.administration/issuers/982349',
-
-                issuanceDate: '2021-10-01T19:73:24Z',
-
-                credentialSubject: {
-                    id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
-
-                    userOf: {
-                        id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
-                        name: [
-                            {
-                                value: '진 켈리',
-                                lang: 'ko'
+            verifiableCredentials: {
+                data: [
+                    {
+                        name: '주민등록증',
+                        issuer: 'https://public.administration/issuers/982349',
+                        id: 'http://public.administration/credentials/24532',
+                        type: ['VerifiableCredential', 'IDCredential'],
+                        issuanceDate: '2021-10-01T19:73:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            userOf: {
+                                id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
+                                name: [
+                                    {
+                                        value: '진 켈리',
+                                        lang: 'ko'
+                                    }
+                                ],
+                                age: [
+                                    {
+                                        value: '23',
+                                        lang: 'ko'
+                                    }
+                                ],
+                                address: [
+                                    {
+                                        value: '서울, 대한민국',
+                                        lang: 'ko'
+                                    }
+                                ]
                             }
-                        ],
-                        age: [
-                            {
-                                value: '23',
-                                lang: 'ko'
+                        }
+                    },
+                    {
+                        name: '패션VC',
+                        id: 'http://mushinsa/credentials/14532',
+                        type: ['VerifiableCredential', 'ShopCredential'],
+                        issuer: 'https://mushinsa/issuers/562349',
+                        issuanceDate: '2021-09-01T13:55:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            fashionOf: {
+                                id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
+                                Amount: [
+                                    {
+                                        value: '500000',
+                                        lang: 'ko'
+                                    }
+                                ],
+                                onOffline: [
+                                    {
+                                        value: true,
+                                        lang: 'ko'
+                                    }
+                                ],
+                                product: [
+                                    {
+                                        value: '액세서리',
+                                        lang: 'ko'
+                                    }
+                                ]
                             }
-                        ],
-                        address: [
-                            {
-                                value: '서울, 대한민국',
-                                lang: 'ko'
+                        }
+                    },
+                    {
+                        name: '보험vc',
+                        id: 'http://job.insurance/credentials/14532',
+                        type: ['VerifiableCredential', 'InsuranceCredential'],
+                        issuer: 'https://job.insurance/issuers/2362349',
+                        issuanceDate: '2021-10-01T19:73:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            insuranceOf: {
+                                id: 'did:example:c276e12ec21ebffdre6712ebc6f1',
+                                occupation: [
+                                    {
+                                        value: 'IT',
+                                        lang: 'ko'
+                                    }
+                                ],
+                                income: [
+                                    {
+                                        value: '80000000',
+                                        lang: 'ko'
+                                    }
+                                ],
+                                location: [
+                                    {
+                                        value: '서울',
+                                        lang: 'ko'
+                                    }
+                                ]
                             }
-                        ]
+                        }
                     }
-                }
-            }
+                ]
+            },
+            myVC: null
         }
     },
-    computed: {},
-    mounted() {
-        this.init()
+    beforeCreate() {
+        console.log('register Web3 Action')
+        this.$store.dispatch('registerWeb3')
     },
+    computed: {
+        web3() {
+            return this.$store.state.web3
+        },
+        vc() {
+            return this.verifiableCredentials.data
+        }
+    },
+    mounted() {},
     unmounted() {},
     methods: {
-        async init() {
-            let result = {}
+        async getPublicKey() {
+            const provider = window.ethereum
 
-            this.web3 = new Web3(Web3.givenProvider)
+            const encryptionPublicKey = await provider.request({
+                method: 'eth_getEncryptionPublicKey',
+                params: [this.web3.coinbase]
+            })
 
-            var isInjected = await this.web3.eth.net.isListening()
-            var coinbase = await this.web3.eth.getCoinbase()
-            var balance = await this.web3.eth.getBalance(coinbase)
-
-            result = {
-                ...result,
-                isInjected,
-                coinbase,
-                balance
-            }
-
-            this.result = result
+            return encryptionPublicKey
         },
-        encryptedMessage() {
+        async encryptedMessage() {
+            const encryptionPublicKey = await this.getPublicKey()
             const sigUtil = require('eth-sig-util')
 
-            const msg = JSON.stringify(this.vp)
-
+            const encMsg = JSON.stringify(this.verifiableCredentials)
             const buf = Buffer.from(
                 JSON.stringify(
                     sigUtil.encrypt(
-                        this.otherPublicKey,
-                        { data: msg },
+                        encryptionPublicKey,
+                        { data: encMsg },
                         'x25519-xsalsa20-poly1305'
                     )
                 ),
                 'utf8'
             )
-
-            return (this.encMsg = '0x' + buf.toString('hex'))
+            return '0x' + buf.toString('hex')
+        },
+        async encryptHandler() {
+            try {
+                const envVC = await this.encryptedMessage()
+                window.localStorage.setItem('myVC', envVC)
+            } catch (err) {
+                console.error(err)
+            }
         },
 
         async decrypt() {
-            const decMsg = await window.ethereum.request({
+            const envVC = window.localStorage.getItem('myVC')
+            const provider = window.ethereum
+
+            const decMsg = await provider.request({
                 method: 'eth_decrypt',
-                params: [this.encMsg, this.result.coinbase]
+                params: [envVC, this.web3.coinbase]
             })
-            alert(decMsg)
-        },
-        async copyAddress() {
-            try {
-                const userAddress = this.userAddress
-                await navigator.clipboard.writeText(userAddress)
-                console.log('Successfully, Address Copy!')
-            } catch (err) {
-                console.error('Failed to copy: ', err)
-            }
-        },
-        testAxios() {
-            console.log(this.sampleData)
-            this.$api('/test', 'post', {
-                param: this.sampleData
-            }).then(result => {
-                console.log(result, 'resultOK')
-            })
-        },
-        async testUpload(event) {
-            console.log(event.target.files)
-            // let name = ''
-            // let data = null
-            // if (files) {
-            //     name = files[0].name
-            //     data = this.$base64(files[0])
-            //     console.log(name, data)
-            // } else {
-            //     console.log('no files')
-            // }
-            // const { error } = await this.$api(
-            //     `/upload/${type}/${name}`,
-            //     'post',
-            //     {
-            //         data
-            //     }
-            // )
-            // if (error) {
-            //     return alert('이미지 업로드 실패했습니다. 다시 시도하세요.')
-            // }
-            // alert('이미지가 업로드 되었습니다.')
-        },
-        async fileTransfer() {
-            // var formData = new FormData() // Currently empty
-            // formData.append(name, value, filename);
-            // formData.append('userpic', myFileInput.files[0], 'chris.jpg')
+
+            console.log(decMsg)
+            this.myVC = decMsg
         }
+        // async copyAddress() {
+        //     try {
+        //         const userAddress = this.userAddress
+        //         await navigator.clipboard.writeText(userAddress)
+        //         console.log('Successfully, Address Copy!')
+        //     } catch (err) {
+        //         console.error('Failed to copy: ', err)
+        //     }
+        // },
+        // testAxios() {
+        //     console.log(this.sampleData)
+        //     this.$api('/test', 'post', {
+        //         param: this.sampleData
+        //     }).then(result => {
+        //         console.log(result, 'resultOK')
+        //     })
+        // },
+        // async testUpload(event) {
+        //     console.log(event.target.files)
+        // let name = ''
+        // let data = null
+        // if (files) {
+        //     name = files[0].name
+        //     data = this.$base64(files[0])
+        //     console.log(name, data)
+        // } else {
+        //     console.log('no files')
+        // }
+        // const { error } = await this.$api(
+        //     `/upload/${type}/${name}`,
+        //     'post',
+        //     {
+        //         data
+        //     }
+        // )
+        // if (error) {
+        //     return alert('이미지 업로드 실패했습니다. 다시 시도하세요.')
+        // }
+        // alert('이미지가 업로드 되었습니다.')
+        // }
+        // async fileTransfer() {
+        //     // var formData = new FormData() // Currently empty
+        //     // formData.append(name, value, filename);
+        //     // formData.append('userpic', myFileInput.files[0], 'chris.jpg')
+        // }
     }
 }
 </script>
