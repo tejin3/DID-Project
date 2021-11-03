@@ -12,7 +12,7 @@
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
             <v-card color="primary" dark>
                 <v-card-text>
-                    잠시만 기다려 주세요
+                    잠시만 기다려 주세요 검증 중 입니다
                     <v-progress-linear
                         indeterminate
                         color="white"
@@ -36,6 +36,7 @@ export default {
             if (!val) return
 
             setTimeout(() => (this.dialog = false), 4000)
+            // alert('hello')
         }
     }
 }
