@@ -12,12 +12,13 @@ import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
 import MyPageLayout from '../layouts/mypage/Index'
 
+import Test1 from '../views/Test1.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
-
         component: DefaultLayout,
         children: [
             {
@@ -56,6 +57,16 @@ const routes = [
                 path: '/trade',
                 name: 'Trade',
                 component: Trade
+            },
+            {
+                path: '/test',
+                name: 'Test',
+                component: Test
+            },
+            {
+                path: '/test1',
+                name: 'Test1',
+                component: Test1
             }
         ]
     },

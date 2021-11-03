@@ -43,10 +43,12 @@
                     >
                         <!-- {{ $vuetify.breakpoint.name }} -->
                         <!-- <v-img>{{ d.image }}</v-img> -->
-                        <v-img
-                            :src="require(`@/assets/img/${d.image}`)"
-                            height="200px"
-                        ></v-img>
+                        <router-link class="text-decoration-none" to="/survey">
+                            <v-img
+                                :src="require(`@/assets/img/${d.image}`)"
+                                height="200px"
+                            ></v-img>
+                        </router-link>
 
                         <v-card-title class="text-h6">
                             {{ d.title }}
@@ -181,7 +183,7 @@ export default {
         // isShow가 true인 것만 보여준다 (조건)
         // 설문 조건 넣는 함수
         async canSurvey() {
-            this.surveys = await this.$get('/surveys?isShow=true')
+            this.surveys = await this.$get('/surveys?isShow=false')
         },
         // 모든 설문지 보여준다
         allSurvey() {
