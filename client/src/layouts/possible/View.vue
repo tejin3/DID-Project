@@ -102,51 +102,51 @@ export default {
 
     data: () => ({
         show: false,
-        isShow: false,
-        surveys: [
-            {
-                id: 1,
-                title: '문화 생활 관련 조사',
-                image: 'surveyImg2.jpg',
-                price: '1,500원',
-                coupon: '1',
-                period: '2021.11.15 ~ 2021.11.30',
-                detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                id: 2,
-                title: '전자 제품 관련 조사',
-                image: 'surveyImg1.jpg',
-                price: '2,000원',
-                coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                id: 3,
-                title: '패션 관련 조사',
-                image: 'surveyImg3.jpg',
-                price: '5,000원',
-                coupon: '1',
-                period: '2021.11.23 ~ 2021.12.13',
-                detail:
-                    '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
-                isShow: true
-            },
-            {
-                id: 4,
-                title: '인터넷 은행 관련 조사',
-                image: 'surveyImg4.jpg',
-                price: '4,500원',
-                coupon: '1',
-                period: '2021.11.16 ~ 2021.11.25',
-                detail:
-                    '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
-                isShow: false
-            }
-        ]
+        isShow: false
+        // surveys: [
+        //     {
+        //         id: 1,
+        //         title: '문화 생활 관련 조사',
+        //         image: 'surveyImg2.jpg',
+        //         price: '1,500원',
+        //         coupon: '1',
+        //         period: '2021.11.15 ~ 2021.11.30',
+        //         detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+        //         isShow: false
+        //     },
+        //     {
+        //         id: 2,
+        //         title: '전자 제품 관련 조사',
+        //         image: 'surveyImg1.jpg',
+        //         price: '2,000원',
+        //         coupon: '1',
+        //         period: '2021.11.18 ~ 2021.11.26',
+        //         detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+        //         isShow: false
+        //     },
+        //     {
+        //         id: 3,
+        //         title: '패션 관련 조사',
+        //         image: 'surveyImg3.jpg',
+        //         price: '5,000원',
+        //         coupon: '1',
+        //         period: '2021.11.23 ~ 2021.12.13',
+        //         detail:
+        //             '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+        //         isShow: true
+        //     },
+        //     {
+        //         id: 4,
+        //         title: '인터넷 은행 관련 조사',
+        //         image: 'surveyImg4.jpg',
+        //         price: '4,500원',
+        //         coupon: '1',
+        //         period: '2021.11.16 ~ 2021.11.25',
+        //         detail:
+        //             '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+        //         isShow: false
+        //     }
+        // ]
     }),
     // computed: {
     //     height() {
