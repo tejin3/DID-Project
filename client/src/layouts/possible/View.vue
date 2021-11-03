@@ -165,20 +165,17 @@ export default {
     setup() {},
     created() {},
     mounted() {
-
         // this.$api('survey')
 
         // 첫 화면에 보여진다
         this.getSurvey()
-
     },
     unmounted() {},
     methods: {
         getVC() {
-            var vc  = localStorage.adssadadadsa
-            복호화
-
-
+            var vc = localStorage.adssadadadsa
+            // 복호화
+            console.log(vc)
         },
         // 제일  처음 모든 설문지 보여준다
         async getSurvey() {
