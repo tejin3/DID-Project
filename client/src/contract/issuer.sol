@@ -1,7 +1,7 @@
 pragma solidity 0.8.9;
 
 contract issuer {
-    
+
     address DID;
     string publicKey;
     string privateKey;
@@ -14,9 +14,9 @@ contract issuer {
     //     bool apporval;
     //     string encryptVC;
     // }
-    
+
 //   VC[] public VCs;
-    
+
     constructor (string memory _publicKey, string memory _privateKey, string memory _encryptPublickey)  {
         DID = msg.sender;
         publicKey = _publicKey;
@@ -25,15 +25,15 @@ contract issuer {
     }
     // 이슈어 공개키, 비공개키, 암호화된 비공개키 설정
     // 프로젝트를 위한 더미 데이터
-    
+
     function vcApporval(string memory _holderEncryptPublic) public {
        holder[msg.sender] = _holderEncryptPublic;
        vcList[msg.sender] = false;
     }
     // vc 발급 요청
-    
+
     // 인증
-    
+
     function checkedApporval(address _holder, string memory _holderEncryptPublic) public {
         require(msg.sender == DID);
         require(vcList[msg.sender] = false);
@@ -42,15 +42,15 @@ contract issuer {
         // sendVC(_holder, _holderVC);
     }
     // vc 발급 승인 및 발급내역 저장
-    
+
     // function sendVC(address _holder, string memory _holderVC) public {
-       
+
     // }
-    
+
     // function sendVC(string memory _holderEncryptPublic ) public returns (memory string) {
     //     require(vcList[msg.sender] = true);
     //     string memory a = holder[msg.sender][_holderEncryptPublic];
     //     return(a);
-        
+
     // }
 }

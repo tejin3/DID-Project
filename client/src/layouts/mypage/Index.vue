@@ -1,14 +1,14 @@
 <template>
     <v-container>
-        <possible-view />
+        <mypage-view />
     </v-container>
 </template>
 
 <script>
-import PossibleView from './View.vue'
+import MypageView from './View.vue'
 export default {
     name: 'PossibleLayout',
-    components: { PossibleView }
+    components: { MypageView }
 }
 </script>
 

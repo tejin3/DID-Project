@@ -1,19 +1,19 @@
 <template>
-    <div>
-        <h1>This is a My page</h1>
-    </div>
+    <!-- 이상하면 div로 변경 -->
+    <v-app>
+        <mypage-layout />
+    </v-app>
 </template>
 <script>
+import MypageLayout from '../layouts/mypage/Index'
+
 export default {
     name: '',
-    components: {},
+    components: { MypageLayout },
     data() {
-        return {
-            sampleData: ''
-        }
+        return {}
     },
-    setup() {},
-    created() {},
+    computed: {},
     mounted() {},
     unmounted() {},
     methods: {}

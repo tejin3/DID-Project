@@ -9,7 +9,10 @@ import Trade from '../views/Trade.vue'
 import Company from '../views/Company.vue'
 
 import DefaultLayout from '../layouts/default/Index'
-import PossibleLayout from '../layouts/possible/Index.vue'
+import PossibleLayout from '../layouts/possible/Index'
+import MyPageLayout from '../layouts/mypage/Index'
+
+import Test1 from '../views/Test1.vue'
 
 import Test from '../views/Test.vue'
 import Test1 from '../views/Test1.vue'
@@ -19,7 +22,6 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-
         component: DefaultLayout,
         children: [
             {
@@ -40,8 +42,14 @@ const routes = [
             },
             {
                 path: '/mypage',
-                name: 'mypage',
-                component: MyPage
+                component: MyPage,
+                children: [
+                    {
+                        path: '/mypage',
+                        name: 'possible',
+                        component: MyPageLayout
+                    }
+                ]
             },
             {
                 path: '/survey',
@@ -72,7 +80,8 @@ const routes = [
                 }
             }
         ]
-    }
+    },
+    { path: '/test', name: 'Test', component: Test }
 ]
 const router = new VueRouter({
     mode: 'history',
