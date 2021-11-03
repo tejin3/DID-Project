@@ -1,52 +1,49 @@
-const Paper = require("../models/paper");
+"use strict";
+// data document model setting
+const condition = require("../models/condition");
 
 // 모든 설문지 조건을 가져온다.
 const index = (req, res, next) => {
-    Paper.find()
-        .then((result) => {
-            res.json({ result });
-        })
-        .catch((error) => {
-            res.json({ message: "Paper Controller Error" });
-        });
-};
+    // query string이 존재할 때
+    const surveyId = parseInt(req.query.surveyId);
 
-// 설문지 id을 기준으로 한 설문지 조건을 가져온다.
-const show = (req, res, next) => {
-    let paperId = req.body.paperId;
-    Paper.findById(paperId)
-        .then((result) => {
-            res.json({
-                result,
+    if (surveyId) {
+        console.log("here");
+
+        // 설문지 id을 기준으로 한 설문지 조건을 가져온다.
+        condition
+            .findOne({ survey_id: surveyId })
+            .then((result) => {
+                return res.json({
+                    result,
+                });
+            })
+            .catch((error) => {
+                return res.json({ message: "Condition Controller Error" });
             });
-        })
-        .catch((error) => {
-            res.json({ message: "Paper Controller Error" });
-        });
+    } else {
+        // query string이 존재하지 않을 때
+        console.log("query is empty");
+        
+        // 모든 설문지를 가져온다.
+        condition
+            .find()
+            .then((result) => {
+                res.json({ result });
+            })
+            .catch((error) => {
+                res.json({ message: "Condition Controller Error !" });
+            });
+    }
 };
 
 // DB에 설문지 조건 추가
 const store = (req, res, next) => {
-    const paperObject = req.body.paper;
+    const conditionObject = req.body;
+    // console.log(JSON.stringify(req.body));
+    const conditionCollection = new Condition(conditionObject);
 
-    const testCollectionData = new Paper(paperObject);
-
-    // 미들웨어
-    if (req.file) {
-        paper.avatar = req.file.path;
-    }
-
-    // 파일이 여러개인 경우
-    if (req.files) {
-        let path = "";
-        req.files.forEach(function (files, index, arr) {
-            path = path + files.path + ",";
-        });
-        path = path.substring(0, path.lastIndexOf(","));
-        paper.avatar = path;
-    }
-
-    testCollectionData
+    conditionCollection
         .save()
         .then((result) => {
             res.json({
@@ -54,8 +51,25 @@ const store = (req, res, next) => {
             });
         })
         .catch((error) => {
-            message: "Paper Upload Error";
+            res.json({
+                message: "Data Upload Error",
+            });
         });
+
+    // // 미들웨어
+    // if (req.file) {
+    //     paper.avatar = req.file.path;
+    // }
+
+    // // 파일이 여러개인 경우
+    // if (req.files) {
+    //     let path = "";
+    //     req.files.forEach(function (files, index, arr) {
+    //         path = path + files.path + ",";
+    //     });
+    //     path = path.substring(0, path.lastIndexOf(","));
+    //     paper.avatar = path;
+    // }
 };
 
 // 설문지 조건 업데이트
@@ -122,4 +136,4 @@ const login = (req, res, next) => {
     );
 };
 
-module.exports = { index, show, store, update, destroy, login };
+module.exports = { index, store, update, destroy, login };

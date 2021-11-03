@@ -33,7 +33,7 @@ module.exports = {
   testImgUp: {
     query: `insert into t_test set ?`,
   },
-  possible: {
-    query: `select * from t_survey`,
+  getSurvey: {
+    query: "select * from t_survey",
   },
 };
