@@ -22,7 +22,6 @@ app.use(
 );
 app.use("/survey", require("./src/routes/survey"));
 app.use("/condition", require("./src/routes/condition"));
-
 app.use("/uploads", express.static("uploads"));
 
 // app.use(morgan("dev"));

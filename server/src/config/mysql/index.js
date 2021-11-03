@@ -21,7 +21,7 @@ pool.connect((error) => {
 
 const query = async (alias, param = [], where = "") => {
     return new Promise((resolve, reject) =>
-        dbPool.query(sql[alias].query + where, param, (error, rows) => {
+        pool.query(sql[alias].query + where, param, (error, rows) => {
             console.log(sql[alias]);
             if (error) {
                 if (error.code != "ER_DUP_ENTRY") console.log(error);
