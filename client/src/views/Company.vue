@@ -7,6 +7,11 @@
 import CompanyLayout from '../layouts/company/Index'
 export default {
     name: '',
-    components: { CompanyLayout }
+    components: { CompanyLayout },
+    data() {
+        return {
+            hello: 'hihi1'
+        }
+    }
 }
 </script>

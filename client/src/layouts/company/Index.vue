@@ -1,6 +1,7 @@
 <template>
     <v-container>
-        <company-view />
+        <!-- <company-view :ex3="sliderData" /> -->
+        <company-view :ex3="sliderData" />
     </v-container>
 </template>
 
@@ -9,6 +10,11 @@ import CompanyView from './View.vue'
 export default {
     name: 'CompanyLayout',
     components: { CompanyView }
+    // data() {
+    //     return {
+    //         sliderData: []
+    //     }
+    // }
 }
 </script>
 

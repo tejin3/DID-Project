@@ -31,10 +31,10 @@
                 </v-img>
 
                 <v-card-title>패션 설문[설문번호 :10]</v-card-title>
+                <!-- <v-card-title>{{n.title}}패션 설문[설문번호 :10]</v-card-title> -->
 
                 <v-card-text>
                     <v-chip-group
-                        v-model="selection"
                         active-class="deep-purple accent-4 white--text"
                         column
                         mandatory
@@ -44,7 +44,19 @@
                         <v-chip>설문완료</v-chip>
                     </v-chip-group>
 
-                    <Slider />
+                    <div class="mt-10">
+                        <v-slider
+                            class="mt-10"
+                            v-model="ex3.val"
+                            :label="ex3.label"
+                            :thumb-color="ex3.color"
+                            thumb-label="always"
+                            readonly
+                        ></v-slider>
+                        <!-- v-model="`${n.val}`"
+                        :label="`${n.label}`"
+                        :label="`${n.color}`" -->
+                    </div>
                 </v-card-text>
 
                 <v-divider class="mx-4"></v-divider>
@@ -53,34 +65,56 @@
 
                 <v-card-text>
                     <v-chip-group
-                        v-model="selection"
                         active-class="deep-purple accent-4 white--text"
                         column
                     >
-                        <v-chip>연령VC[검증]</v-chip>
+                        <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
+                        <!-- 그냥 돌리면됨 -->
+                        <v-chip>연령VC[200원]</v-chip>
+                        <!-- <v-chip>{{vc}}</v-chip> -->
 
-                        <v-chip>성별VC[검증]</v-chip>
+                        <v-chip>성별VC[200원]</v-chip>
 
-                        <v-chip>소득VC[검증]</v-chip>
+                        <v-chip>소득VC[1000원]</v-chip>
 
-                        <v-chip>학력VC[검증]</v-chip>
+                        <v-chip>학력VC[300원]</v-chip>
 
                         <v-chip><DialogScroll /></v-chip>
                     </v-chip-group>
                 </v-card-text>
             </v-card>
         </v-col>
+        <button @click="init()">hello</button>
     </v-row>
 </template>
 <script>
-import Slider from './Slider.vue'
+// import Slider from './Slider.vue'
 import DialogScroll from './DialogScroll.vue'
 export default {
+    // props: {
+    //     ex3: {
+    //         type: Array,
+    //         default: function() {
+    //             return [
+    //                 {
+    //                     label: '설문진행률',
+    //                     val: 50,
+    //                     color: 'red'
+    //                 }
+    //             ]
+    //         }
+    //     }
+    // },
     name: 'CompanyView',
-    components: { Slider, DialogScroll },
+    components: { DialogScroll },
     data() {
         return {
-            sampleData: ''
+            loading: false,
+            ex3: {
+                label: '설문진행률',
+                val: 50,
+                color: 'red'
+            }
         }
     },
     setup() {},
