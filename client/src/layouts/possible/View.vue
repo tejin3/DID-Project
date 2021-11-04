@@ -127,6 +127,8 @@ export default {
     setup() {},
     created() {},
     mounted() {
+        // this.$api('survey')
+
         // 첫 화면에 보여진다
         this.getSurvey()
     },
