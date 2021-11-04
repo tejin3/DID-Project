@@ -23,6 +23,10 @@
                 <v-btn text>
                     지갑연결
                 </v-btn>
+                <v-btn text v-show="listUp">
+                    <v-icon small left>fa-shopping-cart</v-icon>
+                    요청한 설문 리스트
+                </v-btn>
             </v-toolbar-items>
         </v-app-bar>
 
@@ -34,9 +38,7 @@
                     :to="item.link"
                     link
                 >
-                    <v-list-item-icon>
-                        <v-icon small>fa-{{ item.icon }}</v-icon>
-                    </v-list-item-icon>
+                    <v-list-item-icon> </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item-content>
@@ -49,9 +51,16 @@
 <script>
 module.exports = {
     name: 'DefaultBar',
+    props: {
+        listUp: {
+            type: Boolean,
+            defalut: false
+        }
+    },
     data() {
         return {
             drawer: false,
+            // company: false,
             items: [
                 { title: 'Home', link: '/', icon: 'home' },
                 { title: 'Store', link: 'store', icon: 'shopping-basket' },

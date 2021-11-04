@@ -1,21 +1,12 @@
 <template>
-    <div>
-        <h1>This is a Survey page</h1>
-    </div>
+    <v-container>
+        <SurveyLayout />
+    </v-container>
 </template>
 <script>
+import SurveyLayout from '../layouts/survey/Index.vue'
 export default {
-    name: 'Survey',
-    components: {},
-    data() {
-        return {
-            sampleData: ''
-        }
-    },
-    setup() {},
-    created() {},
-    mounted() {},
-    unmounted() {},
-    methods: {}
+    name: '',
+    components: { SurveyLayout }
 }
 </script>
