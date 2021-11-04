@@ -107,8 +107,8 @@ export default {
     data: () => ({
         show: false,
         isShow: false,
-        survey: [],
-        hello: ''
+        surveys: []
+        // answers: '',
     }),
     // computed: {
     //     height() {
@@ -141,23 +141,39 @@ export default {
         // },
         // 제일  처음 모든 설문지 보여준다
         async getSurvey() {
-            console.log('hi', this.$get())
+            // console.log('hi', this.$get())
 
-            this.survey = await this.$get('/survey')
+            this.surveys = await this.$get('/survey')
 
-            console.log(this.survey)
+            // console.log(this.surveys)
         },
         // isShow가 true인 것만 보여준다 (조건)
         // 설문 조건 넣는 함수
         async canSurvey() {
-            this.hello = 'hello'
+            // this.hello = 'hello'
             // console.log(this.hello)
-            // this.survey = await this.$get('/survey?isShow=false')
+            this.survey = await this.$get('/survey?isShow=false')
         },
         // 모든 설문지 보여준다
         allSurvey() {
             this.getSurvey()
         }
+        // 받아오는 데이터 예시
+        //      async complete() {
+        //     console.log('answer is', this.answers)
+
+        //     this.$api('/survey', 'post', {
+        //         param: [
+        //             {
+        //                 question_id: 1,
+        //                 answer_value: this.answers,
+        // 형식에 맞게(db에서 정해놓은) 넣고 싶은 데이터
+        //                 answer_account: 'bye'
+        //             }
+        //         ]
+        //     })
+        // }
+        // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {
         //         title: '문화 생활 관련 조사2',

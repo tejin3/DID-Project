@@ -17,6 +17,7 @@ import CompanyLayout from '../layouts/company/Index'
 
 import Test from '../views/Test.vue'
 import Test1 from '../views/Test1.vue'
+import Test5 from '../views/Test5.vue'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
                 path: '/test1',
                 name: 'Test1',
                 component: Test1
+            },
+            {
+                path: '/test5',
+                name: 'Test5',
+                component: Test5
             },
             {
                 path: '/company',

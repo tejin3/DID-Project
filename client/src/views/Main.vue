@@ -1,7 +1,7 @@
 <template>
     <v-app>
-        <v-main>
-            <v-row>
+        <v-main class="pa-0">
+            <v-row class="bg">
                 <v-col
                     class="align-content-space-between layout wrap mb-6"
                     cols="12"
@@ -19,7 +19,7 @@
                                 참여해서 맡겨놓은 상금과 상품을 가져가세요
                             </p>
                             <v-btn color="secondary" elevation="2"
-                                >Get start!</v-btn
+                                >Get started!</v-btn
                             >
                         </v-col>
                     </v-row>
@@ -32,29 +32,29 @@
                 <v-col md="5">
                     <MainCarousel />
                 </v-col>
+                <v-row class="py-10 px-16 mt-16">
+                    <!-- <v-row class="py-10 px-16 mt-16 pink lighten-5"> -->
+                    <v-col>
+                        <!-- <v-responsive
+                            width="500"
+                            height="300"
+                            class="px-10 explain"
+                        >
+                            <h3 class="text-h4">
+                                Try experimental new features
+                            </h3>
+
+                            <p class="mt-4 text-medium-emphasis">
+                                For a limited time, Premium members can try out
+                                new features that we’re working on. Share your
+                                feedback to help us build a better YouTube.
+                            </p>
+                        </v-responsive> -->
+                    </v-col>
+                </v-row>
             </v-row>
 
-            <v-row class="py-10 px-16 mt-16 pink lighten-5">
-                <v-col>
-                    <v-responsive
-                        width="500"
-                        height="300"
-                        class="px-10 explain"
-                    >
-                        <h3 class="text-h4">
-                            Try experimental new features
-                        </h3>
-
-                        <p class="mt-4 text-medium-emphasis">
-                            For a limited time, Premium members can try out new
-                            features that we’re working on. Share your feedback
-                            to help us build a better YouTube.
-                        </p>
-                    </v-responsive>
-                </v-col>
-            </v-row>
-
-            <v-row class="py-16 px-16 pink lighten-4">
+            <v-row class="py-16 px-16">
                 <v-col sm="12" md="6" lg="6">
                     <v-img
                         src="https://picsum.photos/id/11/500/300"
@@ -112,7 +112,8 @@ export default {
     components: {
         MainCarousel
     },
-    data: () => ({})
+    data: () => ({}),
+    computed: {}
 }
 </script>
 <style>
