@@ -48,8 +48,8 @@
                         <v-slider
                             class="mt-10"
                             v-model="ex3.val"
-                            :label="ex3.label"
-                            :thumb-color="ex3.color"
+                            label="설문진행률"
+                            thumb-color="red"
                             thumb-label="always"
                             readonly
                         ></v-slider>
@@ -111,16 +111,34 @@ export default {
         return {
             loading: false,
             ex3: {
-                label: '설문진행률',
-                val: 50,
-                color: 'red'
-            }
+                val: 50
+            },
+            test: [],
+            test1: [],
+            test2: []
         }
     },
     setup() {},
     created() {},
-    mounted() {},
+    mounted() {
+        this.init()
+    },
     unmounted() {},
-    methods: {}
+    methods: {
+        async init() {
+            await this.$api('/surveys/data', 'get').then(result => {
+                console.log(result)
+                this.test = result
+            })
+            await this.$api('/surveys/test', 'get').then(result => {
+                console.log(result)
+                this.test = result
+            })
+            await this.$api('/surveys/testvc', 'get').then(result => {
+                console.log(result)
+                this.test = result
+            })
+        }
+    }
 }
 </script>
