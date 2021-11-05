@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <!-- <company-view :ex3="sliderData" /> -->
-        <company-view :ex3="sliderData" />
+        <company-view />
     </v-container>
 </template>
 

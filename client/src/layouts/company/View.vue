@@ -126,11 +126,13 @@ export default {
     unmounted() {},
     methods: {
         async init() {
-            await this.$api('/surveys/data', 'get').then(result => {
-                console.log(result)
+            await this.$api('/surveys/data', 'get', {
+                param: [0x12]
+            }).then(result => {
+                console.log('hello', result)
                 this.test = result
             })
-            await this.$api('/surveys/test', 'get').then(result => {
+            await this.$api('/surveys/completepeople', 'get').then(result => {
                 console.log(result)
                 this.test = result
             })
