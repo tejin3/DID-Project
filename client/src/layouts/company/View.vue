@@ -127,7 +127,7 @@ export default {
     methods: {
         async init() {
             await this.$api('/surveys/data', 'get', {
-                param: [0x12]
+                param: ['0x12']
             }).then(result => {
                 console.log('hello', result)
                 this.test = result

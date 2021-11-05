@@ -7,6 +7,7 @@ const mysql = require("../config/mysql");
 
 router.get("/data", async (req, res) => {
   console.log("here000");
+  console.log(req);
   // console.log(req.body.param);
   // console.log(req.body.param[0]);
   // try {
