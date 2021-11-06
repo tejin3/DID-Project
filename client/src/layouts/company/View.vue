@@ -1,6 +1,11 @@
 <template>
     <v-row>
-        <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+        <v-col
+            v-for="(n, m) of surveyData"
+            :key="n"
+            class="d-flex child-flex"
+            cols="4"
+        >
             <v-card :loading="loading" class="mx-auto my-12" max-width="374">
                 <template slot="progress">
                     <v-progress-linear
@@ -11,8 +16,8 @@
                 </template>
 
                 <v-img
-                    :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                    :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                    :src="`https://picsum.photos/500/300?image=${m * 5 + 10}`"
+                    :lazy-src="`https://picsum.photos/10/6?image=${m * 5 + 10}`"
                     aspect-ratio="1"
                     class="grey lighten-2"
                 >
@@ -30,24 +35,45 @@
                     </template>
                 </v-img>
 
-                <v-card-title>패션 설문[설문번호 :10]</v-card-title>
-                <!-- <v-card-title>{{n.title}}패션 설문[설문번호 :10]</v-card-title> -->
+                <v-card-title
+                    >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
+                        surveyData[m].survey_count
+                    }}]</v-card-title
+                >
+                <v-card-text class="py-0">
+                    <v-timeline align-top dense>
+                        <v-timeline-item color="teal lighten-3" small>
+                            <v-row class="pt-1">
+                                <v-col>
+                                    <strong>{{
+                                        surveyData[m].survey_start_date.slice(
+                                            0,
+                                            10
+                                        )
+                                    }}</strong>
+                                </v-col>
+                            </v-row>
+                        </v-timeline-item>
+                        <v-timeline-item color="pink" small>
+                            <v-row class="pt-1">
+                                <v-col>
+                                    <strong>{{
+                                        surveyData[m].survey_end_date.slice(
+                                            0,
+                                            10
+                                        )
+                                    }}</strong>
+                                </v-col>
+                            </v-row>
+                        </v-timeline-item>
+                    </v-timeline>
+                </v-card-text>
 
                 <v-card-text>
-                    <v-chip-group
-                        active-class="deep-purple accent-4 white--text"
-                        column
-                        mandatory
-                    >
-                        <v-chip>설문중</v-chip>
-
-                        <v-chip>설문완료</v-chip>
-                    </v-chip-group>
-
-                    <div class="mt-10">
+                    <div class="mt-6">
                         <v-slider
-                            class="mt-10"
-                            v-model="ex3.val"
+                            class="mt-6"
+                            v-model="surveyData[m].total_complte"
                             label="설문진행률"
                             thumb-color="red"
                             thumb-label="always"
@@ -57,6 +83,15 @@
                         :label="`${n.label}`"
                         :label="`${n.color}`" -->
                     </div>
+                    <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                        mandatory
+                    >
+                        <v-chip>설문중</v-chip>
+
+                        <v-chip>설문완료</v-chip>
+                    </v-chip-group>
                 </v-card-text>
 
                 <v-divider class="mx-4"></v-divider>
@@ -113,7 +148,7 @@ export default {
             ex3: {
                 val: 50
             },
-            test: [],
+            surveyData: [],
             test1: [],
             test2: []
         }
@@ -130,7 +165,7 @@ export default {
                 param: ['0x12']
             }).then(result => {
                 console.log('hello', result)
-                this.test = result
+                this.surveyData = result
             })
             await this.$api('/surveys/completepeople', 'get').then(result => {
                 console.log(result)
