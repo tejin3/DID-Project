@@ -105,16 +105,36 @@
                     >
                         <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
                         <!-- 그냥 돌리면됨 -->
-                        <v-chip>연령VC[200원]</v-chip>
+                        <v-chip v-if="surveyData[m].vc_name"
+                            ><DialogScroll
+                                title="이름 자료 요청[200원]"
+                                :completePeople="
+                                    test1.filter(
+                                        filtering =>
+                                            filtering.survey_id == m + 1
+                                    )
+                                "
+                                :surveyId="surveyData[m].survey_id"
+                        /></v-chip>
                         <!-- <v-chip>{{vc}}</v-chip> -->
 
-                        <v-chip>성별VC[200원]</v-chip>
+                        <v-chip v-if="surveyData[m].vc_age"
+                            ><DialogScroll
+                                title="나이 자료 요청[300원]"
+                                :completePeople="
+                                    test1.filter(
+                                        filtering =>
+                                            filtering.survey_id == m + 1
+                                    )
+                                "
+                                :surveyId="surveyData[m].survey_id"
+                        /></v-chip>
 
-                        <v-chip>소득VC[1000원]</v-chip>
+                        <!-- <v-chip>소득VC[1000원]</v-chip>
 
-                        <v-chip>학력VC[300원]</v-chip>
+                        <v-chip>학력VC[300원]</v-chip> -->
 
-                        <v-chip><DialogScroll /></v-chip>
+                        <!-- <v-chip><DialogScroll /></v-chip> -->
                     </v-chip-group>
                 </v-card-text>
             </v-card>
@@ -126,20 +146,6 @@
 // import Slider from './Slider.vue'
 import DialogScroll from './DialogScroll.vue'
 export default {
-    // props: {
-    //     ex3: {
-    //         type: Array,
-    //         default: function() {
-    //             return [
-    //                 {
-    //                     label: '설문진행률',
-    //                     val: 50,
-    //                     color: 'red'
-    //                 }
-    //             ]
-    //         }
-    //     }
-    // },
     name: 'CompanyView',
     components: { DialogScroll },
     data() {
@@ -169,11 +175,11 @@ export default {
             })
             await this.$api('/surveys/completepeople', 'get').then(result => {
                 console.log(result)
-                this.test = result
+                this.test1 = result
             })
             await this.$api('/surveys/testvc', 'get').then(result => {
                 console.log(result)
-                this.test = result
+                this.test2 = result
             })
         }
     }

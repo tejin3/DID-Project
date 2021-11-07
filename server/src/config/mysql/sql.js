@@ -44,7 +44,7 @@ module.exports = {
   },
   getSurvey1: {
     query:
-      "SELECT t1.survey_count, t1.survey_start_date ,t1.survey_end_date ,t1.survey_title ,t1.survey_description ,(t1.survey_request_count/t1.survey_complete_count)*100 as total_complte ,t1.survey_company_account , t3.vc_name ,t3.vc_age FROM t_survey_1 t1, t_test_vc t3 WHERE t1.survey_id = t3.survey_id",
+      "SELECT t1.survey_id, t1.survey_count, t1.survey_start_date ,t1.survey_end_date ,t1.survey_title ,t1.survey_description ,(t1.survey_request_count/t1.survey_complete_count)*100 as total_complte ,t1.survey_company_account , t3.vc_name ,t3.vc_age FROM t_survey_1 t1, t_test_vc t3 WHERE t1.survey_id = t3.survey_id",
   },
   // and t1.survey_company_account = ?
 };
