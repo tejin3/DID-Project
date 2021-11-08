@@ -9,7 +9,7 @@
                         src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
                     >
                         <div class="text-h2">
-                            {{ question.question }}
+                            {{ question.quesiton_content }}
                         </div>
                         <!-- <template>
                             <v-container fluid> -->
@@ -70,7 +70,7 @@ export default {
                     param: [this.surveyId]
                 })
 
-                console.log(this.questions)
+                console.log(this.questions[0].quesiton_content)
             } catch (err) {
                 console.log(err)
             }

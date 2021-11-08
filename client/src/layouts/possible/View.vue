@@ -115,7 +115,8 @@ export default {
         vcItemList: [],
         passSurveyList: [],
         isShow: false,
-        surveys: []
+        surveys: [],
+        proofSurveys: []
     }),
     // computed: {
     //     height() {
