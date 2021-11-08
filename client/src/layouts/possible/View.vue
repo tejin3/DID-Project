@@ -19,7 +19,6 @@
                 dark
                 large
             >
-                {{ hello }}
                 참여 가능한 설문
             </v-btn>
             <!-- <v-btn
@@ -63,20 +62,25 @@
                         </v-card-subtitle>
 
                         <v-card-subtitle>
-                            {{ d.survey_period }}
+                            설문 기간 <br />
+                            {{ d.survey_start_date }}
+                            ~ {{ d.survey_end_date }}
                         </v-card-subtitle>
 
                         <v-card-actions>
                             <v-btn
                                 color="orange lighten-2"
                                 text
-                                @click="d.isShow = !d.isShow"
+                                @click="d.survey_isShow = !d.survey_isShow"
                             >
                                 상세 내용
                             </v-btn>
 
                             <v-spacer></v-spacer>
-                            <v-btn icon @click="d.isShow = !d.isShow">
+                            <v-btn
+                                icon
+                                @click="d.survey_isShow = !d.survey_isShow"
+                            >
                                 <v-icon>{{
                                     isShow
                                         ? 'mdi-chevron-up'
@@ -86,7 +90,7 @@
                         </v-card-actions>
 
                         <v-expand-transition>
-                            <div v-show="d.isShow">
+                            <div v-show="d.survey_isShow">
                                 <v-divider></v-divider>
                                 <v-card-text class="text-justify">
                                     {{ d.survey_description }}
@@ -105,53 +109,75 @@ export default {
     name: 'PossibleView',
 
     data: () => ({
-        show: false,
-        isShow: false,
+        passSurveyList: [2, 3],
+        survey_isShow: false,
         surveys: [
-            {
-                id: 1,
-                survey_title: '문화 생활 관련 조사',
-                survey_image_path: 'surveyImg2.jpg',
-                survey_price: '1,500원',
-                survey_coupon: '1',
-                survey_period: '2021.11.15 ~ 2021.11.30',
-                survey_description:
-                    '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                id: 2,
-                survey_title: '전자 제품 관련 조사',
-                survey_image_path: 'surveyImg1.jpg',
-                survey_price: '2,000원',
-                survey_coupon: '1',
-                survey_period: '2021.11.18 ~ 2021.11.26',
-                survey_description:
-                    '가전 제품 구입 관련 전반적 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                id: 3,
-                survey_title: '패션 관련 조사',
-                survey_image_path: 'surveyImg3.jpg',
-                survey_price: '5,000원',
-                survey_coupon: '1',
-                survey_period: '2021.11.23 ~ 2021.12.13',
-                survey_description:
-                    '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
-                isShow: false
-            },
-            {
-                id: 4,
-                survey_title: '인터넷 은행 관련 조사',
-                survey_image_path: 'surveyImg4.jpg',
-                survey_price: '4,500원',
-                survey_coupon: '1',
-                survey_period: '2021.11.16 ~ 2021.11.25',
-                survey_description:
-                    '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
-                isShow: false
-            }
+            // {
+            //     id: 1,
+            //     survey_title: '문화 생활 관련 조사',
+            //     survey_image_path: 'surveyImg2.jpg',
+            //     survey_price: '1,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.15 ~ 2021.11.30',
+            //     survey_description:
+            //         '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 2,
+            //     survey_title: '전자 제품 관련 조사',
+            //     survey_image_path: 'surveyImg1.jpg',
+            //     survey_price: '2,000원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.18 ~ 2021.11.26',
+            //     survey_description:
+            //         '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 3,
+            //     survey_title: '패션 관련 조사',
+            //     survey_image_path: 'surveyImg3.jpg',
+            //     survey_price: '5,000원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.23 ~ 2021.12.13',
+            //     survey_description:
+            //         '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 4,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // },
+            // {
+            //     id: 5,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // },
+            // {
+            //     id: 6,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // }
         ]
         // answers: '',
     }),
@@ -202,7 +228,7 @@ export default {
         async getSurvey() {
             // console.log('hi', this.$get())
 
-            this.surveys = await this.$get('/survey')
+            this.surveys = await this.$get('/surveys')
 
             // console.log(this.surveys)
         },
@@ -211,7 +237,9 @@ export default {
         async canSurvey() {
             // this.hello = 'hello'
             // console.log(this.hello)
-            this.surveys = await this.$get('/survey?isShow=false')
+            this.surveys = await this.$api('/survey', 'post', {
+                param: [2, 3, 4]
+            })
         },
         // 모든 설문지 보여준다
         allSurvey() {
