@@ -16,12 +16,12 @@
                             </p>
                             <v-btn
                                 href="/possible"
-                                color="secondary"
+                                color="#fdfda8"
                                 elevation="2"
                                 >Get started!</v-btn
                             >
                             <br /><br />
-                            <div class="box"></div>
+                            <!-- <div class="box"></div> -->
                         </v-col>
                     </v-row>
 
@@ -133,9 +133,9 @@ export default {
 }
 .box {
     background: url('../assets/img/shapes/test1.png') no-repeat 0 0 / cover;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     width: 100px;
     height: 100px;
 

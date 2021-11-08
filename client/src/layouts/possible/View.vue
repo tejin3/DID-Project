@@ -6,18 +6,18 @@
                 @click="allSurvey"
                 class="ma-5"
                 elevation="5"
-                color="warning"
+                color="purple lighten-1"
                 dark
-                x-large
+                large
             >
                 전체 설문
             </v-btn>
             <v-btn
                 @click="canSurvey"
                 elevation="5"
-                color="warning"
+                color="purple lighten-1"
                 dark
-                x-large
+                large
             >
                 {{ hello }}
                 참여 가능한 설문
@@ -35,7 +35,7 @@
 
         <v-container>
             <v-row>
-                <v-col :key="i" v-for="(d, i) in survey" sm="12" md="6" lg="3">
+                <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
                     <v-card
                         elevation="3"
                         class="mx-auto"
