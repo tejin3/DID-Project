@@ -35,7 +35,7 @@
 
         <v-container>
             <v-row>
-                <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
+                <v-col :key="i" v-for="(d, i) in survey" sm="12" md="6" lg="3">
                     <v-card
                         elevation="3"
                         class="mx-auto"
@@ -185,6 +185,20 @@ export default {
 
         // },
         // 제일  처음 모든 설문지 보여준다
+        // async getSurvey() {
+        //     this.surveys = await this.$get('/surveys')
+        // },
+        // isShow가 true인 것만 보여준다 (조건)
+        // 설문 조건 넣는 함수
+        // async canSurvey() {
+        //     this.surveys = await this.$get('/surveys?isShow=false')
+        // },
+
+        //     var vc  = localStorage.adssadadadsa
+        //     복호화
+
+        // },
+        // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
             // console.log('hi', this.$get())
 
@@ -229,11 +243,9 @@ export default {
         //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
         //         isShow: true
         //     })
-
         // console.log(r)
         // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
         // this.getSurvey()
-
         // }
     }
 }

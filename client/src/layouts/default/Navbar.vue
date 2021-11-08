@@ -1,9 +1,9 @@
 <template>
     <div>
         <v-app-bar app class="purple lighten-2">
-            <!-- <router-link class="text-decoration-none" to="/"> -->
-            <div class="white--text font-weight-bold">WeDIDsurvey</div>
-            <!-- </router-link> -->
+            <router-link class="text-decoration-none" to="/">
+                <div class="white--text font-weight-bold">WeDIDsurvey</div>
+            </router-link>
 
             <v-spacer></v-spacer>
 

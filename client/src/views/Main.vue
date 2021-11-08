@@ -20,6 +20,8 @@
                                 elevation="2"
                                 >Get started!</v-btn
                             >
+                            <br /><br />
+                            <div class="box"></div>
                         </v-col>
                     </v-row>
 
@@ -117,4 +119,29 @@ export default {
 </script>
 <style>
 @import '../styles/main.css';
+
+@keyframes sample-ani {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(50px, -10px);
+    }
+    100% {
+        transform: translate(100px, 50px);
+    }
+}
+.box {
+    background: url('../assets/img/shapes/test1.png') no-repeat 0 0 / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+
+    animation: sample-ani 3s linear infinite alternate;
+}
+.box:hover {
+    animation-play-state: paused;
+}
 </style>
