@@ -6,13 +6,18 @@ import Possible from '../views/Possible.vue'
 import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
-import Test from '../views/Test.vue'
+import Company from '../views/Company.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
 import MyPageLayout from '../layouts/mypage/Index'
+import CompanyLayout from '../layouts/company/Index'
 
+// import Test1 from '../views/Test1.vue'
+
+import Test from '../views/Test.vue'
 import Test1 from '../views/Test1.vue'
+import Test5 from '../views/Test5.vue'
 
 Vue.use(VueRouter)
 
@@ -67,6 +72,25 @@ const routes = [
                 path: '/test1',
                 name: 'Test1',
                 component: Test1
+            },
+            {
+                path: '/test5',
+                name: 'Test5',
+                component: Test5
+            },
+            {
+                path: '/company',
+                component: Company,
+                children: [
+                    {
+                        path: '/company',
+                        name: 'Company',
+                        component: CompanyLayout
+                    }
+                ]
+                // props: {
+                //     listUp: true
+                // }
             }
         ]
     },

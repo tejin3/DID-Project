@@ -1,8 +1,8 @@
 <template>
     <div>
-        <v-app-bar app>
+        <v-app-bar app class="purple lighten-2">
             <router-link class="text-decoration-none" to="/">
-                WeDIDsurvey
+                <div class="white--text font-weight-bold">WeDIDsurvey</div>
             </router-link>
 
             <v-spacer></v-spacer>
@@ -14,15 +14,19 @@
             </span> -->
 
             <v-toolbar-items class="hidden-xs-only">
-                <v-btn to="possible" text>
+                <v-btn to="possible" text class="white--text">
                     조사참여
                 </v-btn>
-                <v-btn to="trade" text>
+                <v-btn to="trade" text class="white--text">
                     쿠폰교환
                 </v-btn>
-                <v-btn text>
+                <v-btn text class="white--text">
                     지갑연결
                 </v-btn>
+                <!-- <v-btn text v-show="listUp">
+                    <v-icon small left>fa-shopping-cart</v-icon>
+                    요청한 설문 리스트
+                </v-btn> -->
             </v-toolbar-items>
         </v-app-bar>
 
@@ -34,10 +38,6 @@
                     :to="item.link"
                     link
                 >
-                    <v-list-item-icon> </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -47,9 +47,16 @@
 <script>
 module.exports = {
     name: 'DefaultBar',
+    props: {
+        listUp: {
+            type: Boolean,
+            defalut: false
+        }
+    },
     data() {
         return {
             drawer: false,
+            // company: false,
             items: [
                 { title: 'Home', link: '/', icon: 'home' },
                 { title: 'Store', link: 'store', icon: 'shopping-basket' },

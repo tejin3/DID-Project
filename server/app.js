@@ -24,6 +24,8 @@ app.use("/survey", require("./src/routes/survey"));
 app.use("/condition", require("./src/routes/condition"));
 app.use("/uploads", express.static("uploads"));
 
+app.use("/surveys", require("./src/routes/surveys"));
+
 // app.use(morgan("dev"));
 
 app.listen(PORT, HOSTNAME, () => {

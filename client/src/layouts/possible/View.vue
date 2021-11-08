@@ -6,19 +6,20 @@
                 @click="allSurvey"
                 class="ma-5"
                 elevation="5"
-                color="warning"
+                color="purple lighten-1"
                 dark
-                x-large
+                large
             >
                 전체 설문
             </v-btn>
             <v-btn
                 @click="canSurvey"
                 elevation="5"
-                color="warning"
+                color="purple lighten-1"
                 dark
-                x-large
+                large
             >
+                {{ hello }}
                 참여 가능한 설문
             </v-btn>
             <!-- <v-btn
@@ -42,24 +43,27 @@
                         :height="height"
                     >
                         <!-- {{ $vuetify.breakpoint.name }} -->
-                        <!-- <v-img>{{ d.image }}</v-img> -->
+                        <!-- <v-img>{{ d.survey_image_path }}</v-img> -->
                         <router-link class="text-decoration-none" to="/survey">
                             <v-img
-                                :src="require(`@/assets/img/${d.image}`)"
+                                :src="
+                                    require(`@/assets/img/${d.survey_image_path}`)
+                                "
                                 height="200px"
                             ></v-img>
                         </router-link>
 
                         <v-card-title class="text-h6">
-                            {{ d.title }}
+                            {{ d.survey_title }}
                         </v-card-title>
 
                         <v-card-subtitle>
-                            적립금: {{ d.price }} | 쿠폰: {{ d.coupon }}
+                            적립금: {{ d.survey_price }} | 쿠폰:
+                            {{ d.survey_coupon }}
                         </v-card-subtitle>
 
                         <v-card-subtitle>
-                            {{ d.period }}
+                            {{ d.survey_period }}
                         </v-card-subtitle>
 
                         <v-card-actions>
@@ -85,7 +89,7 @@
                             <div v-show="d.isShow">
                                 <v-divider></v-divider>
                                 <v-card-text class="text-justify">
-                                    {{ d.detail }}
+                                    {{ d.survey_description }}
                                 </v-card-text>
                             </div>
                         </v-expand-transition>
@@ -106,47 +110,50 @@ export default {
         surveys: [
             {
                 id: 1,
-                title: '문화 생활 관련 조사',
-                image: 'surveyImg2.jpg',
-                price: '1,500원',
-                coupon: '1',
-                period: '2021.11.15 ~ 2021.11.30',
-                detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+                survey_title: '문화 생활 관련 조사',
+                survey_image_path: 'surveyImg2.jpg',
+                survey_price: '1,500원',
+                survey_coupon: '1',
+                survey_period: '2021.11.15 ~ 2021.11.30',
+                survey_description:
+                    '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
                 isShow: false
             },
             {
                 id: 2,
-                title: '전자 제품 관련 조사',
-                image: 'surveyImg1.jpg',
-                price: '2,000원',
-                coupon: '1',
-                period: '2021.11.18 ~ 2021.11.26',
-                detail: '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+                survey_title: '전자 제품 관련 조사',
+                survey_image_path: 'surveyImg1.jpg',
+                survey_price: '2,000원',
+                survey_coupon: '1',
+                survey_period: '2021.11.18 ~ 2021.11.26',
+                survey_description:
+                    '가전 제품 구입 관련 전반적 U&A 설문입니다.',
                 isShow: false
             },
             {
                 id: 3,
-                title: '패션 관련 조사',
-                image: 'surveyImg3.jpg',
-                price: '5,000원',
-                coupon: '1',
-                period: '2021.11.23 ~ 2021.12.13',
-                detail:
+                survey_title: '패션 관련 조사',
+                survey_image_path: 'surveyImg3.jpg',
+                survey_price: '5,000원',
+                survey_coupon: '1',
+                survey_period: '2021.11.23 ~ 2021.12.13',
+                survey_description:
                     '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
-                isShow: true
+                isShow: false
             },
             {
                 id: 4,
-                title: '인터넷 은행 관련 조사',
-                image: 'surveyImg4.jpg',
-                price: '4,500원',
-                coupon: '1',
-                period: '2021.11.16 ~ 2021.11.25',
-                detail:
+                survey_title: '인터넷 은행 관련 조사',
+                survey_image_path: 'surveyImg4.jpg',
+                survey_price: '4,500원',
+                survey_coupon: '1',
+                survey_period: '2021.11.16 ~ 2021.11.25',
+                survey_description:
                     '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
                 isShow: false
             }
         ]
+        // answers: '',
     }),
     // computed: {
     //     height() {
@@ -165,11 +172,82 @@ export default {
     setup() {},
     created() {},
     mounted() {
+        // this.$api('survey')
+
         // 첫 화면에 보여진다
         this.getSurvey()
     },
     unmounted() {},
-    methods: {}
+    methods: {
+        // getVC() {
+        //     var vc  = localStorage.adssadadadsa
+        //     복호화
+
+        // },
+        // 제일  처음 모든 설문지 보여준다
+        // async getSurvey() {
+        //     this.surveys = await this.$get('/surveys')
+        // },
+        // isShow가 true인 것만 보여준다 (조건)
+        // 설문 조건 넣는 함수
+        // async canSurvey() {
+        //     this.surveys = await this.$get('/surveys?isShow=false')
+        // },
+
+        //     var vc  = localStorage.adssadadadsa
+        //     복호화
+
+        // },
+        // 제일 처음 모든 설문지 보여준다
+        async getSurvey() {
+            // console.log('hi', this.$get())
+
+            this.surveys = await this.$get('/survey')
+
+            // console.log(this.surveys)
+        },
+        // isShow가 true인 것만 보여준다 (조건)
+        // 설문 조건 넣는 함수
+        async canSurvey() {
+            // this.hello = 'hello'
+            // console.log(this.hello)
+            this.survey = await this.$get('/survey?isShow=false')
+        },
+        // 모든 설문지 보여준다
+        allSurvey() {
+            this.getSurvey()
+        }
+        // 받아오는 데이터 예시
+        //      async complete() {
+        //     console.log('answer is', this.answers)
+
+        //     this.$api('/survey', 'post', {
+        //         param: [
+        //             {
+        //                 question_id: 1,
+        //                 answer_value: this.answers,
+        // 형식에 맞게(db에서 정해놓은) 넣고 싶은 데이터
+        //                 answer_account: 'bye'
+        //             }
+        //         ]
+        //     })
+        // }
+        // methods에 추가하는 함수 넣으면 화면에 보여진다.
+        // async createSurvey() {
+        //     const r = await this.$post('/surveys', {
+        //         survey_title: '문화 생활 관련 조사2',
+        //         survey_image_path: 'surveyImg2.jpg',
+        //         survey_price: '1,500원',
+        //         survey_coupon: '1',
+        //         survey_period: '2021.11.15 ~ 2021.11.30',
+        //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+        //         isShow: true
+        //     })
+        // console.log(r)
+        // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
+        // this.getSurvey()
+        // }
+    }
 }
 </script>
 <style></style>
