@@ -211,7 +211,7 @@ export default {
         async canSurvey() {
             // this.hello = 'hello'
             // console.log(this.hello)
-            this.survey = await this.$get('/survey?isShow=false')
+            this.surveys = await this.$get('/survey?isShow=false')
         },
         // 모든 설문지 보여준다
         allSurvey() {
