@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-main class="pa-0">
-            <v-row class="bg">
+            <v-row class="bg height">
                 <v-col class="layout wrap mb-6" cols="12" md="6">
                     <!-- <base-bubble-1
                         style="transform: rotate(180deg) translateY(25%)"
