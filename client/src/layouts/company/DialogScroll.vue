@@ -3,102 +3,21 @@
         <v-dialog v-model="dialog" scrollable max-width="300px">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                    '지역' VC 검증
+                    {{ title }}
                 </v-btn>
             </template>
             <v-card>
-                <v-card-title>Select Country</v-card-title>
+                <v-card-title>Select DID</v-card-title>
                 <v-divider></v-divider>
-                <v-card-text style="height: 300px;">
+                <v-card-text
+                    style="padding: 5px;"
+                    :key="n"
+                    v-for="(n, i) in completePeople"
+                >
                     <v-checkbox
                         v-model="selected"
-                        label="Bahamas, The"
-                        value="bahamas"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bahrain"
-                        value="bahrain"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bangladesh"
-                        value="bangladesh"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Barbados"
-                        value="barbados"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Belarus"
-                        value="belarus"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Belgium"
-                        value="belgium"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Belize"
-                        value="belize"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Benin"
-                        value="benin"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bhutan"
-                        value="bhutan"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bolivia"
-                        value="bolivia"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bosnia and Herzegovina"
-                        value="bosnia"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Botswana"
-                        value="botswana"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Brazil"
-                        value="brazil"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Brunei"
-                        value="brunei"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Bulgaria"
-                        value="bulgaria"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Burkina Faso"
-                        value="burkina"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Burma"
-                        value="burma"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-model="selected"
-                        label="Burundi"
-                        value="burundi"
+                        :label="completePeople[i].coplete_user_account"
+                        :value="completePeople[i].coplete_user_account"
                     ></v-checkbox>
                 </v-card-text>
                 <v-divider></v-divider>
@@ -116,12 +35,30 @@
 import Loader from './Loader.vue'
 export default {
     components: { Loader },
+    props: {
+        title: {
+            type: String,
+            default: '페이지 제목'
+        },
+        completePeople: {
+            type: Array,
+            default: function() {
+                return []
+            }
+        },
+        surveyId: {
+            type: Number,
+            default: 0
+        }
+    },
     data() {
         return {
             dialogm1: '',
             dialog: false,
-            selected: []
+            selected: [],
+            surveyData1: []
         }
-    }
+    },
+    methods: {}
 }
 </script>
