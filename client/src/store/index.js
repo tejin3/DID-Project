@@ -13,7 +13,8 @@ export default new Vuex.Store({
     state() {
         return {
             web3: null,
-            survey: []
+            survey: [],
+            vcList: []
         }
     },
     mutations: {
@@ -27,11 +28,19 @@ export default new Vuex.Store({
             console.log('updateWeb3Instance', data)
             state.web3.coinbase = data.coinbase
             state.web3.balance = data.balance
-        }
+        },
         // registerContractInstance(state, data) {
         //     console.log('register contract instance', data)
         //     state.contractInstance = () => 'data'
         // }
+
+        // vcItemList store에 저장/삭제
+        addVcList(state, data) {
+            state.vcList.push(data)
+        },
+        deleteVcList(state) {
+            state.vcList.pop()
+        }
     },
     actions: {
         async registerWeb3({ commit }) {
@@ -47,7 +56,7 @@ export default new Vuex.Store({
     modules: {},
     plugins: [
         persistedstate({
-            paths: []
+            paths: ['vcList']
         })
     ]
 })

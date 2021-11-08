@@ -62,9 +62,25 @@
     },
     "rules": {
       "space-before-function-paren": "off",
+      "camelcase": [
+        "error",
+        {
+          "properties": "never"
+        }
+      ],
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 99999,
+          "maxEOF": 0
+        }
+      ],
       "indent": [
         "error",
-        4
+        4,
+        {
+          "SwitchCase": 1
+        }
       ]
     }
   },

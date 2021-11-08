@@ -18,6 +18,7 @@ import CompanyLayout from '../layouts/company/Index'
 import Test from '../views/Test.vue'
 import Test1 from '../views/Test1.vue'
 import Test5 from '../views/Test5.vue'
+import Filter from '../layouts/test2/filter.vue'
 
 Vue.use(VueRouter)
 
@@ -77,6 +78,11 @@ const routes = [
                 path: '/test5',
                 name: 'Test5',
                 component: Test5
+            },
+            {
+                path: '/filter',
+                name: 'Filter',
+                component: Filter
             },
             {
                 path: '/company',
