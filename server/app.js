@@ -20,11 +20,8 @@ app.use(
         limit: "50mb",
     })
 );
-app.use("/survey", require("./src/routes/survey"));
-app.use("/condition", require("./src/routes/condition"));
+app.use("/", require("./src/routes"));
 app.use("/uploads", express.static("uploads"));
-
-app.use("/surveys", require("./src/routes/surveys"));
 
 // app.use(morgan("dev"));
 

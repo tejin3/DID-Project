@@ -1,40 +1,34 @@
 "use strict";
 // data document model setting
-const Condition = require("../models/condition");
+const condition = require("../models/condition");
 
 // 모든 설문지 조건을 가져온다.
 const index = (req, res, next) => {
-    // query string이 존재할 때
-    const surveyId = parseInt(req.query.surveyId);
+    // 모든 설문지를 가져온다.
+    condition
+        .find()
+        .then((result) => {
+            res.json({ result });
+        })
+        .catch((error) => {
+            res.json({ message: "Condition Controller Error !" });
+        });
+};
 
-    if (surveyId) {
-        console.log("here");
+// 설문지 id을 기준으로 한 설문지 조건을 가져온다.
+const show = (req, res, next) => {
+    const surveyId = req.body.param[0];
 
-        // 설문지 id을 기준으로 한 설문지 조건을 가져온다.
-        condition
-            .findOne({ survey_id: surveyId })
-            .then((result) => {
-                return res.json({
-                    result,
-                });
-            })
-            .catch((error) => {
-                return res.json({ message: "Condition Controller Error" });
+    condition
+        .findOne({ survey_id: surveyId })
+        .then((result) => {
+            return res.json({
+                result,
             });
-    } else {
-        // query string이 존재하지 않을 때
-        console.log("query is empty");
-
-        // 모든 설문지를 가져온다.
-        condition
-            .find()
-            .then((result) => {
-                res.json({ result });
-            })
-            .catch((error) => {
-                res.json({ message: "Condition Controller Error !" });
-            });
-    }
+        })
+        .catch((error) => {
+            return res.json({ message: "Condition Controller Error" });
+        });
 };
 
 // DB에 설문지 조건 추가
@@ -43,7 +37,7 @@ const store = (req, res, next) => {
     // console.log(JSON.stringify(req.body));
 
     console.log(conditionObject);
-    const conditionCollection = new Condition(conditionObject);
+    const conditionCollection = new condition(conditionObject);
 
     conditionCollection
         .save()
@@ -138,4 +132,4 @@ const login = (req, res, next) => {
     );
 };
 
-module.exports = { index, store, update, destroy, login };
+module.exports = { index, show };
