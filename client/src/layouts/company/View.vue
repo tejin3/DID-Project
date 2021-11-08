@@ -156,7 +156,8 @@ export default {
             },
             surveyData: [],
             test1: [],
-            test2: []
+            test2: [],
+            companyAccount: '0x12'
         }
     },
     setup() {},
@@ -167,8 +168,8 @@ export default {
     unmounted() {},
     methods: {
         async init() {
-            await this.$api('/surveys/data', 'get', {
-                param: ['0x12']
+            await this.$api('/surveys/data', 'post', {
+                param: [this.companyAccount]
             }).then(result => {
                 console.log('hello', result)
                 this.surveyData = result
@@ -177,7 +178,7 @@ export default {
                 console.log(result)
                 this.test1 = result
             })
-            await this.$api('/surveys/testvc', 'get').then(result => {
+            await this.$api('/condition', 'get').then(result => {
                 console.log(result)
                 this.test2 = result
             })
