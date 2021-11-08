@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-app-bar app>
-            <router-link class="text-decoration-none" to="/">
-                WeDIDsurvey
-            </router-link>
+        <v-app-bar app class="purple lighten-2">
+            <!-- <router-link class="text-decoration-none" to="/"> -->
+            <div class="white--text font-weight-bold">WeDIDsurvey</div>
+            <!-- </router-link> -->
 
             <v-spacer></v-spacer>
 
@@ -14,13 +14,13 @@
             </span> -->
 
             <v-toolbar-items class="hidden-xs-only">
-                <v-btn to="possible" text>
+                <v-btn to="possible" text class="white--text">
                     조사참여
                 </v-btn>
-                <v-btn to="trade" text>
+                <v-btn to="trade" text class="white--text">
                     쿠폰교환
                 </v-btn>
-                <v-btn text>
+                <v-btn text class="white--text">
                     지갑연결
                 </v-btn>
                 <!-- <v-btn text v-show="listUp">

@@ -6,7 +6,7 @@
         show-arrows-on-hover
     >
         <v-carousel-item v-for="(slide, i) in slides" :key="i">
-            <v-sheet classr="white" height="100%">
+            <v-sheet class="white" height="100%">
                 <v-row class="fill-height" align="center" justify="center">
                     <div class="text-h2">{{ slide }} Slide</div>
                 </v-row>

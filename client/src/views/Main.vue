@@ -2,23 +2,22 @@
     <v-app>
         <v-main class="pa-0">
             <v-row class="bg">
-                <v-col
-                    class="align-content-space-between layout wrap mb-6"
-                    cols="12"
-                    md="6"
-                >
+                <v-col class="layout wrap mb-6" cols="12" md="6">
                     <!-- <base-bubble-1
                         style="transform: rotate(180deg) translateY(25%)"
                     /> -->
 
                     <v-row align="center" justify="center">
-                        <v-col cols="10" md="6">
+                        <v-col cols="10" md="6" mb="0">
                             <h2>We DID survey</h2>
                             <p class="mt-4">
                                 당신의 똑똑한 생각을 나눠주세요! 지금 서베이에
                                 참여해서 맡겨놓은 상금과 상품을 가져가세요
                             </p>
-                            <v-btn color="secondary" elevation="2"
+                            <v-btn
+                                href="/possible"
+                                color="secondary"
+                                elevation="2"
                                 >Get started!</v-btn
                             >
                         </v-col>
