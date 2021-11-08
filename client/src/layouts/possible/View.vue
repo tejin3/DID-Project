@@ -43,7 +43,10 @@
                     >
                         <!-- {{ $vuetify.breakpoint.name }} -->
                         <!-- <v-img>{{ d.survey_image_path }}</v-img> -->
-                        <router-link class="text-decoration-none" to="/survey">
+                        <router-link
+                            class="text-decoration-none"
+                            :to="`/survey?surveyId=${d.id}`"
+                        >
                             <v-img
                                 :src="
                                     require(`@/assets/img/${d.survey_image_path}`)
@@ -245,6 +248,7 @@ export default {
         allSurvey() {
             this.getSurvey()
         }
+
         // 받아오는 데이터 예시
         //      async complete() {
         //     console.log('answer is', this.answers)

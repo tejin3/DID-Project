@@ -44,9 +44,10 @@ export default new Vuex.Store({
     },
     actions: {
         async registerWeb3({ commit }) {
+            console.log('actions')
             // web3 instance 요청
             var web3 = await getWeb3()
-            // console.log(web3)
+            console.log(web3)
             commit('registerWeb3Instance', web3)
         },
         updateWeb3({ commit }, data) {

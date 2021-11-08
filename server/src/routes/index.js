@@ -5,6 +5,7 @@ const router = require("express").Router();
 const conditionController = require("../controller/conditionController");
 const surveyController = require("../controller/surveryController");
 const completeController = require("../controller/completeController");
+const questionController = require("../controller/questionController");
 
 const upload = require("../middleware/upload");
 
@@ -24,5 +25,8 @@ router.post("/survey/company", surveyController.showByAddress);
 
 // 완료된 사람 controller
 router.get("/completes", completeController.index);
+
+// question controller
+router.post("/questions", questionController.showById);
 
 module.exports = router;

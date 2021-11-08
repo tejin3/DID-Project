@@ -9,6 +9,11 @@
             </v-col> -->
             {{ web3 }}
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="metamask">
+                    metamask
+                </v-btn>
+            </v-col>
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="encryptHandler">
                     암호화된 공개키 획득
                 </v-btn>
@@ -198,10 +203,7 @@ export default {
             myVC: null
         }
     },
-    beforeCreate() {
-        console.log('register Web3 Action')
-        this.$store.dispatch('registerWeb3')
-    },
+    beforeCreate() {},
     computed: {
         web3() {
             return this.$store.state.web3
@@ -213,6 +215,9 @@ export default {
     mounted() {},
     unmounted() {},
     methods: {
+        async metamask() {
+            await this.$store.dispatch('registerWeb3')
+        },
         async getPublicKey() {
             const provider = window.ethereum
 

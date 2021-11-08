@@ -15,6 +15,7 @@ const index = async (req, res) => {
 };
 
 const showById = async (req, res) => {
+    console.log(req.body.param[0]);
     const surveyId = req.body.param[0];
 
     try {

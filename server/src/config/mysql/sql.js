@@ -12,6 +12,6 @@ module.exports = {
         query: "select * from t_complete",
     },
     getQuestions: {
-        query: "select * from t_complete where survey_id = ?",
+        query: "select * from t_question where survey_id = ?",
     },
 };
