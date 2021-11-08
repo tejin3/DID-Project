@@ -13,7 +13,7 @@
                 전체 설문
             </v-btn>
             <v-btn
-                @click=";[matchSurvey(), canSurvey()]"
+                @click="canSurvey"
                 elevation="5"
                 color="purple lighten-1"
                 dark
@@ -35,12 +35,17 @@
         <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
-                    <v-card elevation="3" class="mx-auto" max-width="344">
+                    <v-card
+                        elevation="3"
+                        class="mx-auto"
+                        max-width="344"
+                        :height="height"
+                    >
                         <!-- {{ $vuetify.breakpoint.name }} -->
                         <!-- <v-img>{{ d.survey_image_path }}</v-img> -->
                         <router-link
                             class="text-decoration-none"
-                            :to="`/survey?surveyId=${d.survey_id}`"
+                            :to="`/survey?surveyId=${d.id}`"
                         >
                             <v-img
                                 :src="
@@ -103,19 +108,81 @@
 </template>
 
 <script>
-import survey from './survey.json'
-import vc from './vc.json'
-
 export default {
     name: 'PossibleView',
 
     data: () => ({
-        vc,
-        survey,
-        vcItemList: [],
-        passSurveyList: [],
-        isShow: false,
-        surveys: []
+        passSurveyList: [2, 3],
+        survey_isShow: false,
+        surveys: [
+            // {
+            //     id: 1,
+            //     survey_title: '문화 생활 관련 조사',
+            //     survey_image_path: 'surveyImg2.jpg',
+            //     survey_price: '1,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.15 ~ 2021.11.30',
+            //     survey_description:
+            //         '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 2,
+            //     survey_title: '전자 제품 관련 조사',
+            //     survey_image_path: 'surveyImg1.jpg',
+            //     survey_price: '2,000원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.18 ~ 2021.11.26',
+            //     survey_description:
+            //         '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 3,
+            //     survey_title: '패션 관련 조사',
+            //     survey_image_path: 'surveyImg3.jpg',
+            //     survey_price: '5,000원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.23 ~ 2021.12.13',
+            //     survey_description:
+            //         '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: false
+            // },
+            // {
+            //     id: 4,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // },
+            // {
+            //     id: 5,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // },
+            // {
+            //     id: 6,
+            //     survey_title: '인터넷 은행 관련 조사',
+            //     survey_image_path: 'surveyImg4.jpg',
+            //     survey_price: '4,500원',
+            //     survey_coupon: '1',
+            //     survey_period: '2021.11.16 ~ 2021.11.25',
+            //     survey_description:
+            //         '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+            //     isShow: true
+            // }
+        ]
+        // answers: '',
     }),
     // computed: {
     //     height() {
@@ -134,7 +201,6 @@ export default {
     setup() {},
     created() {},
     mounted() {
-        this.getVC()
         // this.$api('survey')
 
         // 첫 화면에 보여진다
@@ -147,14 +213,33 @@ export default {
         //     복호화
 
         // },
+        // 제일  처음 모든 설문지 보여준다
+        // async getSurvey() {
+        //     this.surveys = await this.$get('/surveys')
+        // },
+        // isShow가 true인 것만 보여준다 (조건)
+        // 설문 조건 넣는 함수
+        // async canSurvey() {
+        //     this.surveys = await this.$get('/surveys?isShow=false')
+        // },
 
+        //     var vc  = localStorage.adssadadadsa
+        //     복호화
+
+        // },
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
-            this.surveys = await this.$get('/surveys')
-        },
+            // console.log('hi', this.$get())
 
+            this.surveys = await this.$get('/surveys')
+
+            // console.log(this.surveys)
+        },
+        // isShow가 true인 것만 보여준다 (조건)
         // 설문 조건 넣는 함수
         async canSurvey() {
+            // this.hello = 'hello'
+            // console.log(this.hello)
             this.surveys = await this.$api('/survey', 'post', {
                 param: [2, 3, 4]
             })
@@ -162,79 +247,23 @@ export default {
         // 모든 설문지 보여준다
         allSurvey() {
             this.getSurvey()
-        },
-
-        // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
-        getVC: function() {
-            for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
-                const vcItem =
-                    vc.verifiableCredentials.data[i].credentialSubject
-                        .infomation.value
-
-                // 항목의 key와 value값 추출
-                var key = Object.keys(vcItem)[0]
-                var value = vcItem[Object.keys(vcItem)[0]]
-
-                // 추출한 key/value를 객체로 담아 배열에 넣기
-                var obj = {}
-                obj[key] = value
-                this.vcItemList.push(obj)
-            }
-        },
-
-        // 설문 조건과 VC항목을 비교
-        matchSurvey: function() {
-            // 설문 아이디별로 불러오기
-            for (var i = 0; i < this.survey.length; i++) {
-                const condition = this.survey[i].condition
-                // 조건을 통과한 항목이 담기는 배열
-                const pass = []
-
-                // 설문 아이디에 해당하는 조건 불러오기
-                for (var j = 0; j < condition.length; j++) {
-                    // 조건을 항목, 연산자, 값으로 나누기
-                    const snippet = condition[j].split(' ')
-                    // vcList에서 조건의 항목과 일치하는 key 찾기
-                    for (const vc of this.vcItemList) {
-                        // vcList에 조건의 항목이 있는지 검증
-                        if (
-                            Object.prototype.hasOwnProperty.call(vc, snippet[0])
-                        ) {
-                            // 있는 항목의 경우 값이 담김
-                            snippet[0] = vc[snippet[0]]
-                        }
-                    }
-                    // check함수에 해당 VC값, 조건 연산자, 조건 값을 넣어 검증하기
-                    const checkResult = this.check(
-                        snippet[0],
-                        snippet[2],
-                        snippet[1]
-                    )
-                    if (checkResult === true || checkResult === 0) {
-                        pass.push(snippet[0])
-                    }
-                }
-                // 통과한 항목 개수와 조건 개수와 같을 경우 해당 설문 아이디 통과, 번호 배열에 담기
-                if (pass.length === condition.length) {
-                    this.passSurveyList.push(i + 1)
-                }
-            }
-        },
-
-        // 값과 연산자와 조건값을 넣어서 true/false or 0/-1 반환
-        check(param1, param2, operation) {
-            switch (operation) {
-                case '>=':
-                    return param1 >= param2
-                case '<=':
-                    return param1 <= param2
-                case '===':
-                    return param1 === param2
-                case '==':
-                    return param1.indexOf(param2)
-            }
         }
 
+        // 받아오는 데이터 예시
+        //      async complete() {
+        //     console.log('answer is', this.answers)
+
+        //     this.$api('/survey', 'post', {
+        //         param: [
+        //             {
+        //                 question_id: 1,
+        //                 answer_value: this.answers,
+        // 형식에 맞게(db에서 정해놓은) 넣고 싶은 데이터
+        //                 answer_account: 'bye'
+        //             }
+        //         ]
+        //     })
+        // }
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {
