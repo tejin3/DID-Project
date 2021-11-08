@@ -7,6 +7,7 @@
                 <p>{{ verifiableCredentials }}</p>
                 <p>{{ vc }}</p>
             </v-col> -->
+            {{ web3 }}
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="encryptHandler">
                     암호화된 공개키 획득
@@ -70,26 +71,23 @@ export default {
                         issuanceDate: '2021-10-01T19:73:24Z',
                         credentialSubject: {
                             id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
-                            userOf: {
+                            information: {
                                 id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
-                                name: [
-                                    {
-                                        value: '진 켈리',
-                                        lang: 'ko'
-                                    }
-                                ],
-                                age: [
-                                    {
-                                        value: '23',
-                                        lang: 'ko'
-                                    }
-                                ],
-                                address: [
-                                    {
-                                        value: '서울, 대한민국',
-                                        lang: 'ko'
-                                    }
-                                ]
+                                value: { age: '23', lang: 'ko' }
+                            }
+                        }
+                    },
+                    {
+                        name: '주민등록증',
+                        issuer: 'https://public.administration/issuers/982349',
+                        id: 'http://public.administration/credentials/24532',
+                        type: ['VerifiableCredential', 'IDCredential'],
+                        issuanceDate: '2021-10-01T19:73:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            information: {
+                                id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
+                                value: { name: '진켈리', lang: 'ko' }
                             }
                         }
                     },
@@ -101,57 +99,97 @@ export default {
                         issuanceDate: '2021-09-01T13:55:24Z',
                         credentialSubject: {
                             id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
-                            fashionOf: {
+                            information: {
                                 id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
-                                Amount: [
-                                    {
-                                        value: '500000',
-                                        lang: 'ko'
-                                    }
-                                ],
-                                onOffline: [
-                                    {
-                                        value: true,
-                                        lang: 'ko'
-                                    }
-                                ],
-                                product: [
-                                    {
-                                        value: '액세서리',
-                                        lang: 'ko'
-                                    }
-                                ]
+                                value: {
+                                    ammount: '500000',
+                                    lang: 'ko'
+                                }
                             }
                         }
                     },
                     {
-                        name: '보험vc',
+                        name: '패션VC',
+                        id: 'http://mushinsa/credentials/14532',
+                        type: ['VerifiableCredential', 'ShopCredential'],
+                        issuer: 'https://mushinsa/issuers/562349',
+                        issuanceDate: '2021-09-01T13:55:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            information: {
+                                id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
+                                value: {
+                                    onOffline: true,
+                                    lang: 'ko'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        name: '패션VC',
+                        id: 'http://mushinsa/credentials/14532',
+                        type: ['VerifiableCredential', 'ShopCredential'],
+                        issuer: 'https://mushinsa/issuers/562349',
+                        issuanceDate: '2021-09-01T13:55:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            information: {
+                                id: 'did:example:c276e12ec21ebfeb1f712ebc6f1',
+                                value: {
+                                    product: '액세서리',
+                                    lang: 'ko'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        name: '보험VC',
                         id: 'http://job.insurance/credentials/14532',
                         type: ['VerifiableCredential', 'InsuranceCredential'],
                         issuer: 'https://job.insurance/issuers/2362349',
                         issuanceDate: '2021-10-01T19:73:24Z',
                         credentialSubject: {
                             id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
-                            insuranceOf: {
+                            information: {
                                 id: 'did:example:c276e12ec21ebffdre6712ebc6f1',
-                                occupation: [
-                                    {
-                                        value: 'IT',
-                                        lang: 'ko'
-                                    }
-                                ],
-                                income: [
-                                    {
-                                        value: '80000000',
-                                        lang: 'ko'
-                                    }
-                                ],
-                                location: [
-                                    {
-                                        value: '서울',
-                                        lang: 'ko'
-                                    }
-                                ]
+                                value: {
+                                    occupation: 'IT',
+                                    lang: 'ko'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        name: '보험VC',
+                        id: 'http://job.insurance/credentials/14532',
+                        type: ['VerifiableCredential', 'InsuranceCredential'],
+                        issuer: 'https://job.insurance/issuers/2362349',
+                        issuanceDate: '2021-10-01T19:73:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            information: {
+                                id: 'did:example:c276e12ec21ebffdre6712ebc6f1',
+                                value: {
+                                    income: '80000000',
+                                    lang: 'ko'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        name: '보험VC',
+                        id: 'http://job.insurance/credentials/14532',
+                        type: ['VerifiableCredential', 'InsuranceCredential'],
+                        issuer: 'https://job.insurance/issuers/2362349',
+                        issuanceDate: '2021-10-01T19:73:24Z',
+                        credentialSubject: {
+                            id: 'did:example:ebfeb1f712ebc6f1c276e12ec21',
+                            information: {
+                                id: 'did:example:c276e12ec21ebffdre6712ebc6f1',
+                                value: {
+                                    location: '서울',
+                                    lang: 'ko'
+                                }
                             }
                         }
                     }

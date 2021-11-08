@@ -1,6 +1,6 @@
 "use strict";
 // data document model setting
-const condition = require("../models/condition");
+const Condition = require("../models/condition");
 
 // 모든 설문지 조건을 가져온다.
 const index = (req, res, next) => {
@@ -24,7 +24,7 @@ const index = (req, res, next) => {
     } else {
         // query string이 존재하지 않을 때
         console.log("query is empty");
-        
+
         // 모든 설문지를 가져온다.
         condition
             .find()
@@ -41,6 +41,8 @@ const index = (req, res, next) => {
 const store = (req, res, next) => {
     const conditionObject = req.body;
     // console.log(JSON.stringify(req.body));
+
+    console.log(conditionObject);
     const conditionCollection = new Condition(conditionObject);
 
     conditionCollection
