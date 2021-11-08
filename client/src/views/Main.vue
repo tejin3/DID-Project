@@ -15,9 +15,9 @@
                                 참여해서 맡겨놓은 상금과 상품을 가져가세요
                             </p>
                             <v-btn
-                                href="/possible"
                                 color="secondary"
                                 elevation="2"
+                                @click="metamask()"
                                 >Get started!</v-btn
                             >
                             <br /><br />
@@ -114,7 +114,25 @@ export default {
         MainCarousel
     },
     data: () => ({}),
-    computed: {}
+    computed: {},
+    methods: {
+        async metamask() {
+            await this.$store.dispatch('registerWeb3')
+            this.goPossible()
+        },
+        goPossible() {
+            this.$router.push({ path: 'possible' })
+            // this.repeat()
+        }
+        // repeat() {
+        //     setInterval(async () => {
+        //         // // 계정이 바뀌었는지 확인
+        //         // console.log("web3", this.$store.state.web3);
+        //         // console.log("어카운트", this.$store.state.account);
+        //         await this.$store.dispatch('registerWeb3')
+        //     }, 5000)
+        // }
+    }
 }
 </script>
 <style>
