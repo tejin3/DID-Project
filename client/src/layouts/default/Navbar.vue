@@ -14,6 +14,14 @@
             </span> -->
 
             <v-toolbar-items class="hidden-xs-only">
+                <v-btn to="company" text class="white--text">
+                    <!-- v-if="
+                        this.$store.state.web3.coinbase ==
+                            0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
+                    " -->
+                    <!-- v-if="this.$store.state.show" -->
+                    설문결과
+                </v-btn>
                 <v-btn to="possible" text class="white--text">
                     조사참여
                 </v-btn>
@@ -53,6 +61,31 @@ module.exports = {
             defalut: false
         }
     },
+    computed: {
+        web3() {
+            return this.$store.state.web3
+        }
+        // vc() {
+        //     return this.verifiableCredentials.data
+        // }
+    },
+    mounted() {
+        // console.log('1', this.$store.state.web3.coinbase)
+        // if (
+        //     this.$store.state.web3.coinbase ===
+        //     0xee442796570052932841b7588ab037255ce81183
+        // ) {
+        //     this.$store.commit('showSave', true)
+        // } else {
+        //     this.$store.commit('showSave', false)
+        // }
+        // setInterval(async () => {
+        //     // // 계정이 바뀌었는지 확인
+        //     // console.log("web3", this.$store.state.web3);
+        //     // console.log("어카운트", this.$store.state.account);
+        //     await this.$store.dispatch('registerWeb3')
+        // }, 5000)
+    },
     data() {
         return {
             drawer: false,
@@ -61,7 +94,9 @@ module.exports = {
                 { title: 'Home', link: '/', icon: 'home' },
                 { title: 'Store', link: 'store', icon: 'shopping-basket' },
                 { title: 'Cart', link: 'cart', icon: 'shopping-cart' }
-            ]
+            ],
+            currentAccount: ''
+            // company: false
         }
     }
 }
