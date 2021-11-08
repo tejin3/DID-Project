@@ -35,7 +35,7 @@
 
         <v-container>
             <v-row>
-                <v-col :key="i" v-for="(d, i) in survey" sm="12" md="6" lg="3">
+                <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
                     <v-card
                         elevation="3"
                         class="mx-auto"
@@ -43,7 +43,7 @@
                         :height="height"
                     >
                         <!-- {{ $vuetify.breakpoint.name }} -->
-                        <!-- <v-img>{{ d.image }}</v-img> -->
+                        <!-- <v-img>{{ d.survey_image_path }}</v-img> -->
                         <router-link class="text-decoration-none" to="/survey">
                             <v-img
                                 :src="
@@ -107,7 +107,52 @@ export default {
     data: () => ({
         show: false,
         isShow: false,
-        surveys: []
+        surveys: [
+            {
+                id: 1,
+                survey_title: '문화 생활 관련 조사',
+                survey_image_path: 'surveyImg2.jpg',
+                survey_price: '1,500원',
+                survey_coupon: '1',
+                survey_period: '2021.11.15 ~ 2021.11.30',
+                survey_description:
+                    '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+                isShow: false
+            },
+            {
+                id: 2,
+                survey_title: '전자 제품 관련 조사',
+                survey_image_path: 'surveyImg1.jpg',
+                survey_price: '2,000원',
+                survey_coupon: '1',
+                survey_period: '2021.11.18 ~ 2021.11.26',
+                survey_description:
+                    '가전 제품 구입 관련 전반적 U&A 설문입니다.',
+                isShow: false
+            },
+            {
+                id: 3,
+                survey_title: '패션 관련 조사',
+                survey_image_path: 'surveyImg3.jpg',
+                survey_price: '5,000원',
+                survey_coupon: '1',
+                survey_period: '2021.11.23 ~ 2021.12.13',
+                survey_description:
+                    '무신사를 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+                isShow: false
+            },
+            {
+                id: 4,
+                survey_title: '인터넷 은행 관련 조사',
+                survey_image_path: 'surveyImg4.jpg',
+                survey_price: '4,500원',
+                survey_coupon: '1',
+                survey_period: '2021.11.16 ~ 2021.11.25',
+                survey_description:
+                    '인터넷 은행을 이용하는 고객들을 대상으로 하는 U&A 설문입니다.',
+                isShow: false
+            }
+        ]
         // answers: '',
     }),
     // computed: {
@@ -176,12 +221,12 @@ export default {
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {
-        //         title: '문화 생활 관련 조사2',
-        //         image: 'surveyImg2.jpg',
-        //         price: '1,500원',
-        //         coupon: '1',
-        //         period: '2021.11.15 ~ 2021.11.30',
-        //         detail: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+        //         survey_title: '문화 생활 관련 조사2',
+        //         survey_image_path: 'surveyImg2.jpg',
+        //         survey_price: '1,500원',
+        //         survey_coupon: '1',
+        //         survey_period: '2021.11.15 ~ 2021.11.30',
+        //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
         //         isShow: true
         //     })
 

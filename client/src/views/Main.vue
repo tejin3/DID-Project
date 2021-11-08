@@ -12,7 +12,7 @@
                     /> -->
 
                     <v-row align="center" justify="center">
-                        <v-col cols="10" md="6" mb="0">
+                        <v-col cols="10" md="6">
                             <h2>We DID survey</h2>
                             <p class="mt-4">
                                 당신의 똑똑한 생각을 나눠주세요! 지금 서베이에
