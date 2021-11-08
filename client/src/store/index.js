@@ -12,7 +12,7 @@ export default new Vuex.Store({
     // state : {}
     state() {
         return {
-            web3: null,
+            web3: { isInjected: false, coinbase: '' },
             survey: [],
             vcList: []
         }

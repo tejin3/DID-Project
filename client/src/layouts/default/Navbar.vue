@@ -14,7 +14,15 @@
             </span> -->
 
             <v-toolbar-items class="hidden-xs-only">
-                <v-btn to="company" text class="white--text">
+                <v-btn
+                    to="company"
+                    text
+                    class="white--text"
+                    v-if="
+                        this.$store.state.web3.coinbase ==
+                            0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
+                    "
+                >
                     <!-- v-if="
                         this.$store.state.web3.coinbase ==
                             0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
@@ -28,7 +36,14 @@
                 <v-btn to="trade" text class="white--text">
                     쿠폰교환
                 </v-btn>
-                <v-btn text class="white--text">
+                <v-btn
+                    text
+                    class="white--text"
+                    v-if="this.$store.state.web3.isInjected"
+                >
+                    로그아웃
+                </v-btn>
+                <v-btn text class="white--text" v-else>
                     지갑연결
                 </v-btn>
                 <!-- <v-btn text v-show="listUp">
