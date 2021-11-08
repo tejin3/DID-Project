@@ -16,7 +16,7 @@
                             </p>
                             <v-btn
                                 href="/possible"
-                                color="#fdfda8"
+                                color="secondary"
                                 elevation="2"
                                 >Get started!</v-btn
                             >
