@@ -160,10 +160,12 @@ export default {
                 await this.$store.dispatch('registerWeb3')
                 console.log(this.$store.web3)
             }
+            // if (this.$store.state.web3.coinbase === '')
             // 설문 조건 넣는 함수
             this.surveys = await this.$api('/survey', 'post', {
-                param: [2, 3, 4]
+                param: this.passSurveyList
             })
+            console.log(this.passSurveyList)
         },
         // 모든 설문지 보여준다
         allSurvey() {

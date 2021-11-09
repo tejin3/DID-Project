@@ -19,8 +19,8 @@
   {
     "survey_id": 4,
     "condition": [
-      "occupation === 회계",
-      "income === 1000000000",
+      "occupation === IT",
+      "income === 80000000",
       "location === 서울"
     ]
   },
