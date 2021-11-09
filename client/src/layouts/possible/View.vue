@@ -12,7 +12,10 @@
             >
                 전체 설문
             </v-btn>
-            <v-btn
+
+            <v-btn disabled elevation="2">참여 가능한 설문</v-btn>
+
+            <!-- <v-btn
                 @click=";[matchSurvey(), canSurvey()]"
                 elevation="5"
                 color="purple lighten-1"
@@ -21,7 +24,7 @@
             >
                 <!-- {{ hello }} -->
                 참여 가능한 설문
-            </v-btn>
+            </v-btn> -->
             <!-- <v-btn
                 @click="createSurvey"
                 elevation="5"
@@ -158,11 +161,18 @@ export default {
             // console.log(this.surveys)
         },
 
-        // 설문 조건 넣는 함수
+        // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
         async canSurvey() {
+            if (this.$store.state.web3.coinbase === '') {
+                await this.$store.dispatch('registerWeb3')
+                console.log(this.$store.web3)
+            }
+            // if (this.$store.state.web3.coinbase === '')
+            // 설문 조건 넣는 함수
             this.surveys = await this.$api('/survey', 'post', {
-                param: [2, 3, 4]
+                param: this.passSurveyList
             })
+            console.log(this.passSurveyList)
         },
         // 모든 설문지 보여준다
         allSurvey() {

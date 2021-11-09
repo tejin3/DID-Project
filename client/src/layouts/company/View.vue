@@ -1,124 +1,132 @@
 <template>
-    <v-row>
-        <v-col
-            v-for="(n, m) of surveyData"
-            :key="n"
-            class="d-flex child-flex"
-            cols="4"
-        >
-            <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-                <template slot="progress">
-                    <v-progress-linear
-                        color="deep-purple"
-                        height="10"
-                        indeterminate
-                    ></v-progress-linear>
-                </template>
-
-                <v-img
-                    :src="`https://picsum.photos/500/300?image=${m * 5 + 10}`"
-                    :lazy-src="`https://picsum.photos/10/6?image=${m * 5 + 10}`"
-                    aspect-ratio="1"
-                    class="grey lighten-2"
+    <div>
+        <v-row>
+            <v-col
+                v-for="(n, m) of surveyData"
+                :key="n"
+                class="d-flex child-flex"
+                cols="4"
+            >
+                <v-card
+                    :loading="loading"
+                    class="mx-auto my-12"
+                    max-width="374"
                 >
-                    <template v-slot:placeholder>
-                        <v-row
-                            class="fill-height ma-0"
-                            align="center"
-                            justify="center"
-                        >
-                            <v-progress-circular
-                                indeterminate
-                                color="grey lighten-5"
-                            ></v-progress-circular>
-                        </v-row>
+                    <template slot="progress">
+                        <v-progress-linear
+                            color="deep-purple"
+                            height="10"
+                            indeterminate
+                        ></v-progress-linear>
                     </template>
-                </v-img>
 
-                <v-card-title
-                    >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
-                        surveyData[m].survey_count
-                    }}]</v-card-title
-                >
-                <v-card-text class="py-0">
-                    <v-timeline align-top dense>
-                        <v-timeline-item color="teal lighten-3" small>
-                            <v-row class="pt-1">
-                                <v-col>
-                                    <strong>{{
-                                        surveyData[m].survey_start_date.slice(
-                                            0,
-                                            10
-                                        )
-                                    }}</strong>
-                                </v-col>
+                    <v-img
+                        :src="
+                            `https://picsum.photos/500/300?image=${m * 5 + 10}`
+                        "
+                        :lazy-src="
+                            `https://picsum.photos/10/6?image=${m * 5 + 10}`
+                        "
+                        aspect-ratio="1"
+                        class="grey lighten-2"
+                    >
+                        <template v-slot:placeholder>
+                            <v-row
+                                class="fill-height ma-0"
+                                align="center"
+                                justify="center"
+                            >
+                                <v-progress-circular
+                                    indeterminate
+                                    color="grey lighten-5"
+                                ></v-progress-circular>
                             </v-row>
-                        </v-timeline-item>
-                        <v-timeline-item color="pink" small>
-                            <v-row class="pt-1">
-                                <v-col>
-                                    <strong>{{
-                                        surveyData[m].survey_end_date.slice(
-                                            0,
-                                            10
-                                        )
-                                    }}</strong>
-                                </v-col>
-                            </v-row>
-                        </v-timeline-item>
-                    </v-timeline>
-                </v-card-text>
+                        </template>
+                    </v-img>
 
-                <v-card-text>
-                    <div class="mt-6">
-                        <v-slider
-                            class="mt-6"
-                            v-model="surveyData[m].total_complte"
-                            label="설문진행률"
-                            thumb-color="red"
-                            thumb-label="always"
-                            readonly
-                        ></v-slider>
-                        <!-- v-model="`${n.val}`"
+                    <v-card-title
+                        >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
+                            surveyData[m].survey_count
+                        }}]</v-card-title
+                    >
+                    <v-card-text class="py-0">
+                        <v-timeline align-top dense>
+                            <v-timeline-item color="teal lighten-3" small>
+                                <v-row class="pt-1">
+                                    <v-col>
+                                        <strong>{{
+                                            surveyData[
+                                                m
+                                            ].survey_start_date.slice(0, 10)
+                                        }}</strong>
+                                    </v-col>
+                                </v-row>
+                            </v-timeline-item>
+                            <v-timeline-item color="pink" small>
+                                <v-row class="pt-1">
+                                    <v-col>
+                                        <strong>{{
+                                            surveyData[m].survey_end_date.slice(
+                                                0,
+                                                10
+                                            )
+                                        }}</strong>
+                                    </v-col>
+                                </v-row>
+                            </v-timeline-item>
+                        </v-timeline>
+                    </v-card-text>
+
+                    <v-card-text>
+                        <div class="mt-6">
+                            <v-slider
+                                class="mt-6"
+                                v-model="surveyData[m].total_complte"
+                                label="설문진행률"
+                                thumb-color="red"
+                                thumb-label="always"
+                                readonly
+                            ></v-slider>
+                            <!-- v-model="`${n.val}`"
                         :label="`${n.label}`"
                         :label="`${n.color}`" -->
-                    </div>
-                    <v-chip-group
-                        active-class="deep-purple accent-4 white--text"
-                        column
-                        mandatory
-                    >
-                        <v-chip>설문중</v-chip>
+                        </div>
+                        <v-chip-group
+                            active-class="deep-purple accent-4 white--text"
+                            column
+                            mandatory
+                        >
+                            <v-chip>설문중</v-chip>
 
-                        <v-chip>설문완료</v-chip>
-                    </v-chip-group>
-                </v-card-text>
+                            <v-chip>설문완료</v-chip>
+                        </v-chip-group>
+                    </v-card-text>
 
-                <v-divider class="mx-4"></v-divider>
+                    <v-divider class="mx-4"></v-divider>
 
-                <v-card-title>요청 VC List</v-card-title>
+                    <v-card-title>요청 VC List</v-card-title>
 
-                <v-card-text>
-                    <v-chip-group
-                        active-class="deep-purple accent-4 white--text"
-                        column
-                    >
-                        <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
-                        <!-- 그냥 돌리면됨 -->
-                        <v-chip :key="w" v-for="w of surveyData[m].vcList"
-                            ><DialogScroll
-                                :title="w"
-                                :completePeople="
-                                    test1.filter(
-                                        filtering =>
-                                            filtering.survey_id == m + 1
-                                    )
-                                "
-                                :surveyId="surveyData[m].survey_id"
-                        /></v-chip>
-                        <!-- <v-chip>{{vc}}</v-chip> -->
+                    <v-card-text>
+                        <v-chip-group
+                            active-class="deep-purple accent-4 white--text"
+                            column
+                        >
+                            <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
+                            <!-- 그냥 돌리면됨 -->
+                            <v-chip :key="w" v-for="w of surveyData[m].vcList"
+                                ><DialogScroll
+                                    :title="w"
+                                    :completePeople="
+                                        users.filter(
+                                            filtering =>
+                                                filtering.survey_id == m + 1
+                                        )
+                                    "
+                                    :surveyId="surveyData[m].survey_id"
+                            /></v-chip>
+                            <!-- <v-chip>{{vc}}</v-chip> -->
 
-                        <!-- <v-chip v-if="surveyData[m].vc_age"
+                            <!-- <v-chip v-if="surveyData[m].vc_age"
                             ><DialogScroll
                                 title="나이 자료 요청[300원]"
                                 :completePeople="
@@ -130,17 +138,17 @@
                                 :surveyId="surveyData[m].survey_id"
                         /></v-chip> -->
 
-                        <!-- <v-chip>소득VC[1000원]</v-chip>
+                            <!-- <v-chip>소득VC[1000원]</v-chip>
 
                         <v-chip>학력VC[300원]</v-chip> -->
 
-                        <!-- <v-chip><DialogScroll /></v-chip> -->
-                    </v-chip-group>
-                </v-card-text>
-            </v-card>
-        </v-col>
-        <button @click="init()">hello</button>
-    </v-row>
+                            <!-- <v-chip><DialogScroll /></v-chip> -->
+                        </v-chip-group>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 <script>
 // import Slider from './Slider.vue'
@@ -150,73 +158,71 @@ export default {
     components: { DialogScroll },
     data() {
         return {
+            surveyData: [],
+            users: [],
             loading: false,
             ex3: {
                 val: 50
             },
-            surveyData: [],
-            test1: [],
-            test2: [],
             companyAccount: '0x12',
             snippet: [],
-            condition1: []
+            finalData: null
         }
     },
     setup() {},
-    created() {},
-    mounted() {
+    created() {
         this.init()
     },
+    mounted() {},
     unmounted() {},
     methods: {
         async init() {
-            await this.$api('/survey/company', 'post', {
-                param: [this.companyAccount]
-            }).then(result => {
-                console.log('hello', result)
-                this.surveyData = result
-            })
-            await this.$api('/completes', 'get').then(result => {
-                console.log(result)
-                this.test1 = result
-            })
-            await this.$api('/conditions', 'get').then(result => {
-                // console.log('test2', result)
-                this.test2 = result.result
-                console.log('test2', this.test2)
-            })
-            this.matchSurvey2()
-        },
-        matchSurvey2() {
-            const oTest2 = {}
-            for (const item of this.test2) {
-                oTest2[item.survey_id] = item
+            try {
+                // 1. 회사 데이터를 불러와서 저장한다.
+                const surveys = await this.$api('/survey/company', 'post', {
+                    param: [this.companyAccount]
+                })
+
+                // 2. 설문지 조건들을 요청한다.
+                const output = await this.$api('/conditions', 'get')
+                const conditions = output.result
+
+                this.surveyData = this.matchSurvey(surveys, conditions)
+            } catch (err) {
+                console.log('설문지 및 설문지 조건 데이터 불러오기 실패')
             }
 
-            console.log('oTest2', oTest2)
-            const data = this.surveyData
-
-            this.matchSurvey3(data, oTest2)
+            try {
+                // 3. 완료된 목록을 불러와서 저장한다.
+                this.users = await this.$api('/completes', 'get')
+            } catch (err) {
+                console.log('유저 데이터 불러오기 실패')
+            }
         },
-        matchSurvey3(data, oTest2) {
-            for (const item of data) {
-                if (oTest2[item.survey_id]) {
-                    item.vcList = []
+        matchSurvey(surveys, conditions) {
+            const len = surveys.length
 
-                    for (const vc of oTest2[item.survey_id].condition) {
-                        item.vcList.push(vc.split(' ')[0])
+            for (let i = 0; i < len; i++) {
+                var surveyId = parseInt(surveys[i].survey_id)
+                var conditionId = parseInt(conditions[i].survey_id)
+
+                // survey의 id랑 condition의 id랑 비교
+                if (surveyId === conditionId) {
+                    // 먼저 더미 배열 하나 생성
+                    var vcList = []
+                    var tempCondition = conditions[i].condition
+
+                    for (const vc of tempCondition) {
+                        var key = vc.split(' ')[0]
+                        vcList.push(key)
                     }
-                    var myArray = new Set(item.vcList)
-                    console.log('aa', myArray)
-                    item.vcList = Array.from(myArray)
-                    console.log('bb', item.vcList)
+
+                    var tempArray = new Set(vcList)
+                    surveys[i].vcList = Array.from(tempArray)
                 }
             }
-            this.surveyData = data
-            console.log('1', this.surveyData)
-            console.log('2', this.surveyData[0])
-            console.log('3', this.surveyData[0].vcList)
-            console.log('4', this.surveyData[0].vcList[0])
+
+            return surveys
         }
     }
 }
