@@ -105,9 +105,9 @@
                     >
                         <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
                         <!-- 그냥 돌리면됨 -->
-                        <v-chip v-if="surveyData[m].vc_name"
+                        <v-chip :key="w" v-for="w of surveyData[m].vcList"
                             ><DialogScroll
-                                title="이름 자료 요청[200원]"
+                                :title="w"
                                 :completePeople="
                                     test1.filter(
                                         filtering =>
@@ -118,7 +118,7 @@
                         /></v-chip>
                         <!-- <v-chip>{{vc}}</v-chip> -->
 
-                        <v-chip v-if="surveyData[m].vc_age"
+                        <!-- <v-chip v-if="surveyData[m].vc_age"
                             ><DialogScroll
                                 title="나이 자료 요청[300원]"
                                 :completePeople="
@@ -128,7 +128,7 @@
                                     )
                                 "
                                 :surveyId="surveyData[m].survey_id"
-                        /></v-chip>
+                        /></v-chip> -->
 
                         <!-- <v-chip>소득VC[1000원]</v-chip>
 
@@ -157,7 +157,9 @@ export default {
             surveyData: [],
             test1: [],
             test2: [],
-            companyAccount: '0x12'
+            companyAccount: '0x12',
+            snippet: [],
+            condition1: []
         }
     },
     setup() {},
@@ -168,20 +170,53 @@ export default {
     unmounted() {},
     methods: {
         async init() {
-            await this.$api('/surveys/data', 'post', {
+            await this.$api('/survey/company', 'post', {
                 param: [this.companyAccount]
             }).then(result => {
                 console.log('hello', result)
                 this.surveyData = result
             })
-            await this.$api('/surveys/completepeople', 'get').then(result => {
+            await this.$api('/completes', 'get').then(result => {
                 console.log(result)
                 this.test1 = result
             })
-            await this.$api('/condition', 'get').then(result => {
-                console.log(result)
-                this.test2 = result
+            await this.$api('/conditions', 'get').then(result => {
+                // console.log('test2', result)
+                this.test2 = result.result
+                console.log('test2', this.test2)
             })
+            this.matchSurvey2()
+        },
+        matchSurvey2() {
+            const oTest2 = {}
+            for (const item of this.test2) {
+                oTest2[item.survey_id] = item
+            }
+
+            console.log('oTest2', oTest2)
+            const data = this.surveyData
+
+            this.matchSurvey3(data, oTest2)
+        },
+        matchSurvey3(data, oTest2) {
+            for (const item of data) {
+                if (oTest2[item.survey_id]) {
+                    item.vcList = []
+
+                    for (const vc of oTest2[item.survey_id].condition) {
+                        item.vcList.push(vc.split(' ')[0])
+                    }
+                    var myArray = new Set(item.vcList)
+                    console.log('aa', myArray)
+                    item.vcList = Array.from(myArray)
+                    console.log('bb', item.vcList)
+                }
+            }
+            this.surveyData = data
+            console.log('1', this.surveyData)
+            console.log('2', this.surveyData[0])
+            console.log('3', this.surveyData[0].vcList)
+            console.log('4', this.surveyData[0].vcList[0])
         }
     }
 }
