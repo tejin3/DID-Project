@@ -22,6 +22,7 @@
                 large
                 v-if="this.$store.state.web3.isInjected"
             >
+                <!-- {{ hello }} -->
                 참여 가능한 설문
             </v-btn>
             <!-- 지갑 연결이 되지 않을 시 보이는 버튼 -->
