@@ -2,7 +2,6 @@
     <!-- https://github.com/Jeongseup/Course-Evaluation-System/blob/main/client/src/views/AnswerTable.vue -->
     <!--오른쪽 설문조사 시작 -->
     <div>
-        <template>
             <v-carousel hide-delimiters>
                 <v-carousel-item v-for="(question, i) in questions" :key="i">
                     <v-parallax
@@ -31,24 +30,32 @@
                 </v-carousel-item>
                 <!-- <v-card-title v-text="item.question"> </v-card-title> -->
             </v-carousel>
-        </template>
         <div>
             {{ answers }}
         </div>
+        <SurveyModal :dialog="dialog" :dialog2="dialog2" v-if="dialog" @next-modal="dialog2=true, dialog=false"></SurveyModal>
+         <SurveyModal :dialog="dialog" :dialog2="dialog2" v-if="dialog2" @close-modal="dialog2=false"></SurveyModal>
+        <v-btn  color="primary"
+      dark @click.stop="dialog=true">open</v-btn>
+
     </div>
     <!--오른쪽 설문조사 끝-->
 </template>
 
 <script>
+import SurveyModal from './Modal.vue'
+
 export default {
     name: 'MainSurvey',
-    components: {},
+    components: { SurveyModal },
     data() {
         return {
             questions: null,
             value: '',
             custom: true,
-            answers: ''
+            answers: '',
+            dialog: false,
+            dialog2: false
         }
     },
     computed: {
