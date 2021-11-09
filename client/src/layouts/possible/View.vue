@@ -12,7 +12,10 @@
             >
                 전체 설문
             </v-btn>
-            <v-btn
+
+            <v-btn disabled elevation="2">참여 가능한 설문</v-btn>
+
+            <!-- <v-btn
                 @click=";[matchSurvey(), canSurvey()]"
                 elevation="5"
                 color="purple lighten-1"
@@ -20,7 +23,7 @@
                 large
             >
                 참여 가능한 설문
-            </v-btn>
+            </v-btn> -->
             <!-- <v-btn
                 @click="createSurvey"
                 elevation="5"
