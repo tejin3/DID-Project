@@ -23,6 +23,8 @@ app.use(
 app.use("/", require("./src/routes"));
 app.use("/uploads", express.static("uploads"));
 
+app.use("/surveys", require("./src/routes/surveys"));
+
 // app.use(morgan("dev"));
 
 app.listen(PORT, HOSTNAME, () => {

@@ -23,6 +23,7 @@
                             <br /><br />
                             <!-- <div class="box"></div> -->
                         </v-col>
+                        <div class="blueBox"></div>
                     </v-row>
 
                     <!-- <base-bubble-2
@@ -69,6 +70,7 @@
                         height="300"
                         class="px-10 explain"
                     >
+                        <div class="box"></div>
                         <h3 class="text-h4">
                             Try experimental new features
                         </h3>
@@ -153,17 +155,52 @@ export default {
         transform: translate(100px, 50px);
     }
 }
-.box {
+.blueBox {
     background: url('../assets/img/shapes/test1.png') no-repeat 0 0 / cover;
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    width: 100px;
-    height: 100px;
-
+    width: 70px;
+    height: 70px;
     animation: sample-ani 3s linear infinite alternate;
 }
+.blueBox:hover {
+    animation-play-state: paused;
+}
+
+@keyframes sample-ani1 {
+    0% {
+        /* background: url("images/sprite_test1.png") no-repeat 0 0 / */
+        /* cover; */
+        transform: translate(0, 0px);
+    }
+    100% {
+        transform: translate(0, 30px);
+    }
+}
+.box {
+    position: absolute;
+    background: url('../assets/img/shapes/one.png') no-repeat 0 0 / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    /* border: 2px solid #000; */
+    /* background: #fff000; */
+
+    /* forwards는 타임라인이 끝나는 100%위치에 box가 위치해있으면 좋겠을때 사용 */
+    animation: sample-ani1 3s linear infinite alternate;
+
+    /* infinite = 계속 반복적 / reverse = 거꾸로  / alternate = 왔다갔다 */
+    /* animation: sample-ani 3s linear infinite alternate; */
+    /* animation: sample-ani 3s linear infinite reverse; */
+
+    /* 출발을 꺼꾸로했다. */
+    /* animation: sample-ani 3s linear infinite alternate-reverse; */
+}
 .box:hover {
+    /* running과 paused가 있는데 , paused를 사용하면 마우스를 호버했을때 멈춘다. */
     animation-play-state: paused;
 }
 </style>

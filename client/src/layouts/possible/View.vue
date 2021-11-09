@@ -19,6 +19,7 @@
                 dark
                 large
             >
+                <!-- {{ hello }} -->
                 참여 가능한 설문
             </v-btn>
             <!-- <v-btn
@@ -148,10 +149,13 @@ export default {
         //     복호화
 
         // },
-
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
+            // console.log('hi', this.$get())
+
             this.surveys = await this.$get('/surveys')
+
+            // console.log(this.surveys)
         },
 
         // 설문 조건 넣는 함수
@@ -235,7 +239,6 @@ export default {
                     return param1.indexOf(param2)
             }
         }
-
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {

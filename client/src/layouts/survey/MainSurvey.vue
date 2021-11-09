@@ -76,17 +76,14 @@ export default {
                 this.questions = await this.$api('/questions', 'post', {
                     param: [this.surveyId]
                 })
-
                 console.log(this.questions[0].quesiton_content)
             } catch (err) {
                 console.log(err)
             }
         },
-
         async complete() {
             console.log('answer is', this.answers)
             //     // await this.$api(url, method, this.answer)
-
             this.$api('/survey', 'post', {
                 param: [
                     {
@@ -97,7 +94,6 @@ export default {
                 ]
             })
         }
-
         // this.$api(/)
         // console.log('answer is', this.answers)
         // await this.$api(url, method, this.answer)
