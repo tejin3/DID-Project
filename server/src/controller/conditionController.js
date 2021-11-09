@@ -17,18 +17,25 @@ const index = (req, res, next) => {
 
 // 설문지 id을 기준으로 한 설문지 조건을 가져온다.
 const show = (req, res, next) => {
-    const surveyId = req.body.param[0];
+    const surveyId = req.body.param;
 
-    condition
-        .findOne({ survey_id: surveyId })
-        .then((result) => {
-            return res.json({
-                result,
-            });
-        })
-        .catch((error) => {
-            return res.json({ message: "Condition Controller Error" });
-        });
+    console.log(surveyId);
+
+    res.send()
+    // if (surveyLength === 1) {
+    //     condition
+    //         .findOne({ survey_id: surveyId })
+    //         .then((result) => {
+    //             return res.json({
+    //                 result,
+    //             });
+    //         })
+    //         .catch((error) => {
+    //             return res.json({ message: "Condition Controller Error" });
+    //         });
+    // } else {
+    //     res.send("test");
+    // }
 };
 
 // DB에 설문지 조건 추가
