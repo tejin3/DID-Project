@@ -7,6 +7,7 @@ const surveyController = require("../controller/surveryController");
 const completeController = require("../controller/completeController");
 const questionController = require("../controller/questionController");
 const answerController = require("../controller/answerController");
+const downloadController = require("../controller/downloadController");
 
 const upload = require("../middleware/upload");
 
@@ -33,4 +34,5 @@ router.post("/questions", questionController.showById);
 // answer controller
 router.post("/answers", answerController.store);
 
+router.get("/download/:fileName", downloadController.index);
 module.exports = router;

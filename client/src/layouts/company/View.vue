@@ -148,6 +148,7 @@
                 </v-card>
             </v-col>
         </v-row>
+        <img src="http://localhost:3000/download/surveyImg1.jpg" />
     </div>
 </template>
 <script>

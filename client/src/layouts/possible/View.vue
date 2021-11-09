@@ -22,10 +22,11 @@
                 dark
                 large
             >
-                <!-- {{ hello }} -->
-                참여 가능한 설문
-            </v-btn> -->
-            <!-- <v-btn
+                {{ hello }}
+            참여 가능한 설문
+            </v-btn>
+
+            <v-btn
                 @click="createSurvey"
                 elevation="5"
                 color="warning"
