@@ -90,7 +90,7 @@
                                 @click="d.survey_isShow = !d.survey_isShow"
                             >
                                 <v-icon>{{
-                                    isShow
+                                    d.survey_isShow
                                         ? 'mdi-chevron-up'
                                         : 'mdi-chevron-down'
                                 }}</v-icon>
@@ -129,9 +129,10 @@ export default {
         proofSurveys: []
     }),
     computed: {
-        web3() {
-            return this.$store.state.web3
-        }
+        // 여기있는 이유??????????
+        // web3() {
+        //     return this.$store.state.web3
+        // }
     },
     setup() {},
     created() {},

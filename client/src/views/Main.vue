@@ -18,7 +18,7 @@
                                 color="secondary"
                                 elevation="2"
                                 @click="metamask()"
-                                >Get started!</v-btn
+                                >시작하기!</v-btn
                             >
                             <br /><br />
                             <!-- <div class="box"></div> -->
