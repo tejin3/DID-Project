@@ -154,8 +154,13 @@ export default {
             this.surveys = await this.$get('/surveys')
         },
 
-        // 설문 조건 넣는 함수
+        // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
         async canSurvey() {
+            if (this.$store.state.web3.coinbase === '') {
+                await this.$store.dispatch('registerWeb3')
+                console.log(this.$store.web3)
+            }
+            // 설문 조건 넣는 함수
             this.surveys = await this.$api('/survey', 'post', {
                 param: [2, 3, 4]
             })
