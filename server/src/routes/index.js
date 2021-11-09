@@ -6,6 +6,7 @@ const conditionController = require("../controller/conditionController");
 const surveyController = require("../controller/surveryController");
 const completeController = require("../controller/completeController");
 const questionController = require("../controller/questionController");
+const answerController = require("../controller/answerController");
 
 const upload = require("../middleware/upload");
 
@@ -30,6 +31,6 @@ router.get("/completes", completeController.index);
 router.post("/questions", questionController.showById);
 
 // answer controller
-router.post("/answers", questionController.showById);
+router.post("/answers", answerController.store);
 
 module.exports = router;

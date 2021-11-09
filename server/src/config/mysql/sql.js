@@ -17,4 +17,7 @@ module.exports = {
     getQuestions: {
         query: "select * from t_question where survey_id = ?",
     },
+    insertAnswer: {
+        query: "insert into t_answer set ?",
+    },
 };
