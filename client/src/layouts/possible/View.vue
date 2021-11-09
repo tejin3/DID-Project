@@ -13,18 +13,22 @@
                 전체 설문
             </v-btn>
 
-            <v-btn disabled elevation="2">참여 가능한 설문</v-btn>
-
-            <!-- <v-btn
+            <!-- 지갑 연결 후 보이는 버튼 -->
+            <v-btn
                 @click=";[matchSurvey(), canSurvey()]"
                 elevation="5"
                 color="purple lighten-1"
                 dark
                 large
+                v-if="this.$store.state.web3.isInjected"
             >
-                <!-- {{ hello }} -->
                 참여 가능한 설문
-            </v-btn> -->
+            </v-btn>
+            <!-- 지갑 연결이 되지 않을 시 보이는 버튼 -->
+            <!-- 버튼 클릭하면 메타마스크 연결 -->
+            <v-btn @click="connectMask" large v-else
+                >지갑 연결 후 맞춤 설문 확인 가능</v-btn
+            >
             <!-- <v-btn
                 @click="createSurvey"
                 elevation="5"
@@ -62,7 +66,9 @@
                             적립금: {{ d.survey_price }} | 쿠폰:
                             {{ d.survey_coupon }}
                         </v-card-subtitle>
-
+                        <v-card-subtitle>
+                            여기
+                        </v-card-subtitle>
                         <v-card-subtitle>
                             설문 기간 <br />
                             {{ d.survey_start_date }}
@@ -122,20 +128,11 @@ export default {
         surveys: [],
         proofSurveys: []
     }),
-    // computed: {
-    //     height() {
-    //         switch (this.$vuetify.breakpoint.name) {
-    //             case 'xs':
-    //                 return 100
-    //             case 'md':
-    //                 return 200
-    //             case 'lg':
-    //                 return 300
-    //             default:
-    //                 return 300
-    //         }
-    //     }
-    // },
+    computed: {
+        web3() {
+            return this.$store.state.web3
+        }
+    },
     setup() {},
     created() {},
     mounted() {
@@ -163,11 +160,10 @@ export default {
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
         async canSurvey() {
-            if (this.$store.state.web3.coinbase === '') {
-                await this.$store.dispatch('registerWeb3')
-                console.log(this.$store.web3)
-            }
-            // if (this.$store.state.web3.coinbase === '')
+            // if (this.$store.state.web3.coinbase === '') {
+            //     await this.$store.dispatch('registerWeb3')
+            //     console.log(this.$store.web3)
+            // }
             // 설문 조건 넣는 함수
             this.surveys = await this.$api('/survey', 'post', {
                 param: this.passSurveyList
@@ -179,6 +175,24 @@ export default {
             this.getSurvey()
         },
 
+        async connectMask() {
+            if (this.$store.state.web3.coinbase === '') {
+                await this.$store.dispatch('registerWeb3')
+                console.log(this.$store.web3)
+            }
+        },
+        // dDay: function() {
+        //     const today = new Date()
+        //     console.log(today)
+        //     // db에 있는 survey_end_date을 넣어야한다. 고민하자
+        //     // const dDay = new Date(2021, 10, 30)
+        //     const dDay = new Date(`${survey_end_date}`)
+        //     console.log(dDay)
+        //     const gap = dDay.getTime() - today.getTime()
+        //     console.log(gap)
+        //     const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
+        //     console.log(result)
+        // },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
             for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
