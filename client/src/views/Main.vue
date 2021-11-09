@@ -121,7 +121,11 @@ export default {
             this.goPossible()
         },
         goPossible() {
-            this.$router.push({ path: 'possible' })
+            if (this.$store.state.web3.coinbase) {
+                this.$router.push({ path: 'possible' })
+            } else {
+                window.alert('조금만 더 기다려주세요 ^^')
+            }
             // this.repeat()
         }
         // repeat() {

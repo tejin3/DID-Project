@@ -29,4 +29,7 @@ router.get("/completes", completeController.index);
 // question controller
 router.post("/questions", questionController.showById);
 
+// answer controller
+router.post("/answers", questionController.showById);
+
 module.exports = router;

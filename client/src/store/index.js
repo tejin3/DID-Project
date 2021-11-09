@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import persistedstate from 'vuex-persistedstate'
 
 import getWeb3 from '@/service/getWeb3'
-// import pollWeb3 from '@/service/pollWeb3'
+import pollWeb3 from '@/service/pollWeb3'
 
 Vue.use(Vuex)
 
@@ -22,7 +22,7 @@ export default new Vuex.Store({
             // 요청된 web3 instance를 store에 저장
             state.web3 = data
             console.log('web3 info saved')
-            // pollWeb3()
+            pollWeb3()
         },
         updateWeb3Instance(state, data) {
             console.log('updateWeb3Instance', data)
