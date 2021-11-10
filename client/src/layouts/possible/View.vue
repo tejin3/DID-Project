@@ -15,12 +15,11 @@
             <!-- 지갑 연결 전 보이는 버튼 -->
             <v-btn
                 @click.stop="dialog = true"
-                v-if="this.$store.state.web3.coinbase === ''"
+                v-if="this.$store.state.web3.coinbase === null"
                 color="purple lighten-3"
                 dark
                 large
             >
-                <!-- {{ hello }} -->
                 참여 가능한 설문
             </v-btn>
             <!-- 지갑 연결 후 보이는 버튼 -->
@@ -38,10 +37,6 @@
             <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
             <v-dialog v-model="dialog" max-width="290">
                 <v-card>
-                    <!-- <v-card-title class="text-h6">
-                        지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
-                    </v-card-title> -->
-
                     <v-card-text class="font-weight-bold text-center">
                         지갑 연결 후 맞춤 설문 확인이 가능합니다.
                     </v-card-text>
@@ -234,7 +229,7 @@ export default {
         },
 
         async connectMask() {
-            if (this.$store.state.web3.coinbase === '') {
+            if (this.$store.state.web3.coinbase === null) {
                 await this.$store.dispatch('registerWeb3')
                 console.log(this.$store.web3)
             }
