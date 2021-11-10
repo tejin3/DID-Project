@@ -12,7 +12,7 @@ export default new Vuex.Store({
     // state : {}
     state() {
         return {
-            web3: { isInjected: false, coinbase: '' },
+            web3: { isInjected: false, coinbase: null },
             survey: [],
             vcList: []
         }
@@ -27,7 +27,8 @@ export default new Vuex.Store({
         updateWeb3Instance(state, data) {
             console.log('updateWeb3Instance', data)
             state.web3.coinbase = data.coinbase
-            state.web3.balance = data.balance
+            state.web3.isInjected = data.isInjected
+            // state.web3.balance = data.balance
         },
         // registerContractInstance(state, data) {
         //     console.log('register contract instance', data)
