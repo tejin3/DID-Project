@@ -114,7 +114,6 @@
 </template>
 
 <script>
-import survey from './survey.json'
 import vc from './vc.json'
 
 export default {
@@ -122,7 +121,7 @@ export default {
 
     data: () => ({
         vc,
-        survey,
+        conditions: [],
         vcItemList: [],
         passSurveyList: [],
         isShow: false,
@@ -143,6 +142,7 @@ export default {
 
         // 첫 화면에 보여진다
         this.getSurvey()
+        this.getCondition()
     },
     unmounted() {},
     methods: {
@@ -156,8 +156,6 @@ export default {
             // console.log('hi', this.$get())
 
             this.surveys = await this.$get('/surveys')
-
-            // console.log(this.surveys)
         },
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
@@ -175,6 +173,11 @@ export default {
         // 모든 설문지 보여준다
         allSurvey() {
             this.getSurvey()
+        },
+
+        // 설문 조건을 가져온다
+        async getCondition() {
+            this.conditions = await this.$api('/conditions', 'get')
         },
 
         async connectMask() {
@@ -216,8 +219,8 @@ export default {
         // 설문 조건과 VC항목을 비교
         matchSurvey: function() {
             // 설문 아이디별로 불러오기
-            for (var i = 0; i < this.survey.length; i++) {
-                const condition = this.survey[i].condition
+            for (var i = 0; i < this.conditions.result.length; i++) {
+                const condition = this.conditions.result[i].condition
                 // 조건을 통과한 항목이 담기는 배열
                 const pass = []
 
@@ -225,6 +228,7 @@ export default {
                 for (var j = 0; j < condition.length; j++) {
                     // 조건을 항목, 연산자, 값으로 나누기
                     const snippet = condition[j].split(' ')
+                    console.log(snippet)
                     // vcList에서 조건의 항목과 일치하는 key 찾기
                     for (const vc of this.vcItemList) {
                         // vcList에 조건의 항목이 있는지 검증
@@ -241,6 +245,8 @@ export default {
                         snippet[2],
                         snippet[1]
                     )
+
+                    console.log(checkResult)
                     if (checkResult === true || checkResult === 0) {
                         pass.push(snippet[0])
                     }
