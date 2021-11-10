@@ -3,18 +3,23 @@ pragma solidity 0.8.9;
 contract survey {
     
     address owner;
-    // address verifier; 
-    mapping  (uint => string) surveyUser;
-    event addUser(uint, string);
+    //  
     
     
+    mapping  (uint => mapping(address => bool)) surveyUser;
+    event addUser(uint, address);
+
     constructor () {
         owner = msg.sender;
     }
     
-    function who  (uint _num, string memory _user )  public {
-        surveyUser[_num] = _user;
-        emit addUser(_num , _user);
+   
+    
+    function recordSurvey (uint _num)public {
+     require(surveyUser[_num][tx.origin] == false);
+      
+        surveyUser[_num][tx.origin] = true;
+        emit addUser(_num , tx.origin);
         // 디비저장
     }    
 }
