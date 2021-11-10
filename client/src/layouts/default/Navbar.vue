@@ -43,7 +43,7 @@
                 >
                     로그아웃
                 </v-btn>
-                <v-btn text class="white--text" v-else>
+                <v-btn text class="white--text" @click="metamask()" v-else>
                     지갑연결
                 </v-btn>
                 <!-- <v-btn text v-show="listUp">
@@ -112,6 +112,11 @@ module.exports = {
             ],
             currentAccount: ''
             // company: false
+        }
+    },
+    methods: {
+        async metamask() {
+            await this.$store.dispatch('registerWeb3')
         }
     }
 }

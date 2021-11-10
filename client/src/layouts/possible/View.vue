@@ -201,18 +201,18 @@ export default {
                 console.log(this.$store.web3)
             }
         },
-        dDay: function() {
-            const today = new Date()
-            console.log(today)
-            // db에 있는 survey_end_date을 넣어야한다. 고민하자
-            // const dDay = new Date(2021, 10, 30)
-            const dDay = new Date(survey_end_date)
-            console.log(dDay)
-            const gap = dDay.getTime() - today.getTime()
-            console.log(gap)
-            const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
-            console.log(result)
-        },
+        // dDay: function() {
+        //     const today = new Date()
+        //     console.log(today)
+        //     // db에 있는 survey_end_date을 넣어야한다. 고민하자
+        //     // const dDay = new Date(2021, 10, 30)
+        //     // const dDay = new Date(survey_end_date)
+        //     console.log(dDay)
+        //     const gap = dDay.getTime() - today.getTime()
+        //     console.log(gap)
+        //     const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
+        //     console.log(result)
+        // },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
             for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
