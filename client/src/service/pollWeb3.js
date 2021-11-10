@@ -15,31 +15,22 @@ const pollWeb3 = function(state) {
         //     console.log('here', Web3)
         //     return
         // }
-        if ((await web3.eth.getCoinbase()) !== store.state.web3.coinbase) {
-            const newCoinbase = await web3.eth.getCoinbase()
-            web3.eth.getBalance(newCoinbase, (err, newBalance) => {
-                if (err) {
-                    console.error(err)
-                } else {
-                    store.dispatch('updateWeb3', {
-                        coinbase: newCoinbase
-                    })
-                }
-            })
-        } else {
-            web3.eth.getBalance(
-                store.state.web3.coinbase,
-                (err, newBalance) => {
-                    if (err) {
-                        console.log(err)
-                    } else if (newBalance !== store.state.web3.balance) {
-                        store.dispatch('updateWeb3', {
-                            coinbase: store.state.web3.coinbase
-                        })
-                    }
-                }
-            )
-        }
+        // const newCoinbase = await web3.eth.getCoinbase()
+        var newIsInjected = await web3.eth.getCoinbase()
+        // console.log(newIsInjected)
+        store.dispatch('updateWeb3', {
+            coinbase: newIsInjected
+
+            // isInjected: newIsInjected
+        })
+
+        // if (newIsInjected !== true) {
+        //     var newCoinbase = await web3.eth.getCoinbase()
+        //     store.dispatch('updateWeb3', {
+        //         coinbase: newCoinbase,
+        //         isInjected: newIsInjected
+        //     })
+        // }
     }, 5000)
 }
 
