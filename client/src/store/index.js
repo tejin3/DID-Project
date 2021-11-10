@@ -21,14 +21,12 @@ export default new Vuex.Store({
         registerWeb3Instance(state, data) {
             // 요청된 web3 instance를 store에 저장
             state.web3 = data
-            console.log('web3 info saved')
+            // console.log('web3 info saved')
             pollWeb3()
         },
         updateWeb3Instance(state, data) {
-            console.log('updateWeb3Instance', data)
+            // console.log('updateWeb3Instance', data)
             state.web3.coinbase = data.coinbase
-            state.web3.isInjected = data.isInjected
-            // state.web3.balance = data.balance
         },
         // registerContractInstance(state, data) {
         //     console.log('register contract instance', data)

@@ -50,9 +50,8 @@
             </v-card>
         </v-container> -->
         <br />
-        <!-- 이전코드 -->
-        <!-- <v-carousel hide-delimiters> -->
-        <v-carousel>
+        <v-carousel hide-delimiters v-model="model" :continuous="continuous">
+            <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
             <v-carousel-item v-for="(question, i) in questions" :key="i">
                 <v-parallax
                     class="NextQuestion"
@@ -63,7 +62,7 @@
                         {{ question.quesiton_content }}
                     </div>
                     <v-text-field
-                        v-model="answers"
+                        v-model="userInput"
                         color="yellow  darken-2"
                         label="입력해주세요"
                         placeholder="Start_nexting..."
@@ -74,12 +73,10 @@
                 </v-parallax>
             </v-carousel-item>
         </v-carousel>
-        <v-btn @click="complete">
+        <v-btn @click="submit">
             확인
         </v-btn>
-        <div>
-            {{ answers }}
-        </div>
+
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"
@@ -108,9 +105,13 @@ export default {
             questions: null,
             value: '',
             custom: true,
-            answers: '',
+            userInput: '',
+            answers: ['test'],
             dialog: false,
-            dialog2: false
+            dialog2: false,
+            model: 0
+
+            // check: 11
         }
     },
     computed: {
@@ -122,6 +123,7 @@ export default {
     created() {
         this.surveyId = this.$route.query.surveyId
         this.getQuestions()
+        this.continuous = false
     },
     mounted() {},
     unmounted() {},
@@ -137,22 +139,28 @@ export default {
             }
         },
         async complete() {
-            console.log('answer is', this.answers)
-            this.answers = ''
-            //     // await this.$api(url, method, this.answer)
-            this.$api('/survey', 'post', {
-                param: [
-                    {
-                        question_id: 1,
-                        answer_value: this.answers,
-                        answer_account: 'bye'
-                    }
-                ]
-            })
+            if (this.model + 1 !== this.questions.length) {
+                console.log('if문_this.model', this.model)
+                console.log('if문_this.check', this.check)
+
+                this.answers.push(this.userInput)
+                this.userInput = ''
+                this.model++
+                // this.$refs.focus.focus() ->  ref="focus" <-이후에 작업해보기
+            } else {
+                this.answers.push(this.userInput)
+                this.$api('/answers', 'post', {
+                    param: [
+                        { answers: this.answers },
+                        { userAccount: this.$store.state.web3.coinbase },
+                        { questionId: 1 }
+                    ]
+                })
+            }
         }
-        // this.$api(/)
-        // console.log('answer is', this.answers)
-        // await this.$api(url, method, this.answer)
+        // submit() {
+        //     console.log(this.model, this.question, this.i)
+        // }
     }
 }
 </script>

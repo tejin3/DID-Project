@@ -2,15 +2,19 @@
 const mysql = require("../config/mysql");
 
 const store = async (req, res) => {
-    const answers = req.body.param[0];
+    console.log(req);
+    console.log(req.body.param);
+    const answers = req.body.param[0].answers;
+    const userAcccount = req.body.param[1].userAccount;
+    const questionId = req.body.param[2].questionId;
 
     try {
-        for (const item of answers) {
+        for (let answer of answers) {
+            console.log(answer);
             await mysql.query("insertAnswer", {
-                answer_id: item.answerId,
-                question_id: item.questionId,
-                answer_value: item.answerValue,
-                answer_account: item.answerAccount,
+                question_id: questionId,
+                answer_value: answer,
+                answer_account: userAcccount,
             });
         }
         res.status(200).send({ message: "success" });
