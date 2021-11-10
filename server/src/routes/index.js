@@ -24,6 +24,7 @@ router.post("/condition", conditionController.show);
 router.get("/surveys", surveyController.index);
 router.post("/survey", surveyController.showById);
 router.post("/survey/company", surveyController.showByAddress);
+router.get("/date", surveyController.showDday);
 
 // 완료된 사람 controller
 router.get("/completes", completeController.index);

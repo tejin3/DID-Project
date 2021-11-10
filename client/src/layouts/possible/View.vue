@@ -138,25 +138,30 @@ import vc from './vc.json'
 export default {
     name: 'PossibleView',
 
-    data: () => ({
-        dialog: false,
-        vc,
-        conditions: [],
-        vcItemList: [],
-        passSurveyList: [],
-        isShow: false,
-        surveys: [],
-        proofSurveys: []
-    }),
+    data() {
+        return {
+            dialog: false,
+            vc,
+            conditions: [],
+            vcItemList: [],
+            passSurveyList: [],
+            isShow: false,
+            surveys: [],
+            proofSurveys: [],
+            dDay1: '',
+            today: ''
+        }
+    },
 
     setup() {},
-    created() {},
+    created() {
+        this.getSurvey()
+    },
     mounted() {
         this.getVC()
         // this.$api('survey')
 
         // 첫 화면에 보여진다
-        this.getSurvey()
         this.getCondition()
     },
     unmounted() {},
@@ -168,9 +173,41 @@ export default {
         // },
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
-            // console.log('hi', this.$get())
+            // console.log('hi', this.$get()
 
             this.surveys = await this.$get('/surveys')
+            // dday함수를 실행할 때 데이터가 this.surveys에 다 담기지 않아 오류발생
+            // 그래서 데이터를 가져오고 나서 dday함수를 실행하기 위해 아래처럼 쓴다.
+            // const survayArray = await this.$get('/surveys').then(res =>
+            //     console.log('gdg', res)
+            // )
+            let survayArray = null
+            await this.$get('/surveys').then(res => {
+                survayArray = res
+                console.log(survayArray)
+                // 오늘 날짜
+                const today = new Date()
+                console.log(today)
+                // D-day 날짜
+                for (var array of survayArray) {
+                    // console.log(array)
+                    let discountDay = array.survey_end_date
+                    console.log(discountDay, typeof discountDay)
+                    discountDay = parseInt(discountDay)
+                    console.log(discountDay, typeof discountDay)
+                }
+                // const gap = discountDay.getTime() - today.getTime()
+                // console.log(gap)
+                // const discountDay = survayArray
+                // console.log(discountDay)
+                // const endDate = []
+                // endDate.push(discountDay[6])
+                // console.log(endDate)
+            })
+            // await this.$get('/surveys').then(res => dDay())
+
+            // console.log(this.surveys)
+            // console.log(surveys)
         },
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
@@ -183,8 +220,8 @@ export default {
             this.surveys = await this.$api('/survey', 'post', {
                 param: this.passSurveyList
             })
-            console.log(this.passSurveyList)
         },
+
         // 모든 설문지 보여준다
         allSurvey() {
             this.getSurvey()
@@ -201,20 +238,24 @@ export default {
                 console.log(this.$store.web3)
             }
         },
-        dDay: function() {
-            const today = new Date()
-            console.log(today)
-            // db에 있는 survey_end_date을 넣어야한다. 고민하자
+        dDay() {
+            this.today = new Date()
+            console.log('today', this.today)
+            const dday = this.surveys
+            console.log('heheh', dday)
+            console.log(this.surveys)
+
             // const dDay = new Date(2021, 10, 30)
-            const dDay = new Date(survey_end_date)
-            console.log(dDay)
-            const gap = dDay.getTime() - today.getTime()
-            console.log(gap)
-            const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
-            console.log(result)
+            this.dDay = this.surveys[0].survey_end_date
+            console.log(this.dDay)
+            // const gap = dDay.getTime() - today.getTime()
+            // console.log(gap)
+            // const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
+            // console.log(result)
         },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
+            console.log('lalala')
             for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
                 const vcItem =
                     vc.verifiableCredentials.data[i].credentialSubject
