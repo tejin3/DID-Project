@@ -39,13 +39,19 @@
                 <v-btn
                     text
                     class="white--text"
-                    v-if="this.$store.state.web3.isInjected"
+                    @click="metamask()"
+                    v-show="this.$store.state.web3.coinbase === null"
+                >
+                    지갑연결
+                </v-btn>
+                <v-btn
+                    text
+                    class="white--text"
+                    v-show="this.$store.state.web3.coinbase !== null"
                 >
                     로그아웃
                 </v-btn>
-                <v-btn text class="white--text" v-else>
-                    지갑연결
-                </v-btn>
+
                 <!-- <v-btn text v-show="listUp">
                     <v-icon small left>fa-shopping-cart</v-icon>
                     요청한 설문 리스트
@@ -77,9 +83,9 @@ module.exports = {
         }
     },
     computed: {
-        // web3() {
-        //     return this.$store.state.web3
-        // }
+        web3() {
+            return this.$store.state.web3
+        }
         // vc() {
         //     return this.verifiableCredentials.data
         // }
@@ -112,6 +118,11 @@ module.exports = {
             ],
             currentAccount: ''
             // company: false
+        }
+    },
+    methods: {
+        async metamask() {
+            await this.$store.dispatch('registerWeb3')
         }
     }
 }

@@ -14,6 +14,7 @@ const upload = require("../middleware/upload");
 // 설문지 조건 controller
 router.get("/conditions", conditionController.index);
 router.post("/condition", conditionController.show);
+// router.post("/condition", conditionController.company);
 
 // 설문지 조건 업데이트, 삭제 - 미구현
 // router.post("/update", conditionController.update);
@@ -35,5 +36,6 @@ router.post("/questions", questionController.showById);
 // answer controller
 router.post("/answers", answerController.store);
 
+// img call
 router.get("/download/:fileName", downloadController.index);
 module.exports = router;

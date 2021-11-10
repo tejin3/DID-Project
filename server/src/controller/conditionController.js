@@ -15,6 +15,20 @@ const index = (req, res, next) => {
         });
 };
 
+// 회사 계정을 기준으로 한 설문지 조건을 가져온다
+// const comnpany = (req, res, next) => {
+//     condition
+//         .findOne({ company_account: req.body.param[0] })
+//         .then((result) => {
+//             return res.json({
+//                 result,
+//             });
+//         })
+//         .catch((error) => {
+//             return res.json({ message: "Condition Controller Error" });
+//         });
+// };
+
 // 설문지 id을 기준으로 한 설문지 조건을 가져온다.
 const show = (req, res, next) => {
     const surveyIds = req.body.param;
@@ -149,3 +163,4 @@ const login = (req, res, next) => {
 };
 
 module.exports = { index, show };
+// module.exports = { index, show, comnpany };

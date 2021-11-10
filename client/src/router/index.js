@@ -7,6 +7,7 @@ import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 import Company from '../views/Company.vue'
+import Encrypt from '../views/Encrypt.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
@@ -16,7 +17,6 @@ import CompanyLayout from '../layouts/company/Index'
 // import Test1 from '../views/Test1.vue'
 
 import Test from '../views/Test.vue'
-import Test1 from '../views/Test1.vue'
 import Test5 from '../views/Test5.vue'
 import Filter from '../layouts/test2/filter.vue'
 
@@ -70,9 +70,9 @@ const routes = [
                 component: Test
             },
             {
-                path: '/test1',
-                name: 'Test1',
-                component: Test1
+                path: '/encrypt',
+                name: 'Encrypt',
+                component: Encrypt
             },
             {
                 path: '/test5',

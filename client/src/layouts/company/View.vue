@@ -186,8 +186,11 @@ export default {
 
                 // 2. 설문지 조건들을 요청한다.
                 const output = await this.$api('/conditions', 'get')
+                // const output = await this.$api('/conditions', 'post', {
+                //     param: [this.companyAccount]
+                // })
                 const conditions = output.result
-
+                console.log(conditions)
                 this.surveyData = this.matchSurvey(surveys, conditions)
             } catch (err) {
                 console.log('설문지 및 설문지 조건 데이터 불러오기 실패')
