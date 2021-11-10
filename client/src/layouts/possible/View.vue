@@ -12,33 +12,52 @@
             >
                 전체 설문
             </v-btn>
-
+            <!-- 지갑 연결 전 보이는 버튼 -->
+            <v-btn
+                @click.stop="dialog = true"
+                v-if="this.$store.state.web3.coinbase === ''"
+                color="purple lighten-3"
+                dark
+                large
+            >
+                참여 가능한 설문
+            </v-btn>
             <!-- 지갑 연결 후 보이는 버튼 -->
+
             <v-btn
                 @click=";[matchSurvey(), canSurvey()]"
                 elevation="5"
                 color="purple lighten-1"
                 dark
                 large
-                v-if="this.$store.state.web3.isInjected"
+                v-else
             >
-                <!-- {{ hello }} -->
                 참여 가능한 설문
             </v-btn>
-            <!-- 지갑 연결이 되지 않을 시 보이는 버튼 -->
-            <!-- 버튼 클릭하면 메타마스크 연결 -->
-            <v-btn @click="connectMask" large v-else
-                >지갑 연결 후 맞춤 설문 확인 가능</v-btn
-            >
-            <!-- <v-btn
-                @click="createSurvey"
-                elevation="5"
-                color="warning"
-                dark
-                x-large
-            >
-                설문 생성
-            </v-btn> -->
+            <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
+            <v-dialog v-model="dialog" max-width="290">
+                <v-card>
+                    <!-- <v-card-title class="text-h6">
+                        지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
+                    </v-card-title> -->
+
+                    <v-card-text class="font-weight-bold text-center">
+                        지갑 연결 후 맞춤 설문 확인이 가능합니다.
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                            color="green darken-1"
+                            text
+                            @click=";[connectMask(), (dialog = false)]"
+                        >
+                            지갑 연결하기
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </v-container>
 
         <v-container>
@@ -121,6 +140,7 @@ export default {
     name: 'PossibleView',
 
     data: () => ({
+        dialog: false,
         vc,
         survey,
         vcItemList: [],
@@ -129,12 +149,7 @@ export default {
         surveys: [],
         proofSurveys: []
     }),
-    computed: {
-        // 여기있는 이유??????????
-        // web3() {
-        //     return this.$store.state.web3
-        // }
-    },
+
     setup() {},
     created() {},
     mounted() {
@@ -183,18 +198,18 @@ export default {
                 console.log(this.$store.web3)
             }
         },
-        // dDay: function() {
-        //     const today = new Date()
-        //     console.log(today)
-        //     // db에 있는 survey_end_date을 넣어야한다. 고민하자
-        //     // const dDay = new Date(2021, 10, 30)
-        //     const dDay = new Date(`${survey_end_date}`)
-        //     console.log(dDay)
-        //     const gap = dDay.getTime() - today.getTime()
-        //     console.log(gap)
-        //     const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
-        //     console.log(result)
-        // },
+        dDay: function() {
+            const today = new Date()
+            console.log(today)
+            // db에 있는 survey_end_date을 넣어야한다. 고민하자
+            // const dDay = new Date(2021, 10, 30)
+            const dDay = new Date(survey_end_date)
+            console.log(dDay)
+            const gap = dDay.getTime() - today.getTime()
+            console.log(gap)
+            const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
+            console.log(result)
+        },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
             for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
