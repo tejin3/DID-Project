@@ -310,6 +310,7 @@ export default {
                     this.passSurveyList.push(i + 1)
                 }
             }
+            this.$store.commit('addMatchedSurvey', this.passSurveyList)
         },
 
         // 값과 연산자와 조건값을 넣어서 true/false or 0/-1 반환
@@ -326,6 +327,7 @@ export default {
             }
         },
 
+        // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다
         async decrypt() {
             this.decryptVc = await window.ethereum.request({
                 method: 'eth_decrypt',
@@ -334,7 +336,11 @@ export default {
                     this.$store.state.web3.coinbase
                 ]
             })
+
+            // 복호화된 string VC를 다시 Json object로 바꾼다
             this.vc = JSON.parse(this.decryptVc)
+            // 복호화 VC를 store에 저장
+            this.$store.commit('addDecryptVc', this.vc)
             this.getVC()
         }
 
