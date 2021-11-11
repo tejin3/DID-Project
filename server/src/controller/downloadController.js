@@ -4,7 +4,7 @@ const fs = require("fs");
 const multer = require("multer");
 const util = require("util");
 
-const upload = multer({ dest: process.cwd() + "/uploads/test/" });
+const upload = multer({ dest: process.cwd() + "/uploads/" });
 const { uploadFile, getFile } = require("../middleware/s3");
 const unlinkFile = util.promisify(fs.unlink);
 
