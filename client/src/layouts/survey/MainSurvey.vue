@@ -73,19 +73,20 @@
                 </v-parallax>
             </v-carousel-item>
         </v-carousel>
-        <v-btn @click="submit">
-            확인
-        </v-btn>
 
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"
+            :vp="vp"
+            :price="price"
             v-if="dialog"
             @next-modal=";(dialog2 = true), (dialog = false)"
         ></SurveyModal>
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"
+            :price="price"
+            :coupon="coupon"
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
@@ -96,12 +97,14 @@
 
 <script>
 import SurveyModal from './Modal.vue'
+import vc from '../possible/vc.json'
 
 export default {
     name: 'MainSurvey',
     components: { SurveyModal },
     data() {
         return {
+            vc,
             questions: null,
             value: '',
             custom: true,
@@ -109,7 +112,11 @@ export default {
             answers: ['test'],
             dialog: false,
             dialog2: false,
-            model: 0
+            model: 0,
+            condition: {},
+            vp: [],
+            price: 0,
+            coupon: 0
 
             // check: 11
         }
@@ -123,9 +130,12 @@ export default {
     created() {
         this.surveyId = this.$route.query.surveyId
         this.getQuestions()
+        this.getSurveyById()
         this.continuous = false
     },
-    mounted() {},
+    mounted() {
+        this.selectedCondition()
+    },
     unmounted() {},
     methods: {
         async getQuestions() {
@@ -157,10 +167,50 @@ export default {
                     ]
                 })
             }
-        }
+        },
         // submit() {
         //     console.log(this.model, this.question, this.i)
         // }
+
+        // 선택한 설문 조건 가져오기
+        async selectedCondition() {
+            var surveyIdArray = []
+            surveyIdArray.push(parseInt(this.surveyId))
+            this.condition = await this.$api('/condition', 'post', {
+                param: surveyIdArray
+            })
+
+            // 가져온 설문 조건에 해당하는 VC 항목 필터링해서 배열에 담기
+            const vcItemList = this.$store.state.vcItemList
+            const rawVp = []
+            for (var i = 0; i < this.condition.result.condition.length; i++) {
+                const snippet = this.condition.result.condition[i].split(' ')
+                const result = vcItemList.filter(
+                    e => Object.keys(e)[0] === snippet[0]
+                )
+                rawVp.push(result[0])
+            }
+
+            // vp 배열의 중복값 제거
+            this.vp = rawVp.filter((element, index) => {
+                return rawVp.indexOf(element) === index
+            })
+            console.log(this.vp)
+        },
+
+        // 해당 설문의 보상 포인트와 쿠폰을 가져온다
+        async getSurveyById() {
+            console.log(this.surveyId)
+            try {
+                const survey = await this.$api('/survey', 'post', {
+                    param: [this.surveyId]
+                })
+                this.price = survey[0].survey_price
+                this.coupon = survey[0].survey_coupon
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
 }
 </script>

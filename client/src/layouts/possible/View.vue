@@ -294,6 +294,7 @@ export default {
                 obj[key] = value
                 this.vcItemList.push(obj)
             }
+            this.$store.commit('addVcItemList', this.vcItemList)
         },
 
         // 설문 조건과 VC항목을 비교
