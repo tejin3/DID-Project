@@ -14,7 +14,8 @@ export default new Vuex.Store({
         return {
             web3: { isInjected: false, coinbase: null },
             survey: [],
-            vcList: []
+            decryptVc: [],
+            matchedSurvey: []
         }
     },
     mutations: {
@@ -33,12 +34,14 @@ export default new Vuex.Store({
         //     state.contractInstance = () => 'data'
         // }
 
-        // vcItemList store에 저장/삭제
-        addVcList(state, data) {
-            state.vcList.push(data)
+        // decryptVc store에 저장/삭제
+        addDecryptVc(state, data) {
+            state.decryptVc = data
         },
-        deleteVcList(state) {
-            state.vcList.pop()
+
+        // matched Survey store에 저장/삭제
+        addMatchedSurvey(state, data) {
+            state.matchedSurvey = data
         }
     },
     actions: {
