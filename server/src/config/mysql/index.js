@@ -1,8 +1,6 @@
 const mysql = require("mysql");
 let sql = require("./sql.js");
 
-console.log(process.env.DATABASE_DB);
-
 const pool = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,

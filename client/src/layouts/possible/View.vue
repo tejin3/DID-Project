@@ -84,7 +84,7 @@
                             {{ d.survey_coupon }}
                         </v-card-subtitle>
                         <v-card-subtitle>
-                            {{ dDay }}
+                            {{ dDays[i].dday }}
                         </v-card-subtitle>
                         <v-card-subtitle>
                             설문 기간 <br />
@@ -144,7 +144,7 @@ export default {
             isShow: false,
             surveys: [],
             proofSurveys: [],
-            dDay: ''
+            dDays: ''
         }
     },
 
@@ -225,7 +225,16 @@ export default {
         },
         // d-day 보여준다
         async discountDay() {
-            this.dDay = await this.$get('/date')
+            this.dDays = await this.$get('/date')
+            // result =>
+            // [
+            // { dday: 19 },
+            // { dday: 15 },
+            // { dday: 32 },
+            // { dday: 14 },
+            // { dday: 17 },
+            // { dday: 26 }
+            // ]
         },
 
         // 설문 조건을 가져온다
