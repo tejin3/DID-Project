@@ -69,7 +69,7 @@
                         >
                             <v-img
                                 :src="
-                                    require(`@/assets/img/${d.survey_image_path}`)
+                                    `http://localhost:3000/download/${d.survey_image_path}`
                                 "
                                 height="200px"
                             ></v-img>
