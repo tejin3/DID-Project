@@ -4,6 +4,7 @@ import persistedstate from 'vuex-persistedstate'
 
 import getWeb3 from '@/service/getWeb3'
 import pollWeb3 from '@/service/pollWeb3'
+// import justWeb3 from '@/service/justWeb3'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     state() {
         return {
             web3: { isInjected: false, coinbase: null },
+            web33: {},
             survey: [],
             decryptVc: [],
             matchedSurvey: [],
@@ -25,6 +27,11 @@ export default new Vuex.Store({
             state.web3 = data
             // console.log('web3 info saved')
             pollWeb3()
+        },
+        Web3Instance(state, data) {
+            // 요청된 web3 instance를 store에 저장
+            state.web33 = data
+            console.log('hello web3')
         },
         updateWeb3Instance(state, data) {
             // console.log('updateWeb3Instance', data)
@@ -56,6 +63,14 @@ export default new Vuex.Store({
             console.log(web3)
             commit('registerWeb3Instance', web3)
         },
+
+        // async web3Register({ commit }) {
+        //     console.log('web33 start')
+        //     // web3 instance 요청
+        //     var web33 = await justWeb3()
+        //     console.log(web33)
+        //     commit('Web3Instance', web33)
+        // },
 
         updateWeb3({ commit }, data) {
             commit('updateWeb3Instance', data)

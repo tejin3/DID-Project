@@ -16,8 +16,8 @@
                 >
                     <v-checkbox
                         v-model="selected"
-                        :label="completePeople[i].complete_user_account"
-                        :value="completePeople[i].complete_user_account"
+                        :label="completePeople[i].user_account"
+                        :value="completePeople[i].user_account"
                     ></v-checkbox>
                 </v-card-text>
                 <v-divider></v-divider>
