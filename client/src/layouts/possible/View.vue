@@ -83,14 +83,28 @@
                             적립금: {{ d.survey_price }} | 쿠폰:
                             {{ d.survey_coupon }}
                         </v-card-subtitle>
+                        <!-- <v-card-subtitle>
+                            <v-icon left v-text="icon"></v-icon>
+                            D-{{ dDays[i].dday }}
+                        </v-card-subtitle> -->
                         <v-card-subtitle>
-                            {{ dDays[i].dday }}
-                        </v-card-subtitle>
-                        <v-card-subtitle>
-                            설문 기간 <br />
+                            <v-icon v-text="icon"></v-icon>설문 기간
+                            <v-chip
+                                class="ma-1 font-weight-bold"
+                                color="deep-purple accent-3"
+                                outlined
+                                small
+                            >
+                                D-{{ dDays[i].dday }}
+                            </v-chip>
+
+                            <br />
                             {{ d.survey_start_date.slice(0, 10) }}
                             ~ {{ d.survey_end_date.slice(0, 10) }}
                         </v-card-subtitle>
+                        <!-- <v-card-subtitle>
+                            {{ d.survey_time }}
+                        </v-card-subtitle> -->
 
                         <v-card-actions>
                             <v-btn
@@ -144,7 +158,8 @@ export default {
             isShow: false,
             surveys: [],
             proofSurveys: [],
-            dDays: ''
+            dDays: '',
+            icon: 'mdi-calendar-range'
         }
     },
 
