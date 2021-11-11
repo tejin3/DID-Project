@@ -1,6 +1,7 @@
 <template>
     <!-- 버튼 -->
     <v-container fluid>
+        <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
         <v-container class="my-10">
             <v-btn
                 @click="allSurvey"
@@ -129,15 +130,14 @@
 </template>
 
 <script>
-import vc from './vc.json'
-
 export default {
     name: 'PossibleView',
 
     data() {
         return {
             dialog: false,
-            vc,
+            decryptVc: [],
+            vc: [],
             conditions: [],
             vcItemList: [],
             passSurveyList: [],
@@ -151,10 +151,10 @@ export default {
 
     setup() {},
     created() {
+        this.decrypt()
         this.getSurvey()
     },
     mounted() {
-        this.getVC()
         // this.$api('survey')
 
         // 첫 화면에 보여진다
@@ -251,11 +251,13 @@ export default {
         },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
-            console.log('lalala')
-            for (var i = 0; i < vc.verifiableCredentials.data.length; i++) {
-                const vcItem =
-                    vc.verifiableCredentials.data[i].credentialSubject
-                        .infomation.value
+            for (
+                var i = 0;
+                i < this.vc.verifiableCredentials.data.length;
+                i++
+            ) {
+                const vcItem = this.vc.verifiableCredentials.data[i]
+                    .credentialSubject.infomation.value
 
                 // 항목의 key와 value값 추출
                 var key = Object.keys(vcItem)[0]
@@ -322,7 +324,20 @@ export default {
                 case '==':
                     return param1.indexOf(param2)
             }
+        },
+
+        async decrypt() {
+            this.decryptVc = await window.ethereum.request({
+                method: 'eth_decrypt',
+                params: [
+                    localStorage.getItem('intoVp'),
+                    this.$store.state.web3.coinbase
+                ]
+            })
+            this.vc = JSON.parse(this.decryptVc)
+            this.getVC()
         }
+
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {
