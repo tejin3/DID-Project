@@ -15,7 +15,8 @@ export default new Vuex.Store({
             web3: { isInjected: false, coinbase: null },
             survey: [],
             decryptVc: [],
-            matchedSurvey: []
+            matchedSurvey: [],
+            surveyContract: {}
         }
     },
     mutations: {
@@ -42,6 +43,9 @@ export default new Vuex.Store({
         // matched Survey store에 저장/삭제
         addMatchedSurvey(state, data) {
             state.matchedSurvey = data
+        },
+        makeSurveyContract(state, data) {
+            state.surveyContract = data
         }
     },
     actions: {
@@ -52,6 +56,7 @@ export default new Vuex.Store({
             console.log(web3)
             commit('registerWeb3Instance', web3)
         },
+
         updateWeb3({ commit }, data) {
             commit('updateWeb3Instance', data)
         }
