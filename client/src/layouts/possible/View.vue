@@ -83,10 +83,7 @@
                             적립금: {{ d.survey_price }} | 쿠폰:
                             {{ d.survey_coupon }}
                         </v-card-subtitle>
-                        <!-- <v-card-subtitle>
-                            <v-icon left v-text="icon"></v-icon>
-                            D-{{ dDays[i].dday }}
-                        </v-card-subtitle> -->
+
                         <v-card-subtitle>
                             <v-icon v-text="icon"></v-icon>설문 기간
                             <v-chip
