@@ -46,7 +46,7 @@
 
                     <v-card-title
                         >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
-                            surveyData[m].survey_count
+                            surveyData[m].survey_id
                         }}]</v-card-title
                     >
                     <v-card-text class="py-0">

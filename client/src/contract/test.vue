@@ -2,14 +2,16 @@
     <div></div>
 </template>
 <script>
-import abi from './surveyAbi.json'
+import surveyAbi from './surveyAbi.json'
+import vcCallAbi from './vcCallAbi.json'
 export default {
     name: '',
     components: {},
     data() {
         return {
-            abi,
-            ca: 0xe6e22f385242536cf08b3f7b4ac921768c935638,
+            surveyAbi,
+            vcCallAbi,
+            surveyCa: '',
             surbey_id: 0,
             eventResult: null
         }
@@ -22,12 +24,13 @@ export default {
       first() {
             console.log("first");
             var contract = new this.$store.state.web3.eth.Contract(
-                this.abi,
-                this.ca
+                this.surveyAbi,
+                this.surveyCa
             )
 
             contract.events.addUser({}, function(error, event){
       console.log(event)
+    //   콜솔 찍어보고 결정
       this.eventResult = event.returnValues.name+", "+event.returnValues.sender
     })
 
@@ -40,6 +43,7 @@ export default {
             await contract.methods
                 .recordSurvey(this.surbey_id)
                 .send({from: account})
+                // this.$store.state.web3.coinbase
         },
     }
 }
