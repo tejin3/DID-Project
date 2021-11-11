@@ -16,14 +16,16 @@
                             active-class="deep-purple accent-4 white--text"
                             column
                             multiple
-                            show-arrows="true"
                             class="pt-5"
                         >
-                            <v-chip large filter>이름<br />100원</v-chip>
-                            <v-chip large filter>나이<br />300원</v-chip>
-                            <v-chip large filter>소득<br />500원</v-chip>
+                            <div v-for="(aa, i) in aa" :key="i">
+                                <v-chip large filter
+                                    >{{ aa.item }}<br />{{ aa.price }}원</v-chip
+                                >
+                                <!-- <v-chip large filter>나이<br />300원</v-chip>
+                            <v-chip large filter>소득<br />500원</v-chip> -->
+                            </div>
                         </v-chip-group>
-
                         <p></p>
                         <p>
                             * 위 항목 선택시 조사업체에 설문 기간동안 VP 제공에
@@ -45,7 +47,9 @@
                         <v-btn
                             color="primary"
                             dark
-                            @click="$emit('next-modal')"
+                            @click="
+                                ;[$emit('next-modal'), createVP(), totalPoint()]
+                            "
                         >
                             동의
                         </v-btn>
@@ -72,10 +76,10 @@
                             <!--텍스트부분-->
                             <v-card-text>
                                 <div class="text--primary">
-                                    + 1000 포인트
+                                    + {{ price }} 포인트
                                 </div>
                                 <p style="height:4em">
-                                    내가 받는 총 보상 1500 포인트
+                                    내가 받는 총 보상 {{ point }} 포인트
                                 </p>
                             </v-card-text>
                             <v-btn
@@ -105,12 +109,12 @@
                             <!--텍스트부분-->
                             <v-card-text>
                                 <div class="text--primary">
-                                    + 1 쿠폰
+                                    + {{ coupon }} 쿠폰
                                 </div>
                                 <p style="height:4em;">
-                                    내가 받는 총 보상 1000 포인트
+                                    내가 받는 총 보상 {{ price }} 포인트
                                     <br />
-                                    1 쿠폰
+                                    {{ coupon }} 쿠폰
                                 </p>
                             </v-card-text>
                             <v-btn
@@ -135,15 +139,51 @@
 export default {
     name: 'SurveyModal',
     components: {},
-    props: ['dialog', 'dialog2'],
+    props: ['dialog', 'dialog2', 'vp', 'price', 'coupon'],
     data() {
-        return {}
+        return {
+            aa: [
+                {
+                    item: '구매금액',
+                    price: 500
+                },
+                {
+                    item: '온오프라인',
+                    price: 300
+                },
+                {
+                    item: '상품종류',
+                    price: 400
+                }
+            ],
+            selection: [],
+            selectVp: [],
+            point: 0
+        }
     },
     setup() {},
     created() {},
     mounted() {},
     unmounted() {},
-    methods: {}
+    methods: {
+        // 동의 버튼을 누를시 선택한 VP 생성
+        createVP() {
+            // 넘겨받은 VP리스트에 선택한 VC가 담긴 VP를 생성
+            for (var index of this.selection) {
+                this.selectVp.push(this.vp[parseInt(index)])
+                console.log(this.selectVp)
+            }
+        },
+
+        // 동의 버튼을 누를시 적립되는 포인트
+        totalPoint() {
+            for (var index of this.selection) {
+                this.point += this.aa[index].price
+            }
+            this.point += this.price
+            console.log(this.price)
+        }
+    }
 }
 </script>
 

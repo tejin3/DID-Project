@@ -55,7 +55,8 @@ export default {
             currentFile: null,
             progress: 0,
             message: '',
-            fileInfos: ['bucks-cafe.png']
+            fileInfos: ['surveyImg6.jpg']
+            // surveyImg1.png surveyImg2.png 가능
         }
     },
     setup() {},
