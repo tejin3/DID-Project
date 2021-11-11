@@ -84,12 +84,12 @@
                             {{ d.survey_coupon }}
                         </v-card-subtitle>
                         <v-card-subtitle>
-                            여기
+                            {{ dDay }}
                         </v-card-subtitle>
                         <v-card-subtitle>
                             설문 기간 <br />
-                            {{ d.survey_start_date }}
-                            ~ {{ d.survey_end_date }}
+                            {{ d.survey_start_date.slice(0, 10) }}
+                            ~ {{ d.survey_end_date.slice(0, 10) }}
                         </v-card-subtitle>
 
                         <v-card-actions>
@@ -144,8 +144,7 @@ export default {
             isShow: false,
             surveys: [],
             proofSurveys: [],
-            dDay1: '',
-            today: ''
+            dDay: ''
         }
     },
 
@@ -153,6 +152,7 @@ export default {
     created() {
         this.decrypt()
         this.getSurvey()
+        this.discountDay()
     },
     mounted() {
         // this.$api('survey')
@@ -172,34 +172,35 @@ export default {
             // console.log('hi', this.$get()
 
             this.surveys = await this.$get('/surveys')
+
             // dday함수를 실행할 때 데이터가 this.surveys에 다 담기지 않아 오류발생
             // 그래서 데이터를 가져오고 나서 dday함수를 실행하기 위해 아래처럼 쓴다.
             // const survayArray = await this.$get('/surveys').then(res =>
             //     console.log('gdg', res)
             // )
-            let survayArray = null
-            await this.$get('/surveys').then(res => {
-                survayArray = res
-                console.log(survayArray)
-                // 오늘 날짜
-                const today = new Date()
-                console.log(today)
-                // D-day 날짜
-                for (var array of survayArray) {
-                    // console.log(array)
-                    let discountDay = array.survey_end_date
-                    console.log(discountDay, typeof discountDay)
-                    discountDay = parseInt(discountDay)
-                    console.log(discountDay, typeof discountDay)
-                }
-                // const gap = discountDay.getTime() - today.getTime()
-                // console.log(gap)
-                // const discountDay = survayArray
-                // console.log(discountDay)
-                // const endDate = []
-                // endDate.push(discountDay[6])
-                // console.log(endDate)
-            })
+            // let survayArray = null
+            // await this.$get('/surveys').then(res => {
+            //     survayArray = res
+            //     console.log(survayArray)
+            // 오늘 날짜
+            // const today = new Date()
+            // console.log(today)
+            // // D-day 날짜
+            // for (var array of survayArray) {
+            //     // console.log(array)
+            //     let discountDay = array.survey_end_date
+            //     console.log(discountDay, typeof discountDay)
+            //     discountDay = parseInt(discountDay)
+            //     console.log(discountDay, typeof discountDay)
+            // }
+            // const gap = discountDay.getTime() - today.getTime()
+            // console.log(gap)
+            // const discountDay = survayArray
+            // console.log(discountDay)
+            // const endDate = []
+            // endDate.push(discountDay[6])
+            // console.log(endDate)
+            // })
             // await this.$get('/surveys').then(res => dDay())
 
             // console.log(this.surveys)
@@ -222,6 +223,10 @@ export default {
         allSurvey() {
             this.getSurvey()
         },
+        // d-day 보여준다
+        async discountDay() {
+            this.dDay = await this.$get('/date')
+        },
 
         // 설문 조건을 가져온다
         async getCondition() {
@@ -234,21 +239,21 @@ export default {
                 console.log(this.$store.web3)
             }
         },
-        dDay() {
-            this.today = new Date()
-            console.log('today', this.today)
-            const dday = this.surveys
-            console.log('heheh', dday)
-            console.log(this.surveys)
+        // dDay() {
+        //     this.today = new Date()
+        //     console.log('today', this.today)
+        //     const dday = this.surveys
+        //     console.log('heheh', dday)
+        //     console.log(this.surveys)
 
-            // const dDay = new Date(2021, 10, 30)
-            this.dDay = this.surveys[0].survey_end_date
-            console.log(this.dDay)
-            // const gap = dDay.getTime() - today.getTime()
-            // console.log(gap)
-            // const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
-            // console.log(result)
-        },
+        // const dDay = new Date(2021, 10, 30)
+        // this.dDay = this.surveys[0].survey_end_date
+        // console.log(this.dDay)
+        // const gap = dDay.getTime() - today.getTime()
+        // console.log(gap)
+        // const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
+        // console.log(result)
+        // },
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
             for (

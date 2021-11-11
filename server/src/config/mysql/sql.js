@@ -23,6 +23,6 @@ module.exports = {
   },
   discountDay: {
     query:
-      "select Datediff(date_format(T2.survey_end_date,'%Y-%m-%d'), date_format(now(),'%Y-%m-%d')) from t_survey T2",
+      "select (Datediff(date_format(T2.survey_end_date,'%Y-%m-%d'), date_format(now(),'%Y-%m-%d')))  from t_survey T2",
   },
 };

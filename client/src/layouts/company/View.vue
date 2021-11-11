@@ -183,7 +183,7 @@ export default {
                 const surveys = await this.$api('/survey/company', 'post', {
                     param: [this.companyAccount]
                 })
-
+                console.log(surveys)
                 // 2. 설문지 조건들을 요청한다.
                 const output = await this.$api('/conditions', 'get')
                 // const output = await this.$api('/conditions', 'post', {
