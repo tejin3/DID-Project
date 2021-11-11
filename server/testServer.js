@@ -30,8 +30,8 @@ app.get("/", function (req, res) {
     </form>
 
     <div>
-    <img src="/images/ethereum.png"></img>
-    <img src="/images/bitcoin-2647432_1280.png"></img>
+    <img src="/images/bucks-cafe.png"></img>
+   
     </div>
 
     
@@ -53,7 +53,10 @@ app.post("/uploadImage", upload.single("attachment"), async (req, res) => {
     console.log(file);
 
     // apply
-    // resize
+    // 파일을 서버에 맞게 조정
+    // resize (700, 300) (600, 450)
+    // 파일의 사이즈를 줄이기
+    // img(src (500, 500))
 
     const result = await uploadFile(file);
     await unlinkFile(file.path);

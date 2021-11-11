@@ -44,9 +44,11 @@ export default {
                 })
             ).data
         },
-        async $upload(url, file) {
+        async $upload(url, file, description) {
             const formData = new FormData()
             formData.append('attachment', file)
+            formData.append('description', description)
+
             return (
                 await axios
                     .post(url, formData, {

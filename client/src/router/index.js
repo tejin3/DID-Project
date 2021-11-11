@@ -17,6 +17,7 @@ import CompanyLayout from '../layouts/company/Index'
 // import Test1 from '../views/Test1.vue'
 
 import Test from '../views/Test.vue'
+import uploadTest from '../views/uploadTest.vue'
 import Test5 from '../views/Test5.vue'
 import Filter from '../layouts/test2/filter.vue'
 
@@ -100,7 +101,8 @@ const routes = [
             }
         ]
     },
-    { path: '/test', name: 'Test', component: Test }
+    { path: '/test', name: 'Test', component: Test },
+    { path: '/uploadtest', name: 'uploadtest', component: uploadTest }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -1,16 +1,51 @@
 "use strict";
 
-// const mysql = require("../config/mysql");
 const fs = require("fs");
+const multer = require("multer");
+const util = require("util");
 
-const index = (request, res) => {
-    // console.log("download", request.params);
+const upload = multer({ dest: process.cwd() + "/uploads/test/" });
+const { uploadFile, getFile } = require("../middleware/s3");
+const unlinkFile = util.promisify(fs.unlink);
+
+const index = async (req, res) => {
+    const fileName = req.params.fileName;
+    console.log(fileName);
+    const readStream = getFile(fileName);
+
+    readStream.pipe(res);
+};
+
+const store = (req, res, next) => {
+    console.log("store");
+    // Remember, the middleware will call it's next function
+    // so we can inject our controller manually as the next()
+    upload.single("attachment")(req, res, async () => {
+        const file = req.file;
+        const description = req.body.description;
+
+        console.log("file", file);
+        console.log("des", description);
+
+        // apply
+        // 파일을 서버에 맞게 조정
+        // resize (700, 300) (600, 450)
+        // 파일의 사이즈를 줄이기
+        // img(src (500, 500))
+
+        const result = await uploadFile(file);
+        await unlinkFile(file.path);
+
+        console.log(result);
+
+        res.status(200).send({ message: "success!" });
+    });
+};
+
+const index2 = (request, res) => {
     const { fileName } = request.params;
-    // console.log({ fileName });
-    // console.log({ __dirname });
-    const filepath = `${__dirname}/../../uploads/${fileName}`;
-    // console.log(filepath);
-    // console.log("before", res.header());
+    // const filepath = `${__dirname}/../../uploads/${fileName}`;
+
     res.header(
         "Content-Type",
         `image/${fileName.substring(fileName.lastIndexOf("."))}`
@@ -35,4 +70,4 @@ const index = (request, res) => {
     }
 };
 
-module.exports = { index };
+module.exports = { index, store };

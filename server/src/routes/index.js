@@ -9,8 +9,6 @@ const questionController = require("../controller/questionController");
 const answerController = require("../controller/answerController");
 const downloadController = require("../controller/downloadController");
 
-const upload = require("../middleware/upload");
-
 // 설문지 조건 controller
 router.get("/conditions", conditionController.index);
 router.post("/condition", conditionController.show);
@@ -38,4 +36,6 @@ router.post("/answers", answerController.store);
 
 // img call
 router.get("/download/:fileName", downloadController.index);
+router.post("/download/:fileName", downloadController.store);
+
 module.exports = router;
