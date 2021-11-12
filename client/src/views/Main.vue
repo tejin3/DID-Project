@@ -120,6 +120,7 @@ export default {
     methods: {
         async metamask() {
             await this.$store.dispatch('registerWeb3')
+            await this.$store.dispatch('web3Register')
             this.goPossible()
         },
         goPossible() {
