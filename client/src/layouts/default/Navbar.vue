@@ -83,9 +83,9 @@ module.exports = {
         }
     },
     computed: {
-        web3() {
-            return this.$store.state.web3
-        }
+        // web3() {
+        //     return this.$store.state.web3
+        // }
         // vc() {
         //     return this.verifiableCredentials.data
         // }
@@ -123,6 +123,7 @@ module.exports = {
     methods: {
         async metamask() {
             await this.$store.dispatch('registerWeb3')
+            await this.$store.dispatch('web3Register')
         }
     }
 }

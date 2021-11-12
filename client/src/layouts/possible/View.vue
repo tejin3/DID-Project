@@ -257,6 +257,7 @@ export default {
         async connectMask() {
             if (this.$store.state.web3.coinbase === null) {
                 await this.$store.dispatch('registerWeb3')
+                // await this.$store.dispatch('web3Register')
                 console.log(this.$store.web3)
             }
         },
