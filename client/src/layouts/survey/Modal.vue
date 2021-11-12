@@ -86,7 +86,7 @@
                                 color="primary"
                                 dark="dark"
                                 small="small"
-                                @click="$emit('close-modal')"
+                                @click=";[$emit('close-modal'), saveReward()]"
                             >
                                 포인트 받기
                             </v-btn>
@@ -121,7 +121,7 @@
                                 color="primary"
                                 dark="dark"
                                 small="small"
-                                @click="$emit('close-modal')"
+                                @click=";[$emit('close-modal'), saveReward()]"
                             >
                                 쿠폰 받기
                             </v-btn>
@@ -182,6 +182,12 @@ export default {
             }
             this.point += this.price
             console.log(this.price)
+        },
+        // 받기 버튼을 누르면 DB로 포인트와 쿠폰 전달
+        async saveReward() {
+            this.$api('/save', 'post', {
+                param: [{ point: this.point }, { coupon: this.coupon }]
+            })
         }
     }
 }

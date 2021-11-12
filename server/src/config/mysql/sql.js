@@ -26,4 +26,7 @@ module.exports = {
     select Datediff(T2.survey_end_date, now()) as "dday"
     from t_survey T2`,
   },
+  insertReward: {
+    query: "insert into t_user set ?",
+  },
 };
