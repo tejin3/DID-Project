@@ -83,9 +83,6 @@
 module.exports = {
     name: 'DefaultBar',
     computed: {
-        web3() {
-            return this.$store.state.web3
-        },
         loginStatus() {
             return this.$store.state.loginStatus
         }
