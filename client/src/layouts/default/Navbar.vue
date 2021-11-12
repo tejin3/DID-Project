@@ -1,18 +1,18 @@
 <template>
+    <!-- 네비바 전체 윤곽 -->
     <div>
-        <v-app-bar app class="purple lighten-2">
+        <!-- drawer is true -->
+        <v-app-bar class="purple lighten-2">
+            <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
-                <div class="white--text font-weight-bold">WeDIDsurvey</div>
+                <v-toolbar-title class="white--text font-weight-bold">
+                    {{ title }}
+                </v-toolbar-title>
             </router-link>
-
+            <!-- 네비바 중간 채우기 -->
             <v-spacer></v-spacer>
 
-            <!-- <span class="hidden-sm-and-up">
-                <v-btn @click.stop="drawer = !drawer">
-                    Menu
-                </v-btn>
-            </span> -->
-
+            <!-- 네비바 오른쪽 부분 2 : 화면이 클 때 -->
             <v-toolbar-items class="hidden-xs-only">
                 <v-btn
                     to="company"
@@ -23,11 +23,6 @@
                             0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
                     "
                 >
-                    <!-- v-if="
-                        this.$store.state.web3.coinbase ==
-                            0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
-                    " -->
-                    <!-- v-if="this.$store.state.show" -->
                     설문결과
                 </v-btn>
                 <v-btn to="possible" text class="white--text">
@@ -51,14 +46,16 @@
                 >
                     로그아웃
                 </v-btn>
-
-                <!-- <v-btn text v-show="listUp">
-                    <v-icon small left>fa-shopping-cart</v-icon>
-                    요청한 설문 리스트
-                </v-btn> -->
             </v-toolbar-items>
+            <!-- 네비바 오른쪽 부분 1 : 화면이 작을 때-->
+            <span class="hidden-sm-and-up">
+                <v-btn @click.stop="drawer = !drawer">
+                    Menu
+                </v-btn>
+            </span>
         </v-app-bar>
 
+        <!-- drawer is true -->
         <v-navigation-drawer v-model="drawer" absolute temporary right>
             <v-list>
                 <v-list-item
@@ -67,6 +64,12 @@
                     :to="item.link"
                     link
                 >
+                    <v-list-item-icon>
+                        <v-icon small>fa-{{ item.icon }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -76,39 +79,11 @@
 <script>
 module.exports = {
     name: 'DefaultBar',
-    props: {
-        listUp: {
-            type: Boolean,
-            defalut: false
-        }
-    },
-    computed: {
-        // web3() {
-        //     return this.$store.state.web3
-        // }
-        // vc() {
-        //     return this.verifiableCredentials.data
-        // }
-    },
-    mounted() {
-        // console.log('1', this.$store.state.web3.coinbase)
-        // if (
-        //     this.$store.state.web3.coinbase ===
-        //     0xee442796570052932841b7588ab037255ce81183
-        // ) {
-        //     this.$store.commit('showSave', true)
-        // } else {
-        //     this.$store.commit('showSave', false)
-        // }
-        // setInterval(async () => {
-        //     // // 계정이 바뀌었는지 확인
-        //     // console.log("web3", this.$store.state.web3);
-        //     // console.log("어카운트", this.$store.state.account);
-        //     await this.$store.dispatch('registerWeb3')
-        // }, 5000)
-    },
+    computed: {},
+
     data() {
         return {
+            title: 'WeDIDsurvey',
             drawer: false,
             // company: false,
             items: [
@@ -120,11 +95,17 @@ module.exports = {
             // company: false
         }
     },
+    mounted() {
+        this.web3()
+    },
     methods: {
         async metamask() {
             await this.$store.dispatch('registerWeb3')
-            await this.$store.dispatch('web3Register')
+            // await this.$store.dispatch('web3Register')
         }
+    },
+    web3() {
+        return this.$store.state.web3
     }
 }
 </script>
