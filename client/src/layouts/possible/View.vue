@@ -15,7 +15,7 @@
             </v-btn>
             <!-- 지갑 연결 전 보이는 버튼 -->
             <v-btn
-                @click.stop="dialog = true"
+                @click="dialog = true"
                 v-if="this.$store.state.web3.coinbase === null"
                 color="purple lighten-3"
                 dark
