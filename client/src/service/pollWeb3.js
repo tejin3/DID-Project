@@ -6,31 +6,24 @@ const pollWeb3 = function(state) {
 
     setInterval(async () => {
         // current provider check
-        console.log('current', await web3.eth.getCoinbase())
+        const newCoinbase = await web3.eth.getCoinbase()
+        // console.log('new coinbase is', newCoinbase)
+
+        const currentCoinbase = store.state.web3.coinbase
         // state provider check
-        console.log('state', store.state.web3.coinbase)
+        // console.log('current state coinbase is ', currentCoinbase)
 
-        // Web3가 있는 지 없는 체크 ?
-        // if (!Web3 || !store.state.web3) {
-        //     console.log('here', Web3)
-        //     return
-        // }
-        // const newCoinbase = await web3.eth.getCoinbase()
-        var newIsInjected = await web3.eth.getCoinbase()
-        // console.log(newIsInjected)
-        store.dispatch('updateWeb3', {
-            coinbase: newIsInjected
+        if (newCoinbase !== currentCoinbase) {
+            const newIsInjected = await web3.eth.net.isListening()
+            const newCoinbase = await web3.eth.getCoinbase()
 
-            // isInjected: newIsInjected
-        })
-
-        // if (newIsInjected !== true) {
-        //     var newCoinbase = await web3.eth.getCoinbase()
-        //     store.dispatch('updateWeb3', {
-        //         coinbase: newCoinbase,
-        //         isInjected: newIsInjected
-        //     })
-        // }
+            store.dispatch('updateWeb3', {
+                coinbase: newCoinbase,
+                isInjected: newIsInjected
+            })
+        } else {
+            console.log('접속된 주소가 변경되지 않았습니다')
+        }
     }, 5000)
 }
 

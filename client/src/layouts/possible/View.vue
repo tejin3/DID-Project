@@ -83,9 +83,14 @@
                         <v-card-subtitle>
                             적립금: {{ d.survey_price }} | 쿠폰:
                             {{ d.survey_coupon }}
+                            <!-- </v-card-subtitle>
+                        <v-card-subtitle> -->
                         </v-card-subtitle>
 
                         <v-card-subtitle>
+                            <!-- <v-icon> mdi-alarm-check </v-icon>소요 시간:
+                            {{ d.survey_time.slice(4, 5) }}분 <br />
+                            <br /> -->
                             <v-icon v-text="icon"></v-icon>설문 기간
                             <v-chip
                                 class="ma-1 font-weight-bold"
@@ -93,6 +98,7 @@
                                 outlined
                                 small
                             >
+                                <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
                                 D-{{ dDays[i].dday }}
                             </v-chip>
 
@@ -100,6 +106,7 @@
                             {{ d.survey_start_date.slice(0, 10) }}
                             ~ {{ d.survey_end_date.slice(0, 10) }}
                         </v-card-subtitle>
+
                         <!-- <v-card-subtitle>
                             {{ d.survey_time }}
                         </v-card-subtitle> -->

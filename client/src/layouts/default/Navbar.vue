@@ -34,15 +34,16 @@
                     text
                     class="white--text
                     "
-                    @click="metamask()"
-                    v-show="this.$store.state.web3.coinbase === null"
+                    @click="login()"
+                    v-if="this.loginStatus == false"
                 >
                     지갑연결
                 </v-btn>
                 <v-btn
                     text
                     class="white--text"
-                    v-show="this.$store.state.web3.coinbase !== null"
+                    @click="logout()"
+                    v-if="this.loginStatus == true"
                 >
                     로그아웃
                 </v-btn>
@@ -83,6 +84,9 @@ module.exports = {
     computed: {
         web3() {
             return this.$store.state.web3
+        },
+        loginStatus() {
+            return this.$store.state.loginStatus
         }
     },
     data() {
@@ -97,9 +101,15 @@ module.exports = {
         }
     },
     methods: {
-        // async metamask() {
-        //     await this.$store.dispatch('registerWeb3')
-        // }
+        async login() {
+            console.log('login click')
+            await this.$store.dispatch('registerWeb3')
+            this.$store.commit('loginStatus', true)
+        },
+        logout() {
+            console.log('logout click')
+            this.$store.commit('loginStatus', false)
+        }
     }
 }
 </script>
