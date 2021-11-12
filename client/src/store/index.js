@@ -65,7 +65,7 @@ export default new Vuex.Store({
     modules: {},
     plugins: [
         persistedstate({
-            paths: ['vcList']
+            paths: ['vcList', 'web3']
         })
     ]
 })

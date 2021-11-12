@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 
 import Main from '../views/Main.vue'
 import Possible from '../views/Possible.vue'
-import MyPage from '../views/MyPage.vue'
 import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 import Company from '../views/Company.vue'
@@ -11,14 +10,15 @@ import Encrypt from '../views/Encrypt.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
-import MyPageLayout from '../layouts/mypage/Index'
 import CompanyLayout from '../layouts/company/Index'
 
+// import MyPageLayout from '../layouts/mypage/Index'
 // import Test1 from '../views/Test1.vue'
+// import MyPage from '../views/MyPage.vue'
 
-import Test from '../views/Test.vue'
-import uploadTest from '../views/uploadTest.vue'
-import Test1 from '../views/Test1.vue'
+// import Test from '../views/Test.vue'
+// import uploadTest from '../views/uploadTest.vue'
+// import Test1 from '../views/Test1.vue'
 
 import Test5 from '../views/Test5.vue'
 import Filter from '../layouts/test2/filter.vue'
@@ -47,17 +47,6 @@ const routes = [
                 ]
             },
             {
-                path: '/mypage',
-                component: MyPage,
-                children: [
-                    {
-                        path: '/mypage',
-                        name: 'possible',
-                        component: MyPageLayout
-                    }
-                ]
-            },
-            {
                 path: '/survey',
                 name: 'Survey',
                 component: Survey
@@ -66,16 +55,6 @@ const routes = [
                 path: '/trade',
                 name: 'Trade',
                 component: Trade
-            },
-            {
-                path: '/test',
-                name: 'Test',
-                component: Test
-            },
-            {
-                path: '/test1',
-                name: 'Test1',
-                component: Test1
             },
             {
                 path: '/encrypt',
@@ -102,14 +81,9 @@ const routes = [
                         component: CompanyLayout
                     }
                 ]
-                // props: {
-                //     listUp: true
-                // }
             }
         ]
-    },
-    { path: '/test', name: 'Test', component: Test },
-    { path: '/uploadtest', name: 'uploadtest', component: uploadTest }
+    }
 ]
 const router = new VueRouter({
     mode: 'history',
