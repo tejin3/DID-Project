@@ -27,6 +27,7 @@ router.get("/date", surveyController.showDday);
 
 // 완료된 사람 controller
 router.get("/completes", completeController.index);
+router.post("/save", completeController.save);
 
 // question controller
 router.post("/questions", questionController.showById);
