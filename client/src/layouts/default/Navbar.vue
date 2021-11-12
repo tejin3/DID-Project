@@ -33,16 +33,18 @@
                 </v-btn>
                 <v-btn
                     text
-                    class="white--text"
-                    @click="metamask()"
-                    v-show="this.$store.state.web3.coinbase === null"
+                    class="white--text
+                    "
+                    @click="login()"
+                    v-if="this.loginStatus == false"
                 >
                     지갑연결
                 </v-btn>
                 <v-btn
                     text
                     class="white--text"
-                    v-show="this.$store.state.web3.coinbase !== null"
+                    @click="logout()"
+                    v-if="this.loginStatus == true"
                 >
                     로그아웃
                 </v-btn>
@@ -79,8 +81,14 @@
 <script>
 module.exports = {
     name: 'DefaultBar',
-    computed: {},
-
+    computed: {
+        web3() {
+            return this.$store.state.web3
+        },
+        loginStatus() {
+            return this.$store.state.loginStatus
+        }
+    },
     data() {
         return {
             title: 'WeDIDsurvey',
@@ -99,13 +107,15 @@ module.exports = {
         this.web3()
     },
     methods: {
-        async metamask() {
+        async login() {
+            console.log('login click')
             await this.$store.dispatch('registerWeb3')
-            // await this.$store.dispatch('web3Register')
+            this.$store.commit('loginStatus', true)
+        },
+        logout() {
+            console.log('logout click')
+            this.$store.commit('loginStatus', false)
         }
-    },
-    web3() {
-        return this.$store.state.web3
     }
 }
 </script>

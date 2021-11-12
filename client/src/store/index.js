@@ -10,11 +10,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     strict: true,
-    // state : {}
     state() {
         return {
             web3: { isInjected: false, coinbase: null },
-            web33: {},
+            loginStatus: false,
             survey: [],
             decryptVc: [],
             matchedSurvey: [],
@@ -26,7 +25,6 @@ export default new Vuex.Store({
         registerWeb3Instance(state, data) {
             // 요청된 web3 instance를 store에 저장
             state.web3 = data
-            // console.log('web3 info saved')
             pollWeb3()
         },
         Web3Instance(state, data) {
@@ -35,8 +33,12 @@ export default new Vuex.Store({
             console.log('hello web3')
         },
         updateWeb3Instance(state, data) {
-            // console.log('updateWeb3Instance', data)
+            console.log('updateWeb3Instance', data)
+            state.web3.isInjected = data.isInjected
             state.web3.coinbase = data.coinbase
+        },
+        loginStatus(state, data) {
+            state.loginStatus = data
         },
         // registerContractInstance(state, data) {
         //     console.log('register contract instance', data)
@@ -70,15 +72,7 @@ export default new Vuex.Store({
             console.log(web3)
             commit('registerWeb3Instance', web3)
         },
-
-        // async web3Register({ commit }) {
-        //     console.log('web33 start')
-        //     // web3 instance 요청
-        //     var web33 = await justWeb3()
-        //     console.log(web33)
-        //     commit('Web3Instance', web33)
-        // },
-
+        // pollWeb3 함수에서 실행한 결과를 커밋
         updateWeb3({ commit }, data) {
             commit('updateWeb3Instance', data)
         }
@@ -86,7 +80,7 @@ export default new Vuex.Store({
     modules: {},
     plugins: [
         persistedstate({
-            paths: ['vcList', 'web3']
+            paths: ['vcList', 'web3', 'loginStatus']
         })
     ]
 })
