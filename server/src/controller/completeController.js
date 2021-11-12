@@ -13,15 +13,16 @@ const index = async (req, res) => {
   }
 };
 
-const save = async (req, res) => {
-  console.log(req);
-  console.log(req.body.param);
+const saveReward = async (req, res) => {
+  /*   console.log(req.body.param); */
   const reward = req.body.param;
   try {
-    await mysql.query("insertReward", {
-      user_point: reward.point,
-      user_coupon: reward.coupon,
-    });
+    await mysql.query("updateReward", [
+      reward.point,
+      reward.coupon,
+      reward.account,
+    ]);
+    res.status(200).send({ message: "success" });
   } catch (err) {
     res.status(500).send({
       error: err,
@@ -29,4 +30,4 @@ const save = async (req, res) => {
   }
 };
 
-module.exports = { index, save };
+module.exports = { index, saveReward };

@@ -15,8 +15,8 @@
                     </v-tab>
                     <!-- tap value = -->
                     <v-tab class="font-weight-bold">
-                        <v-icon class="mr-2">mdi-image-multiple</v-icon>
-                        소유한 NFT</v-tab
+                        <v-icon class="mr-2">mdi-tag</v-icon>
+                        쿠폰함</v-tab
                     >
                 </v-tabs>
                 <!-- 화면이 작을 때 -->
@@ -29,8 +29,8 @@
                     </v-tab>
                     <!-- tap value = -->
                     <v-tab class="font-weight-bold">
-                        <v-icon class="mr-2">mdi-image-multiple</v-icon>
-                        소유한 NFT</v-tab
+                        <v-icon class="mr-2">mdi-tag</v-icon>
+                        쿠폰함</v-tab
                     >
                 </v-tabs>
             </v-toolbar>
@@ -41,7 +41,7 @@
                     <v-tab-item>
                         <v-row>
                             <v-col
-                                cols="6"
+                                cols="3"
                                 class="d-flex justify-center pa-12"
                                 v-for="item in personalItems"
                                 :key="item"
@@ -73,47 +73,47 @@
                     </v-tab-item>
                     <!-- tap value = 1, 소유한 NFT 탭일 때 -->
                     <v-tab-item>
-                        <v-row justify="space-between">
+                        <br />
+                        <v-text class="ma-10 text-h6"
+                            >현재, 미사용 쿠폰
+                            <v-text class="red--text font-weight-bold">5</v-text
+                            >개가 있어요!</v-text
+                        >
+
+                        <v-row>
                             <v-col
-                                class="testLine ma-12"
-                                cols="3"
-                                v-for="item in personalItems"
-                                :key="item"
+                                class="testLine ma-10 pa-0"
+                                v-for="card in cards"
+                                :key="card.title"
                             >
-                                <v-card class="mx-auto" max-width="400">
+                                <v-card max-width="200">
                                     <v-img
                                         class="white--text align-end"
-                                        height="200px"
-                                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                        height="170px"
+                                        :src="
+                                            require(`@/assets/img/${card.src}`)
+                                        "
                                     >
-                                        <v-card-title
-                                            >Top 10 Australian
-                                            beaches</v-card-title
-                                        >
+                                        <!-- <v-card-title
+                                            class="black--text font-weight-bold"
+                                            >{{ card.title }}</v-card-title
+                                        > -->
                                     </v-img>
 
-                                    <v-card-subtitle class="pb-0">
-                                        Number 10
+                                    <v-card-subtitle class="pb-0 text-center">
+                                        {{ card.title }}
                                     </v-card-subtitle>
-
-                                    <v-card-text class="text--primary">
-                                        <div>Whitehaven Beach</div>
-
-                                        <div>
-                                            Whitsunday Island, Whitsunday
-                                            Islands
-                                        </div>
+                                    <v-card-subtitle
+                                        class="black--text font-weight-bold"
+                                    >
+                                        {{ card.menu }}
+                                    </v-card-subtitle>
+                                    <v-divider></v-divider>
+                                    <v-card-text
+                                        class="text--primary text-center"
+                                    >
+                                        유효기간 <br />{{ card.valid }}
                                     </v-card-text>
-
-                                    <v-card-actions>
-                                        <v-btn color="orange" text>
-                                            Share
-                                        </v-btn>
-
-                                        <v-btn color="orange" text>
-                                            Explore
-                                        </v-btn>
-                                    </v-card-actions>
                                 </v-card>
                             </v-col>
                         </v-row>
@@ -131,6 +131,7 @@ export default {
     },
     data() {
         return {
+            // icon: 'mdi-tag',
             tab: null,
             personalItems: [
                 {
@@ -158,10 +159,58 @@ export default {
                     icon: 'ri:survey-fill'
                 }
             ],
+            cards: [
+                // {
+                //     title: 'Favorite road trips',
+                //     src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
+                //     flex: 6
+                // },
+                // {
+                //     title: '스타벅스',
+                //     src: '.../assets/img/coupon1.jpg'
+                // }
+                // {
+                //     title: 'Best airlines',
+                //     src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'
+                // }
+                {
+                    title: '스타벅스',
+                    src: 'coupon1.jpg',
+                    menu: '아이스 카페 아메리카노 Tall',
+                    point: '1',
+                    valid: '2022년 01월 31일'
+                },
+                {
+                    title: '할리스',
+                    src: 'coupon2.jpg',
+                    menu: '민트 초코칩 할리치노 R',
+                    point: '2',
+                    valid: '2022년 03월 28일'
+                },
+                {
+                    title: '굽네치킨',
+                    src: 'coupon3.jpg',
+                    menu: '굽네 오리지널+콜라1.25L',
+                    point: '5',
+                    valid: '2022년 02월 15일'
+                },
+                {
+                    title: '도미노피자',
+                    src: 'coupon4.jpg',
+                    menu: '포테이토(오리지널)L+콜라1.25L',
+                    point: '7',
+                    valid: '2022년 04월 22일'
+                },
+                {
+                    title: '크리스피크림도넛',
+                    src: 'coupon5.jpg',
+                    menu: '오리지널 글레이즈드 하프더즌',
+                    point: '2',
+                    valid: '2022년 12월 31일'
+                }
+            ],
             nftItems: [],
-            items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails'],
-            text:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+            items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails']
         }
     },
 
@@ -169,9 +218,9 @@ export default {
 }
 </script>
 <style scoped>
-.testLine {
+/* .testLine {
     border: solid 3px orange;
-}
+} */
 </style>
 <style scoped>
 svg {

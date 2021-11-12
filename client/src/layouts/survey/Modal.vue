@@ -184,8 +184,12 @@ export default {
         },
         // 받기 버튼을 누르면 DB로 포인트와 쿠폰 전달
         async saveReward() {
-            this.$api('/save', 'post', {
-                param: [{ point: this.point }, { coupon: this.coupon }]
+            this.$api('/reward', 'post', {
+                param: {
+                    account: this.$store.state.web3.coinbase,
+                    point: this.point,
+                    coupon: this.coupon
+                }
             })
         }
     }
