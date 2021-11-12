@@ -11,12 +11,7 @@
                 <v-card>
                     <v-container fluid>
                         <v-row dense>
-                            <v-col
-                                v-for="card in cards"
-                                :questions="card.questions"
-                                :key="card.title"
-                                :cols="card.flex"
-                            >
+                            <v-col v-for="card in cards" :key="card.title">
                                 <v-card>
                                     <v-img
                                         :src="card.src"

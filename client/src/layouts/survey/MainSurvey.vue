@@ -14,6 +14,7 @@
                         {{ question.quesiton_order }},
                         {{ question.quesiton_content }}
                     </div>
+
                     <v-text-field
                         v-model="userInput"
                         color="yellow  darken-2"
@@ -29,7 +30,33 @@
         <!-- <v-btn @click="submit">
             확인
         </v-btn> -->
-
+        <v-row
+            ><v-col>
+                <!-- radios가 default가 Google  -->
+                <v-radio-group v-model="radios">
+                    <v-radio
+                        color="orange darken-3"
+                        v-for="(radiosList, i) in radiosLists"
+                        :key="i"
+                        :value="radiosList.uniq"
+                        @click="checkRadioUnique"
+                    >
+                        <template v-slot:label>
+                            <div>
+                                <!-- {{ radiosList.uniq }} -->
+                                {{ radiosList.num }}
+                                {{ radiosList.question }}
+                                <!-- {{ radiosLis -->
+                                <!-- <strong class="success--text">
+                                    {{ radiosList.one }}</strong
+                                > -->
+                            </div>
+                            <!-- {{ checkLists }} -->
+                        </template>
+                    </v-radio>
+                </v-radio-group>
+            </v-col></v-row
+        >
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"
@@ -62,6 +89,8 @@ export default {
     components: { SurveyModal },
     data() {
         return {
+            // radios: [0],
+            radios: 0,
             vc,
             questions: null,
             value: '',
@@ -74,7 +103,27 @@ export default {
             condition: {},
             vp: [],
             price: 0,
-            coupon: 0
+            coupon: 0,
+            radiosLists: [
+                // 질문1 아래는, 질문1에대한 질문지?
+                {
+                    uniq: 0,
+                    num: '1.',
+                    question: '1~2회'
+                },
+                {
+                    num: '2.',
+                    question: '2~3회'
+                },
+                {
+                    num: '3.',
+                    question: '5회 이상'
+                },
+                {
+                    num: '4.',
+                    question: '7회 이상'
+                }
+            ]
             // continuous = false
 
             // check: 11
@@ -101,6 +150,9 @@ export default {
     },
     unmounted() {},
     methods: {
+        checkRadioUnique() {
+            console.log('checkRadioUnique()', this.radios)
+        },
         async getQuestions() {
             try {
                 this.questions = await this.$api('/questions', 'post', {
