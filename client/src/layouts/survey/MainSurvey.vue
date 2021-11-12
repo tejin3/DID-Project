@@ -153,11 +153,51 @@ export default {
                     }
                 })
             }
-        }
+        },
 
         // submit() {
         //     console.log(this.model, this.question, this.i)
-        // }
+        // },
+
+        // 선택한 설문 조건 가져오기
+        async selectedCondition() {
+            var surveyIdArray = []
+            surveyIdArray.push(parseInt(this.surveyId))
+            this.condition = await this.$api('/condition', 'post', {
+                param: surveyIdArray
+            })
+
+            // 가져온 설문 조건에 해당하는 VC 항목 필터링해서 배열에 담기
+            const vcItemList = this.$store.state.vcItemList
+            const rawVp = []
+            for (var i = 0; i < this.condition.result.condition.length; i++) {
+                const snippet = this.condition.result.condition[i].split(' ')
+                const result = vcItemList.filter(
+                    e => Object.keys(e)[0] === snippet[0]
+                )
+                rawVp.push(result[0])
+            }
+
+            // vp 배열의 중복값 제거
+            this.vp = rawVp.filter((element, index) => {
+                return rawVp.indexOf(element) === index
+            })
+            console.log(this.vp)
+        },
+
+        // 해당 설문의 보상 포인트와 쿠폰을 가져온다
+        async getSurveyById() {
+            console.log(this.surveyId)
+            try {
+                const survey = await this.$api('/survey', 'post', {
+                    param: [this.surveyId]
+                })
+                this.price = survey[0].survey_price
+                this.coupon = survey[0].survey_coupon
+            } catch (err) {
+                console.log(err)
+            }
+        }
     }
 }
 </script>

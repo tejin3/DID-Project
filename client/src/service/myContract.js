@@ -1,50 +1,74 @@
-// example contract
-export const address = '0x57631dB7dC7fAFB664eD4d43667E0c9e56ec850b'
-export const ABI = [
+export const surveyABI = [
+    {
+        inputs: [],
+        stateMutability: 'nonpayable',
+        type: 'constructor'
+    },
     {
         anonymous: false,
         inputs: [
             {
                 indexed: false,
-                internalType: 'bool',
-                name: '_result',
-                type: 'bool'
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
             },
             {
                 indexed: false,
-                internalType: 'uint256',
-                name: '_amount',
-                type: 'uint256'
+                internalType: 'address',
+                name: '',
+                type: 'address'
             }
         ],
-        name: 'Won',
+        name: 'addUser',
         type: 'event'
-    },
-    {
-        stateMutability: 'nonpayable',
-        type: 'fallback'
     },
     {
         inputs: [
             {
                 internalType: 'uint256',
-                name: '_minBet',
+                name: '_num',
+                type: 'uint256'
+            }
+        ],
+        name: 'recordSurvey',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
                 type: 'uint256'
             },
             {
                 internalType: 'uint256',
-                name: '_winRate',
+                name: '',
                 type: 'uint256'
             }
         ],
-        name: 'betting',
-        outputs: [],
-        stateMutability: 'payable',
+        name: 'surveyCompleteList',
+        outputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            }
+        ],
+        stateMutability: 'view',
         type: 'function'
     },
     {
-        inputs: [],
-        name: 'getBalance',
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'surveyCount',
         outputs: [
             {
                 internalType: 'uint256',
@@ -56,17 +80,144 @@ export const ABI = [
         type: 'function'
     },
     {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            },
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            }
+        ],
+        name: 'surveyUser',
+        outputs: [
+            {
+                internalType: 'bool',
+                name: '',
+                type: 'bool'
+            }
+        ],
+        stateMutability: 'view',
+        type: 'function'
+    }
+]
+export const vcABI = [
+    {
         inputs: [],
-        name: 'kill',
+        stateMutability: 'nonpayable',
+        type: 'constructor'
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: false,
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            },
+            {
+                indexed: false,
+                internalType: 'string',
+                name: '',
+                type: 'string'
+            },
+            {
+                indexed: false,
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'vcCallApprovals',
+        type: 'event'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'address',
+                name: '_user',
+                type: 'address'
+            }
+        ],
+        name: 'callData',
+        outputs: [
+            {
+                internalType: 'string[]',
+                name: '',
+                type: 'string[]'
+            },
+            {
+                internalType: 'uint256[]',
+                name: '',
+                type: 'uint256[]'
+            }
+        ],
+        stateMutability: 'nonpayable',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'string',
+                name: '_vc',
+                type: 'string'
+            }
+        ],
+        name: 'vcCall',
         outputs: [],
         stateMutability: 'nonpayable',
         type: 'function'
     },
     {
-        inputs: [],
-        name: 'ownable',
-        outputs: [],
-        stateMutability: 'nonpayable',
+        inputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'vcCallDate',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        stateMutability: 'view',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'vcCallList',
+        outputs: [
+            {
+                internalType: 'string',
+                name: '',
+                type: 'string'
+            }
+        ],
+        stateMutability: 'view',
         type: 'function'
     }
 ]
