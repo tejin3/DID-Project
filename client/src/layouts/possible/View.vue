@@ -89,7 +89,8 @@
 
                         <v-card-subtitle>
                             <!-- <v-icon> mdi-alarm-check </v-icon>소요 시간:
-                            {{ d.survey_time.slice(4, 5) }}분 <br />
+                            {{ d.survey_time.slice(4, 5) }}분
+                            <br />
                             <br /> -->
                             <v-icon v-text="icon"></v-icon>설문 기간
                             <v-chip
@@ -102,9 +103,15 @@
                                 D-{{ dDays[i].dday }}
                             </v-chip>
 
-                            <br />
+                            <!-- <br />
                             {{ d.survey_start_date.slice(0, 10) }}
-                            ~ {{ d.survey_end_date.slice(0, 10) }}
+                            ~ {{ d.survey_end_date.slice(0, 10) }} -->
+                            <br /><br />
+                            <v-icon> mdi-alarm-check </v-icon>소요 시간:
+                            {{ d.survey_time.slice(4, 5) }}분
+                            <!-- <br /><br />
+                            <v-icon> mdi-alarm-check </v-icon>소요 시간:
+                            {{ d.survey_time.slice(4, 5) }}분 -->
                         </v-card-subtitle>
 
                         <!-- <v-card-subtitle>
