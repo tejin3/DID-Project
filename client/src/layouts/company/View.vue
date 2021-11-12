@@ -148,7 +148,9 @@
                 </v-card>
             </v-col>
         </v-row>
-        <img src="http://localhost:3000/download/surveyImg1.jpg" />
+        <button @click="surveyCon()">survey</button>
+        <button @click="vcCon()">vc</button>
+        <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
     </div>
 </template>
 <script>
@@ -227,6 +229,14 @@ export default {
             }
 
             return surveys
+        },
+        surveyCon() {
+            this.$store.dispatch('getSurveyContractInstance')
+            // await this.$store.dispatch('web3Register')
+        },
+        vcCon() {
+            this.$store.dispatch('getVcContractInstance')
+            // await this.$store.dispatch('web3Register')
         }
     }
 }
