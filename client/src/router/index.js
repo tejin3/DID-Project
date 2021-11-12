@@ -7,6 +7,7 @@ import Survey from '../views/Survey.vue'
 import Trade from '../views/Trade.vue'
 import Company from '../views/Company.vue'
 import Encrypt from '../views/Encrypt.vue'
+import MyPage from '../views/MyPage.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
@@ -60,6 +61,11 @@ const routes = [
                 path: '/encrypt',
                 name: 'Encrypt',
                 component: Encrypt
+            },
+            {
+                path: '/mypage',
+                name: 'MyPage',
+                component: MyPage
             },
             {
                 path: '/test5',
