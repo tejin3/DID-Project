@@ -11,15 +11,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     strict: true,
     // state : {}
+    // 공통변수로사용된다.
     state() {
         return {
             web3: { isInjected: false, coinbase: null },
-            web33: {},
             survey: [],
             decryptVc: [],
             matchedSurvey: [],
-            vcItemList: [],
-            surveyContract: {}
+            vcItemList: []
         }
     },
     mutations: {
@@ -56,10 +55,6 @@ export default new Vuex.Store({
         // vcItemList store에 저장/삭제
         addVcItemList(state, data) {
             state.vcItemList = data
-        },
-
-        makeSurveyContract(state, data) {
-            state.surveyContract = data
         }
     },
     actions: {

@@ -17,7 +17,6 @@
                 <v-btn
                     to="company"
                     text
-                    class="white--text"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
@@ -33,7 +32,8 @@
                 </v-btn>
                 <v-btn
                     text
-                    class="white--text"
+                    class="white--text
+                    "
                     @click="metamask()"
                     v-show="this.$store.state.web3.coinbase === null"
                 >
@@ -47,6 +47,7 @@
                     로그아웃
                 </v-btn>
             </v-toolbar-items>
+
             <!-- 네비바 오른쪽 부분 1 : 화면이 작을 때-->
             <span class="hidden-sm-and-up">
                 <v-btn @click.stop="drawer = !drawer">
@@ -79,33 +80,26 @@
 <script>
 module.exports = {
     name: 'DefaultBar',
-    computed: {},
-
+    computed: {
+        web3() {
+            return this.$store.state.web3
+        }
+    },
     data() {
         return {
             title: 'WeDIDsurvey',
             drawer: false,
-            // company: false,
             items: [
                 { title: 'Home', link: '/', icon: 'home' },
                 { title: 'Store', link: 'store', icon: 'shopping-basket' },
                 { title: 'Cart', link: 'cart', icon: 'shopping-cart' }
-            ],
-            currentAccount: ''
-            // company: false
+            ]
         }
-    },
-    mounted() {
-        this.web3()
     },
     methods: {
-        async metamask() {
-            await this.$store.dispatch('registerWeb3')
-            // await this.$store.dispatch('web3Register')
-        }
-    },
-    web3() {
-        return this.$store.state.web3
+        // async metamask() {
+        //     await this.$store.dispatch('registerWeb3')
+        // }
     }
 }
 </script>

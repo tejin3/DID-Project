@@ -47,52 +47,30 @@
                     <v-card-title
                         >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
                             surveyData[m].survey_id
-                        }}]
-                    </v-card-title>
+                        }}]</v-card-title
+                    >
                     <v-card-text class="py-0">
                         <v-timeline align-top dense>
                             <v-timeline-item color="teal lighten-3" small>
                                 <v-row class="pt-1">
                                     <v-col>
-                                        <strong
-                                            >설문 시작 :
-                                            {{
-                                                surveyData[
-                                                    m
-                                                ].survey_start_date.slice(0, 10)
-                                            }}</strong
-                                        >
+                                        <strong>{{
+                                            surveyData[
+                                                m
+                                            ].survey_start_date.slice(0, 10)
+                                        }}</strong>
                                     </v-col>
                                 </v-row>
                             </v-timeline-item>
-                            <v-timeline-item>
-                                <v-row class="pt-1">
-                                    <v-col>
-                                        <v-icon v-text="icon"></v-icon>설문
-                                        종료까지
-                                        <v-chip
-                                            class="ma-1 font-weight-bold"
-                                            color="deep-purple accent-3"
-                                            outlined
-                                            small
-                                        >
-                                            D-{{ surveyData[m].dDay }}
-                                        </v-chip>
-                                    </v-col>
-                                </v-row>
-                            </v-timeline-item>
-
                             <v-timeline-item color="pink" small>
                                 <v-row class="pt-1">
                                     <v-col>
-                                        <strong
-                                            >설문 종료 :
-                                            {{
-                                                surveyData[
-                                                    m
-                                                ].survey_end_date.slice(0, 10)
-                                            }}</strong
-                                        >
+                                        <strong>{{
+                                            surveyData[m].survey_end_date.slice(
+                                                0,
+                                                10
+                                            )
+                                        }}</strong>
                                     </v-col>
                                 </v-row>
                             </v-timeline-item>
@@ -104,7 +82,7 @@
                             <v-slider
                                 class="mt-6"
                                 v-model="surveyData[m].total_complte"
-                                label="설문응답률"
+                                label="설문진행률"
                                 thumb-color="red"
                                 thumb-label="always"
                                 readonly
@@ -113,7 +91,6 @@
                         :label="`${n.label}`"
                         :label="`${n.color}`" -->
                         </div>
-
                         <v-chip-group
                             active-class="deep-purple accent-4 white--text"
                             column
@@ -171,7 +148,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
+        <img src="http://localhost:3000/download/surveyImg1.jpg" />
     </div>
 </template>
 <script>

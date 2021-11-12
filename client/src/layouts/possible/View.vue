@@ -15,12 +15,13 @@
             </v-btn>
             <!-- 지갑 연결 전 보이는 버튼 -->
             <v-btn
-                @click="dialog = true"
+                @click.stop="dialog = true"
                 v-if="this.$store.state.web3.coinbase === null"
                 color="purple lighten-3"
                 dark
                 large
             >
+                <!-- {{ hello }} -->
                 참여 가능한 설문
             </v-btn>
             <!-- 지갑 연결 후 보이는 버튼 -->
@@ -124,7 +125,7 @@
                                 }}</v-icon>
                             </v-btn>
                         </v-card-actions>
-
+                        xcvxcvxcvxv {{ $store.state.matchedSurvey }}
                         <v-expand-transition>
                             <div v-show="d.survey_isShow">
                                 <v-divider></v-divider>
@@ -257,7 +258,6 @@ export default {
         async connectMask() {
             if (this.$store.state.web3.coinbase === null) {
                 await this.$store.dispatch('registerWeb3')
-                // await this.$store.dispatch('web3Register')
                 console.log(this.$store.web3)
             }
         },
@@ -371,7 +371,6 @@ export default {
             this.$store.commit('addDecryptVc', this.vc)
             this.getVC()
         }
-
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {

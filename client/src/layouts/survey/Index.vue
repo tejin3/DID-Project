@@ -55,56 +55,47 @@
                     </v-app-bar>
 
                     <v-container>
-                        <v-row dense>
+                        <!-- test  -->
+                        <v-row>
                             <v-col
-                                v-for="(item, i) in items"
+                                v-for="(survey, i) in surveys"
                                 :key="i"
                                 cols="12"
                             >
-                                <v-card :color="item.color" dark>
+                                <v-card
+                                    height="250px"
+                                    width="mx-auto"
+                                    class="d-flex align-center mb-6"
+                                >
                                     <div
                                         class="d-flex flex-no-wrap justify-space-between"
                                     >
                                         <div>
-                                            <v-card-title
-                                                class="text-h5"
-                                                v-text="item.title"
-                                            ></v-card-title>
-
-                                            <v-card-subtitle
-                                                v-text="item.artist"
-                                            ></v-card-subtitle>
-
-                                            <v-card-actions>
-                                                <v-btn
-                                                    v-if="
-                                                        item.artist ===
-                                                            'Ellie Goulding'
-                                                    "
-                                                    class="ml-2 mt-3"
-                                                    fab
-                                                    icon
-                                                    height="40px"
-                                                    right
-                                                    width="40px"
-                                                >
-                                                    <v-icon>mdi-play</v-icon>
-                                                </v-btn>
-                                                <v-btn
-                                                    v-else
-                                                    class="ml-2 mt-5"
-                                                    outlined
-                                                    rounded
-                                                    small
-                                                >
-                                                    설문시작
-                                                </v-btn>
-                                            </v-card-actions>
+                                            <v-card-title>
+                                                {{
+                                                    survey.survey_title
+                                                }}</v-card-title
+                                            >
+                                            <v-card-subtitle>
+                                                {{ survey.survey_description }}
+                                            </v-card-subtitle>
+                                            <v-btn
+                                                class="ml-5 mt-5 mb-5"
+                                                outlined
+                                                rounded
+                                                small
+                                            >
+                                                설문시작
+                                            </v-btn>
                                         </div>
-
-                                        <v-avatar class="ma-3" size="125" tile>
-                                            <v-img :src="item.src"></v-img>
-                                        </v-avatar>
+                                        <v-img
+                                            class="mt-5 mr-5"
+                                            :src="
+                                                `http://localhost:3000/download/${survey.survey_image_path}`
+                                            "
+                                            height="100px"
+                                            width="150px"
+                                        ></v-img>
                                     </div>
                                 </v-card>
                             </v-col>
@@ -117,6 +108,8 @@
             <v-col md="8" mb-6 class="d-flex align-center mb-6">
                 <main-survey style="border:5px  red solid" />
             </v-col>
+            <!-- {{ $store.state.matchedSurvey }}
+            {{ surveys }} -->
             <!-- </div> -->
         </v-row>
     </v-container>
@@ -126,24 +119,11 @@ import MainSurvey from './MainSurvey.vue'
 export default {
     name: 'SurveyLayout',
     components: { MainSurvey },
+    created() {
+        this.canSurvey()
+    },
     data: () => ({
-        items: [
-            {
-                color: '#1F7087',
-                title: '패션',
-                artist: '무신사를 좋아하는 이유는?'
-            },
-            {
-                color: '#952175',
-                title: '패션',
-                artist: '무신사에서 의류도 구매하...'
-            },
-            {
-                color: '#922179',
-                title: '패션',
-                artist: '무신사를 알게된 경로는? '
-            }
-        ],
+        surveys: [],
         cards: [
             {
                 title: 'Questions',
@@ -154,6 +134,15 @@ export default {
                 number: '3'
             }
         ]
-    })
+    }),
+    methods: {
+        // 맞춤설문지 가져오기
+        async canSurvey() {
+            this.surveys = await this.$api('/survey', 'post', {
+                param: [2, 4]
+            })
+            console.log(this.surveys)
+        }
+    }
 }
 </script>

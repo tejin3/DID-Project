@@ -56,7 +56,6 @@
                     </v-card-actions>
                 </v-card>
             </v-dialog>
-
             <v-dialog v-model="this.dialog2" persistent max-width="450">
                 <v-card>
                     <v-toolbar color="primary" dark></v-toolbar>
