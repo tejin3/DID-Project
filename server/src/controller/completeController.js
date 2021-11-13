@@ -13,6 +13,20 @@ const index = async (req, res) => {
   }
 };
 
+const saveCompletePeople = async (req, res) => {
+  /*   console.log(req.body.param); */
+
+  console.log(req.body.param);
+  try {
+    await mysql.query("insertCompletePeople", req.body.param);
+    res.status(200).send({ message: "success" });
+  } catch (err) {
+    res.status(500).send({
+      error: err,
+    });
+  }
+};
+
 const saveReward = async (req, res) => {
   /*   console.log(req.body.param); */
   const reward = req.body.param;
@@ -30,4 +44,4 @@ const saveReward = async (req, res) => {
   }
 };
 
-module.exports = { index, saveReward };
+module.exports = { index, saveReward, saveCompletePeople };

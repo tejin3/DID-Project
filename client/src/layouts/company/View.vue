@@ -167,7 +167,7 @@
         <button @click="getSurveyContractInstance()">survey</button>
         <!-- <button @click="test()">test</button> -->
         <div>{{ sC }}</div>
-        <button @click="callData1(2)">
+        <button @click="callData1(3)">
             test
         </button>
         <div>{{ callData }}</div>
@@ -275,9 +275,15 @@ export default {
             var getContract21 = getContract()
             this.sC = getContract21
             console.log('surveyContractInstance', this.sC)
-            this.sC.events.addUser({}, (error, event) => {
+            this.sC.events.addUser({}, async (error, event) => {
                 console.log(error)
                 console.log(event)
+                await this.$api('/CompletePeople', 'post', {
+                    param: {
+                        survey_id: event.returnValues[0],
+                        user_account: event.returnValues[1]
+                    }
+                })
                 // // 설문조사 번호
                 // event.returnValues[0]
                 // // 설문조사 완료한 사람의 주소
@@ -287,7 +293,7 @@ export default {
         callData1(_num) {
             this.sC.methods
                 .recordSurvey(_num)
-                .send({ from: '0xb6F945DFafbC1b9F728D8bc3C34D25178D0C6c71' })
+                .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
                 .then(receipt => {
                     console.log(receipt)
                 })
