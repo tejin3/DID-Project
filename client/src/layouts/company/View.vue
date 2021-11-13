@@ -298,11 +298,31 @@ export default {
                     console.log(receipt)
                 })
         },
+        // 설문조사
+        // vc 요청
         getVcContractInstance() {
             console.log('startVc')
             var getContract21 = getContract1()
             this.vC = getContract21
             console.log('vcContractInstance', this.vC)
+            this.vC.events.vcCallApprovals({}, async (error, event) => {
+                console.log(error)
+                console.log(event)
+                // // vc 요청한 사람 계정
+                // event.returnValues[0]
+                // // 요청한 vc 이름
+                // event.returnValues[1]
+                // // 요청한 시간
+                // event.returnValues[2]
+            })
+        },
+        vcData(vcName) {
+            this.vC.methods
+                .vcCall(vcName)
+                .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
+                .then(receipt => {
+                    console.log(receipt)
+                })
         }
         // vp 요청 기록
     }
