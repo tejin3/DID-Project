@@ -40,6 +40,16 @@
                 >
                     지갑연결
                 </v-btn>
+
+                <v-btn
+                    to="mypage"
+                    text
+                    class="white--text"
+                    v-if="this.loginStatus == true"
+                >
+                    마이페이지
+                </v-btn>
+
                 <v-btn
                     text
                     class="white--text"
