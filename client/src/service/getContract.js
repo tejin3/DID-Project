@@ -1,15 +1,16 @@
 import Web3 from 'web3'
 import { surveyABI } from './myContract'
-import store from '../store'
 
-console.log('getContract')
+console.log('getContractS')
 
 const getContract = () => {
     console.log('getContract1')
 
     const web3 = new Web3(Web3.givenProvider)
-    const address = store.state.web3.coinbase
-    const myContractInstance = new web3.eth.Contract(surveyABI, address)
+    const myContractInstance = new web3.eth.Contract(
+        surveyABI,
+        '0x7b07ddB08Ff2D974d7cd41778686e8017B9e79b1'
+    )
     return myContractInstance
 }
 

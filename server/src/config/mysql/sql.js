@@ -15,6 +15,9 @@ module.exports = {
   getCompletePeople: {
     query: "select * from t_complete",
   },
+  insertCompletePeople: {
+    query: "insert into t_complete set ?",
+  },
   getQuestions: {
     query: "select * from t_question where survey_id = ?",
   },

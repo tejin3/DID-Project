@@ -4,8 +4,8 @@ import persistedstate from 'vuex-persistedstate'
 
 import getWeb3 from '@/service/getWeb3'
 import pollWeb3 from '@/service/pollWeb3'
-import getContract from '@/service/getContract'
-import getContract1 from '@/service/getContract1'
+// import getContract from '@/service/getContract'
+// import getContract1 from '@/service/getContract1'
 
 // import justWeb3 from '@/service/justWeb3'
 
@@ -22,6 +22,8 @@ export default new Vuex.Store({
             decryptVc: [],
             matchedSurvey: [],
             vcItemList: []
+            // surveyContract: {},
+            // vcContract: {}
         }
     },
     mutations: {
@@ -61,19 +63,19 @@ export default new Vuex.Store({
         // vcItemList store에 저장/삭제
         addVcItemList(state, data) {
             state.vcItemList = data
-        },
-
-        makeSurveyContract(state, data) {
-            state.surveyContract = data
-        },
-        surveyContractInstance(state, data) {
-            console.log('survey contract instance: ', data)
-            state.surveyContract = () => data
-        },
-        vcContractInstance(state, data) {
-            console.log('vc contract instance: ', data)
-            state.vcContract = () => data
         }
+
+        // makeSurveyContract(state, data) {
+        //     state.surveyContract = data
+        // },
+        // surveyContractInstance(state, data) {
+        //     // console.log('survey contract instance: ', data)
+        //     state.surveyContract = data
+        // },
+        // vcContractInstance(state, data) {
+        //     // console.log('vc contract instance: ', data)
+        //     state.vcContract = data
+        // }
     },
     actions: {
         async registerWeb3({ commit }) {
@@ -84,17 +86,17 @@ export default new Vuex.Store({
             commit('registerWeb3Instance', web3)
         },
 
-        getSurveyContractInstance({ commit }) {
-            console.log('startSurvey')
-            var getContract21 = getContract()
-            commit('surveyContractInstance', getContract21)
-        },
+        // getSurveyContractInstance({ commit }) {
+        //     console.log('startSurvey')
+        //     var getContract21 = getContract()
+        //     commit('surveyContractInstance', getContract21)
+        // },
 
-        getVcContractInstance({ commit }) {
-            console.log('startVc')
-            var getContract21 = getContract1()
-            commit('vcContractInstance', getContract21)
-        },
+        // getVcContractInstance({ commit }) {
+        //     console.log('startVc')
+        //     var getContract21 = getContract1()
+        //     commit('vcContractInstance', getContract21)
+        // },
 
         updateWeb3({ commit }, data) {
             commit('updateWeb3Instance', data)

@@ -11,13 +11,13 @@
                 <v-divider></v-divider>
                 <v-card-text
                     style="padding: 5px;"
-                    :key="n"
+                    :key="i"
                     v-for="(n, i) in completePeople"
                 >
                     <v-checkbox
                         v-model="selected"
-                        :label="completePeople[i].user_account"
-                        :value="completePeople[i].user_account"
+                        :label="n.user_account"
+                        :value="n.user_account"
                     ></v-checkbox>
                 </v-card-text>
                 <v-divider></v-divider>
