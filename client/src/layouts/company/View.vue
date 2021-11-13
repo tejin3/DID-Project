@@ -2,7 +2,7 @@
     <div>
         <v-row>
             <v-col
-                v-for="(n, m) of surveyData"
+                v-for="(m, n) in surveyData"
                 :key="n"
                 class="d-flex child-flex"
                 cols="4"
@@ -20,7 +20,7 @@
                         ></v-progress-linear>
                     </template>
 
-                    <v-img
+                    <!-- <v-img
                         :src="
                             `https://picsum.photos/500/300?image=${m * 5 + 10}`
                         "
@@ -42,11 +42,11 @@
                                 ></v-progress-circular>
                             </v-row>
                         </template>
-                    </v-img>
+                    </v-img> -->
 
                     <v-card-title
-                        >{{ surveyData[m].survey_title }} <br />[설문번호 :{{
-                            surveyData[m].survey_id
+                        >{{ m.survey_title }} <br />[설문번호 :{{
+                            m.survey_id
                         }}]</v-card-title
                     >
                     <v-card-text class="py-0">
@@ -57,9 +57,7 @@
                                         <strong>
                                             설문시작 :
                                             {{
-                                                surveyData[
-                                                    m
-                                                ].survey_start_date.slice(0, 10)
+                                                m.survey_start_date.slice(0, 10)
                                             }}</strong
                                         >
                                     </v-col>
@@ -68,15 +66,14 @@
                             <v-timeline-item>
                                 <v-row class="pt-1">
                                     <v-col>
-                                        <v-icon v-text="icon"></v-icon>설문
-                                        종료까지
+                                        설문 종료까지
                                         <v-chip
                                             class="ma-1 font-weight-bold"
                                             color="deep-purple accent-3"
                                             outlined
                                             small
                                         >
-                                            D-{{ surveyData[m].dDay }}
+                                            D-{{ m.dDay }}
                                         </v-chip>
                                     </v-col>
                                 </v-row>
@@ -87,9 +84,7 @@
                                         <strong>
                                             설문 종료 :
                                             {{
-                                                surveyData[
-                                                    m
-                                                ].survey_end_date.slice(0, 10)
+                                                m.survey_end_date.slice(0, 10)
                                             }}</strong
                                         >
                                     </v-col>
@@ -102,7 +97,7 @@
                         <div class="mt-6">
                             <v-slider
                                 class="mt-6"
-                                v-model="surveyData[m].total_complte"
+                                v-model="m.total_complte"
                                 label="설문진행률"
                                 thumb-color="red"
                                 thumb-label="always"
@@ -134,16 +129,16 @@
                         >
                             <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
                             <!-- 그냥 돌리면됨 -->
-                            <v-chip :key="w" v-for="w of surveyData[m].vcList"
+                            <v-chip :key="k" v-for="(w, k) in m.vcList"
                                 ><DialogScroll
                                     :title="w"
                                     :completePeople="
                                         users.filter(
                                             filtering =>
-                                                filtering.survey_id == m + 1
+                                                filtering.survey_id == n + 1
                                         )
                                     "
-                                    :surveyId="surveyData[m].survey_id"
+                                    :surveyId="m.survey_id"
                             /></v-chip>
                             <!-- <v-chip>{{vc}}</v-chip> -->
 
@@ -169,7 +164,13 @@
                 </v-card>
             </v-col>
         </v-row>
-        <button @click="surveyCon()">survey</button>
+        <button @click="getSurveyContractInstance()">survey</button>
+        <!-- <button @click="test()">test</button> -->
+        <div>{{ sC }}</div>
+        <button @click="callData1(2)">
+            test
+        </button>
+        <div>{{ callData }}</div>
         <button @click="vcCon()">vc</button>
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
     </div>
@@ -177,6 +178,9 @@
 <script>
 // import Slider from './Slider.vue'
 import DialogScroll from './DialogScroll.vue'
+import getContract from '@/service/getContract'
+import getContract1 from '@/service/getContract1'
+
 export default {
     name: 'CompanyView',
     components: { DialogScroll },
@@ -185,12 +189,12 @@ export default {
             surveyData: [],
             users: [],
             loading: false,
-            ex3: {
-                val: 50
-            },
             companyAccount: '0x12',
             snippet: [],
-            finalData: null
+            finalData: null,
+            sC: null,
+            callData: null,
+            vC: null
         }
     },
     setup() {},
@@ -258,7 +262,43 @@ export default {
         vcCon() {
             this.$store.dispatch('getVcContractInstance')
             // await this.$store.dispatch('web3Register')
+        },
+        test() {
+            console.log('hello')
+            console.log(this.$store.state.surveyContract._address)
+
+            this.sC = this.$store.state.surveyContract
+        },
+        // 설문조사
+        getSurveyContractInstance() {
+            console.log('startSurvey')
+            var getContract21 = getContract()
+            this.sC = getContract21
+            console.log('surveyContractInstance', this.sC)
+            this.sC.events.addUser({}, (error, event) => {
+                console.log(error)
+                console.log(event)
+                // // 설문조사 번호
+                // event.returnValues[0]
+                // // 설문조사 완료한 사람의 주소
+                // event.returnValues[1]
+            })
+        },
+        callData1(_num) {
+            this.sC.methods
+                .recordSurvey(_num)
+                .send({ from: '0xb6F945DFafbC1b9F728D8bc3C34D25178D0C6c71' })
+                .then(receipt => {
+                    console.log(receipt)
+                })
+        },
+        getVcContractInstance() {
+            console.log('startVc')
+            var getContract21 = getContract1()
+            this.vC = getContract21
+            console.log('vcContractInstance', this.vC)
         }
+        // vp 요청 기록
     }
 }
 </script>
