@@ -51,7 +51,7 @@
                     >
                     <v-card-text class="py-0">
                         <v-timeline align-top dense>
-                            <v-timeline-item color="teal lighten-3" small>
+                            <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -63,7 +63,7 @@
                                     </v-col>
                                 </v-row>
                             </v-timeline-item>
-                            <v-timeline-item>
+                            <v-timeline-item color="deep-purple">
                                 <v-row class="pt-1">
                                     <v-col>
                                         설문 종료까지
@@ -78,7 +78,7 @@
                                     </v-col>
                                 </v-row>
                             </v-timeline-item>
-                            <v-timeline-item color="pink" small>
+                            <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -111,6 +111,7 @@
                             active-class="deep-purple accent-4 white--text"
                             column
                             mandatory
+                            v-model="m.selection"
                         >
                             <v-chip>설문중</v-chip>
 
@@ -118,17 +119,16 @@
                         </v-chip-group>
                     </v-card-text>
 
-                    <v-divider class="mx-4"></v-divider>
+                    <v-divider
+                        color="purple lighten-2 "
+                        class="mx-4"
+                    ></v-divider>
 
                     <v-card-title>요청 VC List</v-card-title>
 
                     <v-card-text>
-                        <v-chip-group
-                            active-class="deep-purple accent-4 white--text"
-                            column
-                        >
-                            <!-- v-for="(n, vc) in vcList" :key="n"  아님-->
-                            <!-- 그냥 돌리면됨 -->
+                        <v-chip-group column>
+                            <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
                             <v-chip :key="k" v-for="(w, k) in m.vcList"
                                 ><DialogScroll
                                     :title="w"
@@ -140,25 +140,6 @@
                                     "
                                     :surveyId="m.survey_id"
                             /></v-chip>
-                            <!-- <v-chip>{{vc}}</v-chip> -->
-
-                            <!-- <v-chip v-if="surveyData[m].vc_age"
-                            ><DialogScroll
-                                title="나이 자료 요청[300원]"
-                                :completePeople="
-                                    test1.filter(
-                                        filtering =>
-                                            filtering.survey_id == m + 1
-                                    )
-                                "
-                                :surveyId="surveyData[m].survey_id"
-                        /></v-chip> -->
-
-                            <!-- <v-chip>소득VC[1000원]</v-chip>
-
-                        <v-chip>학력VC[300원]</v-chip> -->
-
-                            <!-- <v-chip><DialogScroll /></v-chip> -->
                         </v-chip-group>
                     </v-card-text>
                 </v-card>
