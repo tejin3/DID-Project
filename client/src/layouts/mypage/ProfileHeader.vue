@@ -13,7 +13,10 @@
                                 color="primary"
                                 size="150"
                             >
-                                <span class="white--text display-2">User</span>
+                            <v-img
+                                max-height="150"
+                                max-width="250"
+                                src="@/assets/img/mypage/profile.png"></v-img>
                             </v-avatar>
                             <!-- 화면이 작을 때 -->
                             <v-avatar
@@ -21,22 +24,23 @@
                                 color="primary"
                                 size="100"
                             >
-                                <span class="white--text display-1"
-                                    >small
-                                </span>
+                                 <v-img
+                                max-height="150"
+                                max-width="250"
+                                src="@/assets/img/mypage/profile.png"></v-img>
                             </v-avatar>
                         </v-col>
                         <!-- 유저 프로필 이름 -->
                         <v-card-title class="justify-center">
                             <!-- 화면이 클 때 -->
                             <h1 class="tittle mb-3 hidden-xs-only">
-                                User name
+                                이성실 <span style="font-size: 0.5em">회원님</span>
                             </h1>
                             <!-- 화면이 작을 때 -->
                             <h1
                                 class="display-1 font-weight-bold mb-3 hidden-sm-and-up"
                             >
-                                small user name
+                                이성실 <span style="font-size: 0.5em">회원님</span>
                             </h1>
                         </v-card-title>
                         <!-- 유저 어드레스 -->
@@ -69,7 +73,7 @@
 module.exports = {
     data() {
         return {
-            userAddress: '0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8'
+            userAddress: this.$store.state.web3.coinbase
         }
     },
     methods: {
