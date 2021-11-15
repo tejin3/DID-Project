@@ -1,14 +1,34 @@
 <template style="border:5px  red solid">
-    <v-container style="border:5px  yellow solid">
+    <div>
+        <div class="black-bg" v-if="모달창열렸니 == true">
+            <div class="white-bg">
+                <h2>✨예약완료✨</h2>
+                <br />
+                <p>
+                    <strong>'마이페이지 > 개인정보 > 맞춤설문 예약확인'</strong
+                    >에 들어가시면<br />
+                    예약하신 설문조사를 계속해서 진행하실 수 있습니다.
+                </p>
+                <br />
+                <v-btn
+                    @click=";[(모달창열렸니 = false), changeTest()]"
+                    color="warning"
+                    dark
+                    class="my-2"
+                    elevation="3"
+                    >확인</v-btn
+                >
+            </div>
+        </div>
+
         <!--left _ 맞춤설문조사 시작-->
-        <v-row
-            style="border:5px  blue solid"
-            class="d-flex justify-center mb-6"
-        >
+
+        <!-- style="border:5px  blue solid" -->
+        <v-row class="d-flex justify-center mb-6">
             <!-- <div style="border:5px  black solid"> -->
             <v-col md="3">
                 <!-- <v-card class="mx-sauto" max-width="400"> -->
-                <v-card>
+                <!-- <v-card>
                     <v-container fluid>
                         <v-row dense>
                             <v-col v-for="card in cards" :key="card.title">
@@ -31,22 +51,18 @@
                             </v-col>
                         </v-row>
                     </v-container>
-                </v-card>
+                </v-card> -->
 
                 <br />
                 <br />
                 <br />
                 <br />
 
-                <!-- <v-card class="mx-sauto" max-width="400"> -->
-                <v-card>
+                <v-card max-width="400">
+                    <!-- <v-card> -->
                     <v-app-bar dark color="pink">
-                        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
                         <v-icon>mdi-account-check</v-icon>
                         <v-toolbar-title>맞춤 설문조사</v-toolbar-title>
-                        <!-- <v-btn icon>
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn> -->
                     </v-app-bar>
 
                     <v-container>
@@ -75,12 +91,25 @@
                                                 {{ survey.survey_description }}
                                             </v-card-subtitle>
                                             <v-btn
+                                                @click="모달창열렸니 = true"
+                                                v-if="예약여부 == true"
                                                 class="ml-5 mt-5 mb-5"
                                                 outlined
                                                 rounded
+                                                color="warning"
                                                 small
                                             >
-                                                설문시작
+                                                예약하기
+                                            </v-btn>
+                                            <v-btn
+                                                v-else
+                                                class="ml-5 mt-5 mb-5 Rezcheckd"
+                                                outlined
+                                                disabled
+                                                rounded
+                                                small
+                                            >
+                                                예약완료
                                             </v-btn>
                                         </div>
                                         <v-img
@@ -101,13 +130,13 @@
             <!--left _ 맞춤설문조사 끝-->
 
             <v-col md="8" mb-6 class="d-flex align-center mb-6">
-                <main-survey style="border:5px  red solid" />
+                <main-survey />
             </v-col>
             <!-- {{ $store.state.matchedSurvey }}
             {{ surveys }} -->
             <!-- </div> -->
         </v-row>
-    </v-container>
+    </div>
 </template>
 <script>
 import MainSurvey from './MainSurvey.vue'
@@ -117,7 +146,13 @@ export default {
     created() {
         this.canSurvey()
     },
+    mounted() {
+        this.예약여부 = true
+    },
+
     data: () => ({
+        // 예약완료: true,
+        모달창열렸니: false,
         surveys: [],
         cards: [
             {
@@ -137,7 +172,46 @@ export default {
                 param: [2, 4]
             })
             console.log(this.surveys)
+        },
+        changeTest() {
+            console.log('test')
+            this.예약여부 = false
         }
     }
 }
 </script>
+<style>
+body {
+    margin: 0;
+}
+div {
+    box-sizing: border-box;
+}
+.black-bg {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    z-index: 2;
+}
+.white-bg {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 230px;
+    border-radius: 10px;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+}
+</style>

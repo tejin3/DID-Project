@@ -3,80 +3,77 @@
     <!--오른쪽 설문조사 시작 -->
     <div>
         <br />
-        <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
-        <v-carousel v-model="model" :continuous="false">
-            <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
-            <v-carousel-item v-for="(question, i) in questions" :key="i">
-                <v-parallax
-                    class="NextQuestion"
-                    src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-                >
-                    <div class="text-h2">
-                        {{ question.quesiton_order }},
-                        {{ question.quesiton_content }}
-                        <!-- {{ model }} 0~5개 총 6개 -->
-                    </div>
+        <v-card elevation="16">
+            <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
+            <v-carousel v-model="model" :continuous="false">
+                <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
+                <v-carousel-item v-for="(question, i) in questions" :key="i">
+                    <v-parallax
+                        class="NextQuestion"
+                        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+                    >
+                        <div class="text-h2">
+                            {{ question.quesiton_order }},
+                            {{ question.quesiton_content }}
+                            <!-- {{ model }} 0~5개 총 6개 -->
+                        </div>
 
-                    <!-- radios로 default 설정합니다.-->
+                        <!-- radios로 default 설정합니다.-->
 
-                    <div v-for="(t_order, i) of t_orders" :key="i">
-                        <v-radio-group
-                            v-model="radios"
-                            v-if="model < questions.length - 1"
-                            >{{ t_order }}
-                            <v-radio
-                                class="ml-10 mt-6"
-                                color="orange darken-3"
-                                :value="t_order.uniq"
-                                @click="checkRadioUnique"
-                                v-for="(order, i) of t_order"
-                                :key="i"
+                        <div v-for="(t_order, i) of t_orders" :key="i">
+                            <v-radio-group
+                                v-model="radios"
+                                v-if="model < questions.length - 1"
                             >
-                                <template v-slot:label>
-                                    <div>
-                                        <!-- {{ t_order.uniq }} <- radios : 0 랑 맞추기위함입니다.-->
-                                        <h3 style="color:white">
-                                            <!-- <strong
-                                            >{{ t_order.num }}
-                                            {{ t_order.question }}</strong
-                                        > -->
-                                            <!-- {{ t_orders }} -->
-                                            <div></div>
+                                <!-- {{ t_order }} -->
+                                <v-radio
+                                    class="ml-10 mt-6"
+                                    color="orange darken-3"
+                                    :value="t_order.uniq"
+                                    @click="checkRadioUnique"
+                                    v-for="(order, i) of t_order"
+                                    :key="i"
+                                >
+                                    <template v-slot:label>
+                                        <div>
+                                            <!-- {{ t_order.uniq }} <- radios : 0 랑 맞추기위함입니다.-->
+                                            <h3 style="color:white">
+                                                <div></div>
 
-                                            {{ order }}
-                                        </h3>
-                                    </div>
-                                    <!-- {{ checkLists }} -->
-                                </template>
-                            </v-radio>
-                        </v-radio-group>
-                        <v-text-field
-                            v-else
-                            v-model="userInput"
-                            color="yellow  darken-2"
-                            label="입력해주세요"
-                            placeholder="Start_nexting..."
-                            loading
-                        >
-                        </v-text-field>
-                    </div>
+                                                {{ order }}
+                                            </h3>
+                                        </div>
+                                        <!-- {{ checkLists }} -->
+                                    </template>
+                                </v-radio>
+                            </v-radio-group>
+                            <v-text-field
+                                v-else
+                                v-model="userInput"
+                                color="yellow  darken-2"
+                                label="입력해주세요"
+                                placeholder="Start_nexting..."
+                                loading
+                            >
+                            </v-text-field>
+                        </div>
 
-                    <div align="center" justify="space-around">
-                        <v-btn
-                            @click="complete"
-                            color="warning"
-                            dark
-                            class="my-2"
-                            x-large
-                            elevation="7"
-                        >
-                            확인
-                        </v-btn>
-                    </div>
-                </v-parallax>
-            </v-carousel-item>
-        </v-carousel>
-
+                        <div align="center" justify="space-around">
+                            <v-btn
+                                @click="complete"
+                                color="warning"
+                                dark
+                                class="my-2"
+                                x-large
+                                elevation="7"
+                            >
+                                확인
+                            </v-btn>
+                        </div>
+                    </v-parallax>
+                </v-carousel-item>
+            </v-carousel>
+        </v-card>
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"

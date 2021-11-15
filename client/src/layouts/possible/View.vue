@@ -139,7 +139,6 @@
                                 }}</v-icon>
                             </v-btn>
                         </v-card-actions>
-                        xcvxcvxcvxv {{ $store.state.matchedSurvey }}
                         <v-expand-transition>
                             <div v-show="d.survey_isShow">
                                 <v-divider></v-divider>
