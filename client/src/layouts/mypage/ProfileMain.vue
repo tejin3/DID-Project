@@ -125,6 +125,7 @@
 </template>
 <script>
 import { Icon } from '@iconify/vue2'
+
 export default {
     components: {
         Icon
@@ -206,7 +207,7 @@ export default {
                     src: 'coupon5.jpg',
                     menu: '오리지널 글레이즈드 하프더즌',
                     point: '2',
-                    valid: '2022년 12월 31일'
+                    valid: '2021년 12월 31일'
                 }
             ],
             nftItems: [],
