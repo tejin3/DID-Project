@@ -185,7 +185,6 @@ export default {
         this.pushShow()
 
         this.getVcContractInstance()
-
     },
     mounted() {
         // this.$api('survey')
@@ -415,7 +414,6 @@ export default {
         //     })
         // }
 
-
         async getIsShow() {
             this.surveys = await this.$api('/surveys', 'get')
             console.log(this.surveys)
@@ -424,6 +422,7 @@ export default {
             console.log('coco', this.isShow)
             this.surveys.push(this.isShow)
             console.log('smile', this.surveys)
+        },
 
         getVcContractInstance() {
             console.log('startVc')
@@ -448,7 +447,6 @@ export default {
                 .then(receipt => {
                     console.log(receipt)
                 })
-
         }
     }
     // methods에 추가하는 함수 넣으면 화면에 보여진다.

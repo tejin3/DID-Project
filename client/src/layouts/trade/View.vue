@@ -93,7 +93,6 @@
                         </v-card-subtitle>
                         <v-card-subtitle
                             class="pb-1 pt-1 black--text font-weight-bold text-center"
-                            class="pb-1 pt-1 black--text font-weight-bold"
                             style="height:50px"
                         >
                             {{ good.goods_name }}
