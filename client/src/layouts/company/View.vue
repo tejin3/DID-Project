@@ -147,8 +147,8 @@
         </v-row>
         <button @click="getSurveyContractInstance()">survey</button>
         <!-- <button @click="test()">test</button> -->
-        <div>{{ sC }}</div>
-        <button @click="callData1(3)">
+        <!-- <div>{{ sC }}</div> -->
+        <button @click="callData1(1)">
             test
         </button>
         <div>{{ callData }}</div>
@@ -250,12 +250,12 @@ export default {
             this.$store.dispatch('getVcContractInstance')
             // await this.$store.dispatch('web3Register')
         },
-        test() {
-            console.log('hello')
-            console.log(this.$store.state.surveyContract._address)
+        // test() {
+        //     console.log('hello')
+        //     console.log(this.$store.state.surveyContract._address)
 
-            this.sC = this.$store.state.surveyContract
-        },
+        //     this.sC = this.$store.state.surveyContract
+        // },
         // 설문조사
         getSurveyContractInstance() {
             console.log('startSurvey')
@@ -306,7 +306,7 @@ export default {
         vcData(vcName) {
             this.vC.methods
                 .vcCall(vcName)
-                .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
+                .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
                 .then(receipt => {
                     console.log(receipt)
                 })

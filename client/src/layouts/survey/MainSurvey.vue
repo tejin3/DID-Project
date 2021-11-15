@@ -100,12 +100,14 @@
 <script>
 import SurveyModal from './Modal.vue'
 import vc from '../possible/vc.json'
+import getContract from '@/service/getContract'
 
 export default {
     name: 'MainSurvey',
     components: { SurveyModal },
     data() {
         return {
+            sC: null,
             t_order: 0, // t_orders에서 가져온  { } 하나를 관리
             radios: 0,
             vc,
@@ -168,6 +170,7 @@ export default {
         this.answers = []
         this.getSurveyById()
         this.test()
+        this.getSurveyContractInstance()
     },
     mounted() {
         this.selectedCondition()
@@ -226,6 +229,7 @@ export default {
                 this.answers.push(tempObj)
                 console.log(' this.answers.push', this.answers)
                 this.userInput = ''
+
                 this.$api('/answers', 'post', {
                     param: {
                         answers: this.answers,
@@ -237,9 +241,38 @@ export default {
                         surveyId: this.surveyId
                     }
                 })
+                this.callData1(this.surveyId)
             }
         },
 
+        getSurveyContractInstance() {
+            console.log('startSurvey')
+            var getContract21 = getContract()
+            this.sC = getContract21
+            console.log('surveyContractInstance', this.sC)
+            this.sC.events.addUser({}, async (error, event) => {
+                console.log(error)
+                console.log(event)
+                await this.$api('/CompletePeople', 'post', {
+                    param: {
+                        survey_id: event.returnValues[0],
+                        user_account: event.returnValues[1]
+                    }
+                })
+                // // 설문조사 번호
+                // event.returnValues[0]
+                // // 설문조사 완료한 사람의 주소
+                // event.returnValues[1]
+            })
+        },
+        callData1(_num) {
+            this.sC.methods
+                .recordSurvey(_num)
+                .send({ from: this.$store.state.web3.coinbase })
+                .then(receipt => {
+                    console.log(receipt)
+                })
+        },
         // submit() {
         //     console.log(this.model, this.question, this.i)
         // },
