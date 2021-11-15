@@ -2,18 +2,29 @@
     <!-- https://github.com/Jeongseup/Course-Evaluation-System/blob/main/client/src/views/AnswerTable.vue -->
     <!--오른쪽 설문조사 시작 -->
     <div>
-        <br />
-        <v-card elevation="16">
+        <v-card
+            style="width: 100%; height: 100%; subheading mt-16 "
+            elevation="16"
+        >
             <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
-            <v-carousel v-model="model" :continuous="false">
+            <v-carousel
+                v-model="model"
+                :continuous="false"
+                style="width: 800px; height: 500px; mt-16 subheadings"
+            >
                 <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
-                <v-carousel-item v-for="(question, i) in questions" :key="i">
-                    <v-parallax
-                        class="NextQuestion"
-                        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+                <v-parallax
+                    style="height:100%;"
+                    aspect-ratio="1.4"
+                    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+                >
+                    <!-- style="width: 100%; height: 100%; " -->
+                    <v-carousel-item
+                        v-for="(question, i) in questions"
+                        :key="i"
                     >
-                        <div class="text-h2">
-                            {{ question.quesiton_order }},
+                        <div class="text-h3 mt-10 ml-5 white--text">
+                            {{ question.quesiton_order }}.
                             {{ question.quesiton_content }}
                             <!-- {{ model }} 0~5개 총 6개 -->
                         </div>
@@ -22,13 +33,15 @@
 
                         <div v-for="(t_order, i) of t_orders" :key="i">
                             <v-radio-group
+                                class="d-flex align-center mb-6 "
                                 v-model="radios"
                                 v-if="model < questions.length - 1"
                             >
                                 <!-- {{ t_order }} -->
+                                <!-- color="grey lighten-5" -->
                                 <v-radio
-                                    class="ml-10 mt-6"
-                                    color="orange darken-3"
+                                    class="ml-10 mt-6 "
+                                    color="orange lighten-1"
                                     :value="t_order.uniq"
                                     @click="checkRadioUnique"
                                     v-for="(order, i) of t_order"
@@ -39,7 +52,6 @@
                                             <!-- {{ t_order.uniq }} <- radios : 0 랑 맞추기위함입니다.-->
                                             <h3 style="color:white">
                                                 <div></div>
-
                                                 {{ order }}
                                             </h3>
                                         </div>
@@ -49,6 +61,9 @@
                             </v-radio-group>
                             <v-text-field
                                 v-else
+                                class="d-flex align-center"
+                                flat
+                                height="100"
                                 v-model="userInput"
                                 color="yellow  darken-2"
                                 label="입력해주세요"
@@ -57,23 +72,50 @@
                             >
                             </v-text-field>
                         </div>
-
-                        <div align="center" justify="space-around">
-                            <v-btn
-                                @click="complete"
-                                color="warning"
-                                dark
-                                class="my-2"
-                                x-large
-                                elevation="7"
-                            >
-                                확인
-                            </v-btn>
-                        </div>
-                    </v-parallax>
-                </v-carousel-item>
+                    </v-carousel-item>
+                    <div
+                        style="margin-bottom:20%;"
+                        align="center "
+                        justify="space-around"
+                        class="position"
+                    >
+                        <v-btn
+                            @click="complete"
+                            color="warning"
+                            dark
+                            class="my-2 mb-10 "
+                            x-large
+                            elevation="7"
+                        >
+                            확인
+                        </v-btn>
+                    </div>
+                </v-parallax>
             </v-carousel>
         </v-card>
+
+        <!-- test -->
+        <!-- <v-card
+            style="width: 100%; height: 100%; subheading mt-16 "
+            elevation="16   "
+        >
+            <v-carousel style="width: 1000px; height: 800px; mt-16 subheadings">
+                <v-carousel-item
+                    v-for="(item, i) in items"
+                    :key="i"
+                    :src="item.src"
+                    reverse-transition="fade-transition"
+                    transition="fade-transition"
+                    style="width: 100%; height: 100%;"
+                >
+                <v-parallax
+                    style="height:100%;"
+                    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+                    aspect-ratio="1.4"
+                ></v-parallax>
+                </v-carousel-item>
+            </v-carousel>
+        </v-card> -->
         <SurveyModal
             :dialog="dialog"
             :dialog2="dialog2"
@@ -91,7 +133,7 @@
             @close-modal="dialog2 = false"
         ></SurveyModal>
         {{ this.$store.state.matchedSurvey }}
-        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
+        <!-- <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn> -->
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -107,6 +149,21 @@ export default {
     components: { SurveyModal },
     data() {
         return {
+            items: [
+                {
+                    src:
+                        'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+                },
+                {
+                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+                }
+            ],
             sC: null,
             t_order: 0, // t_orders에서 가져온  { } 하나를 관리
             radios: 0,
@@ -123,9 +180,9 @@ export default {
             vp: [],
             price: 0,
             coupon: 0,
-            t_orders: {
+            t_orders: [
                 // 질문1 아래는, 질문1에대한 질문지?
-                oneQuestion: {
+                {
                     // uniq: 0,
                     // 1번문제
                     question1: '1~2회',
@@ -133,7 +190,7 @@ export default {
                     question3: '5회',
                     question4: '7회 이상'
                 }
-                // twoQuestion: {
+                // {
                 //     // 2번문제
                 //     question1: '매우좋다',
                 //     question2: '좋다',
@@ -148,7 +205,7 @@ export default {
                 //     question3: '300000원 ~ 500000원',
                 //     question4: '500000원 이상'
                 // }
-            }
+            ]
             // continuous = false
 
             // check: 11
@@ -319,3 +376,17 @@ export default {
     }
 }
 </script>
+<style>
+.position {
+    /* background: greenyellow; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    margin-top: 17%;
+    transform: translate(-50%, -50%);
+}
+.title-style {
+    background: hotpink;
+}
+</style>

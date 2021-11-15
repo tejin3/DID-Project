@@ -1,4 +1,4 @@
-<template style="border:5px  red solid">
+<template>
     <div>
         <div class="black-bg" v-if="모달창열렸니 == true">
             <div class="white-bg">
@@ -20,121 +20,107 @@
                 >
             </div>
         </div>
+        <img
+            src="../../assets/img/surveyP.jpg"
+            alt=""
+            style="width:150px; height:150px; position: absolute; margin:100px; margin-top:-16px;"
+        />
 
         <!--left _ 맞춤설문조사 시작-->
-
         <!-- style="border:5px  blue solid" -->
-        <v-row class="d-flex justify-center mb-6">
-            <!-- <div style="border:5px  black solid"> -->
-            <v-col md="3">
-                <!-- <v-card class="mx-sauto" max-width="400"> -->
-                <!-- <v-card>
-                    <v-container fluid>
-                        <v-row dense>
-                            <v-col v-for="card in cards" :key="card.title">
-                                <v-card>
-                                    <v-img
-                                        :src="card.src"
-                                        class="white--text align-end"
-                                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                                        height="150px"
-                                    >
-                                        <v-card-title
-                                            v-text="card.title"
-                                        ></v-card-title>
+        <v-row class="d-flex justify-center mt-5">
+            <div class="d-flex justify-center">
+                <v-col
+                    md="3"
+                    class="mt-30"
+                    style="width:2px; height=2px; margin-top:110px"
+                >
+                    <v-card>
+                        <!-- <v-card> -->
+                        <!-- <v-app-bar dark color="light-blue darken-4"> -->
+                        <v-app-bar
+                            dark
+                            class="d-flex justify-center mb-1"
+                            color="blue-grey darken-4"
+                            height="40px"
+                        >
+                            <div>
+                                <v-icon>mdi-account-check</v-icon>맞춤 설문조사
+                            </div>
+                        </v-app-bar>
 
-                                        <v-card-title
-                                            v-text="card.number"
-                                        ></v-card-title>
-                                    </v-img>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card> -->
-
-                <br />
-                <br />
-                <br />
-                <br />
-
-                <v-card max-width="400">
-                    <!-- <v-card> -->
-                    <v-app-bar dark color="pink">
-                        <v-icon>mdi-account-check</v-icon>
-                        <v-toolbar-title>맞춤 설문조사</v-toolbar-title>
-                    </v-app-bar>
-
-                    <v-container>
-                        <!-- test  -->
-                        <v-row>
-                            <v-col
-                                v-for="(survey, i) in surveys"
-                                :key="i"
-                                cols="12"
-                            >
-                                <v-card
-                                    height="250px"
-                                    width="mx-auto"
-                                    class="d-flex align-center mb-6"
+                        <v-container>
+                            <!--맞춤설문조사 그리는 영역  -->
+                            <v-row style>
+                                <v-col
+                                    v-for="(survey, i) in surveys"
+                                    :key="i"
+                                    cols="12"
                                 >
-                                    <div
-                                        class="d-flex flex-no-wrap justify-space-between"
-                                    >
-                                        <div>
-                                            <v-card-title>
-                                                {{
-                                                    survey.survey_title
-                                                }}</v-card-title
-                                            >
-                                            <v-card-subtitle>
-                                                {{ survey.survey_description }}
-                                            </v-card-subtitle>
-                                            <v-btn
-                                                @click="모달창열렸니 = true"
-                                                v-if="예약여부 == true"
-                                                class="ml-5 mt-5 mb-5"
-                                                outlined
-                                                rounded
-                                                color="warning"
-                                                small
-                                            >
-                                                예약하기
-                                            </v-btn>
-                                            <v-btn
-                                                v-else
-                                                class="ml-5 mt-5 mb-5 Rezcheckd"
-                                                outlined
-                                                disabled
-                                                rounded
-                                                small
-                                            >
-                                                예약완료
-                                            </v-btn>
-                                        </div>
+                                    <v-card max-width="180" max-height="150">
                                         <v-img
-                                            class="mt-5 mr-5"
+                                            class="white--text align-end"
+                                            height="60px"
                                             :src="
                                                 `http://localhost:3000/download/${survey.survey_image_path}`
                                             "
-                                            height="100px"
-                                            width="150px"
-                                        ></v-img>
-                                    </div>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card>
-            </v-col>
-            <!--left _ 맞춤설문조사 끝-->
+                                        >
+                                            <div style="font-size:0.9em;">
+                                                {{ survey.survey_title }}
+                                            </div>
+                                        </v-img>
 
-            <v-col md="8" mb-6 class="d-flex align-center mb-6">
-                <main-survey />
-            </v-col>
-            <!-- {{ $store.state.matchedSurvey }}
+                                        <v-card-text
+                                            class="grey--text text-darken-1 mb-2"
+                                        >
+                                            <div style="height=40px  ">
+                                                <p style="font-size:0.5em;">
+                                                    {{
+                                                        survey.survey_description
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </v-card-text>
+                                        <v-btn
+                                            @click="모달창열렸니 = true"
+                                            v-if="예약여부 == true"
+                                            class="ml-2 mb-13 reservationBtn"
+                                            outlined
+                                            rounded
+                                            color="warning"
+                                            x-small
+                                        >
+                                            예약하기
+                                        </v-btn>
+                                        <v-btn
+                                            v-else
+                                            class="ml-2 disabledBtn"
+                                            outlined
+                                            disabled
+                                            rounded
+                                            x-small
+                                        >
+                                            예약완료
+                                        </v-btn>
+                                        <!-- <v-card-actions>
+                                        <v-btn color="orange" text>
+                                            Share
+                                        </v-btn>
+                                    </v-card-actions> -->
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card>
+                </v-col>
+                <!--left _ 맞춤설문조사 끝-->
+
+                <v-col class="d-flex align-center mb-6">
+                    <main-survey />
+                </v-col>
+                <!-- {{ $store.state.matchedSurvey }}
             {{ surveys }} -->
-            <!-- </div> -->
+            </div>
         </v-row>
     </div>
 </template>
@@ -213,5 +199,23 @@ div {
     border-radius: 10px;
     transform: translateX(-50%) translateY(-50%);
     z-index: 1;
+}
+
+.reservationBtn {
+    background: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 45px;
+}
+.disabledBtn {
+    background: rgb(192, 192, 192);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 45px;
+}
+.v-card__text {
+    padding: 10px;
 }
 </style>
