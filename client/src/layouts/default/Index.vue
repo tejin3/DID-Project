@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <default-bar />
+    <v-app class="bg-primary">
+        <default-bar v-if="path === '/' ? false : true" />
         <default-view />
     </v-app>
 </template>
@@ -13,6 +13,16 @@ export default {
         DefaultBar,
         DefaultView
     },
-    data: () => ({})
+    data: () => ({}),
+    computed: {
+        path() {
+            return this.$route.path
+        }
+    }
 }
 </script>
+<style scoped>
+.bg-primary {
+    background-color: hsl(258, 98%, 70%);
+}
+</style>

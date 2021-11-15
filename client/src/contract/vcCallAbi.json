@@ -15,9 +15,9 @@
       },
       {
         "indexed": false,
-        "internalType": "string",
+        "internalType": "string[]",
         "name": "",
-        "type": "string"
+        "type": "string[]"
       },
       {
         "indexed": false,
@@ -56,9 +56,9 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "_vc",
-        "type": "string"
+        "internalType": "string[]",
+        "name": "_data",
+        "type": "string[]"
       }
     ],
     "name": "vcCall",

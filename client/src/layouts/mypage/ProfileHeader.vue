@@ -34,13 +34,13 @@
                         <v-card-title class="justify-center">
                             <!-- 화면이 클 때 -->
                             <h1 class="tittle mb-3 hidden-xs-only">
-                                이성실 <span style="font-size: 0.5em">회원님</span>
+                               이성실
                             </h1>
                             <!-- 화면이 작을 때 -->
                             <h1
                                 class="display-1 font-weight-bold mb-3 hidden-sm-and-up"
                             >
-                                이성실 <span style="font-size: 0.5em">회원님</span>
+                                이성실
                             </h1>
                         </v-card-title>
                         <!-- 유저 어드레스 -->
@@ -73,7 +73,7 @@
 module.exports = {
     data() {
         return {
-            userAddress: this.$store.state.web3.coinbase
+            userAddress: '0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8'
         }
     },
     methods: {

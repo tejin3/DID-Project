@@ -153,6 +153,8 @@
 </template>
 
 <script>
+import getContract1 from '@/service/getContract1'
+
 export default {
     name: 'PossibleView',
 
@@ -161,6 +163,7 @@ export default {
             dialog: false,
             decryptVc: [],
             vc: [],
+            vC: null,
             conditions: [],
             vcItemList: [],
             passSurveyList: [],
@@ -177,8 +180,12 @@ export default {
         this.decrypt()
         this.getSurvey()
         this.discountDay()
+
         this.getIsShow()
         this.pushShow()
+
+        this.getVcContractInstance()
+
     },
     mounted() {
         // this.$api('survey')
@@ -306,10 +313,14 @@ export default {
 
                 // 추출한 key/value를 객체로 담아 배열에 넣기
                 var obj = {}
+                var keys = []
+                keys.push(key)
                 obj[key] = value
                 this.vcItemList.push(obj)
             }
             this.$store.commit('addVcItemList', this.vcItemList)
+            console.log(keys)
+            this.vcData(keys)
         },
 
         // 설문 조건과 VC항목을 비교
@@ -385,11 +396,25 @@ export default {
             this.$store.commit('addDecryptVc', this.vc)
             this.getVC()
         },
+
         // thisShow() {
         //     this.surveys.forEach(item => {
         //         console.log(this.surveys)
+
+        // methods에 추가하는 함수 넣으면 화면에 보여진다.
+        // async createSurvey() {
+        //     const r = await this.$post('/surveys', {
+        //         survey_title: '문화 생활 관련 조사2',
+        //         survey_image_path: 'surveyImg2.jpg',
+        //         survey_price: '1,500원',
+        //         survey_coupon: '1',
+        //         survey_period: '2021.11.15 ~ 2021.11.30',
+        //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+        //         isShow: true
+
         //     })
         // }
+
 
         async getIsShow() {
             this.surveys = await this.$api('/surveys', 'get')
@@ -399,6 +424,31 @@ export default {
             console.log('coco', this.isShow)
             this.surveys.push(this.isShow)
             console.log('smile', this.surveys)
+
+        getVcContractInstance() {
+            console.log('startVc')
+            var getContract21 = getContract1()
+            this.vC = getContract21
+            console.log('vcContractInstance', this.vC)
+            this.vC.events.vcCallApprovals({}, async (error, event) => {
+                console.log(error)
+                console.log(event)
+                // // vc 요청한 사람 계정
+                // event.returnValues[0]
+                // // 요청한 vc 이름
+                // event.returnValues[1]
+                // // 요청한 시간
+                // event.returnValues[2]
+            })
+        },
+        vcData(vcName) {
+            this.vC.methods
+                .vcCall(vcName)
+                .send({ from: this.$store.state.web3.coinbase })
+                .then(receipt => {
+                    console.log(receipt)
+                })
+
         }
     }
     // methods에 추가하는 함수 넣으면 화면에 보여진다.
