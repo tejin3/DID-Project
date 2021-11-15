@@ -61,7 +61,7 @@
         <v-container>
             <v-row>
                 <v-col
-                    class="testLine ma-10 pa-0"
+                    class="testLine ma-6 pa-0"
                     v-for="good in goods"
                     :key="good.list"
                 >
@@ -92,11 +92,11 @@
                             {{ good.goods_issuer }}
                         </v-card-subtitle>
                         <v-card-subtitle
-                            class="pb-1 pt-1 black--text font-weight-bold"
+                            class="pb-1 pt-1 black--text font-weight-bold" style="height:50px"
                         >
                             {{ good.goods_name }}
                         </v-card-subtitle>
-                        <v-divider></v-divider>
+
                         <v-card-text class="text--primary text-center">
                             <!-- <v-icon size="small">mdi-tag</v-icon>
                             {{ card.point }} 포인트 -->
