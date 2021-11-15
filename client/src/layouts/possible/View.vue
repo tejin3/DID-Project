@@ -155,6 +155,8 @@
 </template>
 
 <script>
+import getContract1 from '@/service/getContract1'
+
 export default {
     name: 'PossibleView',
 
@@ -163,6 +165,7 @@ export default {
             dialog: false,
             decryptVc: [],
             vc: [],
+            vC: null,
             conditions: [],
             vcItemList: [],
             passSurveyList: [],
@@ -179,6 +182,7 @@ export default {
         this.decrypt()
         this.getSurvey()
         this.discountDay()
+        this.getVcContractInstance()
     },
     mounted() {
         // this.$api('survey')
@@ -305,10 +309,14 @@ export default {
 
                 // 추출한 key/value를 객체로 담아 배열에 넣기
                 var obj = {}
+                var keys = []
+                keys.push(key)
                 obj[key] = value
                 this.vcItemList.push(obj)
             }
             this.$store.commit('addVcItemList', this.vcItemList)
+            console.log(keys)
+            this.vcData(keys)
         },
 
         // 설문 조건과 VC항목을 비교
@@ -383,7 +391,7 @@ export default {
             // 복호화 VC를 store에 저장
             this.$store.commit('addDecryptVc', this.vc)
             this.getVC()
-        }
+        },
         // methods에 추가하는 함수 넣으면 화면에 보여진다.
         // async createSurvey() {
         //     const r = await this.$post('/surveys', {
@@ -399,6 +407,30 @@ export default {
         // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
         // this.getSurvey()
         // }
+        getVcContractInstance() {
+            console.log('startVc')
+            var getContract21 = getContract1()
+            this.vC = getContract21
+            console.log('vcContractInstance', this.vC)
+            this.vC.events.vcCallApprovals({}, async (error, event) => {
+                console.log(error)
+                console.log(event)
+                // // vc 요청한 사람 계정
+                // event.returnValues[0]
+                // // 요청한 vc 이름
+                // event.returnValues[1]
+                // // 요청한 시간
+                // event.returnValues[2]
+            })
+        },
+        vcData(vcName) {
+            this.vC.methods
+                .vcCall(vcName)
+                .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
+                .then(receipt => {
+                    console.log(receipt)
+                })
+        }
     }
 }
 </script>
