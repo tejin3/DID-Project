@@ -8,6 +8,7 @@ const completeController = require("../controller/completeController");
 const questionController = require("../controller/questionController");
 const answerController = require("../controller/answerController");
 const downloadController = require("../controller/downloadController");
+const tradeController = require("../controller/tradeController");
 
 // 설문지 조건 controller
 router.get("/conditions", conditionController.index);
@@ -39,5 +40,8 @@ router.post("/answers", answerController.store);
 // img call
 router.get("/download/:fileName", downloadController.index);
 router.post("/download/:fileName", downloadController.store);
+
+//trade controller
+router.get("/trade", tradeController.showGoods);
 
 module.exports = router;

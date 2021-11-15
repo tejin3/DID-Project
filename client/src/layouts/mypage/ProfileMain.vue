@@ -132,6 +132,7 @@ export default {
     },
     data() {
         return {
+            // goods:[],
             // icon: 'mdi-tag',
             tab: null,
             personalItems: [
@@ -161,19 +162,6 @@ export default {
                 }
             ],
             cards: [
-                // {
-                //     title: 'Favorite road trips',
-                //     src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg',
-                //     flex: 6
-                // },
-                // {
-                //     title: '스타벅스',
-                //     src: '.../assets/img/coupon1.jpg'
-                // }
-                // {
-                //     title: 'Best airlines',
-                //     src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg'
-                // }
                 {
                     title: '스타벅스',
                     src: 'coupon1.jpg',
@@ -213,9 +201,15 @@ export default {
             nftItems: [],
             items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails']
         }
-    },
+    }
 
-    computed: {}
+    //     methods:{
+    //         async getGoods() {
+    //             // console.log('hi', this.$get()
+
+    //             this.goods = await this.$get('/trade')
+    //     }
+    // }
 }
 </script>
 <style scoped>

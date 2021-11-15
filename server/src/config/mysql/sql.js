@@ -33,4 +33,7 @@ module.exports = {
     query:
       "update t_user set user_point = user_point + ?, user_coupon = user_coupon + ? where user_account = ? ",
   },
+  getGoods: {
+    query: "select * from t_goods",
+  },
 };
