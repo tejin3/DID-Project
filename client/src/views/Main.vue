@@ -11,20 +11,17 @@
         >
             <DefaultBar />
             <v-carousel-item>
+                <h2>We DID survey</h2>
+                <p class="mt-4">
+                    당신의 똑똑한 생각을 나눠주세요! 지금 서베이에 참여해서
+                    맡겨놓은 상금과 상품을 가져가세요
+                </p>
+                <v-btn color="secondary" elevation="2" @click="metamask()"
+                    >시작하기!</v-btn
+                >
+            </v-carousel-item>
+            <v-carousel-item>
                 <v-row class="fill-height">
-                    <v-col cols="12" sm="6" md="8">
-                        <h2>We DID survey</h2>
-                        <p class="mt-4">
-                            당신의 똑똑한 생각을 나눠주세요! 지금 서베이에
-                            참여해서 맡겨놓은 상금과 상품을 가져가세요
-                        </p>
-                        <v-btn
-                            color="secondary"
-                            elevation="2"
-                            @click="metamask()"
-                            >시작하기!</v-btn
-                        >
-                    </v-col>
                     <v-col cols="12" sm="6" md="8">
                         <v-img
                             width="700px"
