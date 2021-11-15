@@ -149,8 +149,8 @@ export default {
                     icon: 'mdi:ticket-percent'
                 },
                 {
-                    name: '참여가능한 설문',
-                    value: '5',
+                    name: '맞춤설문 예약확인',
+                    value: '1',
                     unit: '개',
                     icon: 'ri:survey-fill'
                 },
