@@ -92,7 +92,7 @@
                             {{ good.goods_issuer }}
                         </v-card-subtitle>
                         <v-card-subtitle
-                            class="pb-1 pt-1 black--text font-weight-bold"
+                            class="pb-1 pt-1 black--text font-weight-bold text-center"
                         >
                             {{ good.goods_name }}
                         </v-card-subtitle>
@@ -100,12 +100,56 @@
                         <v-card-text class="text--primary text-center">
                             <!-- <v-icon size="small">mdi-tag</v-icon>
                             {{ card.point }} 포인트 -->
-                            <v-btn text color="deep-purple accent-4">
+                            <v-btn
+                                dark
+                                @click.stop="dialog = true"
+                                text
+                                color="deep-purple accent-4"
+                            >
                                 Trade
                             </v-btn>
                         </v-card-text>
                     </v-card>
                 </v-col>
+                <v-row justify="center">
+                    <v-dialog v-model="dialog" max-width="290">
+                        <v-card>
+                            <v-card-title class="text-h6">
+                                교환이 완료되었습니다.
+                            </v-card-title>
+                            <v-card-text>
+                                교환된 쿠폰은 마이페이지에서 확인 가능합니다.
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+
+                                <v-btn
+                                    color="purple darken-1"
+                                    text
+                                    @click="dialog = false"
+                                >
+                                    확인
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-dialog>
+                </v-row>
+
+                <!-- <v-alert
+                    class="tradeAlert"
+                    max-width="300"
+                    :value="alert"
+                    color="purple"
+                    dense
+                    elevation="13"
+                    outlined
+                    prominent
+                    dismissible
+                    text
+                    type="success"
+                    align-content-center
+                    >교환이 완료되었습니다.</v-alert
+                > -->
             </v-row>
             <!-- <v-row>
                 <v-col
@@ -157,6 +201,7 @@ export default {
     components: {},
     data() {
         return {
+            dialog: false,
             goods: [],
             value: 1
         }
@@ -171,7 +216,8 @@ export default {
         async showGoods() {
             this.goods = await this.$api('/trade', 'get')
             console.log(this.goods)
-        }
+        },
+        tradeCompleted() {}
     }
 }
 </script>

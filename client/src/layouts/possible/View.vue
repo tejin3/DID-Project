@@ -107,7 +107,7 @@
                             {{ d.survey_start_date.slice(0, 10) }}
                             ~ {{ d.survey_end_date.slice(0, 10) }} -->
                             <br /><br />
-                            <v-icon> mdi-alarm-check </v-icon>소요 시간:
+                            <v-icon> mdi-alarm-check </v-icon>소요 시간: 약
                             {{ d.survey_time.slice(4, 5) }}분
                             <!-- <br /><br />
                             <v-icon> mdi-alarm-check </v-icon>소요 시간:
@@ -122,25 +122,23 @@
                             <v-btn
                                 color="orange lighten-2"
                                 text
-                                @click="d.survey_isShow = !d.survey_isShow"
+                                @click="isShow = !isShow"
                             >
                                 상세 내용
                             </v-btn>
 
                             <v-spacer></v-spacer>
-                            <v-btn
-                                icon
-                                @click="d.survey_isShow = !d.survey_isShow"
-                            >
+
+                            <v-btn icon @click="isShow = !isShow">
                                 <v-icon>{{
-                                    d.survey_isShow
+                                    isShow
                                         ? 'mdi-chevron-up'
                                         : 'mdi-chevron-down'
                                 }}</v-icon>
                             </v-btn>
                         </v-card-actions>
                         <v-expand-transition>
-                            <div v-show="d.survey_isShow">
+                            <div v-show="isShow">
                                 <v-divider></v-divider>
                                 <v-card-text class="text-justify">
                                     {{ d.survey_description }}
@@ -166,11 +164,11 @@ export default {
             conditions: [],
             vcItemList: [],
             passSurveyList: [],
-            isShow: false,
             surveys: [],
             proofSurveys: [],
             dDays: '',
-            icon: 'mdi-calendar-range'
+            icon: 'mdi-calendar-range',
+            isShow: false
         }
     },
 
@@ -179,6 +177,8 @@ export default {
         this.decrypt()
         this.getSurvey()
         this.discountDay()
+        this.getIsShow()
+        this.pushShow()
     },
     mounted() {
         // this.$api('survey')
@@ -289,6 +289,7 @@ export default {
         // const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
         // console.log(result)
         // },
+
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
             for (
@@ -383,23 +384,38 @@ export default {
             // 복호화 VC를 store에 저장
             this.$store.commit('addDecryptVc', this.vc)
             this.getVC()
-        }
-        // methods에 추가하는 함수 넣으면 화면에 보여진다.
-        // async createSurvey() {
-        //     const r = await this.$post('/surveys', {
-        //         survey_title: '문화 생활 관련 조사2',
-        //         survey_image_path: 'surveyImg2.jpg',
-        //         survey_price: '1,500원',
-        //         survey_coupon: '1',
-        //         survey_period: '2021.11.15 ~ 2021.11.30',
-        //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-        //         isShow: true
+        },
+        // thisShow() {
+        //     this.surveys.forEach(item => {
+        //         console.log(this.surveys)
         //     })
-        // console.log(r)
-        // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
-        // this.getSurvey()
         // }
+
+        async getIsShow() {
+            this.surveys = await this.$api('/surveys', 'get')
+            console.log(this.surveys)
+        },
+        pushShow() {
+            console.log('coco', this.isShow)
+            this.surveys.push(this.isShow)
+            console.log('smile', this.surveys)
+        }
     }
+    // methods에 추가하는 함수 넣으면 화면에 보여진다.
+    // async createSurvey() {
+    //     const r = await this.$post('/surveys', {
+    //         survey_title: '문화 생활 관련 조사2',
+    //         survey_image_path: 'surveyImg2.jpg',
+    //         survey_price: '1,500원',
+    //         survey_coupon: '1',
+    //         survey_period: '2021.11.15 ~ 2021.11.30',
+    //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
+    //         isShow: true
+    //     })
+    // console.log(r)
+    // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
+    // this.getSurvey()
+    // }
 }
 </script>
 <style></style>
