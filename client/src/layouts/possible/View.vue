@@ -426,7 +426,7 @@ export default {
         vcData(vcName) {
             this.vC.methods
                 .vcCall(vcName)
-                .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
+                .send({ from: this.$store.state.web3.coinbase })
                 .then(receipt => {
                     console.log(receipt)
                 })
