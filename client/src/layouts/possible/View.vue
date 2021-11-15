@@ -92,7 +92,7 @@
                             {{ d.survey_time.slice(4, 5) }}분
                             <br />
                             <br /> -->
-                            <v-icon v-text="icon"></v-icon>설문 기간
+                            <v-icon v-text="icon"></v-icon>남은 기간
                             <v-chip
                                 class="ma-1 font-weight-bold"
                                 color="deep-purple accent-3"
@@ -108,7 +108,9 @@
                             ~ {{ d.survey_end_date.slice(0, 10) }} -->
                             <br /><br />
                             <v-icon> mdi-alarm-check </v-icon>소요 시간: 약
-                            {{ d.survey_time.slice(4, 5) }}분
+                            {{
+                                d.survey_time.slice(3, 5).replace(/(^0+)/, '')
+                            }}분
                             <!-- <br /><br />
                             <v-icon> mdi-alarm-check </v-icon>소요 시간:
                             {{ d.survey_time.slice(4, 5) }}분 -->
@@ -122,23 +124,23 @@
                             <v-btn
                                 color="orange lighten-2"
                                 text
-                                @click="isShow = !isShow"
+                                @click="d.isShow = !d.isShow"
                             >
                                 상세 내용
                             </v-btn>
 
                             <v-spacer></v-spacer>
 
-                            <v-btn icon @click="isShow = !isShow">
+                            <v-btn icon @click="d.isShow = !d.isShow">
                                 <v-icon>{{
-                                    isShow
+                                    d.isShow
                                         ? 'mdi-chevron-up'
                                         : 'mdi-chevron-down'
                                 }}</v-icon>
                             </v-btn>
                         </v-card-actions>
                         <v-expand-transition>
-                            <div v-show="isShow">
+                            <div v-show="d.isShow">
                                 <v-divider></v-divider>
                                 <v-card-text class="text-justify">
                                     {{ d.survey_description }}
@@ -180,10 +182,7 @@ export default {
         this.decrypt()
         this.getSurvey()
         this.discountDay()
-
         this.getIsShow()
-        this.pushShow()
-
         this.getVcContractInstance()
     },
     mounted() {
@@ -414,14 +413,20 @@ export default {
         //     })
         // }
 
+        // isShow 넣기
         async getIsShow() {
-            this.surveys = await this.$api('/surveys', 'get')
-            console.log(this.surveys)
-        },
-        pushShow() {
-            console.log('coco', this.isShow)
-            this.surveys.push(this.isShow)
-            console.log('smile', this.surveys)
+            await this.$api('/surveys', 'get').then(res => {
+                res.forEach(item => {
+                    console.log('kkk', item)
+                    this.$set(item, 'isShow', false)
+                })
+                console.log('hoho', res)
+                this.surveys = res
+                // this.$set(res[0], 'isShow', false)
+                // console.log(res)
+                // this.surveys = res
+                // console.log('vvv', this.surveys)
+            })
         },
 
         getVcContractInstance() {
