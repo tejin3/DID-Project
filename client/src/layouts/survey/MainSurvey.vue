@@ -13,11 +13,7 @@
                 style="width: 800px; height: 500px; mt-16 subheadings"
             >
                 <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
-                <v-parallax
-                    style="height:100%;"
-                    aspect-ratio="1.4"
-                    src="https://www.google.com/url?sa=i&url=http%3A%2F%2Fm.blog.naver.com%2Fkbdmaster%2F90145613585&psig=AOvVaw1gT0aOnn-kx_aR0kdPrUtB&ust=1637132177018000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNj4wOemnPQCFQAAAAAdAAAAABAD"
-                >
+                <v-parallax style="height:100%;" aspect-ratio="1.4" src="">
                     <!-- style="width: 100%; height: 100%; " -->
                     <v-carousel-item
                         v-for="(question, i) in questions"
