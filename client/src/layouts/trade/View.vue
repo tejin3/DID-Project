@@ -77,7 +77,9 @@
                         <v-img
                             class="white--text align-end"
                             height="170px"
-                            src="../../assets/img/coupon1.jpg"
+                            :src="
+                                require(`@/assets/img/coupon/${good.goods_image_path}`)
+                            "
                         >
                         </v-img>
                         <v-card-subtitle
