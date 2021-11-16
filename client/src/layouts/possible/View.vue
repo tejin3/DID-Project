@@ -4,13 +4,12 @@
         <v-container>
             <p class="font-weight-bold text-h2 text-center">
                 we :DID shop
-                <img width="50" src="@/assets/img/trade/cart.png" />
             </p>
             <p class="text-center">
                 더 많이 참여하고 더 많이 받아가세요
             </p>
         </v-container>
-        <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
+        <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
         <v-container>
             <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
             <v-dialog v-model="dialog" max-width="400">
@@ -121,8 +120,6 @@
                             <v-card-subtitle class="text-subtitle-1">
                                 적립금: {{ d.survey_price }} | 쿠폰:
                                 {{ d.survey_coupon }}
-                                <!-- </v-card-subtitle>
-                        <v-card-subtitle> -->
                             </v-card-subtitle>
                         </v-chip>
                         <v-card-subtitle>
@@ -132,7 +129,7 @@
                             <br /> -->
                             <v-icon v-text="icon"></v-icon>남은 기간
                             <v-chip
-                                class="ma-1 font-weight-bold"
+                                class="ma-1 font-weight-bold text-subtitle-2"
                                 color="deep-purple accent-3"
                                 outlined
                                 small

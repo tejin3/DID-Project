@@ -20,88 +20,81 @@
             <!-- <TradeHeader />
         <TradeCategory />
         <TradeMain /> -->
-        <v-container>
-            <v-bottom-navigation
-                :value="value"
-                color="hsl(258, 98%, 70%)"
-                class="d-flex justify-space-around"
-            >
-                <v-btn>
-                    <span>전체</span>
+            <v-container>
+                <v-bottom-navigation
+                    :value="value"
+                    color="hsl(258, 98%, 70%)"
+                    class="d-flex justify-space-around"
+                >
+                    <v-btn>
+                        <span>전체</span>
 
-                    <v-icon>mdi-widgets</v-icon>
-                </v-btn>
+                        <v-icon>mdi-widgets</v-icon>
+                    </v-btn>
 
-                <v-btn>
-                    <span>커피/음료</span>
+                    <v-btn>
+                        <span>커피/음료</span>
 
-                    <v-icon>
-                        mdi-glass-wine
-                    </v-icon>
-                </v-btn>
+                        <v-icon>
+                            mdi-glass-wine
+                        </v-icon>
+                    </v-btn>
 
-                <v-btn>
-                    <span>베이커리/도넛</span>
+                    <v-btn>
+                        <span>베이커리/도넛</span>
 
-                    <v-icon>mdi-cake-variant</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>아이스크림</span>
+                        <v-icon>mdi-cake-variant</v-icon>
+                    </v-btn>
+                    <v-btn>
+                        <span>아이스크림</span>
 
-                    <v-icon>mdi-ice-cream</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>햄버거/치킨/피자</span>
+                        <v-icon>mdi-ice-cream</v-icon>
+                    </v-btn>
+                    <v-btn>
+                        <span>햄버거/치킨/피자</span>
 
-                    <v-icon>mdi-food</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>마트/편의점</span>
+                        <v-icon>mdi-food</v-icon>
+                    </v-btn>
+                    <v-btn>
+                        <span>마트/편의점</span>
 
-                    <v-icon>mdi-store</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>상품권</span>
+                        <v-icon>mdi-store</v-icon>
+                    </v-btn>
+                    <v-btn>
+                        <span>상품권</span>
 
-                    <v-icon>mdi-ticket</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>영화</span>
+                        <v-icon>mdi-ticket</v-icon>
+                    </v-btn>
+                    <v-btn>
+                        <span>영화</span>
 
-                    <v-icon>mdi-video</v-icon>
-                </v-btn>
-            </v-bottom-navigation>
-        </v-container>
+                        <v-icon>mdi-video</v-icon>
+                    </v-btn>
+                </v-bottom-navigation>
+            </v-container>
 
-        <!--hover했을떄 효과 및 카드-->
-        <v-container>
-            <v-row>
-                <!-- class="testLine ma-6 pa-0 " -->
-                <v-col class="testLine" v-for="good in goods" :key="good.list">
-                    <!-- <v-card max-width="200" hover pa-0 ma-0> -->
-                    <v-card width="200px" hover pa-0 ma-0>
-                        <v-img
-                            class="white--text align-end"
-                            :src="
-                                require(`@/assets/img/trade/${good.goods_image_path}`)
-                            "
-                        >
-                        </v-img>
-                    </v-card>
-
-                    <v-card-subtitle
-                        class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+            <!--hover했을떄 효과 및 카드-->
+            <v-container>
+                <v-row>
+                    <!-- class="testLine ma-6 pa-0 " -->
+                    <v-col
+                        class="testLine"
+                        v-for="good in goods"
+                        :key="good.list"
                     >
-                        <v-card max-width="200" hover pa-0 ma-0>
-                            <v-img
-                                class="white--text align-end"
-                                :src="
-                                    require(`@/assets/img/trade/${good.goods_image_path}`)
-                                "
-                            >
-                            </v-img>
-                        </v-card>
-
+                        <v-card-subtitle
+                            class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+                        >
+                            <v-card max-width="200" hover pa-0 ma-0>
+                                <v-img
+                                    class="white--text align-end"
+                                    :src="
+                                        require(`@/assets/img/trade/${good.goods_image_path}`)
+                                    "
+                                >
+                                </v-img>
+                            </v-card>
+                        </v-card-subtitle>
                         <v-card-subtitle
                             class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
                         >
@@ -120,31 +113,28 @@
                             style="height:50px"
                         >
                             {{ good.goods_name }}
+                            <v-btn
+                                dark
+                                @click.stop="dialog = true"
+                                text
+                                color="purple"
+                            >
+                                Trade
+                            </v-btn>
                         </v-card-subtitle>
 
-                        <v-card-text class="text--primary text-center">
-                            <!-- <v-icon size="small">mdi-tag</v-icon>
-                            {{ card.point }} 포인트 -->
-                        <v-btn
-                            dark
-                            @click.stop="dialog = true"
-                            text
-                            color="purple"
-                        >
-                            Trade
-                        </v-btn>
-                    </v-card-text>
-
-                    <!-- </v-card> -->
-                </v-col>
+                        <!-- </v-card> -->
+                    </v-col>
+                </v-row>
                 <v-row justify="center">
-                    <v-dialog v-model="dialog" max-width="290">
+                    <v-dialog v-model="dialog" max-width="300">
                         <v-card>
                             <v-card-title class="text-h6">
-                                교환이 완료되었습니다.
+                                🥳 교환이 완료되었습니다.
                             </v-card-title>
-                            <v-card-text>
-                                교환된 쿠폰은 마이페이지에서 확인 가능합니다.
+                            <v-card-text class="text-center">
+                                교환된 쿠폰은 <strong>마이페이지</strong>에서
+                                <br />확인 가능합니다.
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
