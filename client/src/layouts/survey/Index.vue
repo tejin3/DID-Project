@@ -147,7 +147,6 @@ export default {
     data: () => ({
         // 예약완료: true,
         모달창열렸니: false,
-        numChek: false,
         surveys: [],
         cards: [
             {
@@ -174,8 +173,7 @@ export default {
             // [0] 배열은 무조건 인덱스 !
 
             for (let i = 0; i < this.surveys.length; i++) {
-                this.surveys[0].isBooked = true
-                this.surveys[1].isBooked = true
+                this.surveys[i].isBooked = true
                 console.log('dfdfdfdfdf2222', this.surveys[i])
                 // 배열의 인덱스 0,1 이있는데, 그거에맞춰서
                 // 예약하기 버튼을 누른 것이있다면, 예약완료 라고 띄워줌.

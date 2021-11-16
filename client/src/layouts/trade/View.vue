@@ -74,12 +74,10 @@
         <!--hover했을떄 효과 및 카드-->
         <v-container>
             <v-row>
-                <v-col
-                    class="testLine ma-6 pa-0"
-                    v-for="good in goods"
-                    :key="good.list"
-                >
-                    <v-card max-width="200" hover pa-0 ma-0>
+                <!-- class="testLine ma-6 pa-0 " -->
+                <v-col class="testLine" v-for="good in goods" :key="good.list">
+                    <!-- <v-card max-width="200" hover pa-0 ma-0> -->
+                    <v-card width="200px" hover pa-0 ma-0>
                         <v-img
                             class="white--text align-end"
                             :src="
@@ -119,6 +117,7 @@
                             Trade
                         </v-btn>
                     </v-card-text>
+
                     <!-- </v-card> -->
                 </v-col>
                 <v-row justify="center">
