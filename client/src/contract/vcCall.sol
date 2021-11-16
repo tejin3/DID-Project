@@ -10,7 +10,7 @@ contract vcCallRecord {
     // 유저 DID OR account 에게 vc 를 요청한 시간 리스트
     mapping (address => uint[]) public vcCallDate;
        
-    event vcCallApprovals (address,string[],uint);
+    event vcCallApprovals (address,string,uint);
 
 
     constructor () {
@@ -18,12 +18,11 @@ contract vcCallRecord {
     }
 
     //
-    function vcCall (string[] memory _data) public {
+    function vcCall (string memory _data) public {
     //  require(msg.sender == owner);
-    for(uint i =0; i < _data.length; i++){
-        
-     vcCallList[tx.origin].push(_data[i]);
-    }
+   
+     vcCallList[tx.origin].push(_data);
+    
     //  vcCallList[tx.origin].push(_vc);
     //  vcCallList[tx.origin][vcCallCount[tx.origin]] = vc;
      vcCallDate[tx.origin].push(block.timestamp);
@@ -31,7 +30,7 @@ contract vcCallRecord {
         // 디비저장
     }
     
-    function callData(address _user) public view returns(string[] memory, uint[] memory){
+    function callData(address _user) public view returns(string[] memory, uint[] memory) {
         return (vcCallList[_user] , vcCallDate[_user]);
     }
 }

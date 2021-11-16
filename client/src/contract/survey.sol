@@ -16,7 +16,7 @@ contract survey {
     mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
 
     event addUser(uint, address);
-    event recordVPList(uint, address, address, string[]);
+    event recordVPList(uint, address, address, string);
 
     constructor () {
         owner = msg.sender;
@@ -40,12 +40,12 @@ contract survey {
         // 디비저장        
     }
     
-    function recordVP (uint _num, string[] memory _VPData, address _company)public {
-     require(surveyUser[_num][tx.origin] == true);
+    function recordVP (uint _num, string memory _VPData, address _company) public {
+    //  require(surveyUser[_num][tx.origin] == true);
     
-        for(uint i =0; i < _VPData.length; i++){
-        whoCallVP[_num][_company][tx.origin].push(_VPData[i]);
-        }
+       
+        whoCallVP[_num][_company][tx.origin].push(_VPData);
+        
 
         emit recordVPList(_num , _company, tx.origin, _VPData);
         // 디비저장        

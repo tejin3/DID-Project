@@ -15,9 +15,9 @@
       },
       {
         "indexed": false,
-        "internalType": "string[]",
+        "internalType": "string",
         "name": "",
-        "type": "string[]"
+        "type": "string"
       },
       {
         "indexed": false,
@@ -50,15 +50,15 @@
         "type": "uint256[]"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
       {
-        "internalType": "string[]",
+        "internalType": "string",
         "name": "_data",
-        "type": "string[]"
+        "type": "string"
       }
     ],
     "name": "vcCall",
