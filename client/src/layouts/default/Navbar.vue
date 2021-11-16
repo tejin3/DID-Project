@@ -2,7 +2,7 @@
     <!-- 네비바 전체 윤곽 -->
     <div>
         <!-- drawer is true -->
-        <v-app-bar elevate-on-scroll color="transparent">
+        <v-app-bar elevation="0" color="transparent">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold white--text">
@@ -17,6 +17,7 @@
                 <v-btn
                     to="company"
                     text
+                    plain="false"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
