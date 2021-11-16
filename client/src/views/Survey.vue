@@ -1,7 +1,7 @@
 <template>
-    <v-container>
+    <v-app>
         <SurveyLayout />
-    </v-container>
+    </v-app>
 </template>
 <script>
 import SurveyLayout from '../layouts/survey/Index.vue'

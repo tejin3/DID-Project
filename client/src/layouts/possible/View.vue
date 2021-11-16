@@ -1,41 +1,17 @@
 <template>
     <!-- 버튼 -->
     <v-container fluid>
-        <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
-        <v-container class="my-10">
-            <v-btn
-                @click="allSurvey"
-                class="ma-5"
-                elevation="5"
-                color="purple lighten-1"
-                dark
-                large
-            >
-                전체 설문
-            </v-btn>
-            <!-- 지갑 연결 전 보이는 버튼 -->
-            <v-btn
-                @click.stop="dialog = true"
-                v-if="this.$store.state.web3.coinbase === null"
-                color="purple lighten-3"
-                dark
-                large
-            >
-                <!-- {{ hello }} -->
-                참여 가능한 설문
-            </v-btn>
-            <!-- 지갑 연결 후 보이는 버튼 -->
-
-            <v-btn
-                @click=";[matchSurvey(), canSurvey()]"
-                elevation="5"
-                color="purple lighten-1"
-                dark
-                large
-                v-else
-            >
-                참여 가능한 설문
-            </v-btn>
+        <v-container>
+            <p class="font-weight-bold text-h2 text-center">
+                we :DID shop
+                <img width="50" src="@/assets/img/trade/cart.png" />
+            </p>
+            <p class="text-center">
+                더 많이 참여하고 더 많이 받아가세요
+            </p>
+        </v-container>
+        <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
+        <v-container>
             <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
             <v-dialog v-model="dialog" max-width="400">
                 <v-card>
@@ -59,6 +35,62 @@
             </v-dialog>
         </v-container>
 
+        <!-- 탭 제목 영역 -->
+        <v-toolbar elevation="3" color="#94B3FD">
+            <!-- 화면이 클 때 -->
+            <v-tabs
+                class="hidden-xs-only"
+                v-model="tab"
+                align-with-title
+                center-active
+                dark
+            >
+                <v-tabs-slider color="orange lighten-2"></v-tabs-slider>
+                <!-- tap value = 0 -->
+                <v-tab class="font-weight-bold">
+                    전체 설문
+                </v-tab>
+                <!-- tap value = -->
+                <v-tab
+                    class="font-weight-bold"
+                    @click.stop="dialog = true"
+                    v-if="this.$store.state.web3.coinbase === null"
+                >
+                    참여 가능한 설문</v-tab
+                >
+                <v-tab
+                    class="font-weight-bold"
+                    @click=";[matchSurvey(), canSurvey()]"
+                    v-else
+                >
+                    참여 가능한 설문</v-tab
+                >
+            </v-tabs>
+            <!-- 화면이 작을 때 -->
+            <v-tabs class="hidden-sm-and-up" v-model="tab" grow>
+                <v-tabs-slider color="primary"></v-tabs-slider>
+                <!-- tap value = 0 -->
+                <v-tab class="font-weight-bold">
+                    전체 설문
+                </v-tab>
+                <!-- tap value = -->
+                <v-tab
+                    class="font-weight-bold"
+                    @click.stop="dialog = true"
+                    v-if="this.$store.state.web3.coinbase === null"
+                >
+                    참여 가능한 설문</v-tab
+                >
+                <v-tab
+                    class="font-weight-bold"
+                    @click=";[matchSurvey(), canSurvey()]"
+                    v-else
+                >
+                    참여 가능한 설문</v-tab
+                >
+            </v-tabs>
+        </v-toolbar>
+
         <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
@@ -80,14 +112,19 @@
                         <v-card-title class="text-h6">
                             {{ d.survey_title }}
                         </v-card-title>
-
-                        <v-card-subtitle>
-                            적립금: {{ d.survey_price }} | 쿠폰:
-                            {{ d.survey_coupon }}
-                            <!-- </v-card-subtitle>
+                        <v-chip
+                            close-icon="mdi-close-outline"
+                            color="grey"
+                            fill
+                            class="white--text pa-0 ml-2"
+                        >
+                            <v-card-subtitle class="text-subtitle-1">
+                                적립금: {{ d.survey_price }} | 쿠폰:
+                                {{ d.survey_coupon }}
+                                <!-- </v-card-subtitle>
                         <v-card-subtitle> -->
-                        </v-card-subtitle>
-
+                            </v-card-subtitle>
+                        </v-chip>
                         <v-card-subtitle>
                             <!-- <v-icon> mdi-alarm-check </v-icon>소요 시간:
                             {{ d.survey_time.slice(4, 5) }}분
@@ -203,7 +240,6 @@ export default {
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
             // console.log('hi', this.$get()
-
             this.surveys = await this.$get('/surveys')
         },
 
@@ -215,9 +251,22 @@ export default {
             }
 
             // 설문 조건 넣는 함수
-            this.surveys = await this.$api('/survey', 'post', {
+            await this.$api('/survey', 'post', {
                 param: this.passSurveyList
+            }).then(res => {
+                console.log('whatIsIt', res)
+                res.forEach(item => {
+                    console.log('kkk', item)
+                    this.$set(item, 'isShow', false)
+                })
+                console.log('hoho', res)
+                this.surveys = res
+                // this.$set(res[0], 'isShow', false)
+                // console.log(res)
+                // this.surveys = res
+                // console.log('vvv', this.surveys)
             })
+            console.log(this.surveys)
         },
 
         // 모든 설문지 보여준다

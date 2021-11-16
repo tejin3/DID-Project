@@ -1,7 +1,7 @@
 <template>
-    <v-app>
+    <v-container>
         <TradeView />
-    </v-app>
+    </v-container>
 </template>
 <script>
 import TradeView from './View.vue'
