@@ -31,9 +31,7 @@ contract vcCallRecord {
         // 디비저장
     }
     
-    function callData(address _user) public returns(string[] memory, uint[] memory){
+    function callData(address _user) public view returns(string[] memory, uint[] memory){
         return (vcCallList[_user] , vcCallDate[_user]);
     }
-    
-
 }
