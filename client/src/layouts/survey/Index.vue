@@ -81,27 +81,37 @@
                                                 </p>
                                             </div>
                                         </v-card-text>
-                                        <v-btn
-                                            @click="모달창열렸니 = true"
-                                            v-if="예약여부 == true"
-                                            class="ml-2 mb-13 reservationBtn"
-                                            outlined
-                                            rounded
-                                            color="white"
-                                            x-small
-                                        >
-                                            예약하기
-                                        </v-btn>
-                                        <v-btn
-                                            v-else
-                                            class="ml-2 disabledBtn"
-                                            outlined
-                                            disabled
-                                            rounded
-                                            x-small
-                                        >
-                                            예약완료
-                                        </v-btn>
+
+                                        {{ survey.isBooked }}
+                                        <!-- {{ surveys[i].isBooked }} -->
+                                        <!-- {{ surveys }} -->
+                                        <!-- {{ surveys[i].survey_id }} -->
+
+                                        <!-- 얘가 지금 따로 놀고있는거?....오키.. -->
+                                        <div>
+                                            <v-btn
+                                                @click="test(i)"
+                                                v-if="survey.isBooked == true"
+                                                class="ml-2 mb-13 reservationBtn"
+                                                outlined
+                                                rounded
+                                                color="white"
+                                                x-small
+                                            >
+                                                예약하기
+                                            </v-btn>
+                                            <v-btn
+                                                v-else
+                                                class="ml-2 disabledBtn"
+                                                outlined
+                                                disabled
+                                                rounded
+                                                x-small
+                                            >
+                                                예약완료
+                                            </v-btn>
+                                        </div>
+
                                         <!-- <v-card-actions>
                                         <v-btn color="orange" text>
                                             Share
@@ -114,7 +124,6 @@
                     </v-card>
                 </v-col>
                 <!--left _ 맞춤설문조사 끝-->
-
                 <v-col class="d-flex align-center mb-6">
                     <main-survey />
                 </v-col>
@@ -131,10 +140,9 @@ export default {
     components: { MainSurvey },
     created() {
         this.canSurvey()
+        this.isBooked = true
     },
-    mounted() {
-        this.예약여부 = true
-    },
+    mounted() {},
 
     data: () => ({
         // 예약완료: true,
@@ -165,16 +173,14 @@ export default {
             // [0] 배열은 무조건 인덱스 !
 
             for (let i = 0; i < this.surveys.length; i++) {
-                // this.surveys[i]
-                console.log('dfdfdfdfdf', this.surveys[i])
-                this.surveys[i].isBooked = false
+                this.surveys[i].isBooked = true
                 console.log('dfdfdfdfdf2222', this.surveys[i])
-                // console.log(this.surveys[i]['isBooked'])
-                break
-            }
+                // 배열의 인덱스 0,1 이있는데, 그거에맞춰서
+                // 예약하기 버튼을 누른 것이있다면, 예약완료 라고 띄워줌.
 
-            // myObject.isBooked = false
-            // }
+                // console.log(this.surveys[i]['isBooked'])
+                // break
+            }
             console.log('myObject _ for문dddd', myObject)
 
             // 방금전에 빈객체에 한것처럼,
@@ -183,7 +189,11 @@ export default {
         },
         changeTest() {
             console.log('test')
-            this.예약여부 = false
+            this.isBooked = false
+        },
+        test(_num) {
+            this.모달창열렸니 = true
+            this.surveys[_num].isBooked = false
         }
     }
 }

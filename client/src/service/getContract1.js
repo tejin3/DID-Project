@@ -9,7 +9,7 @@ const getContract1 = () => {
     const web3 = new Web3(Web3.givenProvider)
     const myContractInstance = new web3.eth.Contract(
         vcABI,
-        '0x617f45a16600CBAf860751Fa1A27D36fA3dd9e92'
+        '0x567B9Ad819EE5a1Beff574D4736FB8b48BCb58CD'
     )
     return myContractInstance
 }

@@ -138,7 +138,16 @@
 export default {
     name: 'SurveyModal',
     components: {},
-    props: ['dialog', 'dialog2', 'vp', 'price', 'coupon'],
+    props: [
+        'dialog',
+        'dialog2',
+        'vp',
+        'price',
+        'coupon',
+        'sC',
+        'surveyId',
+        'companyAccount'
+    ],
     data() {
         return {
             aa: [
@@ -168,10 +177,26 @@ export default {
         // 동의 버튼을 누를시 선택한 VP 생성
         createVP() {
             // 넘겨받은 VP리스트에 선택한 VC가 담긴 VP를 생성
+            var stringVp
             for (var index of this.selection) {
                 this.selectVp.push(this.vp[parseInt(index)])
                 console.log(this.selectVp)
             }
+            for (var het of this.selectVp) {
+                stringVp = stringVp + ',' + Object.keys(het)
+            }
+            console.log(stringVp)
+            console.log(this.sC)
+            this.sC.methods
+                .recordVP(
+                    this.surveyId,
+                    stringVp.slice(10),
+                    '0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71'
+                )
+                .send({ from: this.$store.state.web3.coinbase })
+                .then(receipt => {
+                    console.log(receipt)
+                })
         },
 
         // 동의 버튼을 누를시 적립되는 포인트
@@ -191,6 +216,15 @@ export default {
                     coupon: this.coupon
                 }
             })
+        },
+
+        record(surveyId, vpName, companyAccount) {
+            this.sC.methods
+                .recordVP(surveyId, vpName, companyAccount)
+                .send({ from: this.$store.state.web3.coinbase })
+                .then(receipt => {
+                    console.log(receipt)
+                })
         }
     }
 }

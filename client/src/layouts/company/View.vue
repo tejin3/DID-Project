@@ -1,5 +1,35 @@
 <template>
-    <div>
+    <v-container fluid>
+        <v-container>
+            <p class="font-weight-bold text-h2 text-center">
+                we :DID result
+                <img width="80" src="@/assets/img/company/result.png" />
+            </p>
+            <p class="text-center">
+                weDIDsurvey의 정확한 설문 결과를 확인하세요
+            </p>
+        </v-container>
+        <v-container>
+            <v-bottom-navigation :value="value" color="deep-purple" horizontal>
+                <v-btn>
+                    <span>의뢰한 설문 : 4</span>
+
+                    <v-icon>mdi-history</v-icon>
+                </v-btn>
+
+                <v-btn>
+                    <span>진행중 설문 : 3</span>
+
+                    <v-icon>mdi-heart</v-icon>
+                </v-btn>
+
+                <v-btn>
+                    <span>완료된 설문 : 1</span>
+
+                    <v-icon>mdi-map-marker</v-icon>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-container>
         <v-row>
             <v-col
                 v-for="(m, n) in surveyData"
@@ -45,13 +75,13 @@
                     </v-img> -->
 
                     <v-card-title
-                        >{{ m.survey_title }} <br />[설문번호 :{{
+                        >{{ m.survey_title }} [설문번호 :{{
                             m.survey_id
                         }}]</v-card-title
                     >
                     <v-card-text class="py-0">
                         <v-timeline align-top dense>
-                            <v-timeline-item small>
+                            <!-- <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -62,7 +92,7 @@
                                         >
                                     </v-col>
                                 </v-row>
-                            </v-timeline-item>
+                            </v-timeline-item> -->
                             <v-timeline-item color="deep-purple">
                                 <v-row class="pt-1">
                                     <v-col>
@@ -154,7 +184,7 @@
         <div>{{ callData }}</div>
         <button @click="vcCon()">vc</button>
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
-    </div>
+    </v-container>
 </template>
 <script>
 // import Slider from './Slider.vue'
@@ -175,7 +205,8 @@ export default {
             finalData: null,
             sC: null,
             callData: null,
-            vC: null
+            vC: null,
+            value: 1
         }
     },
     setup() {},

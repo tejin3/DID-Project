@@ -18,6 +18,7 @@
                     to="company"
                     text
                     plain="false"
+                    class="white--text"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71

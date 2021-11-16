@@ -212,7 +212,9 @@ export default {
             proofSurveys: [],
             dDays: '',
             icon: 'mdi-calendar-range',
-            isShow: false
+            isShow: false,
+            keyList: [],
+            web3: {}
         }
     },
 
@@ -315,14 +317,20 @@ export default {
 
                 // 추출한 key/value를 객체로 담아 배열에 넣기
                 var obj = {}
-                var keys = []
-                keys.push(key)
+                var keykey
+                // var keyTohex = key
+                // keyTohex = this.web3.utils.asciiToHex(key)
+                this.keyList.push(key)
+                keykey = keykey + ',' + key
                 obj[key] = value
                 this.vcItemList.push(obj)
             }
             this.$store.commit('addVcItemList', this.vcItemList)
-            console.log(keys)
-            this.vcData(keys)
+            console.log('key', this.keyList)
+            console.log('key1', keykey.slice(10))
+
+            // this.keyList.map((arg) => web3.utils.asciiToHex(arg))
+            this.vcData(keykey.slice(10))
         },
 
         // 설문 조건과 VC항목을 비교
@@ -434,6 +442,7 @@ export default {
             })
         },
         vcData(vcName) {
+            console.log('왔다')
             this.vC.methods
                 .vcCall(vcName)
                 .send({ from: this.$store.state.web3.coinbase })

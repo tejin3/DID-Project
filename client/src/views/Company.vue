@@ -1,7 +1,7 @@
 <template>
-    <v-app>
+    <v-container fluid>
         <company-layout />
-    </v-app>
+    </v-container>
 </template>
 <script>
 import CompanyLayout from '../layouts/company/Index'
