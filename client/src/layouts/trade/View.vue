@@ -21,7 +21,7 @@
         <v-container>
             <v-bottom-navigation
                 :value="value"
-                color="primary"
+                color="hsl(258, 98%, 70%)"
                 class="d-flex justify-space-around"
             >
                 <v-btn>
