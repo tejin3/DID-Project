@@ -77,11 +77,7 @@
             <v-container>
                 <v-row>
                     <!-- class="testLine ma-6 pa-0 " -->
-                    <v-col
-                        class="testLine"
-                        v-for="good in goods"
-                        :key="good.list"
-                    >
+                    <v-col class="testLine" v-for="(good, i) in goods" :key="i">
                         <v-card-subtitle
                             class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
                         >
@@ -115,9 +111,12 @@
                             {{ good.goods_name }}
                             <v-btn
                                 dark
-                                @click.stop="dialog = true"
-                                text
-                                color="purple"
+                                @click="
+                                    ;[
+                                        (dialog = true),
+                                        exchangeGoods(i + 1, good.goods_coupon)
+                                    ]
+                                "
                             >
                                 Trade
                             </v-btn>
@@ -203,6 +202,7 @@ export default {
         return {
             dialog: false,
             goods: [],
+            user: {},
             value: 1,
             overlay: false
         }
@@ -217,8 +217,33 @@ export default {
         async showGoods() {
             this.goods = await this.$api('/trade', 'get')
             console.log(this.goods)
+            await this.$api('/user', 'get').then(res => {
+                console.log(res)
+                for (var user of res) {
+                    if ((user.user_account = this.$store.state.web3.coinbase)) {
+                        this.user = user
+                    }
+                }
+                console.log(this.user)
+            })
         },
-        tradeCompleted() {}
+        tradeCompleted() {},
+
+        // 트레이드 버튼 클릭시 쿠폰과 상품이 교환된다
+        async exchangeGoods(goodId, goodsCoupon) {
+            // 보유 쿠폰 개수가 교환할 상품의 쿠폰 개수보다 많아야 한다
+            // if (this.user.user_coupon >= goodsCoupon) {
+            await this.$api('/exchange', 'post', {
+                param: {
+                    goods_id: goodId,
+                    user_account: this.$store.state.web3.coinbase,
+                    user_coupon: goodsCoupon
+                }
+            })
+            // } else {
+            //     alert('보유하신 쿠폰이 부족합니다')
+            // }
+        }
     }
 }
 </script>

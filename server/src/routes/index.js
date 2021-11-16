@@ -43,5 +43,7 @@ router.post("/download/:fileName", downloadController.store);
 
 //trade controller
 router.get("/trade", tradeController.showGoods);
+router.get("/user", tradeController.showUser);
+router.post("/exchange", tradeController.exchangeGoods);
 
 module.exports = router;
