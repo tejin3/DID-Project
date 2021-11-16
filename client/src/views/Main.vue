@@ -1,53 +1,88 @@
 <template>
-    <v-container class="bg-primary">
-        <v-carousel
-            v-model="model"
-            v-on:scroll.passive="onScroll"
-            vertical-delimiters="right"
-            :vertical="true"
-            :show-arrows="false"
-            :hide-delimiter-background="true"
-            height="100vh"
+    <v-sheet class="bg-primary" height="100vh">
+        <v-card
+            elevation="0"
+            width="1200px"
+            class="mt-10 mx-auto"
+            color="hsl(258, 98%, 70%)"
         >
-            <DefaultBar />
-            <v-carousel-item>
-                <h2>We DID survey</h2>
-                <p class="mt-4">
-                    당신의 똑똑한 생각을 나눠주세요! 지금 서베이에 참여해서
-                    맡겨놓은 상금과 상품을 가져가세요
-                </p>
-                <v-btn color="secondary" elevation="2" @click="metamask()"
-                    >시작하기!</v-btn
-                >
-            </v-carousel-item>
-            <v-carousel-item>
-                <v-row class="fill-height">
-                    <v-col cols="12" sm="6" md="8">
-                        <v-img
-                            width="700px"
-                            src="@/assets/img/main/mainImg1.png"
-                            aspect-ratio="2.4"
-                            style="margin-left:-2rem; margin-top:3rem"
-                        ></v-img>
-                        <p class="white--text">
-                            홍보용 멘트를 적습니다. {{ i }}
+            <v-carousel
+                v-model="model"
+                vertical-delimiters="right"
+                :vertical="true"
+                :show-arrows="false"
+                :hide-delimiter-background="true"
+                height="80vh"
+            >
+                <DefaultBar />
+                <v-carousel-item>
+                    <v-sheet class="my-16" color="hsl(258, 98%, 70%)">
+                        <h2>We DID survey</h2>
+                        <p class="mt-4">
+                            시작해보세요
                         </p>
-                    </v-col>
-                    <v-col cols="6" md="4" class="">
-                        <v-img
-                            class="custom-img"
-                            src="@/assets/img/main/mainImg2.png"
-                            aspect-ratio="1"
-                            style="margin-top:10rem"
-                        ></v-img>
-                    </v-col>
-                </v-row>
-            </v-carousel-item>
-            <v-carousel-item>
-                <h1 class="white--text">지금 폰트 웰컴체 입니다. {{ i }}</h1>
-            </v-carousel-item>
-        </v-carousel>
-    </v-container>
+                        <v-btn
+                            color="secondary"
+                            elevation="2"
+                            @click="metamask()"
+                            >시작하기!</v-btn
+                        >
+                    </v-sheet>
+                </v-carousel-item>
+                <v-carousel-item>
+                    <v-sheet
+                        class="my-16"
+                        color="hsl(258, 98%, 70%)"
+                        height="100vh"
+                    >
+                        <v-row class="fill-height">
+                            <v-col cols="12" sm="6" md="8">
+                                <v-img
+                                    width="700px"
+                                    src="@/assets/img/main/mainImg1.png"
+                                    aspect-ratio="2.4"
+                                    style="margin-left:-2rem; margin-top:1rem"
+                                ></v-img>
+                            </v-col>
+                            <v-col cols="6" md="4" class="">
+                                <v-img
+                                    class="custom-img"
+                                    src="@/assets/img/main/mainImg2.png"
+                                    aspect-ratio="1"
+                                    style="margin-top:10rem"
+                                ></v-img>
+                            </v-col>
+                        </v-row>
+                    </v-sheet>
+                </v-carousel-item>
+                <v-carousel-item>
+                    <v-sheet
+                        class="my-16"
+                        color="hsl(258, 98%, 70%)"
+                        height="100vh"
+                        ><v-row class="fill-height">
+                            <v-col cols="12" sm="6" md="8">
+                                <v-img
+                                    width="700px"
+                                    src="@/assets/img/main/mainImg3.png"
+                                    aspect-ratio="2.4"
+                                    style="margin-left:-2rem; margin-top:1rem"
+                                ></v-img>
+                            </v-col>
+                            <v-col cols="6" md="4" class="">
+                                <v-img
+                                    class="custom-img"
+                                    src="@/assets/img/main/mainImg4.png"
+                                    aspect-ratio="1"
+                                    style="margin-top:10rem"
+                                ></v-img>
+                            </v-col>
+                        </v-row>
+                    </v-sheet>
+                </v-carousel-item>
+            </v-carousel>
+        </v-card>
+    </v-sheet>
 </template>
 <script>
 import DefaultBar from '../layouts/default/Navbar.vue'
@@ -103,5 +138,8 @@ export default {
 <style scoped>
 .outline {
     border: 3px solid black;
+}
+.container-fluid {
+    max-width: 500px;
 }
 </style>
