@@ -171,68 +171,6 @@
                                                 >
                                             </v-card>
                                         </v-col>
-
-                                        <v-col
-                                            v-for="(item, i) in cardItems"
-                                            :key="i"
-                                            cols="6"
-                                        >
-                                            <v-card :color="item.color" dark>
-                                                <div
-                                                    class="d-flex flex-no-wrap justify-space-between"
-                                                >
-                                                    <div>
-                                                        <v-card-title
-                                                            class="text-h5"
-                                                            v-text="item.title"
-                                                        ></v-card-title>
-
-                                                        <v-card-subtitle
-                                                            v-text="item.artist"
-                                                        ></v-card-subtitle>
-
-                                                        <v-card-actions>
-                                                            <v-btn
-                                                                v-if="
-                                                                    item.artist ===
-                                                                        'Ellie Goulding'
-                                                                "
-                                                                class="ml-2 mt-3"
-                                                                fab
-                                                                icon
-                                                                height="40px"
-                                                                right
-                                                                width="40px"
-                                                            >
-                                                                <v-icon
-                                                                    >mdi-play</v-icon
-                                                                >
-                                                            </v-btn>
-
-                                                            <v-btn
-                                                                v-else
-                                                                class="ml-2 mt-5"
-                                                                outlined
-                                                                rounded
-                                                                small
-                                                            >
-                                                                START RADIO
-                                                            </v-btn>
-                                                        </v-card-actions>
-                                                    </div>
-
-                                                    <v-avatar
-                                                        class="ma-3"
-                                                        size="125"
-                                                        tile
-                                                    >
-                                                        <v-img
-                                                            :src="item.src"
-                                                        ></v-img>
-                                                    </v-avatar>
-                                                </div>
-                                            </v-card>
-                                        </v-col>
                                     </v-row>
                                 </v-container>
                             </v-col>
@@ -250,7 +188,7 @@
                         <v-row>
                             <v-col
                                 class="testLine ma-10 pa-0"
-                                v-for="card in cards"
+                                v-for="card in cards2"
                                 :key="card.title"
                             >
                                 <v-card max-width="200">
@@ -302,6 +240,7 @@ export default {
             // goods:[],
             // icon: 'mdi-tag',
             tab: null,
+            cards2: [],
             cards: [
                 {
                     title: '스타벅스',
@@ -342,15 +281,21 @@ export default {
             nftItems: [],
             items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails']
         }
+    },
+    created() {
+        this.showUserGoods()
+    },
+
+    methods: {
+        async showUserGoods() {
+            var result = await this.$api('/userGoods', 'get')
+            for (var item of result) {
+                if (item.user_account === this.$store.state.web3.coinbase) {
+                    this.cards2.push(item)
+                }
+            }
+        }
     }
-
-    //     methods:{
-    //         async getGoods() {
-    //             // console.log('hi', this.$get()
-
-    //             this.goods = await this.$get('/trade')
-    //     }
-    // }
 }
 </script>
 <style scoped>

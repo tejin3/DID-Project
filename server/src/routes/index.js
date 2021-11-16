@@ -9,6 +9,7 @@ const questionController = require("../controller/questionController");
 const answerController = require("../controller/answerController");
 const downloadController = require("../controller/downloadController");
 const tradeController = require("../controller/tradeController");
+const mypageController = require("../controller/mypageController");
 
 // 설문지 조건 controller
 router.get("/conditions", conditionController.index);
@@ -45,5 +46,8 @@ router.post("/download/:fileName", downloadController.store);
 router.get("/trade", tradeController.showGoods);
 router.get("/user", tradeController.showUser);
 router.post("/exchange", tradeController.exchangeGoods);
+
+// mypage controller
+router.get("/userGoods", mypageController.showUserGoods);
 
 module.exports = router;

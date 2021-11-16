@@ -45,4 +45,8 @@ module.exports = {
   getUser: {
     query: "select * from t_user",
   },
+
+  getUserGoods: {
+    query: "select * from t_user_goods",
+  },
 };
