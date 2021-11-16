@@ -90,8 +90,8 @@
                                         <!-- 얘가 지금 따로 놀고있는거?....오키.. -->
                                         <div>
                                             <v-btn
-                                                @click="모달창열렸니 = true"
-                                                v-if="isBooked == true"
+                                                @click="test(i)"
+                                                v-if="survey.isBooked == true"
                                                 class="ml-2 mb-13 reservationBtn"
                                                 outlined
                                                 rounded
@@ -174,7 +174,7 @@ export default {
             // [0] 배열은 무조건 인덱스 !
 
             for (let i = 0; i < this.surveys.length; i++) {
-                this.surveys[0].isBooked = false
+                this.surveys[0].isBooked = true
                 this.surveys[1].isBooked = true
                 console.log('dfdfdfdfdf2222', this.surveys[i])
                 // 배열의 인덱스 0,1 이있는데, 그거에맞춰서
@@ -192,6 +192,10 @@ export default {
         changeTest() {
             console.log('test')
             this.isBooked = false
+        },
+        test(_num) {
+            this.모달창열렸니 = true
+            this.surveys[_num].isBooked = false
         }
     }
 }

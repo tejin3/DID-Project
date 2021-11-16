@@ -9,6 +9,8 @@ contract vcCallRecord {
 
     // 유저 DID OR account 에게 vc 를 요청한 시간 리스트
     mapping (address => uint[]) public vcCallDate;
+
+    // mapping (uint => string) public surveyToEncrptCompany;
        
     event vcCallApprovals (address,string,uint);
 
@@ -33,4 +35,9 @@ contract vcCallRecord {
     function callData(address _user) public view returns(string[] memory, uint[] memory) {
         return (vcCallList[_user] , vcCallDate[_user]);
     }
+
+    // function recordEncrptCompany(uint _num, string memory _company) public {
+    //     require(msg.sender == owner);
+    //     surveyToEncrptCompany[_num] = _company;
+    // }
 }
