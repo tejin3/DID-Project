@@ -139,7 +139,7 @@
                                 }}</v-icon>
                             </v-btn>
                         </v-card-actions>
-                        xcvxcvxcvxv {{ $store.state.matchedSurvey }}
+                        <!-- xcvxcvxcvxv {{ $store.state.matchedSurvey }} -->
                         <v-expand-transition>
                             <div v-show="d.isShow">
                                 <v-divider></v-divider>
@@ -204,47 +204,15 @@ export default {
             // console.log('hi', this.$get()
 
             this.surveys = await this.$get('/surveys')
-
-            // dday함수를 실행할 때 데이터가 this.surveys에 다 담기지 않아 오류발생
-            // 그래서 데이터를 가져오고 나서 dday함수를 실행하기 위해 아래처럼 쓴다.
-            // const survayArray = await this.$get('/surveys').then(res =>
-            //     console.log('gdg', res)
-            // )
-            // let survayArray = null
-            // await this.$get('/surveys').then(res => {
-            //     survayArray = res
-            //     console.log(survayArray)
-            // 오늘 날짜
-            // const today = new Date()
-            // console.log(today)
-            // // D-day 날짜
-            // for (var array of survayArray) {
-            //     // console.log(array)
-            //     let discountDay = array.survey_end_date
-            //     console.log(discountDay, typeof discountDay)
-            //     discountDay = parseInt(discountDay)
-            //     console.log(discountDay, typeof discountDay)
-            // }
-            // const gap = discountDay.getTime() - today.getTime()
-            // console.log(gap)
-            // const discountDay = survayArray
-            // console.log(discountDay)
-            // const endDate = []
-            // endDate.push(discountDay[6])
-            // console.log(endDate)
-            // })
-            // await this.$get('/surveys').then(res => dDay())
-
-            // console.log(this.surveys)
-            // console.log(surveys)
         },
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
         async canSurvey() {
-            // if (this.$store.state.web3.coinbase === '') {
-            //     await this.$store.dispatch('registerWeb3')
-            //     console.log(this.$store.web3)
-            // }
+            if (this.$store.state.web3.coinbase === '') {
+                await this.$store.dispatch('registerWeb3')
+                console.log(this.$store.web3)
+            }
+
             // 설문 조건 넣는 함수
             this.surveys = await this.$api('/survey', 'post', {
                 param: this.passSurveyList
@@ -280,21 +248,6 @@ export default {
                 console.log(this.$store.web3)
             }
         },
-        // dDay() {
-        //     this.today = new Date()
-        //     console.log('today', this.today)
-        //     const dday = this.surveys
-        //     console.log('heheh', dday)
-        //     console.log(this.surveys)
-
-        // const dDay = new Date(2021, 10, 30)
-        // this.dDay = this.surveys[0].survey_end_date
-        // console.log(this.dDay)
-        // const gap = dDay.getTime() - today.getTime()
-        // console.log(gap)
-        // const result = Math.ceil(gap / (1000 * 60 * 60 * 24))
-        // console.log(result)
-        // },
 
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
@@ -396,27 +349,10 @@ export default {
             this.getVC()
         },
 
-        // thisShow() {
-        //     this.surveys.forEach(item => {
-        //         console.log(this.surveys)
-
-        // methods에 추가하는 함수 넣으면 화면에 보여진다.
-        // async createSurvey() {
-        //     const r = await this.$post('/surveys', {
-        //         survey_title: '문화 생활 관련 조사2',
-        //         survey_image_path: 'surveyImg2.jpg',
-        //         survey_price: '1,500원',
-        //         survey_coupon: '1',
-        //         survey_period: '2021.11.15 ~ 2021.11.30',
-        //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-        //         isShow: true
-
-        //     })
-        // }
-
         // isShow 넣기
         async getIsShow() {
             await this.$api('/surveys', 'get').then(res => {
+                console.log('whatIsIt', res)
                 res.forEach(item => {
                     console.log('kkk', item)
                     this.$set(item, 'isShow', false)
@@ -428,6 +364,7 @@ export default {
                 // this.surveys = res
                 // console.log('vvv', this.surveys)
             })
+            console.log(this.surveys)
         },
 
         getVcContractInstance() {
@@ -455,21 +392,6 @@ export default {
                 })
         }
     }
-    // methods에 추가하는 함수 넣으면 화면에 보여진다.
-    // async createSurvey() {
-    //     const r = await this.$post('/surveys', {
-    //         survey_title: '문화 생활 관련 조사2',
-    //         survey_image_path: 'surveyImg2.jpg',
-    //         survey_price: '1,500원',
-    //         survey_coupon: '1',
-    //         survey_period: '2021.11.15 ~ 2021.11.30',
-    //         survey_description: '문화 및 여가 생활 관련 전반적 U&A 설문입니다.',
-    //         isShow: true
-    //     })
-    // console.log(r)
-    // 새로 데이터를 만들어줬으니, 다시 한번 전체 설문지 보기
-    // this.getSurvey()
-    // }
 }
 </script>
 <style></style>
