@@ -21,7 +21,7 @@
             </div>
         </div>
         <img
-            src="../../assets/img/surveyP.jpg"
+            src="../../assets/img/surveyP.png"
             alt=""
             style="width:150px; height:150px; position: absolute; margin:100px; margin-top:-16px;"
         />
@@ -41,7 +41,7 @@
                         <v-app-bar
                             dark
                             class="d-flex justify-center mb-1"
-                            color="blue-grey darken-4"
+                            color="#263238"
                             height="40px"
                         >
                             <div>
@@ -87,7 +87,7 @@
                                             class="ml-2 mb-13 reservationBtn"
                                             outlined
                                             rounded
-                                            color="warning"
+                                            color="white"
                                             x-small
                                         >
                                             예약하기
@@ -157,7 +157,29 @@ export default {
             this.surveys = await this.$api('/survey', 'post', {
                 param: [2, 4]
             })
-            console.log(this.surveys)
+            console.log('canSurvey', this.surveys) //
+
+            var myObject = {}
+            // var surveysNum = this.surveys.length // 0,1 총 2번
+            // this.surveys [{},{}]
+            // [0] 배열은 무조건 인덱스 !
+
+            for (let i = 0; i < this.surveys.length; i++) {
+                // this.surveys[i]
+                console.log('dfdfdfdfdf', this.surveys[i])
+                this.surveys[i].isBooked = false
+                console.log('dfdfdfdfdf2222', this.surveys[i])
+                // console.log(this.surveys[i]['isBooked'])
+                break
+            }
+
+            // myObject.isBooked = false
+            // }
+            console.log('myObject _ for문dddd', myObject)
+
+            // 방금전에 빈객체에 한것처럼,
+            // 반복하면서 isBooked = false 를하고, ....
+            // myObject.isBooked = false
         },
         changeTest() {
             console.log('test')
@@ -202,7 +224,7 @@ div {
 }
 
 .reservationBtn {
-    background: yellow;
+    background: #9568fd;
     position: absolute;
     top: 50%;
     left: 50%;
