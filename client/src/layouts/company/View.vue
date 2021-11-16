@@ -10,54 +10,23 @@
             </p>
         </v-container>
         <v-container>
-            <v-bottom-navigation
-                :value="value"
-                color="hsl(258, 98%, 70%)"
-                class="d-flex justify-space-around"
-            >
+            <v-bottom-navigation :value="value" color="deep-purple" horizontal>
                 <v-btn>
-                    <span>전체</span>
+                    <span>의뢰한 설문 : 4</span>
 
-                    <v-icon>mdi-widgets</v-icon>
+                    <v-icon>mdi-history</v-icon>
                 </v-btn>
 
                 <v-btn>
-                    <span>커피/음료</span>
+                    <span>진행중 설문 : 3</span>
 
-                    <v-icon>
-                        mdi-glass-wine
-                    </v-icon>
+                    <v-icon>mdi-heart</v-icon>
                 </v-btn>
 
                 <v-btn>
-                    <span>베이커리/도넛</span>
+                    <span>완료된 설문 : 1</span>
 
-                    <v-icon>mdi-cake-variant</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>아이스크림</span>
-
-                    <v-icon>mdi-ice-cream</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>햄버거/치킨/피자</span>
-
-                    <v-icon>mdi-food</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>마트/편의점</span>
-
-                    <v-icon>mdi-store</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>상품권</span>
-
-                    <v-icon>mdi-ticket</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>영화</span>
-
-                    <v-icon>mdi-video</v-icon>
+                    <v-icon>mdi-map-marker</v-icon>
                 </v-btn>
             </v-bottom-navigation>
         </v-container>
@@ -236,7 +205,8 @@ export default {
             finalData: null,
             sC: null,
             callData: null,
-            vC: null
+            vC: null,
+            value: 1
         }
     },
     setup() {},
