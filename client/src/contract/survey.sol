@@ -9,11 +9,14 @@ contract survey {
     mapping (uint => mapping(address => bool)) public surveyUser;
 
     // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-    mapping (uint => address[]) public surveyCompleteList;
-    mapping (uint => uint) public surveyCount;
+    // mapping (uint => address[]) public surveyCompleteList;
+    // mapping (uint => uint) public surveyCount;
     // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
+    
+    mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
 
     event addUser(uint, address);
+    event recordVPList(uint, address, address, string[]);
 
     constructor () {
         owner = msg.sender;
@@ -28,12 +31,24 @@ contract survey {
         surveyUser[_num][tx.origin] = true;
 
     // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-        surveyCompleteList[_num].push(tx.origin);
-        surveyCount[_num]++;
+        // surveyCompleteList[_num].push(tx.origin);
+        // surveyCount[_num]++;
     // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
 
 
         emit addUser(_num , tx.origin);
         // 디비저장        
     }
+    
+    function recordVP (uint _num, string[] memory _VPData, address _company)public {
+     require(surveyUser[_num][tx.origin] == true);
+    
+        for(uint i =0; i < _VPData.length; i++){
+        whoCallVP[_num][_company][tx.origin].push(_VPData[i]);
+        }
+
+        emit recordVPList(_num , _company, tx.origin, _VPData);
+        // 디비저장        
+    }
+    
 }

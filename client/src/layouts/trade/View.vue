@@ -1,15 +1,29 @@
 <template>
     <v-container fluid>
         <v-container>
+            <p class="font-weight-bold text-h2 text-center">
+                we :DID shop
+                <img width="50" src="@/assets/img/trade/cart.png" />
+            </p>
+            <p class="text-center">
+                weDIDsurvey의 다양한 상품을 할인된 가격으로 실속있게 교환하세요.
+            </p>
+        </v-container>
+
+        <!-- <v-container>
             <v-card class="mb-10">
                 <v-img src="@/assets/img/banner.jpg"> </v-img>
             </v-card>
-        </v-container>
+        </v-container> -->
         <!-- <TradeHeader />
         <TradeCategory />
         <TradeMain /> -->
         <v-container>
-            <v-bottom-navigation :value="value" color="primary">
+            <v-bottom-navigation
+                :value="value"
+                color="primary"
+                class="d-flex justify-space-around"
+            >
                 <v-btn>
                     <span>전체</span>
 
@@ -66,18 +80,12 @@
                     :key="good.list"
                 >
                     <v-card max-width="200" height="325">
-                        <!-- <v-img
-                            class="white--text align-end"
-                            height="170px"
-                            :src="
-                                require(`@/assets/img/${good.goods_image_path}`)
-                            "
-                        >
-                        </v-img> -->
                         <v-img
                             class="white--text align-end"
                             height="170px"
-                            src="../../assets/img/coupon1.jpg"
+                            :src="
+                                require(`@/assets/img/trade/${good.goods_image_path}`)
+                            "
                         >
                         </v-img>
                         <v-card-subtitle
@@ -222,3 +230,4 @@ export default {
     }
 }
 </script>
+<style scoped></style>
