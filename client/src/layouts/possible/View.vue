@@ -37,17 +37,18 @@
                 참여 가능한 설문
             </v-btn>
             <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
-            <v-dialog v-model="dialog" max-width="290">
+            <v-dialog v-model="dialog" max-width="400">
                 <v-card>
-                    <v-card-text class="font-weight-bold text-center">
-                        지갑 연결 후 맞춤 설문 확인이 가능합니다.
+                    <img width="50" src="@/assets/img/metamask.svg" />
+                    <v-card-text class="text-h6 text-center">
+                        지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
                     </v-card-text>
 
                     <v-card-actions>
                         <v-spacer></v-spacer>
 
                         <v-btn
-                            color="green darken-1"
+                            color="purple darken-1"
                             text
                             @click=";[connectMask(), (dialog = false)]"
                         >
