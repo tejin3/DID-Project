@@ -1,8 +1,8 @@
 <template>
-    <v-container>
+    <v-app>
         <!-- <company-view :ex3="sliderData" /> -->
         <company-view />
-    </v-container>
+    </v-app>
 </template>
 
 <script>

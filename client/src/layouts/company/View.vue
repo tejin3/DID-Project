@@ -1,5 +1,66 @@
 <template>
-    <div>
+    <v-container fluid>
+        <v-container>
+            <p class="font-weight-bold text-h2 text-center">
+                we :DID result
+                <img width="80" src="@/assets/img/company/result.png" />
+            </p>
+            <p class="text-center">
+                weDIDsurvey의 정확한 설문 결과를 확인하세요
+            </p>
+        </v-container>
+        <v-container>
+            <v-bottom-navigation
+                :value="value"
+                color="hsl(258, 98%, 70%)"
+                class="d-flex justify-space-around"
+            >
+                <v-btn>
+                    <span>전체</span>
+
+                    <v-icon>mdi-widgets</v-icon>
+                </v-btn>
+
+                <v-btn>
+                    <span>커피/음료</span>
+
+                    <v-icon>
+                        mdi-glass-wine
+                    </v-icon>
+                </v-btn>
+
+                <v-btn>
+                    <span>베이커리/도넛</span>
+
+                    <v-icon>mdi-cake-variant</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>아이스크림</span>
+
+                    <v-icon>mdi-ice-cream</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>햄버거/치킨/피자</span>
+
+                    <v-icon>mdi-food</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>마트/편의점</span>
+
+                    <v-icon>mdi-store</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>상품권</span>
+
+                    <v-icon>mdi-ticket</v-icon>
+                </v-btn>
+                <v-btn>
+                    <span>영화</span>
+
+                    <v-icon>mdi-video</v-icon>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-container>
         <v-row>
             <v-col
                 v-for="(m, n) in surveyData"
@@ -45,13 +106,13 @@
                     </v-img> -->
 
                     <v-card-title
-                        >{{ m.survey_title }} <br />[설문번호 :{{
+                        >{{ m.survey_title }} [설문번호 :{{
                             m.survey_id
                         }}]</v-card-title
                     >
                     <v-card-text class="py-0">
                         <v-timeline align-top dense>
-                            <v-timeline-item small>
+                            <!-- <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -62,7 +123,7 @@
                                         >
                                     </v-col>
                                 </v-row>
-                            </v-timeline-item>
+                            </v-timeline-item> -->
                             <v-timeline-item color="deep-purple">
                                 <v-row class="pt-1">
                                     <v-col>
@@ -154,7 +215,7 @@
         <div>{{ callData }}</div>
         <button @click="vcCon()">vc</button>
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
-    </div>
+    </v-container>
 </template>
 <script>
 // import Slider from './Slider.vue'

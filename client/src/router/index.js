@@ -11,7 +11,7 @@ import MyPage from '../views/MyPage.vue'
 
 import DefaultLayout from '../layouts/default/Index'
 import PossibleLayout from '../layouts/possible/Index'
-import CompanyLayout from '../layouts/company/Index'
+// import CompanyLayout from '../layouts/company/Index'
 
 // import MyPageLayout from '../layouts/mypage/Index'
 // import Test1 from '../views/Test1.vue'
@@ -79,14 +79,15 @@ const routes = [
             },
             {
                 path: '/company',
-                component: Company,
-                children: [
-                    {
-                        path: '/company',
-                        name: 'Company',
-                        component: CompanyLayout
-                    }
-                ]
+                name: 'Company',
+                component: Company
+                // children: [
+                //     {
+                //         path: '/company',
+                //         name: 'Company',
+                //         component: CompanyLayout
+                //     }
+                // ]
             }
         ]
     }
