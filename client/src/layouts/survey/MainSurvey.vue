@@ -122,6 +122,9 @@
             :dialog2="dialog2"
             :vp="vp"
             :price="price"
+            :sC="sC"
+            :surveyId="surveyId"
+            :companyAccount="companyAccount"
             v-if="dialog"
             @next-modal=";(dialog2 = true), (dialog = false)"
         ></SurveyModal>
@@ -220,7 +223,8 @@ export default {
                     question3: '보통이다',
                     question4: '인지도'
                 }
-            ]
+            ],
+            companyAccount: ''
             // continuous = false
 
             // check: 11
@@ -384,6 +388,7 @@ export default {
                 })
                 this.price = survey[0].survey_price
                 this.coupon = survey[0].survey_coupon
+                this.companyAccount = survey[0].user_account
             } catch (err) {
                 console.log(err)
             }
