@@ -98,10 +98,8 @@
                         <v-card-subtitle
                             class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
                         >
-                            <v-icon size="medium" class="purple--text"
-                                >mdi-tag</v-icon
-                            >
-                            {{ good.goods_coupon }} 쿠폰
+                            <v-icon color="hsl(258, 98%, 70%)">mdi-tag</v-icon>
+                            {{ good.goods_coupon }}
                         </v-card-subtitle>
                         <v-card-subtitle
                             class="pb-1 pt-1 text-center text-body-3"
@@ -117,9 +115,10 @@
                                 dark
                                 @click.stop="dialog = true"
                                 text
-                                color="purple"
+                                title
+                                color="hsl(258, 98%, 70%)"
                             >
-                                Trade
+                                교환하기
                             </v-btn>
                         </v-card-subtitle>
 

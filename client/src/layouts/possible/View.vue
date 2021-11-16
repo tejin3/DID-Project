@@ -3,7 +3,7 @@
     <v-container fluid>
         <v-container>
             <p class="font-weight-bold text-h2 text-center">
-                we :DID shop
+                we :DID survey
             </p>
             <p class="text-center">
                 더 많이 참여하고 더 많이 받아가세요
