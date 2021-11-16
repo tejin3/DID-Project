@@ -4,18 +4,23 @@
         <v-container>
             <!-- defalut cols is 12 -->
             <!-- 탭 제목 영역 -->
-           <v-toolbar elevation="3" color="#94B3FD">
-                 <!-- 화면이 클 때 -->
-                   <v-tabs class="hidden-xs-only" v-model="tab" align-with-title
-      center-active dark>
+            <v-toolbar elevation="3" color="#94B3FD">
+                <!-- 화면이 클 때 -->
+                <v-tabs
+                    class="hidden-xs-only"
+                    v-model="tab"
+                    align-with-title
+                    center-active
+                    dark
+                >
                     <v-tabs-slider color="yellow"></v-tabs-slider>
                     <!-- tap value = 0 -->
-                    <v-tab class="font-weight-bold" >
+                    <v-tab class="font-weight-bold">
                         <v-icon class="mr-2">mdi-account-box</v-icon>
                         개인정보
                     </v-tab>
                     <!-- tap value = -->
-                    <v-tab class="font-weight-bold" >
+                    <v-tab class="font-weight-bold">
                         <v-icon class="mr-2">mdi-tag</v-icon>
                         쿠폰함</v-tab
                     >
@@ -41,172 +46,197 @@
                     <!-- tap value = 0, 개인정보 탭 일 때 -->
                     <v-tab-item>
                         <v-row>
-                        <v-col cols="6" class="px-10 py-5" height="400px">
-                              <v-img
+                            <v-col cols="6" class="px-10 py-5" height="400px">
+                                <v-img
+                                    src="@/assets/img/mypage/main.jpg"
+                                ></v-img>
+                            </v-col>
+                            <v-col cols="6" class="px-10 py-5">
+                                <v-container>
+                                    <v-row dense>
+                                        <v-col cols="12" class="pt-6">
+                                            <v-row>
+                                                <v-col cols="6">
+                                                    <v-card-title
+                                                        class="text-h5"
+                                                    >
+                                                        나의 보상
+                                                    </v-card-title></v-col
+                                                >
+                                                <v-col
+                                                    cols="6"
+                                                    class="d-flex justify-end"
+                                                    ><v-btn color="#FEF9EF"
+                                                        >적립금 신청</v-btn
+                                                    ></v-col
+                                                >
+                                            </v-row>
+                                            <v-progress-linear
+                                                color="#94B3FD"
+                                                rounded
+                                                value="100"
+                                                class="pb-5"
+                                            ></v-progress-linear>
+                                            <v-card-h3>
+                                                <v-icon x-large color="#1597E5">
+                                                    mdi-file-powerpoint-box
+                                                </v-icon>
+                                                4500 포인트 &#160; &#160; &#160;
+                                                &#160; &#160; &#160; &#160;
+                                                &#160; &#160;
+                                                <v-icon x-large color="#1597E5">
+                                                    mdi-tag-multiple
+                                                </v-icon>
+                                                9 쿠폰</v-card-h3
+                                            >
+                                            <v-progress-linear
+                                                color="#94B3FD"
+                                                rounded
+                                                value="100"
+                                                class="py-5"
+                                            ></v-progress-linear>
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-card
+                                                color="#FFB085"
+                                                height="150px"
+                                            >
+                                                <v-card-title class="text-h5">
+                                                    참여완료한 설문
+                                                </v-card-title>
+                                                <v-card-subtitle class="text-h4"
+                                                    ><v-text
+                                                        class="blue--text font-weight-bold"
+                                                        >22</v-text
+                                                    >개</v-card-subtitle
+                                                >
+                                                <Icon />
+                                            </v-card>
+                                        </v-col>
 
-                                src="@/assets/img/mypage/main.jpg"></v-img>
-                        </v-col>
-                        <v-col cols="6" class="px-10 py-5">
+                                        <v-col cols="6">
+                                            <v-card
+                                                color="#FEF9EF"
+                                                height="150px"
+                                            >
+                                                <v-card-title class="text-h5">
+                                                    참여가능한 설문
+                                                </v-card-title>
+                                                <v-card-subtitle class="text-h4"
+                                                    ><v-text
+                                                        class="blue--text font-weight-bold"
+                                                        >10</v-text
+                                                    >개</v-card-subtitle
+                                                >
+                                                <v-card-actions>
+                                                    <v-btn>
+                                                        지금 하러가기
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-card
+                                                color="#FEF9EF"
+                                                height="150px"
+                                            >
+                                                <v-card-title class="text-h5">
+                                                    예약한 설문
+                                                </v-card-title>
+                                                <v-card-subtitle class="text-h4"
+                                                    ><v-text
+                                                        class="blue--text font-weight-bold"
+                                                        >3</v-text
+                                                    >개</v-card-subtitle
+                                                >
+                                                <v-card-actions>
+                                                    <v-btn>
+                                                        지금 하러가기
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col cols="6">
+                                            <v-card
+                                                color="#FEE440"
+                                                height="150px"
+                                            >
+                                                <v-card-title class="text-h5">
+                                                    보유한 VC
+                                                </v-card-title>
+                                                <v-card-subtitle class="text-h4"
+                                                    ><v-text
+                                                        class="blue--text font-weight-bold"
+                                                        >10</v-text
+                                                    >개</v-card-subtitle
+                                                >
+                                            </v-card>
+                                        </v-col>
 
-                        <v-container>
-      <v-row dense>
-        <v-col cols="12" class="pt-6">
-            <v-row>
-                <v-col cols="6">
-             <v-card-title class="text-h5">
-              나의 보상
-            </v-card-title></v-col>
-            <v-col cols="6" class="d-flex justify-end"><v-btn color="#FEF9EF">적립금 신청</v-btn></v-col>
-            </v-row>
-               <v-progress-linear
-      color="#94B3FD"
-      rounded
-      value="100"
-      class="pb-5"
-    ></v-progress-linear>
-    <v-card-h3>   <v-icon
-      x-large
-      color="#1597E5"
-    >
-      mdi-file-powerpoint-box
-    </v-icon>
-    4500 포인트 &#160; &#160; &#160; &#160; &#160; &#160;  &#160; &#160; &#160;
-    <v-icon
-      x-large
-      color="#1597E5"
-    >
-      mdi-tag-multiple
-    </v-icon>
-    9 쿠폰</v-card-h3>
-    <v-progress-linear
-      color="#94B3FD"
-      rounded
-      value="100"
-      class="py-5"
-    ></v-progress-linear>
-        </v-col>
-        <v-col cols="6">
-          <v-card
-            color="#FFB085"
-            height="150px"
-          >
-            <v-card-title class="text-h5">
-              참여완료한 설문
-            </v-card-title>
-            <v-card-subtitle class="text-h4"><v-text class="blue--text font-weight-bold">22</v-text
-            >개</v-card-subtitle>
-             <Icon  />
+                                        <v-col
+                                            v-for="(item, i) in cardItems"
+                                            :key="i"
+                                            cols="6"
+                                        >
+                                            <v-card :color="item.color" dark>
+                                                <div
+                                                    class="d-flex flex-no-wrap justify-space-between"
+                                                >
+                                                    <div>
+                                                        <v-card-title
+                                                            class="text-h5"
+                                                            v-text="item.title"
+                                                        ></v-card-title>
 
+                                                        <v-card-subtitle
+                                                            v-text="item.artist"
+                                                        ></v-card-subtitle>
 
-          </v-card>
-        </v-col>
+                                                        <v-card-actions>
+                                                            <v-btn
+                                                                v-if="
+                                                                    item.artist ===
+                                                                        'Ellie Goulding'
+                                                                "
+                                                                class="ml-2 mt-3"
+                                                                fab
+                                                                icon
+                                                                height="40px"
+                                                                right
+                                                                width="40px"
+                                                            >
+                                                                <v-icon
+                                                                    >mdi-play</v-icon
+                                                                >
+                                                            </v-btn>
 
-        <v-col cols="6">
-          <v-card
-            color="#FEF9EF"
-             height="150px"
-          >
-            <v-card-title class="text-h5">
-              참여가능한 설문
-            </v-card-title>
-            <v-card-subtitle class="text-h4"><v-text class="blue--text font-weight-bold">10</v-text
-            >개</v-card-subtitle>
-            <v-card-actions>
-              <v-btn>
-                지금 하러가기
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-         <v-col cols="6">
-          <v-card
-            color="#FEF9EF"
-             height="150px"
-          >
-            <v-card-title class="text-h5">
-              예약한 설문
-            </v-card-title>
-             <v-card-subtitle class="text-h4"><v-text class="blue--text font-weight-bold">3</v-text
-            >개</v-card-subtitle>
-            <v-card-actions>
-              <v-btn>
-                지금 하러가기
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-         <v-col cols="6">
-          <v-card
-            color="#FEE440"
-            height="150px"
-          >
-            <v-card-title class="text-h5">
-              보유한 VC
-            </v-card-title>
-            <v-card-subtitle class="text-h4"><v-text class="blue--text font-weight-bold">10</v-text
-            >개</v-card-subtitle>
+                                                            <v-btn
+                                                                v-else
+                                                                class="ml-2 mt-5"
+                                                                outlined
+                                                                rounded
+                                                                small
+                                                            >
+                                                                START RADIO
+                                                            </v-btn>
+                                                        </v-card-actions>
+                                                    </div>
 
-          </v-card>
-        </v-col>
-
-
-
-        <v-col
-          v-for="(item, i) in cardItems"
-          :key="i"
-          cols="6"
-        >
-          <v-card
-            :color="item.color"
-            dark
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                  class="text-h5"
-                  v-text="item.title"
-                ></v-card-title>
-
-                <v-card-subtitle v-text="item.artist"></v-card-subtitle>
-
-                <v-card-actions>
-                  <v-btn
-                    v-if="item.artist === 'Ellie Goulding'"
-                    class="ml-2 mt-3"
-                    fab
-                    icon
-                    height="40px"
-                    right
-                    width="40px"
-                  >
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-
-                  <v-btn
-                    v-else
-                    class="ml-2 mt-5"
-                    outlined
-                    rounded
-                    small
-                  >
-                    START RADIO
-                  </v-btn>
-                </v-card-actions>
-              </div>
-
-              <v-avatar
-                class="ma-3"
-                size="125"
-                tile
-              >
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-                        </v-col>
+                                                    <v-avatar
+                                                        class="ma-3"
+                                                        size="125"
+                                                        tile
+                                                    >
+                                                        <v-img
+                                                            :src="item.src"
+                                                        ></v-img>
+                                                    </v-avatar>
+                                                </div>
+                                            </v-card>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-col>
                         </v-row>
                     </v-tab-item>
                     <!-- tap value = 1, 쿠폰 탭일 때 -->
@@ -229,7 +259,7 @@
                                         class="white--text align-end"
                                         height="170px"
                                         :src="
-                                            require(`@/assets/img/${card.src}`)
+                                            require(`@/assets/img/trade/${card.src}`)
                                         "
                                     >
                                         <!-- <v-card-title

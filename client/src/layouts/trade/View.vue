@@ -79,46 +79,47 @@
                     v-for="good in goods"
                     :key="good.list"
                 >
-                    <v-card max-width="200" height="325">
+                    <v-card max-width="200" hover pa-0 ma-0>
                         <v-img
                             class="white--text align-end"
-                            height="170px"
                             :src="
                                 require(`@/assets/img/trade/${good.goods_image_path}`)
                             "
                         >
                         </v-img>
-                        <v-card-subtitle
-                            class="purple--text font-weight-bold text-20 text-center pb-1 pt-1"
-                        >
-                            <v-icon size="small" class="purple--text"
-                                >mdi-tag</v-icon
-                            >
-                            {{ good.goods_coupon }} 쿠폰
-                        </v-card-subtitle>
-                        <v-card-subtitle class="pb-0 pt-0 text-center">
-                            {{ good.goods_issuer }}
-                        </v-card-subtitle>
-                        <v-card-subtitle
-                            class="pb-1 pt-1 black--text font-weight-bold text-center"
-                            style="height:50px"
-                        >
-                            {{ good.goods_name }}
-                        </v-card-subtitle>
-
-                        <v-card-text class="text--primary text-center">
-                            <!-- <v-icon size="small">mdi-tag</v-icon>
-                            {{ card.point }} 포인트 -->
-                            <v-btn
-                                dark
-                                @click.stop="dialog = true"
-                                text
-                                color="deep-purple accent-4"
-                            >
-                                Trade
-                            </v-btn>
-                        </v-card-text>
                     </v-card>
+
+                    <v-card-subtitle
+                        class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+                    >
+                        <v-icon size="medium" class="purple--text"
+                            >mdi-tag</v-icon
+                        >
+                        {{ good.goods_coupon }} 쿠폰
+                    </v-card-subtitle>
+                    <v-card-subtitle class="pb-1 pt-1 text-center text-body-3">
+                        {{ good.goods_issuer }}
+                    </v-card-subtitle>
+                    <v-card-subtitle
+                        class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
+                        style="height:50px"
+                    >
+                        {{ good.goods_name }}
+                    </v-card-subtitle>
+
+                    <v-card-text class="text--primary text-center">
+                        <!-- <v-icon size="small">mdi-tag</v-icon>
+                            {{ card.point }} 포인트 -->
+                        <v-btn
+                            dark
+                            @click.stop="dialog = true"
+                            text
+                            color="purple"
+                        >
+                            Trade
+                        </v-btn>
+                    </v-card-text>
+                    <!-- </v-card> -->
                 </v-col>
                 <v-row justify="center">
                     <v-dialog v-model="dialog" max-width="290">
@@ -212,7 +213,8 @@ export default {
         return {
             dialog: false,
             goods: [],
-            value: 1
+            value: 1,
+            overlay: false
         }
     },
     setup() {},
@@ -230,4 +232,14 @@ export default {
     }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.grey-bg {
+    top: 0;
+    left: 0;
+    position: absolute;
+    /* width: 100%; */
+    /* height: 100%; */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+</style>
