@@ -82,11 +82,12 @@
                                                 <v-icon x-large color="#1597E5">
                                                     mdi-file-powerpoint-box
                                                 </v-icon>
-                                                4500 포인트
+                                                {{ user[0].user_point }} 포인트
                                                 <v-icon x-large color="#1597E5">
                                                     mdi-tag-multiple
                                                 </v-icon>
-                                                9 쿠폰</v-card-subtitle
+                                                {{ user[0].user_coupon }}
+                                                쿠폰</v-card-subtitle
                                             >
                                             <v-progress-linear
                                                 color="#94B3FD"
@@ -188,7 +189,7 @@
                         <v-row>
                             <v-col
                                 class="testLine ma-10 pa-0"
-                                v-for="card in cards2"
+                                v-for="card in cards"
                                 :key="card.goods_id"
                             >
                                 <v-card max-width="200">
@@ -242,53 +243,25 @@ export default {
             // goods:[],
             // icon: 'mdi-tag',
             tab: null,
-            cards2: [],
-            cards: [
-                {
-                    title: '스타벅스',
-                    src: 'coupon1.jpg',
-                    menu: '아이스 카페 아메리카노 Tall',
-                    point: '1',
-                    valid: '2022년 01월 31일'
-                },
-                {
-                    title: '할리스',
-                    src: 'coupon3.jpg',
-                    menu: '민트 초코칩 할리치노 R',
-                    point: '2',
-                    valid: '2022년 03월 28일'
-                },
-                {
-                    title: '굽네치킨',
-                    src: 'coupon7.jpg',
-                    menu: '굽네 오리지널+콜라1.25L',
-                    point: '5',
-                    valid: '2022년 02월 15일'
-                },
-                {
-                    title: '도미노피자',
-                    src: 'coupon8.jpg',
-                    menu: '포테이토(오리지널)L+콜라1.25L',
-                    point: '7',
-                    valid: '2022년 04월 22일'
-                },
-                {
-                    title: '크리스피크림도넛',
-                    src: 'coupon5.jpg',
-                    menu: '오리지널 글레이즈드 하프더즌',
-                    point: '2',
-                    valid: '2021년 12월 31일'
-                }
-            ],
-            nftItems: [],
-            items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails']
+            cards: [],
+            items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails'],
+            user: []
         }
     },
     created() {
         this.showUserGoods()
+        this.getUser()
     },
 
     methods: {
+        async getUser() {
+            var result = await this.$api('/user', 'post', {
+                param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'
+            })
+            this.user = result
+            console.log(this.user)
+        },
+
         async showUserGoods() {
             var result = await this.$api('/userGoods', 'get')
 
@@ -298,7 +271,7 @@ export default {
                     //     this.$store.state.web3.coinbase.toUpperCase() &&
                     item.user_goods_amount !== 0
                 ) {
-                    this.cards2.push(item)
+                    this.cards.push(item)
                 }
             }
         }
