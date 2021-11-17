@@ -29,6 +29,7 @@
                         >
                     </v-sheet>
                 </v-carousel-item>
+
                 <v-carousel-item>
                     <v-sheet
                         class="my-16"
@@ -55,6 +56,7 @@
                         </v-row>
                     </v-sheet>
                 </v-carousel-item>
+
                 <v-carousel-item>
                     <v-sheet
                         class="my-16"
@@ -81,6 +83,7 @@
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
+            <div class="scrollSelect d-flex justify-center"></div>
         </v-card>
     </v-sheet>
 </template>
@@ -137,9 +140,32 @@ export default {
 </script>
 <style scoped>
 .outline {
-    border: 3px solid black;
+    border: 2px solid black;
 }
 .container-fluid {
     max-width: 500px;
+}
+
+@keyframes sample-ani {
+    0% {
+        transform: translate(10, 10);
+    }
+    100% {
+        transform: translate(0, 20px);
+    }
+}
+.scrollSelect {
+    /* background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0 / cover; */
+    background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 150px;
+    margin: auto;
+    animation: sample-ani 3s linear infinite alternate;
+}
+.scrollSelect:hover {
+    animation-play-state: paused;
 }
 </style>
