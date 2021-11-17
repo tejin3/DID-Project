@@ -81,6 +81,7 @@
                                     내가 받는 총 보상 {{ point }} 포인트
                                 </p>
                             </v-card-text>
+
                             <v-btn
                                 color="primary"
                                 dark="dark"

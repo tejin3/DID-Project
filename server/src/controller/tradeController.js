@@ -13,9 +13,23 @@ const showGoods = async (req, res) => {
   }
 };
 
-const showUser = async (req, res) => {
+const showUsers = async (req, res) => {
   try {
     const results = await mysql.query("getUser");
+    res.status(200).send(results);
+  } catch (err) {
+    res.status(500).send({
+      error: err,
+    });
+  }
+};
+
+const showUser = async (req, res) => {
+  const userAccount = req.body.param;
+  console.log(userAccount);
+  try {
+    const results = await mysql.query("getUserByAccount", userAccount);
+    console.log(results);
     res.status(200).send(results);
   } catch (err) {
     res.status(500).send({
@@ -41,4 +55,4 @@ const exchangeGoods = async (req, res) => {
   }
 };
 
-module.exports = { showGoods, exchangeGoods, showUser };
+module.exports = { showGoods, exchangeGoods, showUsers, showUser };
