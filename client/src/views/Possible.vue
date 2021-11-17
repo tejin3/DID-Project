@@ -1,7 +1,7 @@
 <template>
-    <v-app>
+    <v-container fluid>
         <possible-layout />
-    </v-app>
+    </v-container>
 </template>
 <script>
 import PossibleLayout from '../layouts/possible/Index'

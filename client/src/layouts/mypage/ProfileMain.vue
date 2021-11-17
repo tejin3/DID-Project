@@ -104,9 +104,9 @@
                                                     참여완료한 설문
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
-                                                    ><v-text
+                                                    ><span
                                                         class="blue--text font-weight-bold"
-                                                        >22</v-text
+                                                        >22</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <Icon />
@@ -122,9 +122,9 @@
                                                     참여가능한 설문
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
-                                                    ><v-text
+                                                    ><span
                                                         class="blue--text font-weight-bold"
-                                                        >10</v-text
+                                                        >10</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <v-card-actions>
@@ -143,9 +143,9 @@
                                                     예약한 설문
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
-                                                    ><v-text
+                                                    ><span
                                                         class="blue--text font-weight-bold"
-                                                        >3</v-text
+                                                        >3</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <v-card-actions>
@@ -164,9 +164,9 @@
                                                     보유한 VC
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
-                                                    ><v-text
+                                                    ><span
                                                         class="blue--text font-weight-bold"
-                                                        >10</v-text
+                                                        >10</span
                                                     >개</v-card-subtitle
                                                 >
                                             </v-card>
@@ -179,24 +179,24 @@
                     <!-- tap value = 1, 쿠폰 탭일 때 -->
                     <v-tab-item>
                         <br />
-                        <v-text class="ma-10 text-h6"
+                        <span class="ma-10 text-h6"
                             >현재, 미사용 쿠폰
-                            <v-text class="red--text font-weight-bold">5</v-text
-                            >개가 있어요!</v-text
+                            <span class="red--text font-weight-bold">5</span
+                            >개가 있어요!</span
                         >
 
                         <v-row>
                             <v-col
                                 class="testLine ma-10 pa-0"
                                 v-for="card in cards2"
-                                :key="card.title"
+                                :key="card.goods_id"
                             >
                                 <v-card max-width="200">
                                     <v-img
                                         class="white--text align-end"
                                         height="170px"
                                         :src="
-                                            require(`@/assets/img/trade/${card.src}`)
+                                            require(`@/assets/img/trade/${card.goods_image_path}`)
                                         "
                                     >
                                         <!-- <v-card-title
@@ -206,18 +206,20 @@
                                     </v-img>
 
                                     <v-card-subtitle class="pb-0 text-center">
-                                        {{ card.title }}
+                                        {{ card.goods_issuer }}
                                     </v-card-subtitle>
                                     <v-card-subtitle
                                         class="black--text font-weight-bold"
                                     >
-                                        {{ card.menu }}
+                                        {{ card.goods_name }}
                                     </v-card-subtitle>
                                     <v-divider></v-divider>
                                     <v-card-text
                                         class="text--primary text-center"
                                     >
-                                        유효기간 <br />{{ card.valid }}
+                                        유효기간 <br />{{
+                                            card.goods_valid.slice(0, 10)
+                                        }}
                                     </v-card-text>
                                 </v-card>
                             </v-col>
@@ -289,8 +291,13 @@ export default {
     methods: {
         async showUserGoods() {
             var result = await this.$api('/userGoods', 'get')
+
             for (var item of result) {
-                if (item.user_account === this.$store.state.web3.coinbase) {
+                if (
+                    // item.user_account.toUpperCase() ===
+                    //     this.$store.state.web3.coinbase.toUpperCase() &&
+                    item.user_goods_amount !== 0
+                ) {
                     this.cards2.push(item)
                 }
             }

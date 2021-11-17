@@ -47,6 +47,7 @@ module.exports = {
   },
 
   getUserGoods: {
-    query: "select * from t_user_goods",
+    query:
+      "select T1.user_account, T1.user_goods_amount, T2.goods_name, T2.goods_issuer, T2.goods_valid, T2.goods_image_path from t_user_goods T1, t_goods T2 where T1.goods_id = T2.goods_id   ",
   },
 };

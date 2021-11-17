@@ -1,7 +1,7 @@
 <template>
-    <v-container>
+    <v-app>
         <possible-view />
-    </v-container>
+    </v-app>
 </template>
 
 <script>
