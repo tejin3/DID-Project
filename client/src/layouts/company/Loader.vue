@@ -9,10 +9,10 @@
         >
             검증
         </v-btn>
-        <v-dialog v-model="dialog" hide-overlay persistent width="300">
+        <v-dialog v-model="dialog" hide-overlay persistent width="500">
             <v-card color="primary" light>
                 <v-card-text>
-                    잠시만 기다려 주세요 검증 중 입니다
+                    잠시만 기다려 주세요 해당 유저의 정보를 불러오는 중입니다.
                     <v-progress-linear
                         indeterminate
                         color="white"
@@ -21,10 +21,10 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <v-dialog v-model="dialog1" hide-overlay width="300">
+        <v-dialog v-model="dialog1" hide-overlay width="500" @>
             <v-card color="primary" light>
                 <v-card-text class="pa-5">
-                    검증 결과 : 정상
+                    {{ decMsg }}
                     <!-- <v-progress-linear
                         indeterminate
                         color="white"
@@ -37,17 +37,25 @@
 </template>
 <script>
 export default {
+    props: {
+        userVp: {
+            type: String,
+            default: ''
+        }
+    },
+
     data() {
         return {
             dialog: false,
-            dialog1: false
+            dialog1: false,
+            decMsg: null
         }
     },
 
     watch: {
         dialog(val) {
             if (!val) return
-
+            this.decrypt()
             setTimeout(() => this.modalUp(), 4000)
             // alert('hello')
         }
@@ -56,7 +64,15 @@ export default {
         modalUp() {
             this.dialog = false
             this.dialog1 = true
+
             // alert('검증결과 : 정상')
+        },
+        // 암호화된 VC 파일을 가져와 복호화 한다
+        async decrypt() {
+            this.decMsg = await window.ethereum.request({
+                method: 'eth_decrypt',
+                params: [this.userVp, this.$store.state.web3.coinbase]
+            })
         }
     }
 }

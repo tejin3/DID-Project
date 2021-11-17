@@ -18,6 +18,7 @@
                         v-model="selected"
                         :label="n.user_account"
                         :value="n.user_account"
+                        @click="vpData(n.user_vp)"
                     ></v-checkbox>
                 </v-card-text>
                 <v-divider></v-divider>
@@ -25,7 +26,7 @@
                     <v-btn color="blue darken-1" text @click="dialog = false">
                         Close
                     </v-btn>
-                    <Loader />
+                    <Loader :userVp="userVp1" />
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -51,14 +52,22 @@ export default {
             default: 0
         }
     },
+    created() {
+        console.log(this.completePeople)
+    },
     data() {
         return {
             dialogm1: '',
             dialog: false,
             selected: [],
-            surveyData1: []
+            surveyData1: [],
+            userVp1: null
         }
     },
-    methods: {}
+    methods: {
+        vpData(vp) {
+            this.userVp1 = vp
+        }
+    }
 }
 </script>

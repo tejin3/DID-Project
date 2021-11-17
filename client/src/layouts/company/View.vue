@@ -244,6 +244,7 @@ export default {
             try {
                 // 3. 완료된 목록을 불러와서 저장한다.
                 this.users = await this.$api('/completes', 'get')
+                console.log(this.users)
             } catch (err) {
                 console.log('유저 데이터 불러오기 실패')
             }
