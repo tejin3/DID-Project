@@ -9,6 +9,7 @@
         >
             검증
         </v-btn>
+        <!-- 첫번째 모달창 -->
         <v-dialog v-model="dialog" hide-overlay persistent width="500">
             <v-card color="primary" light>
                 <v-card-text>
@@ -21,9 +22,11 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
+        <!-- 두번째 모달창 -->
         <v-dialog v-model="dialog1" hide-overlay width="500" @>
             <v-card color="primary" light>
                 <v-card-text class="pa-5">
+                    검증자 : 행정안정부 did 주소 2개
                     {{ decMsg }}
                     <!-- <v-progress-linear
                         indeterminate
@@ -61,6 +64,7 @@ export default {
         }
     },
     methods: {
+        // 모달창을 번갈아 가면서 띄우기 위해
         modalUp() {
             this.dialog = false
             this.dialog1 = true

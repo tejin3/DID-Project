@@ -6,6 +6,7 @@
                     {{ title }}
                 </v-btn>
             </template>
+
             <v-card>
                 <v-card-title>Select DID</v-card-title>
                 <v-divider></v-divider>
@@ -14,12 +15,23 @@
                     :key="i"
                     v-for="(n, i) in completePeople"
                 >
+                    <!-- 설문 참여 완료한 사람들 중 특정 vp를 공개한 사람 -->
                     <v-checkbox
+                        v-if="n.user_vp != null"
                         v-model="selected"
                         :label="n.user_account"
                         :value="n.user_account"
                         @click="vpData(n.user_vp)"
                     ></v-checkbox>
+                    <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
+                    <v-checkbox
+                        v-else
+                        disabled
+                        v-model="selected"
+                        :label="n.user_account"
+                        :value="n.user_account"
+                    >
+                    </v-checkbox>
                 </v-card-text>
                 <v-divider></v-divider>
                 <v-card-actions>
@@ -65,6 +77,7 @@ export default {
         }
     },
     methods: {
+        // vp를 Loader에 전달하기 위해 저장
         vpData(vp) {
             this.userVp1 = vp
         }

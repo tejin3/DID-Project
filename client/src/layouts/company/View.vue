@@ -1,5 +1,6 @@
 <template>
     <v-container fluid>
+        <!-- 맨 위에 맨트 -->
         <v-container>
             <p class="font-weight-bold text-h2 text-center">
                 we :DID result
@@ -9,6 +10,7 @@
                 weDIDsurvey의 정확한 설문 결과를 확인하세요
             </p>
         </v-container>
+        <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
             <v-bottom-navigation :value="value" color="deep-purple" horizontal>
                 <v-btn>
@@ -30,6 +32,7 @@
                 </v-btn>
             </v-bottom-navigation>
         </v-container>
+        <!-- 설문결과 카드 -->
         <v-row>
             <v-col
                 v-for="(m, n) in surveyData"
@@ -143,9 +146,9 @@
                             mandatory
                             v-model="m.selection"
                         >
-                            <v-chip>설문중</v-chip>
+                            <v-chip small>설문중</v-chip>
 
-                            <v-chip>설문완료</v-chip>
+                            <v-chip small>설문완료</v-chip>
                         </v-chip-group>
                     </v-card-text>
 
@@ -153,15 +156,29 @@
                         color="purple lighten-2 "
                         class="mx-4"
                     ></v-divider>
-
-                    <v-card-title>요청 VC List</v-card-title>
+                    <v-card-text>
+                        <v-chip-group
+                            active-class="deep-purple accent-4 white--text"
+                            column
+                            mandatory
+                        >
+                            <v-chip small>요청 VC : </v-chip>
+                            <!-- 요청한 vc list -->
+                            <v-chip small :key="k" v-for="(w, k) in m.vcList">
+                                {{ w }}
+                            </v-chip></v-chip-group
+                        >
+                    </v-card-text>
 
                     <v-card-text>
                         <v-chip-group column>
                             <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
-                            <v-chip :key="k" v-for="(w, k) in m.vcList"
-                                ><DialogScroll
-                                    :title="w"
+                            <!-- :key="k" v-for="(w, k) in m.vcList" -->
+
+                            <v-chip>
+                                <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
+                                <DialogScroll
+                                    title="vp를 제공한 설문조사 참가자"
                                     :completePeople="
                                         users.filter(
                                             filtering =>
@@ -175,22 +192,22 @@
                 </v-card>
             </v-col>
         </v-row>
-        <button @click="getSurveyContractInstance()">survey</button>
+        <!-- <button @click="getSurveyContractInstance()">survey</button> -->
         <!-- <button @click="test()">test</button> -->
         <!-- <div>{{ sC }}</div> -->
-        <button @click="callData1(1)">
+        <!-- <button @click="callData1(1)">
             test
-        </button>
-        <div>{{ callData }}</div>
-        <button @click="vcCon()">vc</button>
+        </button> -->
+        <!-- <div>{{ callData }}</div>
+        <button @click="vcCon()">vc</button> -->
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
     </v-container>
 </template>
 <script>
 // import Slider from './Slider.vue'
 import DialogScroll from './DialogScroll.vue'
-import getContract from '@/service/getContract'
-import getContract1 from '@/service/getContract1'
+// import getContract from '@/service/getContract'
+// import getContract1 from '@/service/getContract1'
 
 export default {
     name: 'CompanyView',
@@ -261,27 +278,27 @@ export default {
                     // 먼저 더미 배열 하나 생성
                     var vcList = []
                     var tempCondition = conditions[i].condition
-
+                    // vc 정보만 잘래내서 배열에 담음
                     for (const vc of tempCondition) {
                         var key = vc.split(' ')[0]
                         vcList.push(key)
                     }
-
+                    // 중복되는 애들 합친뒤 다시 배열 형태로 바꿔서 저장
                     var tempArray = new Set(vcList)
                     surveys[i].vcList = Array.from(tempArray)
                 }
             }
 
             return surveys
-        },
-        surveyCon() {
-            this.$store.dispatch('getSurveyContractInstance')
-            // await this.$store.dispatch('web3Register')
-        },
-        vcCon() {
-            this.$store.dispatch('getVcContractInstance')
-            // await this.$store.dispatch('web3Register')
-        },
+        }
+        // surveyCon() {
+        //     this.$store.dispatch('getSurveyContractInstance')
+        //     // await this.$store.dispatch('web3Register')
+        // },
+        // vcCon() {
+        //     this.$store.dispatch('getVcContractInstance')
+        //     // await this.$store.dispatch('web3Register')
+        // },
         // test() {
         //     console.log('hello')
         //     console.log(this.$store.state.surveyContract._address)
@@ -289,60 +306,60 @@ export default {
         //     this.sC = this.$store.state.surveyContract
         // },
         // 설문조사
-        getSurveyContractInstance() {
-            console.log('startSurvey')
-            var getContract21 = getContract()
-            this.sC = getContract21
-            console.log('surveyContractInstance', this.sC)
-            this.sC.events.addUser({}, async (error, event) => {
-                console.log(error)
-                console.log(event)
-                await this.$api('/CompletePeople', 'post', {
-                    param: {
-                        survey_id: event.returnValues[0],
-                        user_account: event.returnValues[1]
-                    }
-                })
-                // // 설문조사 번호
-                // event.returnValues[0]
-                // // 설문조사 완료한 사람의 주소
-                // event.returnValues[1]
-            })
-        },
-        callData1(_num) {
-            this.sC.methods
-                .recordSurvey(_num)
-                .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
-                .then(receipt => {
-                    console.log(receipt)
-                })
-        },
-        // 설문조사
-        // vc 요청
-        getVcContractInstance() {
-            console.log('startVc')
-            var getContract21 = getContract1()
-            this.vC = getContract21
-            console.log('vcContractInstance', this.vC)
-            this.vC.events.vcCallApprovals({}, async (error, event) => {
-                console.log(error)
-                console.log(event)
-                // // vc 요청한 사람 계정
-                // event.returnValues[0]
-                // // 요청한 vc 이름
-                // event.returnValues[1]
-                // // 요청한 시간
-                // event.returnValues[2]
-            })
-        },
-        vcData(vcName) {
-            this.vC.methods
-                .vcCall(vcName)
-                .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
-                .then(receipt => {
-                    console.log(receipt)
-                })
-        }
+        // getSurveyContractInstance() {
+        //     console.log('startSurvey')
+        //     var getContract21 = getContract()
+        //     this.sC = getContract21
+        //     console.log('surveyContractInstance', this.sC)
+        //     this.sC.events.addUser({}, async (error, event) => {
+        //         console.log(error)
+        //         console.log(event)
+        //         await this.$api('/CompletePeople', 'post', {
+        //             param: {
+        //                 survey_id: event.returnValues[0],
+        //                 user_account: event.returnValues[1]
+        //             }
+        //         })
+        //         // // 설문조사 번호
+        //         // event.returnValues[0]
+        //         // // 설문조사 완료한 사람의 주소
+        //         // event.returnValues[1]
+        //     })
+        // },
+        // callData1(_num) {
+        //     this.sC.methods
+        //         .recordSurvey(_num)
+        //         .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
+        //         .then(receipt => {
+        //             console.log(receipt)
+        //         })
+        // },
+        // // 설문조사
+        // // vc 요청
+        // getVcContractInstance() {
+        //     console.log('startVc')
+        //     var getContract21 = getContract1()
+        //     this.vC = getContract21
+        //     console.log('vcContractInstance', this.vC)
+        //     this.vC.events.vcCallApprovals({}, async (error, event) => {
+        //         console.log(error)
+        //         console.log(event)
+        //         // // vc 요청한 사람 계정
+        //         // event.returnValues[0]
+        //         // // 요청한 vc 이름
+        //         // event.returnValues[1]
+        //         // // 요청한 시간
+        //         // event.returnValues[2]
+        //     })
+        // },
+        // vcData(vcName) {
+        //     this.vC.methods
+        //         .vcCall(vcName)
+        //         .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
+        //         .then(receipt => {
+        //             console.log(receipt)
+        //         })
+        // }
         // vp 요청 기록
     }
 }
