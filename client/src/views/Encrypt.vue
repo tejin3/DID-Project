@@ -6,7 +6,7 @@
         <v-row>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <h1>계정</h1>
-                <h2>{{web3.coinbase}}</h2>
+                <h2>{{ web3.coinbase }}</h2>
             </v-col>
             <v-col sm="10" offset-sm="1" md="8" offset-md="2">
                 <v-btn elevation="2" @click="getEncryptionPublicKey">
@@ -42,7 +42,7 @@
 </template>
 <script>
 // import MyPond from '@/components/Cards/MyPond'
-import ProfileHeader from '@/components/MyPage/ProfileHeader'
+import ProfileHeader from '@/layouts/mypage/ProfileHeader'
 import vc from '@/assets/vc/vc.json'
 import { mapState } from 'vuex'
 
@@ -67,12 +67,9 @@ export default {
             'web3' // store에 저장된 web3를 mapState 헬퍼를 사용해서 가져온다
         ])
     },
-    mounted() {
-    },
+    mounted() {},
     unmounted() {},
     methods: {
-
-
         // 계정 주소를 복사한다
         async copyAddress() {
             try {
@@ -141,7 +138,10 @@ export default {
         async decrypt() {
             this.decMsg = await window.ethereum.request({
                 method: 'eth_decrypt',
-                params: [localStorage.getItem('intoVp'), this.$store.state.web3.coinbase]
+                params: [
+                    localStorage.getItem('intoVp'),
+                    this.$store.state.web3.coinbase
+                ]
             })
             alert(this.decMsg)
         },
