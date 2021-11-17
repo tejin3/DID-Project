@@ -217,7 +217,9 @@
                                     <v-card-text
                                         class="text--primary text-center"
                                     >
-                                        유효기간 <br />{{ card.goods_valid }}
+                                        유효기간 <br />{{
+                                            card.goods_valid.slice(0, 10)
+                                        }}
                                     </v-card-text>
                                 </v-card>
                             </v-col>
