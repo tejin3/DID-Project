@@ -99,7 +99,7 @@
             @close-modal="dialog2 = false"
         ></SurveyModal>
         <!-- {{ this.$store.state.matchedSurvey }} -->
-        <!-- <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn> -->
+        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
         <!-- {{ this.answers }} -->
     </div>
 
@@ -187,7 +187,9 @@ export default {
                     question4: '인지도'
                 }
             ],
-            companyAccount: ''
+            companyAccount: '',
+            user_account: null,
+            encMsg: null
         }
     },
     computed: {
@@ -265,7 +267,7 @@ export default {
                         surveyId: this.surveyId
                     }
                 })
-                this.callData1(this.surveyId)
+                // this.callData1(this.surveyId)
             }
         },
 
@@ -277,10 +279,14 @@ export default {
             this.sC.events.addUser({}, async (error, event) => {
                 console.log(error)
                 console.log(event)
+
+                // this.user_account = event.returnValues[1]
+
                 await this.$api('/CompletePeople', 'post', {
                     param: {
                         survey_id: event.returnValues[0],
-                        user_account: event.returnValues[1]
+                        user_account: event.returnValues[1],
+                        user_vp: this.$store.state.encMsg
                     }
                 })
                 // // 설문조사 번호
@@ -289,14 +295,7 @@ export default {
                 // event.returnValues[1]
             })
         },
-        callData1(_num) {
-            this.sC.methods
-                .recordSurvey(_num)
-                .send({ from: this.$store.state.web3.coinbase })
-                .then(receipt => {
-                    console.log(receipt)
-                })
-        },
+
         // submit() {
         //     console.log(this.model, this.question, this.i)
         // },

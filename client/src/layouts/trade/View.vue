@@ -226,7 +226,7 @@ export default {
         async showGoods() {
             this.goods = await this.$api('/trade', 'get')
             console.log(this.goods)
-            await this.$api('/user', 'get').then(res => {
+            await this.$api('/users', 'get').then(res => {
                 console.log(res)
                 for (var user of res) {
                     if ((user.user_account = this.$store.state.web3.coinbase)) {

@@ -2,7 +2,7 @@
     <!-- 네비바 전체 윤곽 -->
     <div>
         <!-- drawer is true -->
-        <v-app-bar elevation="0" color="transparent">
+        <v-app-bar elevation="0" color="transparent" class="mt-3">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold white--text">
@@ -14,6 +14,32 @@
 
             <!-- 네비바 오른쪽 부분 2 : 화면이 클 때 -->
             <v-toolbar-items class="hidden-xs-only">
+                <span
+                    to="mypage"
+                    text
+                    class="py-2 mr-2 mt-1 white--text"
+                    v-if="this.loginStatus == true"
+                >
+                    <v-avatar class="avatar" size="40">
+                        <img src="@/assets/img/profile.jpg" alt="John" />
+                    </v-avatar>
+                    <v-chip
+                        class="address pl-7 pr-4 pt-2"
+                        color="#Fee440"
+                        style="color:black;font-weight:bold"
+                    >
+                        {{
+                            `${this.$store.state.web3.coinbase.substr(
+                                0,
+                                2
+                            )}  ...
+                                ${this.$store.state.web3.coinbase.substr(
+                                    38,
+                                    41
+                                )}`
+                        }}
+                    </v-chip>
+                </span>
                 <v-btn
                     to="company"
                     text
@@ -121,3 +147,11 @@ module.exports = {
     }
 }
 </script>
+<style>
+.avatar {
+    position: fixed;
+    left: 1.2rem;
+    z-index: 1;
+    border: 4px solid #ffd233;
+}
+</style>

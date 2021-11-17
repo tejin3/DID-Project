@@ -16,19 +16,44 @@
             >
                 <DefaultBar />
                 <v-carousel-item>
-                    <v-sheet class="my-16" color="hsl(258, 98%, 70%)">
-                        <h2>We DID survey</h2>
-                        <p class="mt-4">
-                            시작해보세요
-                        </p>
-                        <v-btn
-                            color="secondary"
-                            elevation="2"
-                            @click="metamask()"
-                            >시작하기!</v-btn
+                    <v-sheet
+                        class="my-10"
+                        color="hsl(258, 98%, 70%)"
+                        height="100vh"
+                    >
+                        <Flicking
+                            :options="{
+                                align: 'center',
+                                circular: true
+                            }"
+                            :viewportTag="'div'"
+                            :cameraTag="'div'"
+                            :plugins="plugins"
+                            @move-end="onMoveEnd"
                         >
+                            <div
+                                :key="i"
+                                v-for="(d, i) in surveys"
+                                class="panel mx-10"
+                            >
+                                <v-card
+                                    elevation="3"
+                                    class="mx-auto"
+                                    max-width="344"
+                                >
+                                    <v-img
+                                        :src="
+                                            `http://localhost:3000/download/${d.survey_image_path}`
+                                        "
+                                        height="200px"
+                                        style="border-radius: 25% 25% 25% 25"
+                                    ></v-img>
+                                </v-card>
+                            </div>
+                        </Flicking>
                     </v-sheet>
                 </v-carousel-item>
+
                 <v-carousel-item>
                     <v-sheet
                         class="my-16"
@@ -55,6 +80,7 @@
                         </v-row>
                     </v-sheet>
                 </v-carousel-item>
+
                 <v-carousel-item>
                     <v-sheet
                         class="my-16"
@@ -81,19 +107,27 @@
                     </v-sheet>
                 </v-carousel-item>
             </v-carousel>
+            <div class="scrollSelect d-flex justify-center"></div>
         </v-card>
     </v-sheet>
 </template>
 <script>
 import DefaultBar from '../layouts/default/Navbar.vue'
+import { Flicking } from '@egjs/vue-flicking'
+import { AutoPlay } from '@egjs/flicking-plugins'
+const plugins = [
+    new AutoPlay({ duration: 1000, direction: 'NEXT', stopOnHover: true })
+]
 
 export default {
     name: '',
-    components: { DefaultBar },
+    components: { DefaultBar, Flicking },
     data() {
         return {
-            sampleData: '',
+            surveys: [],
+            plugins,
             model: 0,
+            list: [0, 1, 2, 3, 4],
             items: [
                 {
                     src:
@@ -113,9 +147,15 @@ export default {
     },
     setup() {},
     mounted() {},
-
+    created() {
+        this.getSurvey()
+    },
     unmounted() {},
     methods: {
+        async getSurvey() {
+            // console.log('hi', this.$get()
+            this.surveys = await this.$get('/surveys')
+        },
         onScroll() {
             this.model++
         },
@@ -135,11 +175,43 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="scss">
+@import '~@egjs/vue-flicking/dist/flicking.css';
+@import '~@egjs/flicking-plugins/dist/flicking-plugins.css';
+@keyframes sample-ani {
+    0% {
+        transform: translate(10, 10);
+    }
+    100% {
+        transform: translate(0, 20px);
+    }
+}
+
 .outline {
-    border: 3px solid black;
+    border: 2px solid black;
 }
 .container-fluid {
     max-width: 500px;
+}
+
+.scrollSelect {
+    /* background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0 / cover; */
+    background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 150px;
+    margin: auto;
+    animation: sample-ani 3s linear infinite alternate;
+}
+.scrollSelect:hover {
+    animation-play-state: paused;
+}
+.panel {
+    background-color: white;
+    width: 25rem;
+    height: 30rem;
+    border-radius: 5rem 5rem 5rem 5rem;
 }
 </style>
