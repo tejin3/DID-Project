@@ -294,8 +294,8 @@ export default {
 
             for (var item of result) {
                 if (
-                    item.user_account.toUpperCase() ===
-                        this.$store.state.web3.coinbase.toUpperCase() &&
+                    // item.user_account.toUpperCase() ===
+                    //     this.$store.state.web3.coinbase.toUpperCase() &&
                     item.user_goods_amount !== 0
                 ) {
                     this.cards2.push(item)
