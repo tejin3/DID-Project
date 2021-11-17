@@ -110,6 +110,8 @@ export default {
             const sigUtil = require('eth-sig-util')
             // eth-sig-util: A small collection of Ethereum signing functions
             const msg = JSON.stringify(this.vc)
+            console.log(this.vc)
+            console.log(msg)
             // Buffer는 binary의 데이터를 담을 수 있는 object
             const buf = Buffer.from(
                 JSON.stringify(

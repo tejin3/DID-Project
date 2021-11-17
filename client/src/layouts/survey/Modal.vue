@@ -167,7 +167,8 @@ export default {
             ],
             selection: [],
             selectVp: [],
-            point: 0
+            point: 0,
+            encMsg: null
         }
     },
     setup() {},
@@ -200,7 +201,8 @@ export default {
                 .then(receipt => {
                     console.log(receipt)
                 })
-            console.log(this.encryptedMessage())
+            this.encryptedMessage()
+            this.callData1(this.surveyId)
         },
 
         // 동의 버튼을 누를시 적립되는 포인트
@@ -232,12 +234,15 @@ export default {
         // },
 
         // 회사 암호화된 공개키로 암호화
-        encryptedMessage() {
+        async encryptedMessage() {
             const sigUtil = require('eth-sig-util')
             // eth-sig-util: A small collection of Ethereum signing functions
             const msg = JSON.stringify(this.selectVp)
+            console.log('msg', msg)
+            // 오브젝트화 시키자
+
             // Buffer는 binary의 데이터를 담을 수 있는 object
-            this.sC.methods
+            await this.sC.methods
                 .companyPublic(this.surveyId)
                 .call()
                 .then(result => {
@@ -252,7 +257,18 @@ export default {
                         ),
                         'utf8'
                     )
-                    return '0x' + buf.toString('hex')
+                    return (this.encMsg = '0x' + buf.toString('hex'))
+                })
+            console.log('암호화됨', this.encMsg)
+            this.$store.commit('encMsg', this.encMsg)
+        },
+
+        callData1(_num) {
+            this.sC.methods
+                .recordSurvey(_num)
+                .send({ from: this.$store.state.web3.coinbase })
+                .then(receipt => {
+                    console.log(receipt)
                 })
         }
     }

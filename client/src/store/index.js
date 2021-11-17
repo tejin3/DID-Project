@@ -21,9 +21,10 @@ export default new Vuex.Store({
             survey: [],
             decryptVc: [],
             matchedSurvey: [],
-            vcItemList: []
+            vcItemList: [],
             // surveyContract: {},
             // vcContract: {}
+            encMsg: null
         }
     },
     mutations: {
@@ -63,6 +64,10 @@ export default new Vuex.Store({
         // vcItemList store에 저장/삭제
         addVcItemList(state, data) {
             state.vcItemList = data
+        },
+
+        encMsg(state, data) {
+            state.encMsg = data
         }
 
         // makeSurveyContract(state, data) {
