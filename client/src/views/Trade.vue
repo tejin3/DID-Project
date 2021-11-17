@@ -1,7 +1,7 @@
 <template>
-    <v-app>
+    <v-container fluid>
         <TradeLayout />
-    </v-app>
+    </v-container>
 </template>
 
 <script>

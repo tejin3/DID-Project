@@ -1,38 +1,36 @@
 <template>
     <!-- 버튼 -->
-    <v-container fluid>
-        <v-container>
-            <p class="font-weight-bold text-h2 text-center">
-                we :DID survey
-            </p>
-            <p class="text-center">
-                더 많이 참여하고 더 많이 받아가세요
-            </p>
-        </v-container>
+    <v-container>
+        <p class="font-weight-bold text-h2 text-center">
+            we :DID survey
+        </p>
+        <p class="text-center">
+            더 많이 참여하고 더 많이 받아가세요
+        </p>
+
         <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
-        <v-container>
-            <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
-            <v-dialog v-model="dialog" max-width="400">
-                <v-card>
-                    <img width="50" src="@/assets/img/metamask.svg" />
-                    <v-card-text class="text-h6 text-center">
-                        지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
-                    </v-card-text>
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
+        <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
+        <v-dialog v-model="dialog" max-width="400">
+            <v-card>
+                <img width="50" src="@/assets/img/metamask.svg" />
+                <v-card-text class="text-h6 text-center">
+                    지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
+                </v-card-text>
 
-                        <v-btn
-                            color="purple darken-1"
-                            text
-                            @click=";[connectMask(), (dialog = false)]"
-                        >
-                            지갑 연결하기
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
-        </v-container>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+
+                    <v-btn
+                        color="purple darken-1"
+                        text
+                        @click=";[connectMask(), (dialog = false)]"
+                    >
+                        지갑 연결하기
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
 
         <!-- 탭 제목 영역 -->
         <v-toolbar elevation="3" color="#94B3FD">
@@ -89,7 +87,6 @@
                 >
             </v-tabs>
         </v-toolbar>
-
         <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
@@ -239,7 +236,7 @@ export default {
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
             // console.log('hi', this.$get()
-            this.surveys = await this.$get('/surveys')
+            this.surveys = await this.$api('/surveys', 'get')
         },
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
@@ -274,7 +271,7 @@ export default {
         },
         // d-day 보여준다
         async discountDay() {
-            this.dDays = await this.$get('/date')
+            this.dDays = await this.$api('/date', 'get')
             // result =>
             // [
             // { dday: 19 },
