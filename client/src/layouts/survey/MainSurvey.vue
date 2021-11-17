@@ -20,22 +20,11 @@
                         :key="i"
                     >
                         <div style="font-size: 2.5em; margin-top:50px;">
-                            <!-- <div class="text-h3 mt-10 ml-5"> -->
                             {{ question.quesiton_order }}.
                             {{ question.quesiton_content }}
-                            <!-- {{ model }} 0~5개 총 6개 -->
-                            <!-- </div> -->
                         </div>
-
-                        <!-- {{ t_orders[i] }}
-
-                        <p v-for="(orders, i) in t_orders[i]" :key="i">
-                            {{ orders }}
-                        </p> -->
-                        <!-- radios로 default 설정합니다.-->
-
                         <v-radio-group
-                            class="d-flex align-center mb-6 "
+                            class="d-flex align-center "
                             v-model="radios"
                             v-if="model < questions.length - 1"
                         >
@@ -89,29 +78,6 @@
                 </v-parallax>
             </v-carousel>
         </v-card>
-
-        <!-- test -->
-        <!-- <v-card
-            style="width: 100%; height: 100%; subheading mt-16 "
-            elevation="16   "
-        >
-            <v-carousel style="width: 1000px; height: 800px; mt-16 subheadings">
-                <v-carousel-item
-                    v-for="(item, i) in items"
-                    :key="i"
-                    :src="item.src"
-                    reverse-transition="fade-transition"
-                    transition="fade-transition"
-                    style="width: 100%; height: 100%;"
-                >
-                <v-parallax
-                    style="height:100%;"
-                    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-                    aspect-ratio="1.4"
-                ></v-parallax>
-                </v-carousel-item>
-            </v-carousel>
-        </v-card> -->
         <br />
         <SurveyModal
             :dialog="dialog"
@@ -132,8 +98,9 @@
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
-        {{ this.$store.state.matchedSurvey }}
-        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
+        <!-- {{ this.$store.state.matchedSurvey }} -->
+        <!-- <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn> -->
+        <!-- {{ this.answers }} -->
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -221,9 +188,6 @@ export default {
                 }
             ],
             companyAccount: ''
-            // continuous = false
-
-            // check: 11
         }
     },
     computed: {
@@ -234,7 +198,6 @@ export default {
     setup() {},
     created() {
         // this.questionsId = this.$route.query.question_id
-
         this.surveyId = this.$route.query.surveyId
         this.getQuestions()
         this.userInput = ''
@@ -276,8 +239,8 @@ export default {
                 // 만약 model이 this.questions.length와 같지않으면
                 console.log('if문_this.model', this.radios)
                 var tempObj = {}
-                tempObj.questionsId = this.radios
-                tempObj.answerValue = this.userInput // userInput을 담는것은 answerValue이다.
+                tempObj.questionsId = this.model + 1
+                tempObj.answerValue = this.radios + 1 // userInput을 담는것은 answerValue이다.
 
                 console.log('this.tempObjthis.tempObjthis.tempObj', tempObj)
 
@@ -286,16 +249,9 @@ export default {
                 console.log('this.answers', this.answers)
                 this.userInput = ''
                 this.model++
-
-                // this.$refs.focus.focus() ->  ref="focus" <-이후에 작업해보기
             } else {
-                // 임시객체만든다.
-                // var tempObj = {}
-                // 키값에 맞춰 값을 넣어준다.
-                // tempObj.questionsId = this.questionsId
-                // tempObj.answers = this.answers[0]
                 tempObj = {}
-                tempObj.questionsId = this.model
+                tempObj.questionsId = this.model + 1
                 tempObj.answerValue = this.userInput
 
                 this.answers.push(tempObj)
@@ -305,10 +261,6 @@ export default {
                 this.$api('/answers', 'post', {
                     param: {
                         answers: this.answers,
-                        // {
-                        //     questionsId: this.questionsId,
-                        //     answer: this.answers
-                        // }
                         userAccount: this.$store.state.web3.coinbase,
                         surveyId: this.surveyId
                     }
