@@ -191,12 +191,15 @@ export default {
                 .recordVP(
                     this.surveyId,
                     stringVp.slice(10),
+                    // 회사 주소
                     '0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71'
                 )
                 .send({ from: this.$store.state.web3.coinbase })
+                // 내 주소
                 .then(receipt => {
                     console.log(receipt)
                 })
+            console.log(this.encryptedMessage())
         },
 
         // 동의 버튼을 누를시 적립되는 포인트
@@ -218,12 +221,37 @@ export default {
             })
         },
 
-        record(surveyId, vpName, companyAccount) {
+        // record(surveyId, vpName, companyAccount) {
+        //     this.sC.methods
+        //         .recordVP(surveyId, vpName, companyAccount)
+        //         .send({ from: this.$store.state.web3.coinbase })
+        //         .then(receipt => {
+        //             console.log(receipt)
+        //         })
+        // },
+
+        // 회사 암호화된 공개키로 암호화
+        encryptedMessage() {
+            const sigUtil = require('eth-sig-util')
+            // eth-sig-util: A small collection of Ethereum signing functions
+            const msg = JSON.stringify(this.selectVp)
+            // Buffer는 binary의 데이터를 담을 수 있는 object
             this.sC.methods
-                .recordVP(surveyId, vpName, companyAccount)
-                .send({ from: this.$store.state.web3.coinbase })
-                .then(receipt => {
-                    console.log(receipt)
+                .companyPublic(this.surveyId)
+                .call()
+                .then(result => {
+                    console.log('회사 암호화된 공개키', result)
+                    const buf = Buffer.from(
+                        JSON.stringify(
+                            sigUtil.encrypt(
+                                result,
+                                { data: msg },
+                                'x25519-xsalsa20-poly1305'
+                            )
+                        ),
+                        'utf8'
+                    )
+                    return '0x' + buf.toString('hex')
                 })
         }
     }

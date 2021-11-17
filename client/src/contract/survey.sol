@@ -14,6 +14,8 @@ contract survey {
     // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
     
     mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
+    
+    mapping(uint => string) public companyPublic;
 
     event addUser(uint, address);
     event recordVPList(uint, address, address, string);
@@ -51,4 +53,8 @@ contract survey {
         // 디비저장        
     }
     
+    function companyEncrptPublic (uint _surveyId, string memory _publicKey)public {
+        require(msg.sender == owner);
+        companyPublic[_surveyId] = _publicKey;
+    }
 }
