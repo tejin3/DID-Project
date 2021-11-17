@@ -43,7 +43,7 @@
                             <v-app-bar
                                 dark
                                 class="d-flex justify-center mb-1"
-                                color="#263238"
+                                color="#9568fd"
                                 height="40px"
                             >
                                 <div>
@@ -60,10 +60,7 @@
                                         :key="i"
                                         cols="12"
                                     >
-                                        <v-card
-                                            max-width="180"
-                                            max-height="150"
-                                        >
+                                        <v-card>
                                             <v-img
                                                 class="white--text align-end"
                                                 height="60px"
@@ -97,7 +94,7 @@
                                                     v-if="
                                                         survey.isBooked == true
                                                     "
-                                                    class="ml-2 mb-13 reservationBtn"
+                                                    class="ml-5 reservationBtn"
                                                     outlined
                                                     rounded
                                                     color="white"
@@ -107,7 +104,7 @@
                                                 </v-btn>
                                                 <v-btn
                                                     v-else
-                                                    class="ml-2 disabledBtn"
+                                                    class="ml-5 disabledBtn"
                                                     outlined
                                                     disabled
                                                     rounded
