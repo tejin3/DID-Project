@@ -22,7 +22,6 @@
                         height="100vh"
                     >
                         <Flicking
-                            class="test"
                             :options="{
                                 align: 'center',
                                 circular: true
@@ -204,7 +203,7 @@ export default {
     width: 120px;
     height: 150px;
     margin: auto;
-    animation: sample-ani 5s linear infinite alternate;
+    animation: sample-ani 3s linear infinite alternate;
 }
 .scrollSelect:hover {
     animation-play-state: paused;
@@ -214,23 +213,5 @@ export default {
     width: 25rem;
     height: 30rem;
     border-radius: 5rem 5rem 5rem 5rem;
-}
-
-@keyframes sample-ani-test {
-    0% {
-        transform: translate(0, 50);
-    }
-    50% {
-    }
-    100% {
-        transform: translate(0, -50px);
-    }
-}
-
-.test {
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    animation: sample-ani-test 3s linear infinite alternate;
 }
 </style>
