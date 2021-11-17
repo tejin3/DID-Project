@@ -1,8 +1,13 @@
 <template>
     <v-row justify="center">
-        <v-dialog v-model="dialog" scrollable max-width="500px">
+        <v-dialog v-model="dialog" scrollable persistent max-width="500px">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                <v-btn
+                    color="deep-purple accent-4"
+                    class="white--text"
+                    v-bind="attrs"
+                    v-on="on"
+                >
                     {{ title }}
                 </v-btn>
             </template>
@@ -65,7 +70,7 @@ export default {
         }
     },
     created() {
-        console.log(this.completePeople)
+        // console.log(this.completePeople)
     },
     data() {
         return {
