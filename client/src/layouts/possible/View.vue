@@ -22,7 +22,7 @@
                     <v-spacer></v-spacer>
 
                     <v-btn
-                        color="purple darken-1"
+                        color="blue darken-1"
                         text
                         @click=";[connectMask(), (dialog = false)]"
                     >
@@ -50,15 +50,15 @@
                 <!-- tap value = -->
                 <v-tab
                     class="font-weight-bold"
-                    @click.stop="dialog = true"
-                    v-if="this.$store.state.web3.coinbase === null"
+                    @click="dialog = true"
+                    v-if="this.loginStatus == false"
                 >
                     참여 가능한 설문</v-tab
                 >
                 <v-tab
                     class="font-weight-bold"
                     @click=";[matchSurvey(), canSurvey()]"
-                    v-else
+                    v-if="this.loginStatus == true"
                 >
                     참여 가능한 설문</v-tab
                 >
@@ -73,15 +73,15 @@
                 <!-- tap value = -->
                 <v-tab
                     class="font-weight-bold"
-                    @click.stop="dialog = true"
-                    v-if="this.$store.state.web3.coinbase === null"
+                    @click="dialog = true"
+                    v-if="this.loginStatus == false"
                 >
                     참여 가능한 설문</v-tab
                 >
                 <v-tab
                     class="font-weight-bold"
                     @click=";[matchSurvey(), canSurvey()]"
-                    v-else
+                    v-if="this.loginStatus == true"
                 >
                     참여 가능한 설문</v-tab
                 >
@@ -91,8 +91,6 @@
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
                     <v-card elevation="3" class="mx-auto" max-width="344">
-                        <!-- {{ $vuetify.breakpoint.name }} -->
-                        <!-- <v-img>{{ d.survey_image_path }}</v-img> -->
                         <router-link
                             class="text-decoration-none"
                             :to="`/survey?surveyId=${d.survey_id}`"
@@ -192,7 +190,11 @@ import getContract1 from '@/service/getContract1'
 
 export default {
     name: 'PossibleView',
-
+    computed: {
+        loginStatus() {
+            return this.$store.state.loginStatus
+        }
+    },
     data() {
         return {
             dialog: false,
@@ -241,9 +243,13 @@ export default {
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
         async canSurvey() {
-            if (this.$store.state.web3.coinbase === '') {
+            // if (this.$store.state.web3.coinbase === '') {
+            //     await this.$store.dispatch('registerWeb3')
+            //     console.log(this.$store.web3)
+            // }
+            await this.$store.dispatch('registerWeb3')
+            if (this.loginStatus === false) {
                 await this.$store.dispatch('registerWeb3')
-                console.log(this.$store.web3)
             }
 
             // 설문 조건 넣는 함수
@@ -289,7 +295,7 @@ export default {
         },
 
         async connectMask() {
-            if (this.$store.state.web3.coinbase === null) {
+            if (this.loginStatus === false) {
                 await this.$store.dispatch('registerWeb3')
                 console.log(this.$store.web3)
             }

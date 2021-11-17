@@ -109,6 +109,14 @@
                         >
                             {{ good.goods_name }}
                         </v-card-subtitle>
+                        <div
+                            class="text-decoration-line-through text--disabled text-caption"
+                        >
+                            {{ good.goods_original_price }}원
+                        </div>
+                        <div class="font-weight-black font-weight-bold">
+                            {{ good.goods_discounted_price }}원
+                        </div>
                         <v-btn
                             color="hsl(258, 98%, 70%)"
                             outlined

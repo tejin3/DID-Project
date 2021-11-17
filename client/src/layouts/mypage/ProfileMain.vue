@@ -191,7 +191,7 @@
                                 v-for="card in cards2"
                                 :key="card.goods_id"
                             >
-                                <v-card max-width="200">
+                                <v-card width="200" height="330">
                                     <v-img
                                         class="white--text align-end"
                                         height="170px"
@@ -209,7 +209,7 @@
                                         {{ card.goods_issuer }}
                                     </v-card-subtitle>
                                     <v-card-subtitle
-                                        class="black--text font-weight-bold"
+                                        class="black--text font-weight-bold text-center"
                                     >
                                         {{ card.goods_name }}
                                     </v-card-subtitle>
