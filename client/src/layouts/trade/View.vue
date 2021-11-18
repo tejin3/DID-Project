@@ -1,12 +1,46 @@
 <template>
     <v-container fluid>
-        <p class="font-weight-bold text-h2 text-center">
-            we :DID shop
-            <img width="50" src="@/assets/img/trade/cart.png" />
-        </p>
-        <p class="text-center">
+        <div class="d-flex child-flex" style="justify-content: center;">
+            <div
+                class="font-weight-bold text-h2 text-center"
+                style=" margin:auto;"
+            >
+                we :DID shop
+                <img width="50" src="@/assets/img/trade/cart.png" />
+            </div>
+        </div>
+        <!--쿠폰교환 bn글씨 시작 -->
+        <v-container class="d-flex justify-center align-center">
+            <img
+                src="@/assets/img/trade/test.png"
+                alt=""
+                class="img-bn-class"
+                style="margin:auto;"
+            />
+
+            <div class="hi" style="justify-content:center; display:flex;">
+                <div
+                    align="left"
+                    style="color:white; font-size:1.5em;"
+                    class="d-flex align-center"
+                >
+                    쿠폰교환
+                </div>
+                <div align="left" style="color:white; flex:1; margin-left:10px">
+                    <div style="font-size:1.2em">
+                        설문 완료 후 받은 쿠폰으로 다양한 상품을 교환하세요!
+                    </div>
+                    <div style="font-size:0.8em">
+                        우리 WeDIDsurvey에서는 의뢰업체들과 협력하에 보다 할인된
+                        가격으로 만나보실 수 있습니다.
+                    </div>
+                </div>
+            </div>
+        </v-container>
+
+        <!-- <p class="text-center">
             weDIDsurvey의 다양한 상품을 할인된 가격으로 실속있게 교환하세요
-        </p>
+        </p> -->
 
         <!-- <v-container>
             <v-card class="mb-10">
@@ -261,9 +295,15 @@ export default {
     top: 0;
     left: 0;
     position: absolute;
-    /* width: 100%; */
-    /* height: 100%; */
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
+}
+.img-bn-class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hi {
+    position: absolute;
 }
 </style>

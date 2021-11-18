@@ -1,12 +1,37 @@
 <template>
     <!-- 버튼 -->
     <v-container>
-        <p class="font-weight-bold text-h2 text-center">
+        <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p>
-        <p class="text-center">
-            더 많이 참여하고 더 많이 받아가세요
-        </p>
+        <!--조사참여 bn글씨 시작 -->
+        <v-container class="d-flex justify-center align-center">
+            <img
+                src="@/assets/img/trade/test.png"
+                alt=""
+                class="img-bn-class"
+                style="margin:auto;"
+            />
+
+            <div class="hi" style="justify-content:center; display:flex;">
+                <div
+                    align="left"
+                    style="color:white; font-size:1.5em;"
+                    class="d-flex align-center"
+                >
+                    조사참여
+                </div>
+                <div align="left" style="color:white; flex:1; margin-left:10px">
+                    <div style="font-size:1.2em">
+                        더 많이 참여하고 더 많이 받아가세요
+                    </div>
+                    <div style="font-size:0.8em">
+                        지금 서베이에 참여하고 더 많은 WeDIDsurvey 포인트를
+                        쌓아보세요.
+                    </div>
+                </div>
+            </div>
+        </v-container>
 
         <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
 
@@ -453,4 +478,8 @@ export default {
     }
 }
 </script>
-<style></style>
+<style>
+.hi {
+    position: absolute;
+}
+</style>
