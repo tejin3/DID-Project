@@ -20,32 +20,31 @@
                     <!--투잡해? 문구 시작-->
                     <!-- src="@/assets/img/main/mainImg.png" -->
                     <v-sheet
-                        class="d-flex justify-space-between align-center mt-5"
+                        class="my-16"
                         color="hsl(258, 98%, 70%)"
-                        width="100vh"
+                        height="100vh"
                     >
-                        <v-img
-                            class="custom-img"
-                            src="@/assets/img/main/mainImg.png"
-                            aspect-ratio="1"
-                            contain
-                            height="500"
-                        ></v-img>
-                        <router-link
-                            to="/possible"
-                            style="text-decoration: none;"
-                        >
-                            <!-- <v-btn
-                                large
-                                rounded
-                                color="#Fee440"
-                                style="font-weight:bold; "
-                                class="pt-2"
-                            >
-                                시작하기
-                            </v-btn> -->
-                        </router-link>
+                        <v-row class="fill-height">
+                            <v-col cols="12" sm="6" md="8">
+                                <v-img
+                                    width="700px"
+                                    src="@/assets/img/main/mainImg.png"
+                                    aspect-ratio="2.4"
+                                    style="margin-left:-2rem; margin-top:1rem"
+                                ></v-img>
+                            </v-col>
+                            <v-col cols="4" md="4" class="">
+                                <!-- <span class="test111">hello</span> -->
+                                <v-img
+                                    class="custom-img test111"
+                                    src="@/assets/img/main/pngegg1.png"
+                                    aspect-ratio="1"
+                                    >hello</v-img
+                                >
+                            </v-col>
+                        </v-row>
                     </v-sheet>
+
                     <!--투잡해? 문구 끝-->
                 </v-carousel-item>
 
@@ -276,5 +275,13 @@ export default {
     justify-content: center;
     margin: auto;
     animation: sample-ani-test 3s linear infinite alternate;
+}
+
+.test111 {
+    margin: 150px;
+    transition-duration: 2s;
+}
+.test111:hover {
+    margin: 0px;
 }
 </style>

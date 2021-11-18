@@ -204,6 +204,7 @@
                         </v-expand-transition>
                     </v-card>
                 </v-col>
+                <Navbar />
             </v-row>
         </v-container>
     </v-container>
@@ -322,6 +323,7 @@ export default {
             if (this.loginStatus === false) {
                 await this.$store.dispatch('registerWeb3')
                 console.log(this.$store.state.web3)
+                this.$store.commit('loginStatus', true)
             }
         },
 

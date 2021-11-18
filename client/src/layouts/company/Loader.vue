@@ -26,7 +26,8 @@
         <v-dialog v-model="dialog1" hide-overlay width="500" @>
             <v-card color="primary" light>
                 <v-card-text class="pa-5">
-                    검증자 : 행정안정부 did 주소 2개
+                    검증자 : 행정안정부(0x12223fsd12121),
+                    BC카드(0xd12df33232343)
                     {{ decMsg }}
                     <!-- <v-progress-linear
                         indeterminate

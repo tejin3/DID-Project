@@ -7,6 +7,7 @@
 <script>
 import MypageView from './View.vue'
 export default {
+    props: ['dialog'],
     name: 'PossibleLayout',
     components: { MypageView }
 }
