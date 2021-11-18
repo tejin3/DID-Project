@@ -33,27 +33,30 @@
             </v-bottom-navigation>
         </v-container>
         <!-- 설문결과 카드 -->
-        <v-row>
-            <v-col
-                v-for="(m, n) in surveyData"
-                :key="n"
-                class="d-flex child-flex"
-                cols="4"
-            >
-                <v-card
-                    :loading="loading"
-                    class="mx-auto my-12"
-                    max-width="374"
+        <v-container>
+            <v-row>
+                <v-col
+                    v-for="(m, n) in surveyData"
+                    :key="n"
+                    class="d-flex child-flex"
+                    cols="3"
                 >
-                    <template slot="progress">
-                        <v-progress-linear
-                            color="deep-purple"
-                            height="10"
-                            indeterminate
-                        ></v-progress-linear>
-                    </template>
+                    <v-card
+                        :loading="loading"
+                        class="mx-auto my-12"
+                        max-width="374"
+                        @mouseover="m.hover = true"
+                        @mouseout="m.hover = false"
+                    >
+                        <template slot="progress">
+                            <v-progress-linear
+                                color="deep-purple"
+                                height="10"
+                                indeterminate
+                            ></v-progress-linear>
+                        </template>
 
-                    <!-- <v-img
+                        <!-- <v-img
                         :src="
                             `https://picsum.photos/500/300?image=${m * 5 + 10}`
                         "
@@ -77,14 +80,14 @@
                         </template>
                     </v-img> -->
 
-                    <v-card-title
-                        >{{ m.survey_title }} [설문번호 :{{
-                            m.survey_id
-                        }}]</v-card-title
-                    >
-                    <v-card-text class="py-0">
-                        <v-timeline align-top dense>
-                            <!-- <v-timeline-item small>
+                        <v-card-title
+                            >{{ m.survey_title }}
+                            <br />
+                            [설문번호 :{{ m.survey_id }}]</v-card-title
+                        >
+                        <v-card-text class="py-0">
+                            <v-timeline align-top dense>
+                                <!-- <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -96,67 +99,73 @@
                                     </v-col>
                                 </v-row>
                             </v-timeline-item> -->
-                            <v-timeline-item color="deep-purple">
-                                <v-row class="pt-1">
-                                    <v-col>
-                                        설문 종료까지
-                                        <v-chip
-                                            class="ma-1 font-weight-bold"
-                                            color="deep-purple accent-3"
-                                            outlined
-                                            small
-                                        >
-                                            D-{{ m.dDay }}
-                                        </v-chip>
-                                    </v-col>
-                                </v-row>
-                            </v-timeline-item>
-                            <v-timeline-item small>
-                                <v-row class="pt-1">
-                                    <v-col>
-                                        <strong>
-                                            설문 종료 :
-                                            {{
-                                                m.survey_end_date.slice(0, 10)
-                                            }}</strong
-                                        >
-                                    </v-col>
-                                </v-row>
-                            </v-timeline-item>
-                        </v-timeline>
-                    </v-card-text>
+                                <v-timeline-item color="deep-purple">
+                                    <v-row class="pt-1">
+                                        <v-col>
+                                            설문 종료까지
+                                            <v-chip
+                                                class="ma-1 font-weight-bold"
+                                                color="deep-purple accent-3"
+                                                outlined
+                                                small
+                                            >
+                                                D-{{ m.dDay }}
+                                            </v-chip>
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                                <v-timeline-item small>
+                                    <v-row class="pt-1">
+                                        <v-col>
+                                            <strong>
+                                                설문 종료 :
+                                                {{
+                                                    m.survey_end_date.slice(
+                                                        0,
+                                                        10
+                                                    )
+                                                }}</strong
+                                            >
+                                        </v-col>
+                                    </v-row>
+                                </v-timeline-item>
+                            </v-timeline>
+                        </v-card-text>
 
-                    <v-card-text>
-                        <div class="mt-6">
-                            <v-slider
-                                class="mt-6"
-                                v-model="m.total_complte"
-                                label="설문진행률"
-                                thumb-color="red"
-                                thumb-label="always"
-                                readonly
-                            ></v-slider>
-                            <!-- v-model="`${n.val}`"
+                        <v-card-text>
+                            <div class="mt-6">
+                                <v-slider
+                                    class="mt-6"
+                                    v-model="m.total_complte"
+                                    label="설문진행률"
+                                    thumb-color="red"
+                                    thumb-label="always"
+                                    readonly
+                                ></v-slider>
+                                <!-- v-model="`${n.val}`"
                         :label="`${n.label}`"
                         :label="`${n.color}`" -->
-                        </div>
-                        <v-chip-group
-                            active-class="deep-purple accent-4 white--text"
-                            column
-                            mandatory
-                            v-model="m.selection"
-                        >
-                            <v-chip small>설문중</v-chip>
+                            </div>
+                            <v-chip-group
+                                active-class="deep-purple accent-4 white--text"
+                                column
+                                mandatory
+                                v-model="m.selection"
+                            >
+                                <v-chip small>설문중</v-chip>
 
-                            <v-chip small>설문완료</v-chip>
-                        </v-chip-group>
-                    </v-card-text>
+                                <v-chip small>설문완료</v-chip>
+                            </v-chip-group>
+                        </v-card-text>
 
-                    <v-divider
-                        color="purple lighten-2 "
-                        class="mx-4"
-                    ></v-divider>
-                    <v-card-text>
+                        <v-divider
+                            color="purple lighten-2 "
+                            class="mx-4"
+                        ></v-divider>
+                    </v-card>
+
+                    <!-- 호버창 -->
+                    <v-container style="z-index: 100;" v-show="m.hover">
                         <v-chip-group
                             active-class="deep-purple accent-4 white--text"
                             column
@@ -168,9 +177,7 @@
                                 {{ w }}
                             </v-chip></v-chip-group
                         >
-                    </v-card-text>
 
-                    <v-card-text>
                         <v-chip-group column>
                             <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
                             <!-- :key="k" v-for="(w, k) in m.vcList" -->
@@ -188,10 +195,11 @@
                                     :surveyId="m.survey_id"
                             /></v-chip>
                         </v-chip-group>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
+                    </v-container>
+                    <!-- 호버창 -->
+                </v-col>
+            </v-row>
+        </v-container>
         <!-- <button @click="getSurveyContractInstance()">survey</button> -->
         <!-- <button @click="test()">test</button> -->
         <!-- <div>{{ sC }}</div> -->
@@ -223,7 +231,8 @@ export default {
             sC: null,
             callData: null,
             vC: null,
-            value: 1
+            value: 1,
+            hover: false
         }
     },
     setup() {},
@@ -286,6 +295,7 @@ export default {
                     // 중복되는 애들 합친뒤 다시 배열 형태로 바꿔서 저장
                     var tempArray = new Set(vcList)
                     surveys[i].vcList = Array.from(tempArray)
+                    surveys[i].hover = false
                 }
             }
 
