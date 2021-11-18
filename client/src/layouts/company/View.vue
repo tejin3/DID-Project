@@ -1,14 +1,39 @@
 <template>
-    <v-container fluid>
+    <div>
         <!-- 맨 위에 맨트 -->
         <v-container>
             <p class="font-weight-bold text-h2 text-center">
                 we :DID result
                 <img width="80" src="@/assets/img/company/result.png" />
             </p>
-            <p class="text-center">
-                weDIDsurvey의 정확한 설문 결과를 확인하세요
-            </p>
+        </v-container>
+        <!--쿠폰교환 bn글씨 시작 -->
+        <v-container class="d-flex justify-center align-center">
+            <img
+                src="@/assets/img/trade/test.png"
+                alt=""
+                class="img-bn-class"
+                style="margin:auto;"
+            />
+
+            <div class="hi" style="justify-content:center; display:flex;">
+                <div
+                    align="left"
+                    style="color:white; font-size:1.5em;"
+                    class="d-flex align-center"
+                >
+                    설문 결과
+                </div>
+                <div align="left" style="color:white; flex:1; margin-left:10px">
+                    <div style="font-size:1.2em">
+                        weDIDsurvey의 정확한 설문 결과를 확인하세요
+                    </div>
+                    <div style="font-size:0.8em">
+                        우리 WeDIDsurvey에서는 설문 참가자들이 제공한 신원증명을
+                        확인 할 수 있습니다
+                    </div>
+                </div>
+            </div>
         </v-container>
         <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
@@ -33,7 +58,7 @@
             </v-bottom-navigation>
         </v-container>
         <!-- 설문결과 카드 -->
-        <v-container>
+        <v-container id="testing">
             <v-row>
                 <v-col
                     v-for="(m, n) in surveyData"
@@ -42,10 +67,10 @@
                     cols="3"
                 >
                     <v-card
-                        :loading="loading"
+                        style="border:"
                         class="mx-auto my-12"
                         max-width="374"
-                        @mouseover="m.hover = true"
+                        v-on:mouseover=";(m.hover = true), testPlz($event)"
                         @mouseout="m.hover = false"
                     >
                         <template slot="progress">
@@ -165,37 +190,53 @@
                     </v-card>
 
                     <!-- 호버창 -->
-                    <v-container style="z-index: 100;" v-show="m.hover">
-                        <v-chip-group
-                            active-class="deep-purple accent-4 white--text"
-                            column
-                            mandatory
-                        >
-                            <v-chip small>요청 VC : </v-chip>
-                            <!-- 요청한 vc list -->
-                            <v-chip small :key="k" v-for="(w, k) in m.vcList">
-                                {{ w }}
-                            </v-chip></v-chip-group
-                        >
+                    <v-card
+                        class="mx-auto my-12"
+                        max-width="374"
+                        :style="
+                            `position:absolute; z-index: 100; width: ${eventWidth}px; height: ${eventHeight}px; opacity: 0.9; padding: 100px 0 0 0`
+                        "
+                        @mouseover="m.hover = true"
+                        @mouseout="m.hover = false"
+                        v-show="m.hover"
+                    >
+                        <v-card-text>
+                            <v-chip-group
+                                active-class="deep-purple accent-4 white--text"
+                                column
+                                mandatory
+                            >
+                                <v-chip small>요청 VC : </v-chip>
+                                <!-- 요청한 vc list -->
+                                <v-chip
+                                    small
+                                    :key="k"
+                                    v-for="(w, k) in m.vcList"
+                                >
+                                    {{ w }}
+                                </v-chip></v-chip-group
+                            >
+                        </v-card-text>
+                        <v-card-text>
+                            <v-chip-group column>
+                                <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
+                                <!-- :key="k" v-for="(w, k) in m.vcList" -->
 
-                        <v-chip-group column>
-                            <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
-                            <!-- :key="k" v-for="(w, k) in m.vcList" -->
-
-                            <v-chip>
-                                <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
-                                <DialogScroll
-                                    title="vp를 제공한 설문조사 참가자"
-                                    :completePeople="
-                                        users.filter(
-                                            filtering =>
-                                                filtering.survey_id == n + 1
-                                        )
-                                    "
-                                    :surveyId="m.survey_id"
-                            /></v-chip>
-                        </v-chip-group>
-                    </v-container>
+                                <v-chip>
+                                    <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
+                                    <DialogScroll
+                                        title="vp를 제공한 설문조사 참가자"
+                                        :completePeople="
+                                            users.filter(
+                                                filtering =>
+                                                    filtering.survey_id == n + 1
+                                            )
+                                        "
+                                        :surveyId="m.survey_id"
+                                /></v-chip>
+                            </v-chip-group>
+                        </v-card-text>
+                    </v-card>
                     <!-- 호버창 -->
                 </v-col>
             </v-row>
@@ -209,7 +250,7 @@
         <!-- <div>{{ callData }}</div>
         <button @click="vcCon()">vc</button> -->
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
-    </v-container>
+    </div>
 </template>
 <script>
 // import Slider from './Slider.vue'
@@ -218,6 +259,7 @@ import DialogScroll from './DialogScroll.vue'
 // import getContract1 from '@/service/getContract1'
 
 export default {
+    el: '#testing',
     name: 'CompanyView',
     components: { DialogScroll },
     data() {
@@ -232,7 +274,9 @@ export default {
             callData: null,
             vC: null,
             value: 1,
-            hover: false
+            hover: false,
+            eventWidth: 0,
+            eventHeight: 0
         }
     },
     setup() {},
@@ -300,6 +344,21 @@ export default {
             }
 
             return surveys
+        },
+        testPlz: function(event) {
+            if (
+                event.target.offsetParent._prevClass ===
+                'mx-auto my-12 v-card v-sheet theme--light'
+            ) {
+                console.log('안녕')
+                this.eventWidth = event.target.offsetParent.offsetWidth
+                this.eventHeight = event.target.offsetParent.offsetHeight
+            }
+
+            //             if(event.target.offsetParent){
+            // this.eventWidth = event.target.offsetParent.offsetWidth
+            //             this.eventHeight = event.target.offsetParent.offsetHeight
+            //             }
         }
         // surveyCon() {
         //     this.$store.dispatch('getSurveyContractInstance')

@@ -237,10 +237,10 @@ export default {
 @import '~@egjs/flicking-plugins/dist/flicking-plugins.css';
 @keyframes sample-ani {
     0% {
-        transform: translate(10, 10);
+        transform: translate(0, -50px);
     }
     100% {
-        transform: translate(0, 20px);
+        transform: translate(0, -30px);
     }
 }
 @keyframes sample-ani2 {
