@@ -10,23 +10,25 @@
             </div>
         </div> -->
         <!--쿠폰교환 bn글씨 시작 -->
-        <v-container class="d-flex justify-center align-center">
+        <v-container
+            class="d-flex justify-center align-center"
+            style="margin-left:50"
+        >
             <img
                 src="@/assets/img/trade/test.png"
                 alt=""
                 class="img-bn-class"
-                style="margin:auto;"
+                style=" margin-right:0;"
             />
 
             <div class="hi" style="justify-content:center; display:flex;">
                 <div
-                    align="left"
                     style="color:white; font-size:1.5em;"
                     class="d-flex align-center"
                 >
                     쿠폰교환
                 </div>
-                <div align="left" style="color:white; flex:1; margin-left:20px">
+                <div style="color:white; flex:1; margin-left:20px">
                     <div style="font-size:1.2em">
                         설문 완료 후 받은 쿠폰으로 다양한 상품을 교환하세요!
                     </div>
@@ -36,12 +38,17 @@
                     </div>
                 </div>
             </div>
-            <v-card max-width="344" height="141">
+            <v-card width="200" height="141">
                 <v-card-text>
-                    <p class="text-h4 text--primary">
+                    <br />
+                    <div class="text-h4 text--primary text-center">
+                        🎫
+                        {{ coupon[0].user_coupon }}
+                    </div>
+                    <br />
+                    <p class="text-center">
                         현재 내 쿠폰
                     </p>
-                    <div>Word of the Day</div>
                 </v-card-text>
             </v-card>
         </v-container>
@@ -255,11 +262,14 @@ export default {
             goods: [],
             user: {},
             value: 1,
-            overlay: false
+            overlay: false,
+            coupon: []
         }
     },
     setup() {},
-    created() {},
+    created() {
+        this.getUser()
+    },
     mounted() {
         this.showGoods()
     },
@@ -294,6 +304,13 @@ export default {
             // } else {
             //     alert('보유하신 쿠폰이 부족합니다')
             // }
+        },
+        async getUser() {
+            var result = await this.$api('/user', 'post', {
+                param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'
+            })
+            this.coupon = result
+            console.log('ggggg', this.coupon)
         }
     }
 }
