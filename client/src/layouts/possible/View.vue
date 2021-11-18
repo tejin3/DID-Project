@@ -1,9 +1,9 @@
 <template>
     <!-- 버튼 -->
     <v-container>
-        <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
+        <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
-        </p>
+        </p> -->
         <!--조사참여 bn글씨 시작 -->
         <v-container class="d-flex justify-center align-center">
             <img
@@ -21,7 +21,7 @@
                 >
                     조사참여
                 </div>
-                <div align="left" style="color:white; flex:1; margin-left:10px">
+                <div align="left" style="color:white; flex:1; margin-left:20px">
                     <div style="font-size:1.2em">
                         더 많이 참여하고 더 많이 받아가세요
                     </div>

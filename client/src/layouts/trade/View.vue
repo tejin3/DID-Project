@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <div class="d-flex child-flex" style="justify-content: center;">
+        <!-- <div class="d-flex child-flex" style="justify-content: center;">
             <div
                 class="font-weight-bold text-h2 text-center"
                 style=" margin:auto;"
@@ -8,7 +8,7 @@
                 we :DID shop
                 <img width="50" src="@/assets/img/trade/cart.png" />
             </div>
-        </div>
+        </div> -->
         <!--쿠폰교환 bn글씨 시작 -->
         <v-container class="d-flex justify-center align-center">
             <img
@@ -26,7 +26,7 @@
                 >
                     쿠폰교환
                 </div>
-                <div align="left" style="color:white; flex:1; margin-left:10px">
+                <div align="left" style="color:white; flex:1; margin-left:20px">
                     <div style="font-size:1.2em">
                         설문 완료 후 받은 쿠폰으로 다양한 상품을 교환하세요!
                     </div>
