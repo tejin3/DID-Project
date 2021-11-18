@@ -17,8 +17,7 @@
                 :hide-delimiter-background="true"
                 height="73vh"
             >
-                <h1>{{ model }}</h1>
-                <v-carousel-item @wheel.prevent="test()">
+                <v-carousel-item @wheel.prevent="test(1)">
                     <!--투잡해? 문구 시작-->
                     <!-- src="@/assets/img/main/mainImg.png" -->
                     <v-sheet
@@ -51,7 +50,7 @@
                     <!--투잡해? 문구 끝-->
                 </v-carousel-item>
 
-                <v-carousel-item @wheel.prevent="test()">
+                <v-carousel-item @wheel.prevent="test(2)">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -78,7 +77,7 @@
                     </v-sheet>
                 </v-carousel-item>
 
-                <v-carousel-item @wheel.prevent="test()">
+                <v-carousel-item @wheel.prevent="test(0)">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -164,13 +163,14 @@ export default {
             this.dDays = await this.$api('/date', 'get')
             console.log(this.dDays)
         },
-        test() {
+        test(aa) {
             // if (this.model < 2) {
-            this.model++
+            // this.model++
             // } else {
             //     // alert('hello')
             //     this.model = null
             // }
+            this.model = aa
         }
     }
 }
