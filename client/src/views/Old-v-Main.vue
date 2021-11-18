@@ -26,16 +26,16 @@
                     >
                         <v-img
                             class="custom-img"
-                            src="@/assets/img/main/mainImg.png"
+                            src="@/assets/img/main/mainImg5.png"
                             aspect-ratio="1"
                             contain
-                            height="500"
+                            height="200"
                         ></v-img>
                         <router-link
                             to="/possible"
                             style="text-decoration: none;"
                         >
-                            <!-- <v-btn
+                            <v-btn
                                 large
                                 rounded
                                 color="#Fee440"
@@ -43,10 +43,95 @@
                                 class="pt-2"
                             >
                                 시작하기
-                            </v-btn> -->
+                            </v-btn>
                         </router-link>
                     </v-sheet>
                     <!--투잡해? 문구 끝-->
+                    <v-sheet
+                        class="flicking"
+                        height="100vh"
+                        width="140vh"
+                        color="hsl(258, 98%, 70%)"
+                    >
+                        <Flicking
+                            :options="{
+                                align: 'center',
+                                circular: true
+                            }"
+                            :viewportTag="'div'"
+                            :cameraTag="'div'"
+                            :plugins="plugins"
+                            @move-end="onMoveEnd"
+                            class="Viewport"
+                        >
+                            <v-card
+                                :key="i"
+                                v-for="(d, i) in surveys"
+                                :class="[
+                                    i % 2 === 1
+                                        ? 'scrollSelect2'
+                                        : 'scrollSelect3'
+                                ]"
+                                class="panel mx-5 rounded-xl card-panel"
+                                max-width="200"
+                                max-height="300"
+                            >
+                                <v-img
+                                    :src="
+                                        `http://localhost:3000/download/${d.survey_image_path}`
+                                    "
+                                    height="150"
+                                ></v-img>
+
+                                <v-card-title class="text-h7">
+                                    {{ d.survey_title }}
+                                </v-card-title>
+                                <v-chip
+                                    close-icon="mdi-close-outline"
+                                    color="grey"
+                                    small
+                                    class="white--text pa-0 ml-2"
+                                >
+                                    <v-card-subtitle class="text-subtitle-2">
+                                        적립금: {{ d.survey_price }} | 쿠폰:
+                                        {{ d.survey_coupon }}
+                                    </v-card-subtitle>
+                                </v-chip>
+                                <v-card-subtitle>
+                                    <v-icon v-text="icon"></v-icon>남은 기간
+                                    <v-chip
+                                        class="ma-1 font-weight-bold text-subtitle-2"
+                                        color="deep-purple accent-3"
+                                        outlined
+                                        defalut
+                                    >
+                                        D-{{ dDays[i].dday }}
+                                    </v-chip>
+                                </v-card-subtitle>
+                            </v-card>
+                            <span
+                                slot="viewport"
+                                class="flicking-arrow-prev is-circle"
+                            ></span>
+                            <span
+                                slot="viewport"
+                                class="flicking-arrow-next is-circle"
+                            ></span>
+                        </Flicking>
+                    </v-sheet>
+                    <v-sheet
+                        class="d-flex justify-sm-space-around align-center mt-5"
+                        color="hsl(258, 98%, 70%)"
+                        width="100vh"
+                    >
+                        <!-- <v-img
+                            class="custom-img"
+                            src="@/assets/img/main/mainImg5.png"
+                            aspect-ratio="1"
+                            contain
+                            height="200"
+                        ></v-img> -->
+                    </v-sheet>
                 </v-carousel-item>
 
                 <v-carousel-item>

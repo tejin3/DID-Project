@@ -201,12 +201,8 @@
                         v-show="m.hover"
                     >
                         <v-card-text>
-                            <v-chip-group
-                                active-class="deep-purple accent-4 white--text"
-                                column
-                                mandatory
-                            >
-                                <v-chip small>요청 VC : </v-chip>
+                            <h1>요청 VC List</h1>
+                            <v-chip-group column mandatory>
                                 <!-- 요청한 vc list -->
                                 <v-chip
                                     small
@@ -225,7 +221,7 @@
                                 <v-chip>
                                     <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
                                     <DialogScroll
-                                        title="vp를 제공한 설문조사 참가자"
+                                        title="vp 확인"
                                         :completePeople="
                                             users.filter(
                                                 filtering =>
