@@ -41,18 +41,19 @@
                 </v-tabs>
             </v-toolbar>
             <!-- 탭 컨텐츠 영역 -->
-            <v-card elevation="3" max-height="500px" height="500px">
+            <v-card elevation="3" max-height="650px" height="650px">
                 <v-tabs-items v-model="tab">
                     <!-- tap value = 0, 개인정보 탭 일 때 -->
                     <v-tab-item>
                         <v-row>
-                            <v-col cols="6" class="px-10 py-5" height="400px">
+                            <v-col cols="6" class="px-10 py-5" height="400">
                                 <v-img
+                                    class="image"
+                                    width="630"
                                     src="@/assets/img/mypage/main.jpg"
-                                ></v-img
-                                >
+                                ></v-img>
                             </v-col>
-                            <v-col cols="6" class="px-10 py-5">
+                            <v-col cols="6" class="px-12 py-5 mt-5">
                                 <v-container>
                                     <v-row dense>
                                         <v-col cols="12" class="pt-6">
@@ -178,21 +179,24 @@
                         </v-row>
                     </v-tab-item>
                     <!-- tap value = 1, 쿠폰 탭일 때 -->
-                    <v-tab-item>
-                        <br />
+                    <v-tab-item class="pt-16">
                         <span class="ma-10 text-h6"
                             >현재, 미사용 쿠폰
                             <span class="red--text font-weight-bold">5</span
                             >개가 있어요!</span
                         >
 
-                        <v-row>
+                        <v-row class="mt-10">
                             <v-col
                                 class="testLine ma-10 pa-0"
                                 v-for="card in cards"
                                 :key="card.goods_id"
                             >
-                                <v-card width="200" height="330">
+                                <v-card
+                                    width="200"
+                                    height="330"
+                                    @click="showCode(card.goods_name)"
+                                >
                                     <v-img
                                         class="white--text align-end"
                                         height="170px"
@@ -225,6 +229,16 @@
                                 </v-card>
                             </v-col>
                         </v-row>
+
+                        <MypageModal
+                            :dialog="dialog"
+                            :qrValue="qrValue"
+                            :size="size"
+                            :barcodeValue="barcodeValue"
+                            :barcodeText="barcodeText"
+                            v-if="dialog"
+                            @close-modal="dialog = false"
+                        />
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
@@ -233,11 +247,10 @@
 </template>
 <script>
 import { Icon } from '@iconify/vue2'
+import MypageModal from './Modal.vue'
 
 export default {
-    components: {
-        Icon
-    },
+    components: { Icon, MypageModal },
     data() {
         return {
             // goods:[],
@@ -245,7 +258,12 @@ export default {
             tab: null,
             cards: [],
             items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails'],
-            user: []
+            user: [],
+            dialog: false,
+            qrValue: '',
+            size: 130,
+            barcodeValue: '',
+            barcodeText: '9 899423 420854'
         }
     },
     created() {
@@ -274,6 +292,12 @@ export default {
                     this.cards.push(item)
                 }
             }
+        },
+        showCode(name) {
+            this.dialog = true
+            this.qrValue = 'goods_name'
+            this.barcodeValue = 'goods_name'
+            this.barcodeText = '9 899423 420854'
         }
     }
 }
@@ -287,5 +311,10 @@ export default {
 svg {
     font-size: 2rem;
     line-height: 1em;
+}
+
+.image {
+    position: absolute;
+    right: 57%;
 }
 </style>
