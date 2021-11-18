@@ -8,7 +8,7 @@
             더 많이 참여하고 더 많이 받아가세요
         </p>
 
-        <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn>
+        <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
 
         <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
         <v-dialog v-model="dialog" max-width="400">
@@ -33,7 +33,8 @@
         </v-dialog>
 
         <!-- 탭 제목 영역 -->
-        <v-toolbar elevation="3" color="#94B3FD">
+        <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
+        <v-toolbar elevation="3">
             <!-- 화면이 클 때 -->
             <v-tabs
                 class="hidden-xs-only"
@@ -41,47 +42,48 @@
                 align-with-title
                 center-active
                 dark
+                color="black"
             >
                 <v-tabs-slider color="orange lighten-2"></v-tabs-slider>
                 <!-- tap value = 0 -->
-                <v-tab class="font-weight-bold">
+                <v-tab class="font-weight-bold black--text">
                     전체 설문
                 </v-tab>
                 <!-- tap value = -->
                 <v-tab
-                    class="font-weight-bold"
+                    class="font-weight-bold black--text"
                     @click="dialog = true"
                     v-if="this.loginStatus == false"
                 >
                     참여 가능한 설문</v-tab
                 >
                 <v-tab
-                    class="font-weight-bold"
+                    class="font-weight-bold black--text"
                     @click=";[matchSurvey(), canSurvey()]"
-                    v-if="this.loginStatus == true"
+                    v-else
                 >
                     참여 가능한 설문</v-tab
                 >
             </v-tabs>
             <!-- 화면이 작을 때 -->
-            <v-tabs class="hidden-sm-and-up" v-model="tab" grow>
+            <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
                 <v-tabs-slider color="primary"></v-tabs-slider>
                 <!-- tap value = 0 -->
-                <v-tab class="font-weight-bold">
+                <v-tab class="font-weight-bold black--text">
                     전체 설문
                 </v-tab>
                 <!-- tap value = -->
                 <v-tab
-                    class="font-weight-bold"
+                    class="font-weight-bold black--text"
                     @click="dialog = true"
                     v-if="this.loginStatus == false"
                 >
                     참여 가능한 설문</v-tab
                 >
                 <v-tab
-                    class="font-weight-bold"
+                    class="font-weight-bold black--text"
                     @click=";[matchSurvey(), canSurvey()]"
-                    v-if="this.loginStatus == true"
+                    v-else
                 >
                     참여 가능한 설문</v-tab
                 >
@@ -247,10 +249,10 @@ export default {
             //     await this.$store.dispatch('registerWeb3')
             //     console.log(this.$store.web3)
             // }
-            await this.$store.dispatch('registerWeb3')
-            if (this.loginStatus === false) {
-                await this.$store.dispatch('registerWeb3')
-            }
+            // await this.$store.dispatch('registerWeb3')
+            // if (this.loginStatus === false) {
+            //     await this.$store.dispatch('registerWeb3')
+            // }
 
             // 설문 조건 넣는 함수
             await this.$api('/survey', 'post', {
@@ -297,7 +299,7 @@ export default {
         async connectMask() {
             if (this.loginStatus === false) {
                 await this.$store.dispatch('registerWeb3')
-                console.log(this.$store.web3)
+                console.log(this.$store.state.web3)
             }
         },
 
