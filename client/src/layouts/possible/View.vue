@@ -10,8 +10,8 @@
                 src="@/assets/img/trade/test.png"
                 alt=""
                 class="img-bn-class"
-                style="margin:auto;"
             />
+            <!-- style="margin:auto;" -->
 
             <div class="hi" style="justify-content:center; display:flex;">
                 <div
