@@ -50,7 +50,7 @@
                                 <v-img
                                     src="@/assets/img/mypage/main.jpg"
                                 ></v-img
-                                >0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8
+                                >
                             </v-col>
                             <v-col cols="6" class="px-10 py-5">
                                 <v-container>
