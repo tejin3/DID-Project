@@ -8,7 +8,6 @@
             color="hsl(258, 98%, 70%)"
         >
             <DefaultBar />
-
             <v-carousel
                 v-model="model"
                 vertical-delimiters="right"
@@ -17,7 +16,7 @@
                 :hide-delimiter-background="true"
                 height="73vh"
             >
-                <v-carousel-item @wheel.prevent="test(1)">
+                <v-carousel-item @wheel.prevent="test($event)">
                     <!--투잡해? 문구 시작-->
                     <!-- src="@/assets/img/main/mainImg.png" -->
                     <v-sheet
@@ -50,7 +49,7 @@
                     <!--투잡해? 문구 끝-->
                 </v-carousel-item>
 
-                <v-carousel-item @wheel.prevent="test(2)">
+                <v-carousel-item @wheel.prevent="test($event)">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -77,7 +76,7 @@
                     </v-sheet>
                 </v-carousel-item>
 
-                <v-carousel-item @wheel.prevent="test(0)">
+                <v-carousel-item @wheel.prevent="test($event)">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -127,7 +126,7 @@ export default {
             surveys: [],
             plugins,
             model: 0,
-            list: [0, 1, 2, 3, 4],
+            wheelTimer: null,
             dDays: ''
         }
     },
@@ -163,14 +162,24 @@ export default {
             this.dDays = await this.$api('/date', 'get')
             console.log(this.dDays)
         },
-        test(aa) {
-            // if (this.model < 2) {
-            // this.model++
-            // } else {
-            //     // alert('hello')
-            //     this.model = null
-            // }
-            this.model = aa
+        test(event) {
+            console.log(event)
+            clearTimeout(this.wheelTimer)
+
+            this.wheelTimer = setTimeout(() => {
+                if (event.deltaY > 0) {
+                    console.log('down')
+                    console.log(this.model, ++this.model)
+                } else {
+                    console.log('up')
+                    console.log(this.model, --this.model)
+                }
+            }, 300)
+        },
+        doScroll(sidx) {
+            console.log(sidx)
+            // sidx = sidx < 0 ? 0 : sidx
+            // sidx = sidx > aElSection.length - 1 ? aElSection.length - 1 : sidx
         }
     }
 }
