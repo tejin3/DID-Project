@@ -12,4 +12,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.container {
+    padding: 0px;
+}
+</style>

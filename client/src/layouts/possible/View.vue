@@ -1,6 +1,6 @@
 <template>
     <!-- 버튼 -->
-    <v-container>
+    <v-container class="max-width:0px;">
         <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
@@ -32,9 +32,7 @@
                 </div>
             </div>
         </v-container>
-
         <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
-
         <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
         <v-dialog v-model="dialog" max-width="400">
             <v-card>
@@ -56,7 +54,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-
         <!-- 탭 제목 영역 -->
         <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
         <v-toolbar elevation="3">
