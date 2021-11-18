@@ -15,14 +15,16 @@
                 :vertical="true"
                 :show-arrows="false"
                 :hide-delimiter-background="true"
-                height="80vh"
+                height="73vh"
             >
-                <v-carousel-item>
+                <h1>{{ model }}</h1>
+                <v-carousel-item @wheel.prevent="test()">
                     <!--투잡해? 문구 시작-->
+                    <!-- src="@/assets/img/main/mainImg.png" -->
                     <v-sheet
                         class="d-flex justify-space-between align-center mt-5"
                         color="hsl(258, 98%, 70%)"
-                        width="80vh"
+                        width="100vh"
                     >
                         <v-img
                             class="custom-img"
@@ -49,7 +51,7 @@
                     <!--투잡해? 문구 끝-->
                 </v-carousel-item>
 
-                <v-carousel-item>
+                <v-carousel-item @wheel.prevent="test()">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -76,7 +78,7 @@
                     </v-sheet>
                 </v-carousel-item>
 
-                <v-carousel-item>
+                <v-carousel-item @wheel.prevent="test()">
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -108,7 +110,7 @@
 </template>
 <script>
 import DefaultBar from '../layouts/default/Navbar.vue'
-import { Flicking } from '@egjs/vue-flicking'
+// import { Flicking } from '@egjs/vue-flicking'
 import { AutoPlay, Arrow } from '@egjs/flicking-plugins'
 import '@egjs/flicking-plugins/dist/arrow.css'
 
@@ -119,7 +121,8 @@ const plugins = [
 
 export default {
     name: '',
-    components: { DefaultBar, Flicking },
+    // components: { DefaultBar, Flicking },
+    components: { DefaultBar },
     data() {
         return {
             surveys: [],
@@ -141,9 +144,9 @@ export default {
             // console.log('hi', this.$get()
             this.surveys = await this.$get('/surveys')
         },
-        onScroll() {
-            this.model++
-        },
+        // onScroll() {
+        //     this.model++
+        // },
         async metamask() {
             await this.$store.dispatch('registerWeb3')
             // await this.$store.dispatch('web3Register')
@@ -160,6 +163,14 @@ export default {
         async discountDay() {
             this.dDays = await this.$api('/date', 'get')
             console.log(this.dDays)
+        },
+        test() {
+            // if (this.model < 2) {
+            this.model++
+            // } else {
+            //     // alert('hello')
+            //     this.model = null
+            // }
         }
     }
 }
