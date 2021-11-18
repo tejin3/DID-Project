@@ -1,14 +1,39 @@
 <template>
-    <v-container fluid>
+    <div>
         <!-- 맨 위에 맨트 -->
         <v-container>
             <p class="font-weight-bold text-h2 text-center">
                 we :DID result
                 <img width="80" src="@/assets/img/company/result.png" />
             </p>
-            <p class="text-center">
-                weDIDsurvey의 정확한 설문 결과를 확인하세요
-            </p>
+        </v-container>
+        <!--쿠폰교환 bn글씨 시작 -->
+        <v-container class="d-flex justify-center align-center">
+            <img
+                src="@/assets/img/trade/test.png"
+                alt=""
+                class="img-bn-class"
+                style="margin:auto;"
+            />
+
+            <div class="hi" style="justify-content:center; display:flex;">
+                <div
+                    align="left"
+                    style="color:white; font-size:1.5em;"
+                    class="d-flex align-center"
+                >
+                    설문 결과
+                </div>
+                <div align="left" style="color:white; flex:1; margin-left:10px">
+                    <div style="font-size:1.2em">
+                        weDIDsurvey의 정확한 설문 결과를 확인하세요
+                    </div>
+                    <div style="font-size:0.8em">
+                        우리 WeDIDsurvey에서는 설문 참가자들이 제공한 신원증명을
+                        확인 할 수 있습니다
+                    </div>
+                </div>
+            </div>
         </v-container>
         <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
@@ -42,7 +67,7 @@
                     cols="3"
                 >
                     <v-card
-                        style="position:absolute;"
+                        style="border:"
                         class="mx-auto my-12"
                         max-width="374"
                         v-on:mouseover=";(m.hover = true), testPlz($event)"
@@ -225,7 +250,7 @@
         <!-- <div>{{ callData }}</div>
         <button @click="vcCon()">vc</button> -->
         <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
-    </v-container>
+    </div>
 </template>
 <script>
 // import Slider from './Slider.vue'
