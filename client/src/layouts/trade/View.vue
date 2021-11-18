@@ -36,6 +36,14 @@
                     </div>
                 </div>
             </div>
+            <v-card max-width="344" height="141">
+                <v-card-text>
+                    <p class="text-h4 text--primary">
+                        현재 내 쿠폰
+                    </p>
+                    <div>Word of the Day</div>
+                </v-card-text>
+            </v-card>
         </v-container>
 
         <!-- <p class="text-center">
