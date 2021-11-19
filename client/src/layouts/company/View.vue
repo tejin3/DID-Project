@@ -1,12 +1,12 @@
 <template>
     <div>
         <!-- 맨 위에 맨트 -->
-        <v-container>
+        <!-- <v-container>
             <p class="font-weight-bold text-h2 text-center">
                 we :DID result
                 <img width="80" src="@/assets/img/company/result.png" />
             </p>
-        </v-container>
+        </v-container> -->
         <!--쿠폰교환 bn글씨 시작 -->
         <v-container class="d-flex justify-center align-center">
             <img
