@@ -47,7 +47,7 @@
                     class="white--text"
                     v-if="
                         this.$store.state.web3.coinbase ==
-                            0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71
+                            0x68993b9454f760e81c8e7630ace72b3638f6f6f7
                     "
                 >
                     설문결과

@@ -39,7 +39,7 @@
                         />
                     </v-row>
                     <v-row>
-                        <v-card>
+                        <v-card style="margin:0 auto">
                             <v-app-bar
                                 dark
                                 class="d-flex justify-center mb-1 "
@@ -56,7 +56,6 @@
                                 <!--맞춤설문조사 그리는 영역  -->
                                 <v-row style>
                                     <v-col
-                                        class="mt-3 mb-3"
                                         v-for="(survey, i) in surveys"
                                         :key="i"
                                         cols="12"
@@ -254,6 +253,6 @@ div {
     margin-top: 35px;
 }
 .v-card__text {
-    padding: 0 auto;
+    /* padding: 0 auto; */
 }
 </style>
