@@ -56,7 +56,6 @@
                                 <!--맞춤설문조사 그리는 영역  -->
                                 <v-row style>
                                     <v-col
-                                        class="mt-3 mb-3"
                                         v-for="(survey, i) in surveys"
                                         :key="i"
                                         cols="12"
@@ -77,7 +76,7 @@
                                             </v-img>
 
                                             <v-card-text
-                                                class="grey--text text-darken-1"
+                                                class="grey--text text-darken-1 mb-2"
                                             >
                                                 <div style="height=40px  ">
                                                     <p style="font-size:0.5em;">

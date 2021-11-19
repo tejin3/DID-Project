@@ -12,14 +12,14 @@
                 :continuous="false"
                 style="width: 800px; height: 500px; mt-16 subheadings"
             >
-                {{ model }}saddsada
+                <!--추가추가 {{ model }}saddsada -->
                 <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
                 <v-parallax style="height:100%;" aspect-ratio="1.4" src="">
                     <!-- style="width: 100%; height: 100%; " -->
 
-                    <v-carousel-item>
+                    <!--추가추가 <v-carousel-item>
                         <h2>test</h2>
-                    </v-carousel-item>
+                    </v-carousel-item> -->
                     <v-carousel-item
                         v-for="(question, i) in questions"
                         :key="i"
