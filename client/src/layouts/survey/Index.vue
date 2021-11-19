@@ -39,7 +39,7 @@
                         />
                     </v-row>
                     <v-row>
-                        <v-card>
+                        <v-card style="margin:0 auto">
                             <v-app-bar
                                 dark
                                 class="d-flex justify-center mb-1 "
@@ -77,7 +77,7 @@
                                             </v-img>
 
                                             <v-card-text
-                                                class="grey--text text-darken-1 mb-2"
+                                                class="grey--text text-darken-1"
                                             >
                                                 <div style="height=40px  ">
                                                     <p style="font-size:0.5em;">
@@ -254,6 +254,6 @@ div {
     margin-top: 35px;
 }
 .v-card__text {
-    padding: 0 auto;
+    /* padding: 0 auto; */
 }
 </style>
