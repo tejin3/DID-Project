@@ -73,24 +73,30 @@
                                                 >
                                             </v-row>
                                             <v-progress-linear
-                                                color="#94B3FD"
+                                                color="deep-purple accent-3"
                                                 rounded
                                                 value="100"
                                                 class="pb-5"
                                             ></v-progress-linear>
                                             <v-card-subtitle class="text-h5">
-                                                <v-icon x-large color="#1597E5">
+                                                <v-icon
+                                                    x-large
+                                                    color="deep-purple accent-3"
+                                                >
                                                     mdi-file-powerpoint-box
                                                 </v-icon>
                                                 {{ user[0].user_point }} 포인트
-                                                <v-icon x-large color="#1597E5">
+                                                <v-icon
+                                                    x-large
+                                                    color="deep-purple accent-3"
+                                                >
                                                     mdi-tag-multiple
                                                 </v-icon>
                                                 {{ user[0].user_coupon }}
                                                 쿠폰</v-card-subtitle
                                             >
                                             <v-progress-linear
-                                                color="#94B3FD"
+                                                color="deep-purple accent-3"
                                                 rounded
                                                 value="100"
                                                 class="py-5"
@@ -106,7 +112,7 @@
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
-                                                        class="blue--text font-weight-bold"
+                                                        class="deep-purple--text font-weight-bold"
                                                         >22</span
                                                     >개</v-card-subtitle
                                                 >
@@ -124,7 +130,7 @@
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
-                                                        class="blue--text font-weight-bold"
+                                                        class="deep-purple--text font-weight-bold"
                                                         >10</span
                                                     >개</v-card-subtitle
                                                 >
@@ -145,7 +151,7 @@
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
-                                                        class="blue--text font-weight-bold"
+                                                        class="deep-purple--text font-weight-bold"
                                                         >3</span
                                                     >개</v-card-subtitle
                                                 >
@@ -166,7 +172,7 @@
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
-                                                        class="blue--text font-weight-bold"
+                                                        class="deep-purple--text font-weight-bold"
                                                         >10</span
                                                     >개</v-card-subtitle
                                                 >
