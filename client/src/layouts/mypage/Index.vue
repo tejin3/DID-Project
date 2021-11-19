@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="mt-5">
         <mypage-view />
     </v-container>
 </template>
