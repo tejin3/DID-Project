@@ -13,10 +13,11 @@
                                 color="primary"
                                 size="150"
                             >
-                            <v-img
-                                max-height="150"
-                                max-width="250"
-                                src="@/assets/img/mypage/profile.png"></v-img>
+                                <v-img
+                                    max-height="150"
+                                    max-width="250"
+                                    src="@/assets/img/mypage/profile.png"
+                                ></v-img>
                             </v-avatar>
                             <!-- 화면이 작을 때 -->
                             <v-avatar
@@ -24,17 +25,18 @@
                                 color="primary"
                                 size="100"
                             >
-                                 <v-img
-                                max-height="150"
-                                max-width="250"
-                                src="@/assets/img/mypage/profile.png"></v-img>
+                                <v-img
+                                    max-height="150"
+                                    max-width="250"
+                                    src="@/assets/img/mypage/profile.png"
+                                ></v-img>
                             </v-avatar>
                         </v-col>
                         <!-- 유저 프로필 이름 -->
                         <v-card-title class="justify-center">
                             <!-- 화면이 클 때 -->
                             <h1 class="tittle mb-3 hidden-xs-only">
-                               이성실
+                                이성실
                             </h1>
                             <!-- 화면이 작을 때 -->
                             <h1

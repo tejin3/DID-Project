@@ -62,7 +62,7 @@
         </v-dialog>
         <!-- 탭 제목 영역 -->
         <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
-        <v-toolbar elevation="3">
+        <v-toolbar elevation="3" class="mb-5">
             <!-- 화면이 클 때 -->
             <v-tabs
                 class="hidden-xs-only"
@@ -73,12 +73,13 @@
                 color="black"
             >
                 <v-tabs-slider color="orange lighten-2"></v-tabs-slider>
+
                 <!-- tap value = 0 -->
-                <v-tab class="font-weight-bold black--text">
+                <!-- <v-tab class="font-weight-bold black--text">
                     전체 설문
-                </v-tab>
+                </v-tab> -->
                 <!-- tap value = -->
-                <v-tab
+                <!-- <v-tab
                     class="font-weight-bold black--text"
                     @click="dialog = true"
                     v-if="this.loginStatus == false"
@@ -87,6 +88,31 @@
                 >
                 <v-tab
                     class="font-weight-bold black--text"
+                    @click=";[matchSurvey(), canSurvey()]"
+                    v-else
+                >
+                    참여 가능한 설문</v-tab
+                > -->
+
+                <!-- tap value = 0 -->
+                <v-tab
+                    class="font-weight-bold black--text"
+                    style="font-size:1.1em;"
+                >
+                    전체 설문
+                </v-tab>
+                <!-- tap value = -->
+                <v-tab
+                    class="font-weight-bold black--text"
+                    style="font-size:1.1em;"
+                    @click="dialog = true"
+                    v-if="this.loginStatus == false"
+                >
+                    참여 가능한 설문</v-tab
+                >
+                <v-tab
+                    class="font-weight-bold black--text"
+                    style="font-size:1.1em;"
                     @click=";[matchSurvey(), canSurvey()]"
                     v-else
                 >

@@ -11,7 +11,7 @@
         </div> -->
         <!--쿠폰교환 bn글씨 시작 -->
         <v-container
-            class="d-flex justify-center align-center"
+            class="d-flex justify-center align-center "
             style="margin-left:50"
         >
             <img
@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </div>
+
             <v-card width="200" height="141">
                 <v-card-text>
                     <br />
@@ -65,7 +66,7 @@
         <!-- <TradeHeader />
         <TradeCategory />
         <TradeMain /> -->
-        <v-container>
+        <v-container class="mb-5">
             <v-bottom-navigation
                 :value="value"
                 color="hsl(258, 98%, 70%)"
