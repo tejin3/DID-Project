@@ -180,29 +180,49 @@ export default {
         createVP() {
             // 넘겨받은 VP리스트에 선택한 VC가 담긴 VP를 생성
             var stringVp
-            for (var index of this.selection) {
-                this.selectVp.push(this.vp[parseInt(index)])
-                console.log(this.selectVp)
+
+            // 선택한 vp가 없을때
+            if (this.selection.length === 0) {
+                this.sC.methods
+                    .recordVP(
+                        this.surveyId,
+                        'no',
+                        // 회사 주소
+                        '0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71'
+                    )
+                    .send({ from: this.$store.state.web3.coinbase })
+                    // 내 주소
+                    .then(receipt => {
+                        console.log(receipt)
+                    })
+                this.encryptedMessage()
+                this.callData1(this.surveyId)
+            } else {
+                // 선택한 vp가 있을 때
+                for (var index of this.selection) {
+                    this.selectVp.push(this.vp[parseInt(index)])
+                    console.log(this.selectVp)
+                }
+                for (var het of this.selectVp) {
+                    stringVp = stringVp + ',' + Object.keys(het)
+                }
+                console.log(stringVp)
+                console.log(this.sC)
+                this.sC.methods
+                    .recordVP(
+                        this.surveyId,
+                        stringVp.slice(10),
+                        // 회사 주소
+                        '0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71'
+                    )
+                    .send({ from: this.$store.state.web3.coinbase })
+                    // 내 주소
+                    .then(receipt => {
+                        console.log(receipt)
+                    })
+                this.encryptedMessage()
+                this.callData1(this.surveyId)
             }
-            for (var het of this.selectVp) {
-                stringVp = stringVp + ',' + Object.keys(het)
-            }
-            console.log(stringVp)
-            console.log(this.sC)
-            this.sC.methods
-                .recordVP(
-                    this.surveyId,
-                    stringVp.slice(10),
-                    // 회사 주소
-                    '0xb6f945dfafbc1b9f728d8bc3c34d25178d0c6c71'
-                )
-                .send({ from: this.$store.state.web3.coinbase })
-                // 내 주소
-                .then(receipt => {
-                    console.log(receipt)
-                })
-            this.encryptedMessage()
-            this.callData1(this.surveyId)
         },
 
         // 동의 버튼을 누를시 적립되는 포인트

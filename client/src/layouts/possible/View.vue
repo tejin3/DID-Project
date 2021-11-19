@@ -251,7 +251,7 @@
 </template>
 
 <script>
-import getContract1 from '@/service/getContract1'
+// import getContract1 from '@/service/getContract1'
 
 export default {
     name: 'PossibleView',
@@ -285,7 +285,7 @@ export default {
         this.getSurvey()
         this.discountDay()
         this.getIsShow()
-        this.getVcContractInstance()
+        // this.getVcContractInstance()
     },
     mounted() {
         // this.$api('survey')
@@ -383,20 +383,22 @@ export default {
 
                 // 추출한 key/value를 객체로 담아 배열에 넣기
                 var obj = {}
-                var keykey
-                // var keyTohex = key
-                // keyTohex = this.web3.utils.asciiToHex(key)
+
                 this.keyList.push(key)
-                keykey = keykey + ',' + key
                 obj[key] = value
                 this.vcItemList.push(obj)
+
+                // 로컬에서 vC 꺼낸 기록
+                // var keykey
+                // keykey = keykey + ',' + key
             }
             this.$store.commit('addVcItemList', this.vcItemList)
             console.log('key', this.keyList)
-            console.log('key1', keykey.slice(10))
 
-            // this.keyList.map((arg) => web3.utils.asciiToHex(arg))
-            this.vcData(keykey.slice(10))
+            // 로컬에서 vC 꺼낸 기록
+            // console.log('key1', keykey.slice(10))
+            // // this.keyList.map((arg) => web3.utils.asciiToHex(arg))
+            // this.vcData(keykey.slice(10))
         },
 
         // 설문 조건과 VC항목을 비교
@@ -489,33 +491,33 @@ export default {
                 // console.log('vvv', this.surveys)
             })
             console.log(this.surveys)
-        },
-
-        getVcContractInstance() {
-            console.log('startVc')
-            var getContract21 = getContract1()
-            this.vC = getContract21
-            console.log('vcContractInstance', this.vC)
-            this.vC.events.vcCallApprovals({}, async (error, event) => {
-                console.log(error)
-                console.log(event)
-                // // vc 요청한 사람 계정
-                // event.returnValues[0]
-                // // 요청한 vc 이름
-                // event.returnValues[1]
-                // // 요청한 시간
-                // event.returnValues[2]
-            })
-        },
-        vcData(vcName) {
-            console.log('왔다')
-            this.vC.methods
-                .vcCall(vcName)
-                .send({ from: this.$store.state.web3.coinbase })
-                .then(receipt => {
-                    console.log(receipt)
-                })
         }
+
+        // getVcContractInstance() {
+        //     console.log('startVc')
+        //     var getContract21 = getContract1()
+        //     this.vC = getContract21
+        //     console.log('vcContractInstance', this.vC)
+        //     this.vC.events.vcCallApprovals({}, async (error, event) => {
+        //         console.log(error)
+        //         console.log(event)
+        //         // // vc 요청한 사람 계정
+        //         // event.returnValues[0]
+        //         // // 요청한 vc 이름
+        //         // event.returnValues[1]
+        //         // // 요청한 시간
+        //         // event.returnValues[2]
+        //     })
+        // },
+        // vcData(vcName) {
+        //     console.log('왔다')
+        //     this.vC.methods
+        //         .vcCall(vcName)
+        //         .send({ from: this.$store.state.web3.coinbase })
+        //         .then(receipt => {
+        //             console.log(receipt)
+        //         })
+        // }
     }
 }
 </script>
