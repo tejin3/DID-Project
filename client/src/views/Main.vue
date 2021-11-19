@@ -34,14 +34,23 @@
                                 ></v-img>
                             </v-col>
                             <v-col cols="4" md="4" class="">
-                                <!-- <span class="test111">hello</span> -->
                                 <v-img
-                                    class="custom-img test111"
-                                    src="@/assets/img/main/pngegg1.png"
+                                    class="custom-img mt-5 mr-10"
+                                    src="@/assets/img/main/mainStore1.png"
                                     aspect-ratio="1"
-                                    >hello</v-img
-                                >
+                                    ><h3 class="test22">
+                                        {{ text }}
+                                    </h3>
+                                    <h2 class="test33">
+                                        {{ text1 }}
+                                    </h2>
+                                </v-img>
                             </v-col>
+                            <v-img
+                                class="test1 mt-10"
+                                src="@/assets/img/main/pngegg.png"
+                                width="36vh"
+                            ></v-img>
                         </v-row>
                     </v-sheet>
 
@@ -126,7 +135,9 @@ export default {
             plugins,
             model: 0,
             wheelTimer: null,
-            dDays: ''
+            dDays: '',
+            text: null,
+            text1: null
         }
     },
     setup() {},
@@ -134,6 +145,8 @@ export default {
     created() {
         this.getSurvey()
         this.discountDay()
+        this.textCall()
+        this.textCall1()
     },
     unmounted() {},
     methods: {
@@ -179,6 +192,16 @@ export default {
             console.log(sidx)
             // sidx = sidx < 0 ? 0 : sidx
             // sidx = sidx > aElSection.length - 1 ? aElSection.length - 1 : sidx
+        },
+        textCall() {
+            setTimeout(() => {
+                this.text = '상위 10% 한달 평균 수익 : 77만원'
+            }, 2100)
+        },
+        textCall1() {
+            setTimeout(() => {
+                this.text1 = '한달 최고 수익 : 119만원'
+            }, 5900)
         }
     }
 }
@@ -277,11 +300,52 @@ export default {
     animation: sample-ani-test 3s linear infinite alternate;
 }
 
-.test111 {
-    margin: 150px;
-    transition-duration: 2s;
+// .test1 {
+//     position: absolute;
+//     left: 40%;
+//     // border: 1px saddlebrown solid;
+//     transition-property: margin-left;
+//     transition-duration: 2s;
+
+// }
+.test1 {
+    position: absolute;
+    // left: 40%;
+    // border: 1px saddlebrown solid;
+    transition-property: margin-left;
+    transition-duration: 3s;
+    animation-name: tejin3;
+    animation-duration: 2s;
+    animation-duration: leaner;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
 }
-.test111:hover {
-    margin: 0px;
+
+.test22 {
+    position: absolute;
+    left: 12%;
+    top: 30%;
 }
+.test33 {
+    position: absolute;
+    left: 12%;
+    top: 45%;
+}
+// .test1:hover {
+//     margin-left: 20vh;
+// }
+
+/* 키프레임 이름 = 애니메이션 이름 */
+@keyframes tejin3 {
+    0% {
+        left: 40%;
+    }
+    100% {
+        left: 50%;
+    }
+}
+// .test111:hover {
+//     margin: 0px;
+// }
 </style>
