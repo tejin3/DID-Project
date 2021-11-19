@@ -70,9 +70,8 @@
                 align-with-title
                 center-active
                 dark
-                color="black"
             >
-                <v-tabs-slider color="orange lighten-2"></v-tabs-slider>
+                <v-tabs-slider color="deep-purple accent-3"></v-tabs-slider>
 
                 <!-- tap value = 0 -->
                 <!-- <v-tab class="font-weight-bold black--text">
@@ -160,20 +159,22 @@
                             ></v-img>
                         </router-link>
 
-                        <v-card-title class="text-h6">
+                        <v-card-title>
                             {{ d.survey_title }}
                         </v-card-title>
                         <v-chip
                             close-icon="mdi-close-outline"
-                            color="deep-purple accent-3"
+                            color="black"
                             fill
                             outlined
-                            class="white--text pa-0 ml-2"
+                            class="black--text pa-0 ml-2"
                         >
                             <v-card-subtitle
                                 class="text-subtitle-1 font-weight-bold"
                             >
-                                적립금: {{ d.survey_price }} | 쿠폰:
+                                적립금:
+                                {{ d.survey_price }}
+                                | 쿠폰:
                                 {{ d.survey_coupon }}
                             </v-card-subtitle>
                         </v-chip>
@@ -183,15 +184,18 @@
                             <br />
                             <br /> -->
                             <v-icon v-text="icon"></v-icon>남은 기간
-                            <v-chip
+                            <!-- <v-chip
                                 class="ma-1 font-weight-bold text-subtitle-2"
                                 color="deep-purple accent-3"
                                 outlined
                                 small
+                            > -->
+                            <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
+                            <span
+                                class="font-weight-bold deep-purple--text ml-2"
+                                >D-{{ dDays[i].dday }}</span
                             >
-                                <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
-                                D-{{ dDays[i].dday }}
-                            </v-chip>
+                            <!-- </v-chip> -->
 
                             <!-- <br />
                             {{ d.survey_start_date.slice(0, 10) }}

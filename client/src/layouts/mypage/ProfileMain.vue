@@ -4,16 +4,15 @@
         <v-container>
             <!-- defalut cols is 12 -->
             <!-- 탭 제목 영역 -->
-            <v-toolbar elevation="3" color="#94B3FD">
+            <v-toolbar elevation="3" color="white">
                 <!-- 화면이 클 때 -->
                 <v-tabs
                     class="hidden-xs-only"
                     v-model="tab"
                     align-with-title
                     center-active
-                    dark
                 >
-                    <v-tabs-slider color="yellow"></v-tabs-slider>
+                    <v-tabs-slider color="deep-purple accent-3"></v-tabs-slider>
                     <!-- tap value = 0 -->
                     <v-tab class="font-weight-bold">
                         <v-icon class="mr-2">mdi-account-box</v-icon>
