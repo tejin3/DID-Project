@@ -331,6 +331,6 @@ export default {
 }
 .hi {
     position: absolute;
-    left: 26%;
+    left: 25%;
 }
 </style>

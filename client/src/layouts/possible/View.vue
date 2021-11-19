@@ -65,11 +65,10 @@
         <v-toolbar elevation="3" class="mb-5">
             <!-- 화면이 클 때 -->
             <v-tabs
-                class="hidden-xs-only"
+                class="hidden-xs-only "
                 v-model="tab"
                 align-with-title
                 center-active
-                dark
             >
                 <v-tabs-slider color="deep-purple accent-3"></v-tabs-slider>
 
@@ -95,7 +94,7 @@
 
                 <!-- tap value = 0 -->
                 <v-tab
-                    class="font-weight-bold black--text"
+                    class="font-weight-bold black--text tabColor"
                     style="font-size:1.1em;"
                 >
                     전체 설문
@@ -527,5 +526,9 @@ export default {
 .metamaskCenter {
     position: absolute;
     left: 42%;
+}
+
+.tabColor {
+    background-color: purple;
 }
 </style>

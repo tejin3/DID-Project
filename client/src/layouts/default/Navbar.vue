@@ -125,7 +125,7 @@ module.exports = {
     },
     data() {
         return {
-            title: 'WeDIDsurvey',
+            title: 'weDIDsurvey',
             drawer: false,
             items: [
                 { title: 'Home', link: '/', icon: 'home' },
