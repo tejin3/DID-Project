@@ -1,6 +1,10 @@
 <template>
     <v-container fluid>
-        <!-- <div class="d-flex child-flex" style="justify-content: center;">
+        <!-- 왼쪽 layout -->
+        <v-row>
+            <v-col cols="12" sm="8" ma="4">
+                <v-card>
+                    <!-- <div class="d-flex child-flex" style="justify-content: center;">
             <div
                 class="font-weight-bold text-h2 text-center"
                 style=" margin:auto;"
@@ -9,207 +13,205 @@
                 <img width="50" src="@/assets/img/trade/cart.png" />
             </div>
         </div> -->
-        <!--쿠폰교환 bn글씨 시작 -->
-        <v-container
-            class="d-flex justify-center align-center "
-            style="margin-left:50"
-        >
-            <img
-                src="@/assets/img/trade/test.png"
-                alt=""
-                class="img-bn-class"
-                style=" margin-right:0;"
-            />
+                    <!--쿠폰교환 bn글씨 시작 -->
+                    <v-container
+                        class="d-flex justify-center align-center "
+                        style="margin-left:50"
+                    >
+                        <img
+                            src="@/assets/img/trade/test.png"
+                            alt=""
+                            class="img-bn-class"
+                            style=" margin-right:0;"
+                        />
 
-            <div class="hi" style="justify-content:center; display:flex;">
-                <div
-                    style="color:white; font-size:1.5em;"
-                    class="d-flex align-center"
-                >
-                    쿠폰교환
-                </div>
-                <div style="color:white; flex:1; margin-left:20px">
-                    <div style="font-size:1.2em">
-                        설문 완료 후 받은 쿠폰으로 다양한 상품을 교환하세요!
-                    </div>
-                    <div style="font-size:0.8em">
-                        우리 WeDIDsurvey에서는 의뢰업체들과 협력하에 보다 할인된
-                        가격으로 만나보실 수 있습니다.
-                    </div>
-                </div>
-            </div>
+                        <div
+                            class="hi"
+                            style="justify-content:center; display:flex;"
+                        >
+                            <div
+                                style="color:white; font-size:1.5em;"
+                                class="d-flex align-center"
+                            >
+                                쿠폰교환
+                            </div>
+                            <div style="color:white; flex:1; margin-left:20px">
+                                <div style="font-size:1.2em">
+                                    설문 완료 후 받은 쿠폰으로 다양한 상품을
+                                    교환하세요!
+                                </div>
+                                <div style="font-size:0.8em">
+                                    우리 WeDIDsurvey에서는 의뢰업체들과 협력하에
+                                    보다 할인된 가격으로 만나보실 수 있습니다.
+                                </div>
+                            </div>
+                        </div>
+                    </v-container>
 
-            <v-card width="200" height="141">
-                <v-card-text>
-                    <br />
-                    <div class="text-h4 text--primary text-center">
-                        🎫
-                        {{ coupon[0].user_coupon }}
-                    </div>
-                    <br />
-                    <p class="text-center">
-                        현재 내 쿠폰
-                    </p>
-                </v-card-text>
-            </v-card>
-        </v-container>
-
-        <!-- <p class="text-center">
+                    <!-- <p class="text-center">
             weDIDsurvey의 다양한 상품을 할인된 가격으로 실속있게 교환하세요
         </p> -->
 
-        <!-- <v-container>
+                    <!-- <v-container>
             <v-card class="mb-10">
                 <v-img src="@/assets/img/banner.jpg"> </v-img>
             </v-card>
         </v-container> -->
-        <!-- <TradeHeader />
+                    <!-- <TradeHeader />
         <TradeCategory />
         <TradeMain /> -->
-        <v-container class="mb-5">
-            <v-bottom-navigation
-                :value="value"
-                color="hsl(258, 98%, 70%)"
-                class="d-flex justify-space-around"
-            >
-                <v-btn>
-                    <span>전체</span>
-
-                    <v-icon>mdi-widgets</v-icon>
-                </v-btn>
-
-                <v-btn>
-                    <span>커피/음료</span>
-
-                    <v-icon>
-                        mdi-glass-wine
-                    </v-icon>
-                </v-btn>
-
-                <v-btn>
-                    <span>베이커리/도넛</span>
-
-                    <v-icon>mdi-cake-variant</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>아이스크림</span>
-
-                    <v-icon>mdi-ice-cream</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>햄버거/치킨/피자</span>
-
-                    <v-icon>mdi-food</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>마트/편의점</span>
-
-                    <v-icon>mdi-store</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>상품권</span>
-
-                    <v-icon>mdi-ticket</v-icon>
-                </v-btn>
-                <v-btn>
-                    <span>영화</span>
-
-                    <v-icon>mdi-video</v-icon>
-                </v-btn>
-            </v-bottom-navigation>
-        </v-container>
-
-        <!--hover했을떄 효과 및 카드-->
-        <v-container>
-            <v-row>
-                <!-- class="testLine ma-6 pa-0 " -->
-                <v-col
-                    class="testLine text-center"
-                    v-for="(good, i) in goods"
-                    :key="i"
-                >
-                    <v-card-subtitle
-                        class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
-                    >
-                        <v-card width="200" hover height="200">
-                            <v-img
-                                class="white--text align-end"
-                                :src="
-                                    require(`@/assets/img/trade/${good.goods_image_path}`)
-                                "
-                            >
-                            </v-img>
-                        </v-card>
-                    </v-card-subtitle>
-                    <v-card-subtitle>
-                        <v-card-subtitle
-                            class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
-                        >
-                            <v-icon color="hsl(258, 98%, 70%)">mdi-tag</v-icon>
-                            {{ good.goods_coupon }}
-                        </v-card-subtitle>
-                        <v-card-subtitle
-                            class="pb-1 pt-1 text-center text-body-3"
-                        >
-                            {{ good.goods_issuer }}
-                        </v-card-subtitle>
-                        <v-card-subtitle
-                            class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
-                            style="height:50px"
-                        >
-                            {{ good.goods_name }}
-                        </v-card-subtitle>
-                        <div
-                            class="text-decoration-line-through text--disabled text-caption"
-                        >
-                            {{ good.goods_original_price }}원
-                        </div>
-                        <div class="font-weight-black font-weight-bold">
-                            {{ good.goods_discounted_price }}원
-                        </div>
-                        <v-btn
+                    <v-container class="mb-5">
+                        <v-bottom-navigation
+                            :value="value"
                             color="hsl(258, 98%, 70%)"
-                            outlined
-                            small
-                            @click="
-                                ;[
-                                    (dialog = true),
-                                    exchangeGoods(i + 1, good.goods_coupon)
-                                ]
-                            "
+                            class="d-flex justify-space-around"
                         >
-                            교환하기
-                        </v-btn>
-                    </v-card-subtitle>
+                            <v-btn>
+                                <span>전체</span>
 
-                    <!-- </v-card> -->
-                </v-col>
-            </v-row>
-            <v-row justify="center">
-                <v-dialog v-model="dialog" max-width="300">
-                    <v-card>
-                        <v-card-title class="text-h6">
-                            🥳 교환이 완료되었습니다.
-                        </v-card-title>
-                        <v-card-text class="text-center">
-                            교환된 쿠폰은 <strong>마이페이지</strong>에서
-                            <br />확인 가능합니다.
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-
-                            <v-btn
-                                color="blue darken-1"
-                                text
-                                @click="dialog = false"
-                            >
-                                확인
+                                <v-icon>mdi-widgets</v-icon>
                             </v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </v-dialog>
-            </v-row>
-            <!-- <v-row>
+
+                            <v-btn>
+                                <span>커피/음료</span>
+
+                                <v-icon>
+                                    mdi-glass-wine
+                                </v-icon>
+                            </v-btn>
+
+                            <v-btn>
+                                <span>베이커리/도넛</span>
+
+                                <v-icon>mdi-cake-variant</v-icon>
+                            </v-btn>
+                            <v-btn>
+                                <span>아이스크림</span>
+
+                                <v-icon>mdi-ice-cream</v-icon>
+                            </v-btn>
+                            <v-btn>
+                                <span>햄버거/치킨/피자</span>
+
+                                <v-icon>mdi-food</v-icon>
+                            </v-btn>
+                            <v-btn>
+                                <span>마트/편의점</span>
+
+                                <v-icon>mdi-store</v-icon>
+                            </v-btn>
+                            <v-btn>
+                                <span>상품권</span>
+
+                                <v-icon>mdi-ticket</v-icon>
+                            </v-btn>
+                            <v-btn>
+                                <span>영화</span>
+
+                                <v-icon>mdi-video</v-icon>
+                            </v-btn>
+                        </v-bottom-navigation>
+                    </v-container>
+
+                    <!--hover했을떄 효과 및 카드-->
+                    <v-container>
+                        <v-row>
+                            <!-- class="testLine ma-6 pa-0 " -->
+                            <v-col
+                                class="testLine text-center"
+                                v-for="(good, i) in goods"
+                                :key="i"
+                            >
+                                <v-card-subtitle
+                                    class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
+                                >
+                                    <v-card width="200" hover height="200">
+                                        <v-img
+                                            class="white--text align-end"
+                                            :src="
+                                                require(`@/assets/img/trade/${good.goods_image_path}`)
+                                            "
+                                        >
+                                        </v-img>
+                                    </v-card>
+                                </v-card-subtitle>
+                                <v-card-subtitle>
+                                    <v-card-subtitle
+                                        class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+                                    >
+                                        <v-icon color="hsl(258, 98%, 70%)"
+                                            >mdi-tag</v-icon
+                                        >
+                                        {{ good.goods_coupon }}
+                                    </v-card-subtitle>
+                                    <v-card-subtitle
+                                        class="pb-1 pt-1 text-center text-body-3"
+                                    >
+                                        {{ good.goods_issuer }}
+                                    </v-card-subtitle>
+                                    <v-card-subtitle
+                                        class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
+                                        style="height:50px"
+                                    >
+                                        {{ good.goods_name }}
+                                    </v-card-subtitle>
+                                    <div
+                                        class="text-decoration-line-through text--disabled text-caption"
+                                    >
+                                        {{ good.goods_original_price }}원
+                                    </div>
+                                    <div
+                                        class="font-weight-black font-weight-bold"
+                                    >
+                                        {{ good.goods_discounted_price }}원
+                                    </div>
+                                    <v-btn
+                                        color="hsl(258, 98%, 70%)"
+                                        outlined
+                                        small
+                                        @click="
+                                            ;[
+                                                (dialog = true),
+                                                exchangeGoods(
+                                                    i + 1,
+                                                    good.goods_coupon
+                                                )
+                                            ]
+                                        "
+                                    >
+                                        교환하기
+                                    </v-btn>
+                                </v-card-subtitle>
+
+                                <!-- </v-card> -->
+                            </v-col>
+                        </v-row>
+                        <v-row justify="center">
+                            <v-dialog v-model="dialog" max-width="300">
+                                <v-card>
+                                    <v-card-title class="text-h6">
+                                        🥳 교환이 완료되었습니다.
+                                    </v-card-title>
+                                    <v-card-text class="text-center">
+                                        교환된 쿠폰은
+                                        <strong>마이페이지</strong>에서
+                                        <br />확인 가능합니다.
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                        <v-btn
+                                            color="blue darken-1"
+                                            text
+                                            @click="dialog = false"
+                                        >
+                                            확인
+                                        </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-dialog>
+                        </v-row>
+                        <!-- <v-row>
                 <v-col
                     class="mr-auto"
                     v-for="count in 4"
@@ -233,8 +235,8 @@
                                 <v-app-bar flat color="rgba(0, 0, 0, 0) ">
                                 </v-app-bar>
                             </v-img> -->
-            <!--텍스트부분-->
-            <!-- <v-card-text>
+                        <!--텍스트부분-->
+                        <!-- <v-card-text>
                                 <div class="text--primary">
                                     10 coupons
                                 </div>
@@ -250,7 +252,26 @@
                     </v-hover>
                 </v-col>
             </v-row> -->
-        </v-container>
+                    </v-container>
+                </v-card>
+            </v-col>
+            <!-- 오른쪽 layout -->
+            <v-col cols="6" md="4">
+                <v-card width="200" height="141">
+                    <v-card-text>
+                        <br />
+                        <div class="text-h4 text--primary text-center">
+                            🎫
+                            {{ coupon[0].user_coupon }}
+                        </div>
+                        <br />
+                        <p class="text-center">
+                            현재 내 쿠폰
+                        </p>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 <script>
