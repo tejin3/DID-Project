@@ -42,7 +42,7 @@
                         <v-card>
                             <v-app-bar
                                 dark
-                                class="d-flex justify-center mb-1"
+                                class="d-flex justify-center mb-1 "
                                 color="#9568fd"
                                 height="40px"
                             >
@@ -56,6 +56,7 @@
                                 <!--맞춤설문조사 그리는 영역  -->
                                 <v-row style>
                                     <v-col
+                                        class="mt-3 mb-3"
                                         v-for="(survey, i) in surveys"
                                         :key="i"
                                         cols="12"
@@ -85,34 +86,35 @@
                                                         }}
                                                     </p>
                                                 </div>
+                                                <div>
+                                                    <v-btn
+                                                        @click="test(i)"
+                                                        v-if="
+                                                            survey.isBooked ==
+                                                                true
+                                                        "
+                                                        class="ml-5 reservationBtn"
+                                                        outlined
+                                                        rounded
+                                                        color="white"
+                                                        x-small
+                                                    >
+                                                        예약하기
+                                                    </v-btn>
+                                                    <v-btn
+                                                        v-else
+                                                        class="ml-5 disabledBtn"
+                                                        outlined
+                                                        disabled
+                                                        rounded
+                                                        x-small
+                                                    >
+                                                        예약완료
+                                                    </v-btn>
+                                                </div>
                                             </v-card-text>
 
                                             <!-- {{ survey.isBooked }} -->
-                                            <div>
-                                                <v-btn
-                                                    @click="test(i)"
-                                                    v-if="
-                                                        survey.isBooked == true
-                                                    "
-                                                    class="ml-5 reservationBtn"
-                                                    outlined
-                                                    rounded
-                                                    color="white"
-                                                    x-small
-                                                >
-                                                    예약하기
-                                                </v-btn>
-                                                <v-btn
-                                                    v-else
-                                                    class="ml-5 disabledBtn"
-                                                    outlined
-                                                    disabled
-                                                    rounded
-                                                    x-small
-                                                >
-                                                    예약완료
-                                                </v-btn>
-                                            </div>
 
                                             <!-- <v-card-actions>
                                         <v-btn color="orange" text>
@@ -242,16 +244,16 @@ div {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 .disabledBtn {
     background: rgb(192, 192, 192);
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 .v-card__text {
-    padding: 10px;
+    padding: 0 auto;
 }
 </style>
