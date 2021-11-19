@@ -38,27 +38,28 @@
         <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
             <v-bottom-navigation :value="value" color="deep-purple" horizontal>
-                <v-btn>
-                    <span>의뢰한 설문 : 4</span>
+                <v-btn @click="show(2)">
+                    <span>전체 설문 : {{ surveyData.length }}</span>
 
+                    <v-icon>mdi-magnify</v-icon>
+                </v-btn>
+
+                <v-btn @click="show(0)">
+                    <span>진행중 설문 : {{ unComplete }}</span>
                     <v-icon>mdi-history</v-icon>
                 </v-btn>
 
-                <v-btn>
-                    <span>진행중 설문 : 3</span>
+                <v-btn @click="show(1)">
+                    <span>완료된 설문 : {{ complete }}</span>
 
-                    <v-icon>mdi-heart</v-icon>
-                </v-btn>
-
-                <v-btn>
-                    <span>완료된 설문 : 1</span>
-
-                    <v-icon>mdi-map-marker</v-icon>
+                    <v-icon>mdi-checkbox-marked-circle</v-icon>
                 </v-btn>
             </v-bottom-navigation>
         </v-container>
         <!-- 설문결과 카드 -->
-        <v-container id="testing">
+        <!-- v-if="m.selection === 0 ? color(0) : color(1)" -->
+
+        <v-container>
             <v-row>
                 <v-col
                     v-for="(m, n) in surveyData"
@@ -67,7 +68,7 @@
                     cols="3"
                 >
                     <v-card
-                        style="border:"
+                        :color="colorSelect"
                         class="mx-auto my-12"
                         max-width="374"
                         v-on:mouseover=";(m.hover = true), testPlz($event)"
@@ -162,7 +163,7 @@
                                 <v-slider
                                     class="mt-6"
                                     v-model="m.total_complte"
-                                    label="설문진행률"
+                                    label="설문참여율"
                                     thumb-color="red"
                                     thumb-label="always"
                                     readonly
@@ -255,12 +256,12 @@ import DialogScroll from './DialogScroll.vue'
 // import getContract1 from '@/service/getContract1'
 
 export default {
-    el: '#testing',
     name: 'CompanyView',
     components: { DialogScroll },
     data() {
         return {
             surveyData: [],
+            surveyData1: [],
             users: [],
             loading: false,
             companyAccount: '0x12',
@@ -269,10 +270,13 @@ export default {
             sC: null,
             callData: null,
             vC: null,
-            value: 1,
+            value: 0,
             hover: false,
             eventWidth: 0,
-            eventHeight: 0
+            eventHeight: 0,
+            unComplete: 0,
+            complete: 0,
+            colorSelect: ''
         }
     },
     setup() {},
@@ -302,7 +306,20 @@ export default {
                 })
                 const conditions = output.result
                 console.log(conditions)
-                this.surveyData = this.matchSurvey(surveys, conditions)
+                this.surveyData1 = this.matchSurvey(surveys, conditions)
+                this.surveyData = this.surveyData1
+                // 완료한 설문과 진행준인 설문 카운트
+                var unComplete1 = 0
+                var complete1 = 0
+                for (let c = 0; c < this.surveyData.length; c++) {
+                    if (this.surveyData[c].selection === 0) {
+                        unComplete1++
+                    } else {
+                        complete1++
+                    }
+                }
+                this.unComplete = unComplete1
+                this.complete = complete1
             } catch (err) {
                 console.log('설문지 및 설문지 조건 데이터 불러오기 실패')
             }
@@ -355,6 +372,35 @@ export default {
             // this.eventWidth = event.target.offsetParent.offsetWidth
             //             this.eventHeight = event.target.offsetParent.offsetHeight
             //             }
+        },
+        color(a) {
+            if (a === 0) {
+                this.colorSelect = 'white'
+            } else {
+                this.colorSelect = 'gray'
+            }
+        },
+        show(n) {
+            if (n === 0) {
+                console.log('왔니')
+                this.surveyData = this.surveyData1
+                this.surveyData = this.surveyData.filter(
+                    filtering => filtering.selection === 0
+                )
+                console.log(this.surveyData)
+            } else if (n === 1) {
+                console.log('왔니1')
+                this.surveyData = this.surveyData1
+                this.surveyData = this.surveyData.filter(
+                    filtering => filtering.selection === 1
+                )
+                console.log(this.surveyData)
+            } else {
+                console.log('왔니2')
+
+                this.surveyData = this.surveyData1
+                console.log(this.surveyData)
+            }
         }
         // surveyCon() {
         //     this.$store.dispatch('getSurveyContractInstance')

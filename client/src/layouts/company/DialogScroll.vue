@@ -13,7 +13,7 @@
             </template>
 
             <v-card>
-                <v-card-title>Select DID</v-card-title>
+                <v-card-title>Select VP</v-card-title>
                 <v-divider></v-divider>
                 <v-card-text
                     style="padding: 5px;"
