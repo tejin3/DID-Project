@@ -34,9 +34,15 @@
         </v-container>
         <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
         <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
-        <v-dialog v-model="dialog" max-width="400">
+        <v-dialog v-model="dialog" max-width="340">
             <v-card>
-                <img width="50" src="@/assets/img/metamask.svg" />
+                <img
+                    class="metamaskCenter"
+                    width="50"
+                    src="@/assets/img/metamask.svg"
+                />
+                <br />
+                <br />
                 <v-card-text class="text-h6 text-center">
                     지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
                 </v-card-text>
@@ -88,6 +94,7 @@
                 >
             </v-tabs>
             <!-- 화면이 작을 때 -->
+
             <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
                 <v-tabs-slider color="primary"></v-tabs-slider>
                 <!-- tap value = 0 -->
@@ -132,11 +139,14 @@
                         </v-card-title>
                         <v-chip
                             close-icon="mdi-close-outline"
-                            color="grey"
+                            color="deep-purple accent-3"
                             fill
+                            outlined
                             class="white--text pa-0 ml-2"
                         >
-                            <v-card-subtitle class="text-subtitle-1">
+                            <v-card-subtitle
+                                class="text-subtitle-1 font-weight-bold"
+                            >
                                 적립금: {{ d.survey_price }} | 쿠폰:
                                 {{ d.survey_coupon }}
                             </v-card-subtitle>
@@ -176,7 +186,7 @@
 
                         <v-card-actions>
                             <v-btn
-                                color="orange lighten-2"
+                                color="deep-purple accent-3"
                                 text
                                 @click="d.isShow = !d.isShow"
                             >
@@ -482,5 +492,10 @@ export default {
 <style>
 .hi {
     position: absolute;
+}
+
+.metamaskCenter {
+    position: absolute;
+    left: 42%;
 }
 </style>
