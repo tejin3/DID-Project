@@ -39,7 +39,7 @@
         <v-container>
             <v-bottom-navigation :value="value" color="deep-purple" horizontal>
                 <v-btn @click="show(2)">
-                    <span>전체 설문 : {{ surveyData.length }}</span>
+                    <span>전체 설문 : {{ surveyLength }}</span>
 
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>
@@ -277,6 +277,11 @@ export default {
             unComplete: 0,
             complete: 0,
             colorSelect: ''
+        }
+    },
+    computed: {
+        surveyLength() {
+            return this.surveyData.length
         }
     },
     setup() {},
