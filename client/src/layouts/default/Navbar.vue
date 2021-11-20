@@ -87,15 +87,15 @@
             </v-toolbar-items>
 
             <!-- 네비바 오른쪽 부분 1 : 화면이 작을 때-->
-            <span class="hidden-sm-and-up">
+            <!-- <span class="hidden-sm-and-up">
                 <v-btn @click.stop="drawer = !drawer">
                     Menu
                 </v-btn>
-            </span>
+            </span> -->
         </v-app-bar>
 
         <!-- drawer is true -->
-        <v-navigation-drawer v-model="drawer" absolute temporary right>
+        <!-- <v-navigation-drawer v-model="drawer" absolute temporary right>
             <v-list>
                 <v-list-item
                     v-for="item in items"
@@ -111,7 +111,7 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-        </v-navigation-drawer>
+        </v-navigation-drawer> -->
     </div>
 </template>
 
@@ -125,13 +125,13 @@ module.exports = {
     },
     data() {
         return {
-            title: 'weDIDsurvey',
-            drawer: false,
-            items: [
-                { title: 'Home', link: '/', icon: 'home' },
-                { title: 'Store', link: 'store', icon: 'shopping-basket' },
-                { title: 'Cart', link: 'cart', icon: 'shopping-cart' }
-            ]
+            title: 'weDIDsurvey'
+            // drawer: false,
+            // items: [
+            //     { title: 'Home', link: '/', icon: 'home' },
+            //     { title: 'Store', link: 'store', icon: 'shopping-basket' },
+            //     { title: 'Cart', link: 'cart', icon: 'shopping-cart' }
+            // ]
         }
     },
     methods: {

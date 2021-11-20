@@ -8,49 +8,59 @@
             </p>
         </v-container> -->
         <!--쿠폰교환 bn글씨 시작 -->
-        <v-container class="d-flex justify-center align-center">
-            <img
-                src="@/assets/img/trade/test.png"
-                alt=""
-                class="img-bn-class"
-                style="margin:auto;"
-            />
 
-            <div class="hi" style="justify-content:center; display:flex;">
-                <div
-                    align="left"
-                    style="color:white; font-size:1.5em;"
-                    class="d-flex align-center"
-                >
-                    설문 결과
-                </div>
-                <div align="left" style="color:white; flex:1; margin-left:10px">
-                    <div style="font-size:1.2em">
-                        weDIDsurvey의 정확한 설문 결과를 확인하세요
+        <v-container>
+            <v-card
+                elevation="3"
+                class=" my-3 d-flex justify-center align-center"
+            >
+                <img
+                    src="@/assets/img/trade/test.png"
+                    alt=""
+                    class="img-bn-class"
+                    style="margin:auto;"
+                />
+
+                <div class="hi" style="justify-content:center; display:flex;">
+                    <div
+                        align="left"
+                        style="color:white; font-size:1.5em;"
+                        class="d-flex align-center"
+                    >
+                        설문 결과
                     </div>
-                    <div style="font-size:0.8em">
-                        우리 WeDIDsurvey에서는 설문 참가자들이 제공한 신원증명을
-                        확인 할 수 있습니다
+                    <div
+                        align="left"
+                        style="color:white; flex:1; margin-left:10px"
+                    >
+                        <div style="font-size:1.2em">
+                            weDIDsurvey의 정확한 설문 결과를 확인하세요
+                        </div>
+                        <div style="font-size:0.8em">
+                            우리 WeDIDsurvey에서는 설문 참가자들이 제공한
+                            신원증명을 확인 할 수 있습니다
+                        </div>
                     </div>
                 </div>
-            </div>
+            </v-card>
         </v-container>
+
         <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
             <v-bottom-navigation :value="value" color="deep-purple" horizontal>
-                <v-btn @click="show(2)">
-                    <span>전체 설문 : {{ surveyLength }}</span>
+                <v-btn @click="show(2)" class="mr-3">
+                    <h2 class="mt-2">전체 설문 : {{ surveyLength }}</h2>
 
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>
 
-                <v-btn @click="show(0)">
-                    <span>진행중 설문 : {{ unComplete }}</span>
+                <v-btn @click="show(0)" class="mr-3">
+                    <h2 class="mt-2">진행중 설문 : {{ unComplete }}</h2>
                     <v-icon>mdi-history</v-icon>
                 </v-btn>
 
                 <v-btn @click="show(1)">
-                    <span>완료된 설문 : {{ complete }}</span>
+                    <h2 class="mt-2">완료된 설문 : {{ complete }}</h2>
 
                     <v-icon>mdi-checkbox-marked-circle</v-icon>
                 </v-btn>
@@ -60,29 +70,32 @@
         <!-- v-if="m.selection === 0 ? color(0) : color(1)" -->
 
         <v-container>
-            <v-row>
-                <v-col
-                    v-for="(m, n) in surveyData"
-                    :key="n"
-                    class="d-flex child-flex"
-                    cols="3"
-                >
-                    <v-card
-                        :color="colorSelect"
-                        class="mx-auto my-12"
-                        max-width="374"
-                        v-on:mouseover=";(m.hover = true), testPlz($event)"
-                        @mouseout="m.hover = false"
+            <v-card elevation="3" class=" my-6">
+                <v-row>
+                    <v-col
+                        v-for="(m, n) in surveyData"
+                        :key="n"
+                        class="d-flex child-flex"
+                        cols="3"
                     >
-                        <template slot="progress">
-                            <v-progress-linear
-                                color="deep-purple"
-                                height="10"
-                                indeterminate
-                            ></v-progress-linear>
-                        </template>
+                        <v-card
+                            class="mx-auto my-6"
+                            max-width="374"
+                            v-on:mouseover=";(m.hover = true), testPlz($event)"
+                            @mouseout="m.hover = false"
+                            :color="
+                                m.selection == 0 ? 'white' : 'grey lighten-2'
+                            "
+                        >
+                            <template slot="progress">
+                                <v-progress-linear
+                                    color="deep-purple"
+                                    height="10"
+                                    indeterminate
+                                ></v-progress-linear>
+                            </template>
 
-                        <!-- <v-img
+                            <!-- <v-img
                         :src="
                             `https://picsum.photos/500/300?image=${m * 5 + 10}`
                         "
@@ -106,14 +119,14 @@
                         </template>
                     </v-img> -->
 
-                        <v-card-title
-                            >{{ m.survey_title }}
-                            <br />
-                            [설문번호 :{{ m.survey_id }}]</v-card-title
-                        >
-                        <v-card-text class="py-0">
-                            <v-timeline align-top dense>
-                                <!-- <v-timeline-item small>
+                            <v-card-title
+                                >{{ m.survey_title }}
+                                <br />
+                                [설문번호 :{{ m.survey_id }}]</v-card-title
+                            >
+                            <v-card-text class="py-0">
+                                <v-timeline align-top dense>
+                                    <!-- <v-timeline-item small>
                                 <v-row class="pt-1">
                                     <v-col>
                                         <strong>
@@ -125,118 +138,120 @@
                                     </v-col>
                                 </v-row>
                             </v-timeline-item> -->
-                                <v-timeline-item color="deep-purple">
-                                    <v-row class="pt-1">
-                                        <v-col>
-                                            설문 종료까지
-                                            <v-chip
-                                                class="ma-1 font-weight-bold"
-                                                color="deep-purple accent-3"
-                                                outlined
-                                                small
-                                            >
-                                                D-{{ m.dDay }}
-                                            </v-chip>
-                                        </v-col>
-                                    </v-row>
-                                </v-timeline-item>
-                                <v-timeline-item small>
-                                    <v-row class="pt-1">
-                                        <v-col>
-                                            <strong>
-                                                설문 종료 :
-                                                {{
-                                                    m.survey_end_date.slice(
-                                                        0,
-                                                        10
-                                                    )
-                                                }}</strong
-                                            >
-                                        </v-col>
-                                    </v-row>
-                                </v-timeline-item>
-                            </v-timeline>
-                        </v-card-text>
+                                    <v-timeline-item color="deep-purple">
+                                        <v-row class="pt-1">
+                                            <v-col>
+                                                설문 종료까지
+                                                <v-chip
+                                                    class="ma-1 font-weight-bold"
+                                                    color="deep-purple accent-3"
+                                                    outlined
+                                                    small
+                                                >
+                                                    D-{{ m.dDay }}
+                                                </v-chip>
+                                            </v-col>
+                                        </v-row>
+                                    </v-timeline-item>
+                                    <v-timeline-item small>
+                                        <v-row class="pt-1">
+                                            <v-col>
+                                                <strong>
+                                                    설문 종료 :
+                                                    {{
+                                                        m.survey_end_date.slice(
+                                                            0,
+                                                            10
+                                                        )
+                                                    }}</strong
+                                                >
+                                            </v-col>
+                                        </v-row>
+                                    </v-timeline-item>
+                                </v-timeline>
+                            </v-card-text>
 
-                        <v-card-text>
-                            <div class="mt-6">
-                                <v-slider
-                                    class="mt-6"
-                                    v-model="m.total_complte"
-                                    label="설문참여율"
-                                    thumb-color="red"
-                                    thumb-label="always"
-                                    readonly
-                                ></v-slider>
-                                <!-- v-model="`${n.val}`"
+                            <v-card-text>
+                                <div class="mt-6">
+                                    <v-slider
+                                        class="mt-6"
+                                        v-model="m.total_complte"
+                                        label="설문참여율"
+                                        thumb-color="red"
+                                        thumb-label="always"
+                                        readonly
+                                    ></v-slider>
+                                    <!-- v-model="`${n.val}`"
                         :label="`${n.label}`"
                         :label="`${n.color}`" -->
-                            </div>
-                            <v-chip-group
-                                active-class="deep-purple accent-4 white--text"
-                                column
-                                mandatory
-                                v-model="m.selection"
-                            >
-                                <v-chip small>설문중</v-chip>
-
-                                <v-chip small>설문완료</v-chip>
-                            </v-chip-group>
-                        </v-card-text>
-
-                        <v-divider
-                            color="purple lighten-2 "
-                            class="mx-4"
-                        ></v-divider>
-                    </v-card>
-
-                    <!-- 호버창 -->
-                    <v-card
-                        class="mx-auto my-12"
-                        max-width="374"
-                        :style="
-                            `position:absolute; z-index: 100; width: ${eventWidth}px; height: ${eventHeight}px; opacity: 0.9; padding: 100px 0 0 0`
-                        "
-                        @mouseover="m.hover = true"
-                        @mouseout="m.hover = false"
-                        v-show="m.hover"
-                    >
-                        <v-card-text>
-                            <h1>요청 VC List</h1>
-                            <v-chip-group column mandatory>
-                                <!-- 요청한 vc list -->
-                                <v-chip
-                                    small
-                                    :key="k"
-                                    v-for="(w, k) in m.vcList"
+                                </div>
+                                <v-chip-group
+                                    active-class="deep-purple accent-4 white--text"
+                                    column
+                                    mandatory
+                                    v-model="m.selection"
                                 >
-                                    {{ w }}
-                                </v-chip></v-chip-group
-                            >
-                        </v-card-text>
-                        <v-card-text>
-                            <v-chip-group column>
-                                <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
-                                <!-- :key="k" v-for="(w, k) in m.vcList" -->
+                                    <v-chip small>설문중</v-chip>
 
-                                <v-chip>
-                                    <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
-                                    <DialogScroll
-                                        title="vp 확인"
-                                        :completePeople="
-                                            users.filter(
-                                                filtering =>
-                                                    filtering.survey_id == n + 1
-                                            )
-                                        "
-                                        :surveyId="m.survey_id"
-                                /></v-chip>
-                            </v-chip-group>
-                        </v-card-text>
-                    </v-card>
-                    <!-- 호버창 -->
-                </v-col>
-            </v-row>
+                                    <v-chip small>설문완료</v-chip>
+                                </v-chip-group>
+                            </v-card-text>
+
+                            <v-divider
+                                color="purple lighten-2 "
+                                class="mx-4"
+                            ></v-divider>
+                        </v-card>
+
+                        <!-- 호버창 -->
+                        <v-card
+                            class="mx-auto my-6"
+                            max-width="374"
+                            :style="
+                                `position:absolute; z-index: 100; width: ${eventWidth}px; height: ${eventHeight}px; opacity: 0.9; padding: 100px 0 0 0`
+                            "
+                            @mouseover="m.hover = true"
+                            @mouseout="m.hover = false"
+                            v-show="m.hover"
+                        >
+                            <v-card-text>
+                                <h1>요청 VC List</h1>
+                                <v-chip-group column mandatory>
+                                    <!-- 요청한 vc list -->
+                                    <v-chip
+                                        small
+                                        :key="k"
+                                        v-for="(w, k) in m.vcList"
+                                    >
+                                        {{ w }}
+                                    </v-chip></v-chip-group
+                                >
+                            </v-card-text>
+                            <v-card-text>
+                                <v-chip-group column>
+                                    <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
+                                    <!-- :key="k" v-for="(w, k) in m.vcList" -->
+
+                                    <v-chip>
+                                        <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
+                                        <DialogScroll
+                                            title="vp 확인"
+                                            :completePeople="
+                                                users.filter(
+                                                    filtering =>
+                                                        filtering.survey_id ==
+                                                        n + 1
+                                                )
+                                            "
+                                            :surveyId="m.survey_id"
+                                    /></v-chip>
+                                </v-chip-group>
+                            </v-card-text>
+                        </v-card>
+                        <!-- 호버창 -->
+                    </v-col>
+                </v-row>
+            </v-card>
         </v-container>
         <!-- <button @click="getSurveyContractInstance()">survey</button> -->
         <!-- <button @click="test()">test</button> -->
@@ -281,7 +296,7 @@ export default {
     },
     computed: {
         surveyLength() {
-            return this.surveyData.length
+            return this.surveyData1.length
         }
     },
     setup() {},
@@ -364,9 +379,11 @@ export default {
             return surveys
         },
         testPlz: function(event) {
+            // console.log(event)
+
             if (
-                event.target.offsetParent._prevClass ===
-                'mx-auto my-12 v-card v-sheet theme--light'
+                event.target.offsetParent.parentElement._prevClass ===
+                'd-flex child-flex col col-3'
             ) {
                 console.log('안녕')
                 this.eventWidth = event.target.offsetParent.offsetWidth
@@ -378,13 +395,7 @@ export default {
             //             this.eventHeight = event.target.offsetParent.offsetHeight
             //             }
         },
-        color(a) {
-            if (a === 0) {
-                this.colorSelect = 'white'
-            } else {
-                this.colorSelect = 'gray'
-            }
-        },
+
         show(n) {
             if (n === 0) {
                 console.log('왔니')

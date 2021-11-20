@@ -13,7 +13,9 @@
             </template>
 
             <v-card>
-                <v-card-title>Select VP</v-card-title>
+                <v-card-title class="white--text deep-purple accent-4"
+                    >Select VP</v-card-title
+                >
                 <v-divider></v-divider>
                 <v-card-text
                     style="padding: 5px;"

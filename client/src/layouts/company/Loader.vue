@@ -4,15 +4,15 @@
             :disabled="dialog"
             :loading="dialog"
             class="white--text"
-            color="purple darken-2"
+            color="deep-purple accent-4"
             @click="dialog = true"
         >
             검증
         </v-btn>
         <!-- 첫번째 모달창 -->
         <v-dialog v-model="dialog" hide-overlay persistent width="500">
-            <v-card color="primary" light>
-                <v-card-text>
+            <v-card class="deep-purple accent-4">
+                <v-card-text class="white--text">
                     잠시만 기다려 주세요 해당 유저의 정보를 불러오는 중입니다.
                     <v-progress-linear
                         indeterminate
@@ -23,20 +23,44 @@
             </v-card>
         </v-dialog>
         <!-- 두번째 모달창 -->
-        <v-dialog v-model="dialog1" hide-overlay width="500" @>
+        <v-dialog v-model="dialog1" width="500">
+            <v-card>
+                <v-card-title class="white--text deep-purple accent-4">
+                    검증 결과
+                </v-card-title>
+
+                <v-card-text>
+                    {{ decMsg }}
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                        class="white--text deep-purple accent-4"
+                        text
+                        @click="dialog1 = false"
+                    >
+                        확인
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+        <!-- <v-dialog v-model="dialog1" hide-overlay width="500" @>
             <v-card color="primary" light>
                 <v-card-text class="pa-5">
                     검증자 : 행정안정부(0x12223fsd12121),
                     BC카드(0xd12df33232343)
-                    {{ decMsg }}
-                    <!-- <v-progress-linear
+                    {{ decMsg }} -->
+        <!-- <v-progress-linear
                         indeterminate
                         color="white"
                         class="mb-0"
                     ></v-progress-linear> -->
-                </v-card-text>
+        <!-- </v-card-text>
             </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 <script>
@@ -82,3 +106,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.loaderColor {
+    background-color: slateblue;
+}
+</style>
