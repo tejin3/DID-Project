@@ -141,9 +141,9 @@
                                     <v-timeline-item color="deep-purple">
                                         <v-row class="pt-1">
                                             <v-col>
-                                                설문 종료까지
+                                                설문 종료일까지
                                                 <v-chip
-                                                    class="ma-1 font-weight-bold"
+                                                    class="font-weight-bold"
                                                     color="deep-purple accent-3"
                                                     outlined
                                                     small
@@ -253,6 +253,7 @@
                 </v-row>
             </v-card>
         </v-container>
+
         <!-- <button @click="getSurveyContractInstance()">survey</button> -->
         <!-- <button @click="test()">test</button> -->
         <!-- <div>{{ sC }}</div> -->

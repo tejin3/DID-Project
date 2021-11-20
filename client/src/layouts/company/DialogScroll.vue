@@ -17,12 +17,14 @@
                     >Select VP</v-card-title
                 >
                 <v-divider></v-divider>
+
                 <v-card-text
                     style="padding: 5px;"
                     :key="i"
                     v-for="(n, i) in completePeople"
                 >
                     <!-- 설문 참여 완료한 사람들 중 특정 vp를 공개한 사람 -->
+
                     <v-checkbox
                         v-if="n.user_vp != null"
                         v-model="selected"
@@ -31,21 +33,27 @@
                         @click="vpData(n.user_vp)"
                     ></v-checkbox>
                     <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
+
                     <v-checkbox
                         v-else
-                        disabled
+                        indeterminate
                         v-model="selected"
-                        :label="n.user_account"
+                        :label="
+                            `${n.user_account}` +
+                                ' - ' +
+                                'VP제공에 동의하지 않은 사용자 입니다'
+                        "
                         :value="n.user_account"
                     >
                     </v-checkbox>
                 </v-card-text>
+
                 <v-divider></v-divider>
                 <v-card-actions>
                     <v-btn color="blue darken-1" text @click="dialog = false">
                         Close
                     </v-btn>
-                    <Loader :userVp="userVp1" />
+                    <Loader :userVp="userVp1" :selected1="selected" />
                 </v-card-actions>
             </v-card>
         </v-dialog>
