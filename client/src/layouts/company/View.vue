@@ -1,14 +1,6 @@
 <template>
     <div>
-        <!-- 맨 위에 맨트 -->
-        <!-- <v-container>
-            <p class="font-weight-bold text-h2 text-center">
-                we :DID result
-                <img width="80" src="@/assets/img/company/result.png" />
-            </p>
-        </v-container> -->
-        <!--쿠폰교환 bn글씨 시작 -->
-
+        <!-- 헤더부분 -->
         <v-container>
             <v-card
                 elevation="3"
@@ -44,6 +36,7 @@
                 </div>
             </v-card>
         </v-container>
+        <!-- 헤더부분 끝 -->
 
         <!-- 중간에 네비 처럼 생긴애-->
         <v-container>
@@ -66,9 +59,9 @@
                 </v-btn>
             </v-bottom-navigation>
         </v-container>
-        <!-- 설문결과 카드 -->
-        <!-- v-if="m.selection === 0 ? color(0) : color(1)" -->
+        <!-- 중간에 네비처럼 생긴애 끝 -->
 
+        <!-- 설문 결과 카드 그리기 -->
         <v-container>
             <v-card elevation="3" class=" my-6">
                 <v-row>
@@ -78,6 +71,7 @@
                         class="d-flex child-flex"
                         cols="3"
                     >
+                        <!-- 마우스 호버시 모달창, 완료된 설문은 회색 -->
                         <v-card
                             class="mx-auto my-6"
                             max-width="374"
@@ -95,49 +89,15 @@
                                 ></v-progress-linear>
                             </template>
 
-                            <!-- <v-img
-                        :src="
-                            `https://picsum.photos/500/300?image=${m * 5 + 10}`
-                        "
-                        :lazy-src="
-                            `https://picsum.photos/10/6?image=${m * 5 + 10}`
-                        "
-                        aspect-ratio="1"
-                        class="grey lighten-2"
-                    >
-                        <template v-slot:placeholder>
-                            <v-row
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center"
-                            >
-                                <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                ></v-progress-circular>
-                            </v-row>
-                        </template>
-                    </v-img> -->
-
                             <v-card-title
                                 >{{ m.survey_title }}
                                 <br />
                                 [설문번호 :{{ m.survey_id }}]</v-card-title
                             >
+
+                            <!-- 세로선 설문 D-day 와 종료일 -->
                             <v-card-text class="py-0">
                                 <v-timeline align-top dense>
-                                    <!-- <v-timeline-item small>
-                                <v-row class="pt-1">
-                                    <v-col>
-                                        <strong>
-                                            설문시작 :
-                                            {{
-                                                m.survey_start_date.slice(0, 10)
-                                            }}</strong
-                                        >
-                                    </v-col>
-                                </v-row>
-                            </v-timeline-item> -->
                                     <v-timeline-item color="deep-purple">
                                         <v-row class="pt-1">
                                             <v-col>
@@ -170,7 +130,9 @@
                                     </v-timeline-item>
                                 </v-timeline>
                             </v-card-text>
+                            <!-- 세로선 설문 D-day 와 종료일 끝-->
 
+                            <!-- 설문 참여율(참여인원 / 종료인원) -->
                             <v-card-text>
                                 <div class="mt-6">
                                     <v-slider
@@ -181,9 +143,6 @@
                                         thumb-label="always"
                                         readonly
                                     ></v-slider>
-                                    <!-- v-model="`${n.val}`"
-                        :label="`${n.label}`"
-                        :label="`${n.color}`" -->
                                 </div>
                                 <v-chip-group
                                     active-class="deep-purple accent-4 white--text"
@@ -191,11 +150,13 @@
                                     mandatory
                                     v-model="m.selection"
                                 >
+                                    <!-- 0이면 설문중 1이면 설문완료 -->
                                     <v-chip small>설문중</v-chip>
 
                                     <v-chip small>설문완료</v-chip>
                                 </v-chip-group>
                             </v-card-text>
+                            <!-- 설문 참여율(참여인원 / 종료인원) -->
 
                             <v-divider
                                 color="purple lighten-2 "
@@ -253,24 +214,10 @@
                 </v-row>
             </v-card>
         </v-container>
-
-        <!-- <button @click="getSurveyContractInstance()">survey</button> -->
-        <!-- <button @click="test()">test</button> -->
-        <!-- <div>{{ sC }}</div> -->
-        <!-- <button @click="callData1(1)">
-            test
-        </button> -->
-        <!-- <div>{{ callData }}</div>
-        <button @click="vcCon()">vc</button> -->
-        <!-- <img src="http://localhost:3000/download/surveyImg1.jpg" /> -->
     </div>
 </template>
 <script>
-// import Slider from './Slider.vue'
 import DialogScroll from './DialogScroll.vue'
-// import getContract from '@/service/getContract'
-// import getContract1 from '@/service/getContract1'
-
 export default {
     name: 'CompanyView',
     components: { DialogScroll },
@@ -283,9 +230,6 @@ export default {
             companyAccount: '0x12',
             snippet: [],
             finalData: null,
-            sC: null,
-            callData: null,
-            vC: null,
             value: 0,
             hover: false,
             eventWidth: 0,
@@ -379,6 +323,8 @@ export default {
 
             return surveys
         },
+
+        // 호버창 크기 원래 창과 맞춤
         testPlz: function(event) {
             // console.log(event)
 
@@ -390,13 +336,9 @@ export default {
                 this.eventWidth = event.target.offsetParent.offsetWidth
                 this.eventHeight = event.target.offsetParent.offsetHeight
             }
-
-            //             if(event.target.offsetParent){
-            // this.eventWidth = event.target.offsetParent.offsetWidth
-            //             this.eventHeight = event.target.offsetParent.offsetHeight
-            //             }
         },
 
+        // 완료, 진행, 전체 설문 필터링
         show(n) {
             if (n === 0) {
                 console.log('왔니')
@@ -419,76 +361,6 @@ export default {
                 console.log(this.surveyData)
             }
         }
-        // surveyCon() {
-        //     this.$store.dispatch('getSurveyContractInstance')
-        //     // await this.$store.dispatch('web3Register')
-        // },
-        // vcCon() {
-        //     this.$store.dispatch('getVcContractInstance')
-        //     // await this.$store.dispatch('web3Register')
-        // },
-        // test() {
-        //     console.log('hello')
-        //     console.log(this.$store.state.surveyContract._address)
-
-        //     this.sC = this.$store.state.surveyContract
-        // },
-        // 설문조사
-        // getSurveyContractInstance() {
-        //     console.log('startSurvey')
-        //     var getContract21 = getContract()
-        //     this.sC = getContract21
-        //     console.log('surveyContractInstance', this.sC)
-        //     this.sC.events.addUser({}, async (error, event) => {
-        //         console.log(error)
-        //         console.log(event)
-        //         await this.$api('/CompletePeople', 'post', {
-        //             param: {
-        //                 survey_id: event.returnValues[0],
-        //                 user_account: event.returnValues[1]
-        //             }
-        //         })
-        //         // // 설문조사 번호
-        //         // event.returnValues[0]
-        //         // // 설문조사 완료한 사람의 주소
-        //         // event.returnValues[1]
-        //     })
-        // },
-        // callData1(_num) {
-        //     this.sC.methods
-        //         .recordSurvey(_num)
-        //         .send({ from: '0xdD04984fbCBb732fe2C23fd40157619cad9b2511' })
-        //         .then(receipt => {
-        //             console.log(receipt)
-        //         })
-        // },
-        // // 설문조사
-        // // vc 요청
-        // getVcContractInstance() {
-        //     console.log('startVc')
-        //     var getContract21 = getContract1()
-        //     this.vC = getContract21
-        //     console.log('vcContractInstance', this.vC)
-        //     this.vC.events.vcCallApprovals({}, async (error, event) => {
-        //         console.log(error)
-        //         console.log(event)
-        //         // // vc 요청한 사람 계정
-        //         // event.returnValues[0]
-        //         // // 요청한 vc 이름
-        //         // event.returnValues[1]
-        //         // // 요청한 시간
-        //         // event.returnValues[2]
-        //     })
-        // },
-        // vcData(vcName) {
-        //     this.vC.methods
-        //         .vcCall(vcName)
-        //         .send({ from: '0xEd0d5B8250554Ca244e66b79A10252B9D804E979' })
-        //         .then(receipt => {
-        //             console.log(receipt)
-        //         })
-        // }
-        // vp 요청 기록
     }
 }
 </script>

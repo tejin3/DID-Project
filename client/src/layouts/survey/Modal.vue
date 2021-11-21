@@ -196,7 +196,6 @@ export default {
                         console.log(receipt)
                     })
                 this.encryptedMessage()
-                this.callData1(this.surveyId)
             } else {
                 // 선택한 vp가 있을 때
                 for (var index of this.selection) {
@@ -221,7 +220,6 @@ export default {
                         console.log(receipt)
                     })
                 this.encryptedMessage()
-                this.callData1(this.surveyId)
             }
         },
 
@@ -243,15 +241,6 @@ export default {
                 }
             })
         },
-
-        // record(surveyId, vpName, companyAccount) {
-        //     this.sC.methods
-        //         .recordVP(surveyId, vpName, companyAccount)
-        //         .send({ from: this.$store.state.web3.coinbase })
-        //         .then(receipt => {
-        //             console.log(receipt)
-        //         })
-        // },
 
         // 회사 암호화된 공개키로 암호화
         async encryptedMessage() {
@@ -281,15 +270,6 @@ export default {
                 })
             console.log('암호화됨', this.encMsg)
             this.$store.commit('encMsg', this.encMsg)
-        },
-
-        callData1(_num) {
-            this.sC.methods
-                .recordSurvey(_num)
-                .send({ from: this.$store.state.web3.coinbase })
-                .then(receipt => {
-                    console.log(receipt)
-                })
         }
     }
 }

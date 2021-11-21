@@ -284,28 +284,30 @@ export default {
         },
 
         getSurveyContractInstance() {
-            console.log('startSurvey')
-            var getContract21 = getContract()
-            this.sC = getContract21
-            console.log('surveyContractInstance', this.sC)
-            this.sC.events.addUser({}, async (error, event) => {
-                console.log(error)
-                console.log(event)
+            if (this.sC === null) {
+                console.log('startSurvey')
+                var getContract21 = getContract()
+                this.sC = getContract21
+                console.log('surveyContractInstance', this.sC)
+                this.sC.events.addUser({}, async (error, event) => {
+                    console.log(error)
+                    console.log(event)
 
-                // this.user_account = event.returnValues[1]
+                    // this.user_account = event.returnValues[1]
 
-                await this.$api('/CompletePeople', 'post', {
-                    param: {
-                        survey_id: event.returnValues[0],
-                        user_account: event.returnValues[1],
-                        user_vp: this.$store.state.encMsg
-                    }
+                    await this.$api('/CompletePeople', 'post', {
+                        param: {
+                            survey_id: event.returnValues[0],
+                            user_account: event.returnValues[1],
+                            user_vp: this.$store.state.encMsg
+                        }
+                    })
+                    // // 설문조사 번호
+                    // event.returnValues[0]
+                    // // 설문조사 완료한 사람의 주소
+                    // event.returnValues[1]
                 })
-                // // 설문조사 번호
-                // event.returnValues[0]
-                // // 설문조사 완료한 사람의 주소
-                // event.returnValues[1]
-            })
+            }
         },
 
         // submit() {

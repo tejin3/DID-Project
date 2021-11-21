@@ -7,30 +7,22 @@
         >
             검증
         </v-btn>
-        <!-- 첫번째 모달창 -->
+        <!-- 하나만 선택했을때 첫번째 모달창 -->
         <Dialog
             :ment="'잠시만 기다려 주세요 해당 유저의 정보를 불러오는 중입니다.'"
             :dialog00="dialog"
         />
-        <!-- <v-dialog v-model="dialog" hide-overlay persistent width="500">
-            <v-card class="deep-purple accent-4">
-                <v-card-text class="white--text">
-                    잠시만 기다려 주세요 해당 유저의 정보를 불러오는 중입니다.
-                    <v-progress-linear
-                        indeterminate
-                        color="white"
-                        class="mb-0"
-                    ></v-progress-linear>
-                </v-card-text>
-            </v-card>
-        </v-dialog> -->
-        <!-- 두번째 모달창 -->
+
+        <!-- 하나만 선택했을때 두번째 모달창 -->
         <v-dialog v-model="dialog1" width="500">
             <v-card>
                 <v-card-title class="white--text deep-purple accent-4">
                     검증 결과
                 </v-card-title>
 
+                <!-- 검증자 : 행정안정부(0x12223fsd12121),
+                    BC카드(0xd12df33232343)
+                    {{ decMsg }} -->
                 <v-card-text>
                     {{ decMsg }}
                 </v-card-text>
@@ -49,43 +41,26 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <!-- 아무것도 선택 안했을때 모달창 -->
         <Dialog1
             :ment="'선택한 설문조사 참가자가 없습니다.'"
             :dialog11="dialog2"
             @close-modal1="dialog2 = false"
         />
-        <!-- <v-dialog v-model="dialog2" width="500">
-            <v-card class="deep-purple accent-4">
-                <v-card-title class="white--text deep-purple accent-4">
-                    선택한 설문조사 참가자가 없습니다
-                </v-card-title>
-            </v-card>
-        </v-dialog> -->
+
+        <!-- 중복체크 했을때 첫번째 모달창 -->
         <Dialog
             :ment="
                 '잠시만 기다려 주세요 선택한 유저들의 정보를 불러오는 중입니다.'
             "
             :dialog00="dialog3"
         />
+        <!-- 중복체크 했을 때 두번째 모달창 -->
         <Dialog1
             :ment="'검증결과 모두 정상입니다.'"
             :dialog11="dialog4"
             @close-modal1="dialog4 = false"
         />
-        <!-- <v-dialog v-model="dialog1" hide-overlay width="500" @>
-            <v-card color="primary" light>
-                <v-card-text class="pa-5">
-                    검증자 : 행정안정부(0x12223fsd12121),
-                    BC카드(0xd12df33232343)
-                    {{ decMsg }} -->
-        <!-- <v-progress-linear
-                        indeterminate
-                        color="white"
-                        class="mb-0"
-                    ></v-progress-linear> -->
-        <!-- </v-card-text>
-            </v-card>
-        </v-dialog> -->
     </div>
 </template>
 <script>
@@ -95,6 +70,7 @@ import Dialog1 from './Dialog1.vue'
 export default {
     components: { Dialog, Dialog1 },
     props: {
+        // 암호화된 유저 vp 정보
         userVp: {
             type: String,
             default: ''
@@ -119,12 +95,14 @@ export default {
     },
 
     watch: {
+        // 하나만 선택했을 때 모달창 온오프
         dialog(val) {
             if (!val) return
-            this.decrypt()
+            // this.decrypt()
             setTimeout(() => this.modalUp(), 4000)
             // alert('hello')
         },
+        // 중복선택 했을때 모달창 온오프
         dialog3(val) {
             if (!val) return
 
@@ -146,13 +124,20 @@ export default {
 
             // alert('검증결과 : 정상')
         },
-        // 암호화된 VC 파일을 가져와 복호화 한다
+        // 암호화된 Vp 파일을 가져와 복호화 한다
         async decrypt() {
-            this.decMsg = await window.ethereum.request({
-                method: 'eth_decrypt',
-                params: [this.userVp, this.$store.state.web3.coinbase]
-            })
+            try {
+                this.decMsg = await window.ethereum.request({
+                    method: 'eth_decrypt',
+                    params: [this.userVp, this.$store.state.web3.coinbase]
+                })
+                this.dialog = true
+                setTimeout(() => this.modalUp(), 4000)
+            } catch {
+                alert('암호를 풀 수 없습니다')
+            }
         },
+        // 하나 선택, 중복 선택, 선택x 를 판별 후 적절한 모달창 오픈
         checked() {
             if (this.selected1.length === 0) {
                 console.log('여기0')
@@ -161,17 +146,12 @@ export default {
             } else if (this.selected1.length === 1) {
                 console.log('여기1')
 
-                this.dialog = true
                 this.decrypt()
-                setTimeout(() => this.modalUp(), 4000)
             } else {
                 console.log('여기2')
                 this.dialog3 = true
                 setTimeout(() => this.modalUp1(), 4000)
             }
-        },
-        diaTest1() {
-            this.dialog2 = false
         }
     }
 }
