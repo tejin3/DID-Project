@@ -62,24 +62,25 @@
                             loading
                         >
                         </v-text-field>
-                    </v-carousel-item>
-                    <div
-                        style="margin-bottom:20%;"
-                        align="center "
-                        justify="space-around"
-                        class="position"
-                    >
-                        <v-btn
-                            @click="complete"
-                            color="#9568FD"
-                            dark
-                            class="my-2 mb-1 "
-                            x-large
-                            elevation="7"
+                        <div
+                            style="margin-bottom:20%;"
+                            align="center "
+                            justify="space-around"
+                            class="position"
                         >
-                            확인
-                        </v-btn>
-                    </div>
+                            <v-btn
+                                :id="i"
+                                @click=";[complete, getReward(i)]"
+                                color="#9568FD"
+                                dark
+                                class="my-2 mb-1 "
+                                x-large
+                                elevation="7"
+                            >
+                                확인
+                            </v-btn>
+                        </div>
+                    </v-carousel-item>
                 </v-parallax>
             </v-carousel>
         </v-card>
@@ -103,9 +104,8 @@
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
-        <!-- {{ this.$store.state.matchedSurvey }} -->
-        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
-        <!-- {{ this.answers }} -->
+
+        <SurveyStartModal :surveymodalOfen="surveymodalOfen" @child="parents" />
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -115,10 +115,10 @@
 import SurveyModal from './Modal.vue'
 import vc from '../possible/vc.json'
 import getContract from '@/service/getContract'
-
+import SurveyStartModal from './SurveyStartModal'
 export default {
     name: 'MainSurvey',
-    components: { SurveyModal },
+    components: { SurveyModal, SurveyStartModal },
     data() {
         return {
             items: [
@@ -147,6 +147,7 @@ export default {
             answers: ['test'],
             dialog: false,
             dialog2: false,
+            surveymodalOfen: true,
             model: 0,
             condition: {},
             vp: [],
@@ -219,6 +220,10 @@ export default {
     },
     unmounted() {},
     methods: {
+        parents(modal) {
+            console.log('부모가 받았어', modal)
+            this.surveymodalOfen = modal
+        },
         test() {
             console.log(
                 'this.t_ordersthis.t_ordersthis.t_ordersthis.t_orders',
@@ -276,29 +281,37 @@ export default {
             }
         },
 
+        getReward(btnId) {
+            if (btnId === 5) {
+                this.dialog = true
+            }
+        },
+
         getSurveyContractInstance() {
-            console.log('startSurvey')
-            var getContract21 = getContract()
-            this.sC = getContract21
-            console.log('surveyContractInstance', this.sC)
-            this.sC.events.addUser({}, async (error, event) => {
-                console.log(error)
-                console.log(event)
+            if (this.sC === null) {
+                console.log('startSurvey')
+                var getContract21 = getContract()
+                this.sC = getContract21
+                console.log('surveyContractInstance', this.sC)
+                this.sC.events.addUser({}, async (error, event) => {
+                    console.log(error)
+                    console.log(event)
 
-                // this.user_account = event.returnValues[1]
+                    // this.user_account = event.returnValues[1]
 
-                await this.$api('/CompletePeople', 'post', {
-                    param: {
-                        survey_id: event.returnValues[0],
-                        user_account: event.returnValues[1],
-                        user_vp: this.$store.state.encMsg
-                    }
+                    await this.$api('/CompletePeople', 'post', {
+                        param: {
+                            survey_id: event.returnValues[0],
+                            user_account: event.returnValues[1],
+                            user_vp: this.$store.state.encMsg
+                        }
+                    })
+                    // // 설문조사 번호
+                    // event.returnValues[0]
+                    // // 설문조사 완료한 사람의 주소
+                    // event.returnValues[1]
                 })
-                // // 설문조사 번호
-                // event.returnValues[0]
-                // // 설문조사 완료한 사람의 주소
-                // event.returnValues[1]
-            })
+            }
         },
 
         // submit() {

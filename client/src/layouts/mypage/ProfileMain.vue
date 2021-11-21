@@ -40,17 +40,59 @@
                 </v-tabs>
             </v-toolbar>
             <!-- 탭 컨텐츠 영역 -->
-            <v-card elevation="3" max-height="650px" height="650px">
+            <v-card elevation="3" max-height="650px" height="600px">
                 <v-tabs-items v-model="tab">
                     <!-- tap value = 0, 개인정보 탭 일 때 -->
                     <v-tab-item>
                         <v-row>
-                            <v-col cols="6" class="px-10 py-5" height="400">
-                                <v-img
-                                    class="image"
-                                    width="630"
-                                    src="@/assets/img/mypage/main.jpg"
-                                ></v-img>
+                            <v-col col="6" class="mt-16 mx-5">
+                                <div
+                                    class="text-h5 text--primary d-flex justify-center pb-5 mb-5 vc"
+                                >
+                                    나의 VC
+                                </div>
+                                <v-row>
+                                    <v-col
+                                        v-for="(vc, i) in vcs"
+                                        :key="i"
+                                        col="2"
+                                    >
+                                        <v-card
+                                            class="mx-auto py-2 px-2 rounded-xl"
+                                            max-height="120"
+                                            width="200"
+                                        >
+                                            <v-card-text>
+                                                <v-row>
+                                                    <v-col
+                                                        cols="5"
+                                                        class="mt-1"
+                                                    >
+                                                        <v-img
+                                                            src="@/assets/img/mypage/user.png"
+                                                            width="100"
+                                                        ></v-img>
+                                                    </v-col>
+                                                    <v-col
+                                                        cols="7"
+                                                        class="mt-2"
+                                                    >
+                                                        <p
+                                                            class="text-subtitle1 text--primary"
+                                                        >
+                                                            {{ vc }}
+                                                        </p>
+                                                        <p
+                                                            class="text-body2 text--primary"
+                                                        >
+                                                            {{ issuer[i] }}
+                                                        </p>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-col>
+                                </v-row>
                             </v-col>
                             <v-col cols="6" class="px-12 py-5 mt-5">
                                 <v-container>
@@ -264,6 +306,18 @@ export default {
             cards: [],
             items: ['Appetizers', 'Entrees', 'Deserts', 'Cocktails'],
             user: [],
+            vcs: [],
+            issuer: [
+                '행정안전부',
+                '행정안전부',
+                '행정안전부',
+                '무신사',
+                '무신사',
+                '무신사',
+                '국민건강보험',
+                '국민건강보험',
+                '국민건강보험'
+            ],
             dialog: false,
             qrValue: '',
             size: 130,
@@ -274,6 +328,7 @@ export default {
     created() {
         this.showUserGoods()
         this.getUser()
+        this.decrypt()
     },
 
     methods: {
@@ -303,6 +358,55 @@ export default {
             this.qrValue = 'goods_name'
             this.barcodeValue = 'goods_name'
             this.barcodeText = '9 899423 420854'
+        },
+
+        // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다
+        async decrypt() {
+            var decryptVc = await window.ethereum.request({
+                method: 'eth_decrypt',
+                params: [
+                    localStorage.getItem('intoVp'),
+                    this.$store.state.web3.coinbase
+                ]
+            })
+            var vcs = JSON.parse(decryptVc)
+            for (var i = 0; i < vcs.verifiableCredentials.data.length; i++) {
+                const vcItem =
+                    vcs.verifiableCredentials.data[i].credentialSubject
+                        .infomation.value
+
+                var key = Object.keys(vcItem)[0]
+                switch (key) {
+                    case 'name':
+                        key = '이름'
+                        break
+                    case 'age':
+                        key = '나이'
+                        break
+                    case 'address':
+                        key = '주소'
+                        break
+                    case 'onOffline':
+                        key = '온오프라인'
+                        break
+                    case 'amount':
+                        key = '구매금액'
+                        break
+                    case 'product':
+                        key = '상품종류'
+                        break
+                    case 'occupation':
+                        key = '직업'
+                        break
+                    case 'income':
+                        key = '소득'
+                        break
+                    case 'location':
+                        key = '직장위치'
+                        break
+                }
+                this.vcs.push(key)
+            }
         }
     }
 }
@@ -321,5 +425,23 @@ svg {
 .image {
     position: absolute;
     right: 57%;
+}
+/* .vc {
+    text-decoration: underline;
+    text-decoration-color: #651fff;
+    text-underline-position: under;
+} */
+.vc {
+    position: relative;
+}
+.vc:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: 0px;
+    left: 1px;
+    background: #651fff;
 }
 </style>

@@ -24,7 +24,6 @@
                     v-for="(n, i) in completePeople"
                 >
                     <!-- 설문 참여 완료한 사람들 중 특정 vp를 공개한 사람 -->
-
                     <v-checkbox
                         v-if="n.user_vp != null"
                         v-model="selected"
@@ -32,8 +31,8 @@
                         :value="n.user_account"
                         @click="vpData(n.user_vp)"
                     ></v-checkbox>
-                    <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
 
+                    <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
                     <v-checkbox
                         v-else
                         indeterminate
@@ -53,7 +52,11 @@
                     <v-btn color="blue darken-1" text @click="dialog = false">
                         Close
                     </v-btn>
-                    <Loader :userVp="userVp1" :selected1="selected" />
+                    <Loader
+                        :userVp="userVp1"
+                        :selected1="selected"
+                        :vcList2="vcList1"
+                    />
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -77,10 +80,16 @@ export default {
         surveyId: {
             type: Number,
             default: 0
+        },
+        vcList5: {
+            type: Array,
+            default: function() {
+                return []
+            }
         }
     },
     created() {
-        // console.log(this.completePeople)
+        this.vcList1 = this.vcList5
     },
     data() {
         return {
@@ -88,13 +97,15 @@ export default {
             dialog: false,
             selected: [],
             surveyData1: [],
-            userVp1: null
+            userVp1: null,
+            vcList1: null
         }
     },
     methods: {
         // vp를 Loader에 전달하기 위해 저장
         vpData(vp) {
             this.userVp1 = vp
+            console.log('다이알로그창', this.vcList5)
         }
     }
 }

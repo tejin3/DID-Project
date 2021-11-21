@@ -8,13 +8,9 @@ contract survey {
     // 중복체크 위해 사용 설문 번호=>유저 did or account => bool
     mapping (uint => mapping(address => bool)) public surveyUser;
 
-    // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-    // mapping (uint => address[]) public surveyCompleteList;
-    // mapping (uint => uint) public surveyCount;
-    // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-    
     mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
-    
+    // 한번에 확인 할 수 있는 함수를 만들자
+
     mapping(uint => string) public companyPublic;
 
     event addUser(uint, address);
@@ -23,33 +19,18 @@ contract survey {
     constructor () {
         owner = msg.sender;
     }
-    
-   
-    // 
-    function recordSurvey (uint _num)public {
-     require(surveyUser[_num][tx.origin] == false);
-    //  중복체크
-      
-        surveyUser[_num][tx.origin] = true;
 
-    // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-        // surveyCompleteList[_num].push(tx.origin);
-        // surveyCount[_num]++;
-    // 이벤트 바로 캣치 해서 디비에 저장할꺼면 안해도 됨
-
-
-        emit addUser(_num , tx.origin);
-        // 디비저장        
-    }
-    
-    function recordVP (uint _num, string memory _VPData, address _company) public {
-    //  require(surveyUser[_num][tx.origin] == true);
-    
-       
-        whoCallVP[_num][_company][tx.origin].push(_VPData);
+    function recordVP (uint _surveyId, string memory _VPData, address _company) public {
+         //  중복체크
+        require(surveyUser[_surveyId][tx.origin] == false);
+        surveyUser[_surveyId][tx.origin] = true;
+        
+        whoCallVP[_surveyId][_company][tx.origin].push(_VPData);
         
 
-        emit recordVPList(_num , _company, tx.origin, _VPData);
+        emit addUser(_surveyId , tx.origin);
+        // 디비저장       
+        emit recordVPList(_surveyId , _company, tx.origin, _VPData);
         // 디비저장        
     }
     

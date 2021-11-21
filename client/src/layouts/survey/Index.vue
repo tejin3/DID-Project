@@ -42,7 +42,7 @@
                         <v-card style="margin:0 auto">
                             <v-app-bar
                                 dark
-                                class="d-flex justify-center mb-1 "
+                                class="d-flex justify-center mb-5 "
                                 color="#9568fd"
                                 height="40px"
                             >
@@ -54,11 +54,11 @@
 
                             <v-container>
                                 <!--맞춤설문조사 그리는 영역  -->
-                                <v-row style>
+                                <v-row style class="d-flex justify-center ">
                                     <v-col
                                         v-for="(survey, i) in surveys"
                                         :key="i"
-                                        cols="12"
+                                        cols="11"
                                     >
                                         <v-card>
                                             <v-img
@@ -76,7 +76,7 @@
                                             </v-img>
 
                                             <v-card-text
-                                                class="grey--text text-darken-1 mb-2"
+                                                class="black--text text-darken-1 mb-2"
                                             >
                                                 <div style="height=40px  ">
                                                     <p style="font-size:0.5em;">
@@ -203,7 +203,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 body {
     margin: 0;
 }
@@ -243,14 +243,14 @@ div {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 .disabledBtn {
     background: rgb(192, 192, 192);
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 .v-card__text {
     /* padding: 0 auto; */
