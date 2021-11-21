@@ -3,7 +3,7 @@
         <v-row justify="center">
             <v-dialog v-model="this.dialog" persistent max-width="450">
                 <v-card>
-                    <v-toolbar color="primary" dark>
+                    <v-toolbar color="hsl(258, 98%, 70%)" dark>
                         VP를 추가 공개해 보실래요?</v-toolbar
                     >
                     <!-- <v-card-title class="text-h5" >
@@ -37,7 +37,7 @@
                         <v-spacer></v-spacer>
 
                         <v-btn
-                            color="primary"
+                            color="#F04A27"
                             dark
                             @click="$emit('next-modal')"
                         >
@@ -45,7 +45,7 @@
                         </v-btn>
 
                         <v-btn
-                            color="primary"
+                            color="#599CF7"
                             dark
                             @click="
                                 ;[$emit('next-modal'), createVP(), totalPoint()]
@@ -58,7 +58,7 @@
             </v-dialog>
             <v-dialog v-model="this.dialog2" persistent max-width="450">
                 <v-card>
-                    <v-toolbar color="primary" dark></v-toolbar>
+                    <v-toolbar color="hsl(258, 98%, 70%)" dark></v-toolbar>
                     <v-sheet class="d-flex justify-center pt-6">
                         <v-card
                             width="150"
@@ -83,7 +83,7 @@
                             </v-card-text>
 
                             <v-btn
-                                color="primary"
+                                color="#599CF7"
                                 dark="dark"
                                 small="small"
                                 @click=";[$emit('close-modal'), saveReward()]"
@@ -118,7 +118,7 @@
                                 </p>
                             </v-card-text>
                             <v-btn
-                                color="primary"
+                                color="#599CF7"
                                 dark="dark"
                                 small="small"
                                 @click=";[$emit('close-modal'), saveReward()]"

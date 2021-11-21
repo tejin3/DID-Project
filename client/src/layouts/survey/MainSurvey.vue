@@ -62,24 +62,25 @@
                             loading
                         >
                         </v-text-field>
-                    </v-carousel-item>
-                    <div
-                        style="margin-bottom:20%;"
-                        align="center "
-                        justify="space-around"
-                        class="position"
-                    >
-                        <v-btn
-                            @click="complete"
-                            color="#9568FD"
-                            dark
-                            class="my-2 mb-1 "
-                            x-large
-                            elevation="7"
+                        <div
+                            style="margin-bottom:20%;"
+                            align="center "
+                            justify="space-around"
+                            class="position"
                         >
-                            확인
-                        </v-btn>
-                    </div>
+                            <v-btn
+                                :id="i"
+                                @click=";[complete, getReward(i)]"
+                                color="#9568FD"
+                                dark
+                                class="my-2 mb-1 "
+                                x-large
+                                elevation="7"
+                            >
+                                확인
+                            </v-btn>
+                        </div>
+                    </v-carousel-item>
                 </v-parallax>
             </v-carousel>
         </v-card>
@@ -103,9 +104,6 @@
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
-        <!-- {{ this.$store.state.matchedSurvey }} -->
-        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
-        <!-- {{ this.answers }} -->
 
         <SurveyStartModal :surveymodalOfen="surveymodalOfen" @child="parents" />
     </div>
@@ -280,6 +278,12 @@ export default {
                     }
                 })
                 // this.callData1(this.surveyId)
+            }
+        },
+
+        getReward(btnId) {
+            if (btnId === 5) {
+                this.dialog = true
             }
         },
 
