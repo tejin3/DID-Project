@@ -87,7 +87,14 @@
                                                 </div>
                                                 <div>
                                                     <v-btn
-                                                        @click="test(i)"
+                                                        @click="
+                                                            ;[
+                                                                test(i),
+                                                                addReservedSurvey(
+                                                                    survey.survey_id
+                                                                )
+                                                            ]
+                                                        "
                                                         v-if="
                                                             survey.isBooked ==
                                                                 true
@@ -104,9 +111,11 @@
                                                         v-else
                                                         class="ml-5 disabledBtn"
                                                         outlined
-                                                        disabled
                                                         rounded
                                                         x-small
+                                                        @click="
+                                                            initReservedSurvey()
+                                                        "
                                                     >
                                                         예약완료
                                                     </v-btn>
@@ -199,6 +208,14 @@ export default {
         test(_num) {
             this.모달창열렸니 = true
             this.surveys[_num].isBooked = false
+        },
+
+        addReservedSurvey(surveyId) {
+            this.$store.commit('addReservedSurvey', surveyId)
+        },
+
+        initReservedSurvey() {
+            this.$store.commit('initReservedSurvey')
         }
     }
 }

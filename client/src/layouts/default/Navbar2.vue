@@ -2,8 +2,8 @@
 <template>
     <!-- 네비바 전체 윤곽 -->
     <div>
-
-        <v-app-bar  elevate-on-scroll elevation="10" color="white" >
+        <!-- drawer is true -->
+        <v-app-bar elevation="2" color="white">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold black--text">
@@ -41,6 +41,9 @@
                         }}
                     </v-chip>
                 </span>
+                <v-btn to="about">
+                    about
+                </v-btn>
                 <v-btn
                     to="company"
                     text
@@ -86,33 +89,7 @@
                     로그아웃
                 </v-btn>
             </v-toolbar-items>
-
-            <!-- 네비바 오른쪽 부분 1 : 화면이 작을 때-->
-            <!-- <span class="hidden-sm-and-up">
-                <v-btn @click.stop="drawer = !drawer">
-                    Menu
-                </v-btn>
-            </span> -->
         </v-app-bar>
-
-        <!-- drawer is true -->
-        <!-- <v-navigation-drawer v-model="drawer" absolute temporary right>
-            <v-list>
-                <v-list-item
-                    v-for="item in items"
-                    :key="item.title"
-                    :to="item.link"
-                    link
-                >
-                    <v-list-item-icon>
-                        <v-icon small>fa-{{ item.icon }}</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-        </v-navigation-drawer> -->
     </div>
 </template>
 
@@ -127,12 +104,6 @@ module.exports = {
     data() {
         return {
             title: 'weDIDsurvey'
-            // drawer: false,
-            // items: [
-            //     { title: 'Home', link: '/', icon: 'home' },
-            //     { title: 'Store', link: 'store', icon: 'shopping-basket' },
-            //     { title: 'Cart', link: 'cart', icon: 'shopping-cart' }
-            // ]
         }
     },
     methods: {
