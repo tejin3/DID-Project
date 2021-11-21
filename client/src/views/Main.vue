@@ -36,7 +36,7 @@
                             <v-col cols="4" md="4" class="">
                                 <v-img
                                     class="custom-img mt-5 mr-10"
-                                    src="@/assets/img/main/mainStore1.png"
+                                    src="@/assets/img/main/bank-book.png"
                                     aspect-ratio="1"
                                     ><h3 class="test22">
                                         {{ text }}

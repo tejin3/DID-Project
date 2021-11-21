@@ -104,7 +104,7 @@
             @close-modal="dialog2 = false"
         ></SurveyModal>
         <!-- {{ this.$store.state.matchedSurvey }} -->
-        <!-- <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn> -->
+        <v-btn color="primary" dark @click.stop="dialog = true">open</v-btn>
         <!-- {{ this.answers }} -->
 
         <SurveyStartModal :surveymodalOfen="surveymodalOfen" @child="parents" />

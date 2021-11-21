@@ -250,7 +250,7 @@ div {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: 35px;
+    margin-top: 40px;
 }
 .v-card__text {
     /* padding: 0 auto; */
