@@ -1,12 +1,12 @@
 <template>
-    <v-app class="bg-primary">
+    <v-app :class="[path === '/' ? 'bg-primary' : null]">
         <default-bar v-if="path === '/' ? false : true" />
         <default-view />
         <default-footer v-if="path === '/' ? false : true" />
     </v-app>
 </template>
 <script>
-import DefaultBar from './Navbar'
+import DefaultBar from './Navbar2'
 import DefaultView from './View'
 import DefaultFooter from './Footer'
 export default {
@@ -26,6 +26,6 @@ export default {
 </script>
 <style scoped>
 .bg-primary {
-    background-color: hsl(258, 98%, 70%);
+    background-color: #9568fd;
 }
 </style>
