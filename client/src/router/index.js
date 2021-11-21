@@ -10,6 +10,7 @@ import Encrypt from '../views/Encrypt.vue'
 import MyPage from '../views/MyPage.vue'
 
 import DefaultLayout from '../layouts/default/Index'
+import DefaultLayout2 from '../layouts/default/Index2'
 import PossibleLayout from '../layouts/possible/Index'
 // import CompanyLayout from '../layouts/company/Index'
 
@@ -35,7 +36,13 @@ const routes = [
                 path: '/',
                 name: 'Main',
                 component: Main
-            },
+            }
+        ]
+    },
+    {
+        path: '/',
+        component: DefaultLayout2,
+        children: [
             {
                 path: '/possible',
                 component: Possible,
@@ -90,7 +97,7 @@ const routes = [
                 // ]
             }
         ]
-    }
+        }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -1,6 +1,49 @@
 <template>
-    <!-- 버튼 -->
-    <v-container class="max-width:0px;">
+
+    <v-container fluid>
+        <v-row no-gutters>
+<!-- 왼쪽 layout -->
+    <v-col cols="6" md="2" class="possible-bg-color">
+              <v-row justify="center">
+    <v-col
+        class="pa-0 mt-10 "
+      cols="2"
+      sm="12"
+      md="10"
+      lg="10"
+    >
+            <v-sheet
+        elevation="10"
+        rounded="xl"
+
+      >
+        <v-sheet
+          class="pa-3  text-left white--text"
+          color="hsl(258, 98%, 70%)"
+          light
+          rounded="t-xl"
+        >
+<span>카테고리</span>
+        </v-sheet>
+        <div class="pa-4">
+          <v-chip-group
+            active-class="primary--text"
+            column
+          >
+            <v-chip
+              v-for="tag in tags"
+              :key="tag"
+            >
+              {{ tag }}
+            </v-chip>
+          </v-chip-group>
+        </div>
+      </v-sheet>
+        </v-col>
+  </v-row>
+        </v-col>
+<!-- 오른쪽 layout -->
+            <v-col cols="12" sm="10" ma="4">
         <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
@@ -243,9 +286,14 @@
                         </v-expand-transition>
                     </v-card>
                 </v-col>
-                <Navbar />
+                <!-- <Navbar /> -->
             </v-row>
         </v-container>
+
+        </v-col>
+
+           </v-row>
+
     </v-container>
 </template>
 
@@ -261,6 +309,7 @@ export default {
     },
     data() {
         return {
+            tags: ['쇼핑', '문화', '자동차', '음식', '아트', '주택', '인터넷', '전자제품'],
             dialog: false,
             decryptVc: [],
             vc: [],
@@ -275,6 +324,7 @@ export default {
             isShow: false,
             keyList: [],
             web3: {}
+
         }
     },
 
@@ -530,7 +580,16 @@ export default {
     left: 42%;
 }
 
-.tabColor {
+/* .tabColor {
     background-color: purple;
+} */
+
+.possible-bg-color{
+    background-color :#F8F8F9;
+
+}
+
+.categoryBox{
+    top:120px;
 }
 </style>

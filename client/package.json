@@ -81,13 +81,7 @@
           "maxEOF": 0
         }
       ],
-      "indent": [
-        "error",
-        4,
-        {
-          "SwitchCase": 1
-        }
-      ]
+      "indent": "off"
     }
   },
   "browserslist": [

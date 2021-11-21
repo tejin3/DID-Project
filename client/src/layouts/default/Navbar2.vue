@@ -5,7 +5,7 @@
         <v-app-bar elevation="0" color="transparent">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
-                <v-toolbar-title class="font-weight-bold white--text">
+                <v-toolbar-title class="font-weight-bold black--text">
                     {{ title }}
                 </v-toolbar-title>
             </router-link>
@@ -17,10 +17,10 @@
                 <span
                     to="mypage"
                     text
-                    class="py-2 mr-2 mt-1 white--text"
+                    class="py-2 mr-2 mt-1 black--text"
                     v-if="this.loginStatus == true"
                 >
-                    <v-avatar class="avatar" size="40">
+                    <v-avatar class="avatar2" size="40">
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
@@ -44,7 +44,7 @@
                     to="company"
                     text
                     plain="false"
-                    class="white--text"
+                    class="black--text"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0x68993b9454f760e81c8e7630ace72b3638f6f6f7
@@ -52,15 +52,15 @@
                 >
                     설문결과
                 </v-btn>
-                <v-btn to="possible" text class="white--text">
+                <v-btn to="possible" text class="black--text">
                     조사참여
                 </v-btn>
-                <v-btn to="trade" text class="white--text">
+                <v-btn to="trade" text class="black--text">
                     쿠폰교환
                 </v-btn>
                 <v-btn
                     text
-                    class="white--text"
+                    class="black--text"
                     @click="login()"
                     v-if="this.loginStatus == false"
                 >
@@ -70,7 +70,7 @@
                 <v-btn
                     to="mypage"
                     text
-                    class="white--text"
+                    class="black--text"
                     v-if="this.loginStatus == true"
                 >
                     마이페이지
@@ -78,7 +78,7 @@
 
                 <v-btn
                     text
-                    class="white--text"
+                    class="black--text"
                     @click="logout()"
                     v-if="this.loginStatus == true"
                 >
@@ -117,7 +117,7 @@
 
 <script>
 module.exports = {
-    name: 'DefaultBar',
+    name: 'DefaultBar2',
     computed: {
         loginStatus() {
             return this.$store.state.loginStatus
@@ -148,10 +148,10 @@ module.exports = {
 }
 </script>
 <style>
-.avatar {
+.avatar2 {
     position: fixed;
-    left: 1.2rem;
-    bottom: 0.01rem;
+    left: 73.8rem;
+    top: 0.5rem;
     z-index: 1;
     border: 4px solid #ffd233;
 }
