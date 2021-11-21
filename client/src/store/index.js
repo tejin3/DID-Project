@@ -24,7 +24,8 @@ export default new Vuex.Store({
             vcItemList: [],
             // surveyContract: {},
             // vcContract: {}
-            encMsg: null
+            encMsg: null,
+            reservedSurvey: []
         }
     },
     mutations: {
@@ -61,13 +62,23 @@ export default new Vuex.Store({
             state.matchedSurvey = data
         },
 
-        // vcItemList store에 저장/삭제
+        // vcItemList store에 저장
         addVcItemList(state, data) {
             state.vcItemList = data
         },
 
         encMsg(state, data) {
             state.encMsg = data
+        },
+
+        // 예약한 설문 store에 저장
+        addReservedSurvey(state, data) {
+            state.reservedSurvey.push(data)
+        },
+
+        // 예약한 설문 store에 초기화
+        initReservedSurvey(state) {
+            state.reservedSurvey = []
         }
 
         // makeSurveyContract(state, data) {

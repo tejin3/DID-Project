@@ -3,7 +3,7 @@
         <v-btn
             class="white--text"
             color="deep-purple accent-4"
-            @click="checked(), issuerContractInstance()"
+            @click="checked()"
         >
             검증
         </v-btn>
@@ -23,13 +23,50 @@
                 <!-- 검증자 : 행정안정부(0x12223fsd12121),
                     BC카드(0xd12df33232343)
                     {{ decMsg }} -->
-                <v-card-text>
-                    검증기관 :
+                <v-card-text class="mt-3">
+                    <h2>검증기관 :</h2>
                     BC카드(0x71Ee5C1a0E156D353e692EE17d4A6235d949e538)
                 </v-card-text>
-                <v-card-text> 검증결과 : {{ same }} </v-card-text>
+
                 <v-card-text>
+                    <h2>DID</h2>
+                    {{ selectedAccount }}
+                </v-card-text>
+                <v-card-text>
+                    <h2>검증결과 :</h2>
+                    {{ same }}
+                </v-card-text>
+                <v-card-text>
+                    <h2>제공한 VP :</h2>
                     {{ decMsg }}
+                </v-card-text>
+                <v-card-text>
+                    <h2>검증</h2>
+                    <v-switch
+                        v-model="showMessages"
+                        label="검증기관이 유저 암호화된 공개키로 암호화"
+                    ></v-switch>
+
+                    <v-input
+                        hint="데이터 확인"
+                        persistent-hint
+                        :messages="messages"
+                    >
+                        암호화 데이터
+                    </v-input>
+
+                    <v-switch
+                        v-model="showMessages1"
+                        label="의뢰업체가 유저 암호화된 공개키로 암호화"
+                    ></v-switch>
+                    <br />
+                    <v-input
+                        hint="데이터 확인"
+                        persistent-hint
+                        :messages="messages1"
+                    >
+                        암호화 데이터
+                    </v-input>
                 </v-card-text>
 
                 <v-divider></v-divider>
@@ -107,11 +144,25 @@ export default {
             verificationEncMsg: null,
             encMsg: null,
             vcList3: null,
-            same: null
+            same: null,
+            showMessages: false,
+            showMessages1: false
         }
     },
     created() {
+        this.issuerContractInstance()
         this.vcList3 = this.vcList2
+    },
+    computed: {
+        messages() {
+            return this.showMessages ? this.verificationEncMsg : undefined
+        },
+        messages1() {
+            return this.showMessages1 ? this.encMsg : undefined
+        },
+        selectedAccount() {
+            return this.selected1[0]
+        }
     },
 
     watch: {

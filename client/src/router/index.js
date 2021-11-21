@@ -8,8 +8,10 @@ import Trade from '../views/Trade.vue'
 import Company from '../views/Company.vue'
 import Encrypt from '../views/Encrypt.vue'
 import MyPage from '../views/MyPage.vue'
+import About from '../views/About.vue'
 
 import DefaultLayout from '../layouts/default/Index'
+import DefaultLayout2 from '../layouts/default/Index2'
 import PossibleLayout from '../layouts/possible/Index'
 // import CompanyLayout from '../layouts/company/Index'
 
@@ -35,7 +37,13 @@ const routes = [
                 path: '/',
                 name: 'Main',
                 component: Main
-            },
+            }
+        ]
+    },
+    {
+        path: '/',
+        component: DefaultLayout2,
+        children: [
             {
                 path: '/possible',
                 component: Possible,
@@ -88,9 +96,14 @@ const routes = [
                 //         component: CompanyLayout
                 //     }
                 // ]
+            },
+            {
+                path: '/about',
+                name: 'About',
+                component: About
             }
         ]
-    }
+        }
 ]
 const router = new VueRouter({
     mode: 'history',

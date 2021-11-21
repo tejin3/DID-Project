@@ -194,11 +194,19 @@
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
                                                         class="deep-purple--text font-weight-bold"
-                                                        >3</span
+                                                        >{{
+                                                            this.$store.state
+                                                                .reservedSurvey
+                                                                .length
+                                                        }}</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <v-card-actions>
-                                                    <v-btn>
+                                                    <v-btn
+                                                        @click="
+                                                            reservedModalOpen()
+                                                        "
+                                                    >
                                                         지금 하러가기
                                                     </v-btn>
                                                 </v-card-actions>
@@ -289,15 +297,20 @@
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
+            <ReservedSurveyModal
+                :modalOpen="modalOpen"
+                @close-modal="modalOpen = false"
+            />
         </v-container>
     </v-sheet>
 </template>
 <script>
 import { Icon } from '@iconify/vue2'
 import MypageModal from './Modal.vue'
+import ReservedSurveyModal from './ReservedSurveyModal.vue'
 
 export default {
-    components: { Icon, MypageModal },
+    components: { Icon, MypageModal, ReservedSurveyModal },
     data() {
         return {
             // goods:[],
@@ -322,7 +335,8 @@ export default {
             qrValue: '',
             size: 130,
             barcodeValue: '',
-            barcodeText: '9 899423 420854'
+            barcodeText: '9 899423 420854',
+            modalOpen: false
         }
     },
     created() {
@@ -407,6 +421,9 @@ export default {
                 }
                 this.vcs.push(key)
             }
+        },
+        reservedModalOpen() {
+            this.modalOpen = true
         }
     }
 }

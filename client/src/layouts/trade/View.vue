@@ -1,8 +1,24 @@
 <template>
     <v-container fluid>
-        <!-- 왼쪽 layout -->
-        <v-row>
-            <v-col cols="12" sm="8" ma="4">
+            <!-- 왼쪽 layout -->
+        <v-row no-gutters>
+             <v-col cols="6" md="2" class="trade-bg-color">
+                <v-card width="200" height="141"  class="border">
+                    <v-card-text>
+                        <br />
+                        <div class="text-h4 text--primary text-center ">
+                            🎫
+                            {{ coupon[0].user_coupon }}
+                        </div>
+                        <br />
+                        <p class="text-center">
+                            현재 내 쿠폰
+                        </p>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+            <!-- 오른쪽 layout -->
+            <v-col cols="12" sm="10" ma="4">
                 <v-card>
                     <!-- <div class="d-flex child-flex" style="justify-content: center;">
             <div
@@ -256,11 +272,11 @@
                 </v-card>
             </v-col>
             <!-- 오른쪽 layout -->
-            <v-col cols="6" md="4">
-                <v-card width="200" height="141">
+            <!-- <v-col cols="6" md="2" class="trade-bg-color">
+                <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
-                        <div class="text-h4 text--primary text-center">
+                        <div class="text-h4 text--primary text-center ">
                             🎫
                             {{ coupon[0].user_coupon }}
                         </div>
@@ -270,7 +286,7 @@
                         </p>
                     </v-card-text>
                 </v-card>
-            </v-col>
+            </v-col> -->
         </v-row>
     </v-container>
 </template>
@@ -352,6 +368,15 @@ export default {
 }
 .hi {
     position: absolute;
-    left: 25%;
+    left: 30%;
+}
+
+.trade-bg-color{
+    background-color :#F8F8F9;
+}
+
+.border {
+    top:250px;
+    left:40px;
 }
 </style>

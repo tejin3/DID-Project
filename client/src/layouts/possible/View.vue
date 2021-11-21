@@ -1,6 +1,48 @@
 <template>
-    <!-- 버튼 -->
-    <v-container class="max-width:0px;">
+
+    <v-container fluid>
+        <v-row no-gutters>
+<!-- 왼쪽 layout -->
+    <v-col cols="6" md="2" class="possible-bg-color">
+              <v-row justify="center" class="pa-0 mt-15">
+    <v-col
+      cols="2"
+      sm="12"
+      md="10"
+      lg="10"
+    >
+            <v-sheet
+        elevation="5"
+      >
+        <v-sheet
+          class="pa-3  text-left white--text"
+          color="hsl(258, 98%, 70%)"
+          light
+
+        >
+<span>카테고리</span>
+        </v-sheet>
+        <div class="pa-4">
+          <v-chip-group
+            active-class="warning"
+            column
+          >
+            <v-chip
+            color="hsl(258, 98%, 70%)"
+            class="white--text"
+              v-for="tag in tags"
+              :key="tag"
+            >
+              {{ tag }}
+            </v-chip>
+          </v-chip-group>
+        </div>
+      </v-sheet>
+        </v-col>
+  </v-row>
+        </v-col>
+<!-- 오른쪽 layout -->
+            <v-col cols="12" sm="10" ma="4">
         <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
@@ -60,17 +102,44 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+
+              <v-container class="mb-5">
+                        <v-bottom-navigation
+                            :value="value"
+                            color="hsl(258, 98%, 70%)"
+                            class="d-flex justify-start"
+                        >
+                            <v-btn class="ml-10 font-weight-bold text-subtitle-1"
+                            @click="getSurvey()">
+                                <span>전체 설문</span>
+                            </v-btn>
+
+                            <v-btn class="ml-5 font-weight-bold text-subtitle-1"
+                                @click="dialog = true"
+                    v-if="this.loginStatus == false">
+                                <span>참여 가능한 설문</span>
+                            </v-btn>
+
+                             <v-btn class="ml-5 font-weight-bold text-subtitle-1"
+                                  @click=";[matchSurvey(), canSurvey()]"
+                    v-else>
+                                <span>참여 가능한 설문</span>
+                            </v-btn>
+                        </v-bottom-navigation>
+                    </v-container>
+
         <!-- 탭 제목 영역 -->
         <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
-        <v-toolbar elevation="3" class="mb-5">
+        <!-- <v-toolbar elevation="3" class="mb-5"> -->
             <!-- 화면이 클 때 -->
-            <v-tabs
+            <!-- <v-tabs
                 class="hidden-xs-only "
                 v-model="tab"
                 align-with-title
                 center-active
             >
-                <v-tabs-slider color="deep-purple accent-3"></v-tabs-slider>
+                <v-tabs-slider color="deep-purple accent-3"></v-tabs-slider> -->
 
                 <!-- tap value = 0 -->
                 <!-- <v-tab class="font-weight-bold black--text">
@@ -93,14 +162,14 @@
                 > -->
 
                 <!-- tap value = 0 -->
-                <v-tab
+                <!-- <v-tab
                     class="font-weight-bold black--text tabColor"
                     style="font-size:1.1em;"
                 >
                     전체 설문
-                </v-tab>
+                </v-tab> -->
                 <!-- tap value = -->
-                <v-tab
+                <!-- <v-tab
                     class="font-weight-bold black--text"
                     style="font-size:1.1em;"
                     @click="dialog = true"
@@ -116,17 +185,17 @@
                 >
                     참여 가능한 설문</v-tab
                 >
-            </v-tabs>
+            </v-tabs> -->
             <!-- 화면이 작을 때 -->
 
-            <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
-                <v-tabs-slider color="primary"></v-tabs-slider>
+            <!-- <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
+                <v-tabs-slider color="primary"></v-tabs-slider> -->
                 <!-- tap value = 0 -->
-                <v-tab class="font-weight-bold black--text">
+                <!-- <v-tab class="font-weight-bold black--text">
                     전체 설문
-                </v-tab>
+                </v-tab> -->
                 <!-- tap value = -->
-                <v-tab
+                <!-- <v-tab
                     class="font-weight-bold black--text"
                     @click="dialog = true"
                     v-if="this.loginStatus == false"
@@ -141,7 +210,7 @@
                     참여 가능한 설문</v-tab
                 >
             </v-tabs>
-        </v-toolbar>
+        </v-toolbar> -->
         <v-container>
             <v-row>
                 <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
@@ -191,19 +260,22 @@
                             > -->
                             <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
                             <span
-                                class="font-weight-bold deep-purple--text ml-2"
+                                class="font-weight-bold deep-purple--text ml-1 mr-2"
                                 >D-{{ dDays[i].dday }}</span
                             >
+                            <br/>
+                            <v-icon>mdi-account-circle-outline</v-icon>참여 현황<span class="text-caption font-weight-bold deep-purple--text ml-1">{{d.survey_done_number}} / {{d.survey_total_number}}</span>
                             <!-- </v-chip> -->
 
                             <!-- <br />
                             {{ d.survey_start_date.slice(0, 10) }}
                             ~ {{ d.survey_end_date.slice(0, 10) }} -->
-                            <br /><br />
-                            <v-icon> mdi-alarm-check </v-icon>소요 시간: 약
+                            <br />
+                            <v-icon> mdi-alarm-check </v-icon>소요 시간 <span class="text-caption font-weight-bold deep-purple--text ml-1">약
+
                             {{
                                 d.survey_time.slice(3, 5).replace(/(^0+)/, '')
-                            }}분
+                            }}분</span>
                             <!-- <br /><br />
                             <v-icon> mdi-alarm-check </v-icon>소요 시간:
                             {{ d.survey_time.slice(4, 5) }}분 -->
@@ -243,9 +315,14 @@
                         </v-expand-transition>
                     </v-card>
                 </v-col>
-                <Navbar />
+                <!-- <Navbar /> -->
             </v-row>
         </v-container>
+
+        </v-col>
+
+           </v-row>
+
     </v-container>
 </template>
 
@@ -261,6 +338,7 @@ export default {
     },
     data() {
         return {
+            tags: ['쇼핑', '문화', '자동차', '음식', '아트', '주택', '인터넷', '전자제품'],
             dialog: false,
             decryptVc: [],
             vc: [],
@@ -275,6 +353,7 @@ export default {
             isShow: false,
             keyList: [],
             web3: {}
+
         }
     },
 
@@ -303,6 +382,7 @@ export default {
         async getSurvey() {
             // console.log('hi', this.$get()
             this.surveys = await this.$api('/surveys', 'get')
+            this.getIsShow()
         },
 
         // 로그인없이 이 페이지에 들어온 경우, 참여가능한설문 버튼 누르면 메타마스크 연결
@@ -338,6 +418,7 @@ export default {
         // 모든 설문지 보여준다
         allSurvey() {
             this.getSurvey()
+            this.getIsShow()
         },
         // d-day 보여준다
         async discountDay() {
@@ -530,7 +611,18 @@ export default {
     left: 42%;
 }
 
-.tabColor {
+/* .tabColor {
     background-color: purple;
+} */
+
+.possible-bg-color{
+    background-color :#F8F8F9;
+
 }
+
+.categoryBox{
+    top:120px;
+}
+
+
 </style>
