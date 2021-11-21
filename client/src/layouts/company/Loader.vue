@@ -98,7 +98,7 @@ export default {
         // 하나만 선택했을 때 모달창 온오프
         dialog(val) {
             if (!val) return
-            this.decrypt()
+            // this.decrypt()
             setTimeout(() => this.modalUp(), 4000)
             // alert('hello')
         },
