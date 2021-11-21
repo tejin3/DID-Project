@@ -140,6 +140,21 @@ export default {
             text1: null
         }
     },
+    watch: {
+        model() {
+            if (this.model === 0) {
+                this.text = ''
+                setTimeout(() => {
+                    this.text = '상위 10% 한달 평균 수익 : 77만원'
+                }, 2100)
+
+                this.text1 = ''
+                setTimeout(() => {
+                    this.text1 = '한달 최고 수익 : 119만원'
+                }, 5900)
+            }
+        }
+    },
     setup() {},
     mounted() {},
     created() {
@@ -194,11 +209,13 @@ export default {
             // sidx = sidx > aElSection.length - 1 ? aElSection.length - 1 : sidx
         },
         textCall() {
+            // this.text = ''
             setTimeout(() => {
                 this.text = '상위 10% 한달 평균 수익 : 77만원'
             }, 2100)
         },
         textCall1() {
+            // this.text1 = ''
             setTimeout(() => {
                 this.text1 = '한달 최고 수익 : 119만원'
             }, 5900)

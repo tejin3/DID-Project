@@ -9,7 +9,7 @@ const getContract = () => {
     const web3 = new Web3(Web3.givenProvider)
     const myContractInstance = new web3.eth.Contract(
         surveyABI,
-        '0x290C46019b66a0436C45990964aa4c3F018ce2b2'
+        '0xed87dF7a0a3E46BA61D583548A53AFD778F76357'
     )
     return myContractInstance
 }
