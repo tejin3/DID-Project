@@ -24,7 +24,6 @@
                     v-for="(n, i) in completePeople"
                 >
                     <!-- 설문 참여 완료한 사람들 중 특정 vp를 공개한 사람 -->
-
                     <v-checkbox
                         v-if="n.user_vp != null"
                         v-model="selected"
@@ -32,8 +31,8 @@
                         :value="n.user_account"
                         @click="vpData(n.user_vp)"
                     ></v-checkbox>
-                    <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
 
+                    <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
                     <v-checkbox
                         v-else
                         indeterminate
