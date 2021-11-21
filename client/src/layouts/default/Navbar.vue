@@ -53,7 +53,7 @@
                     설문결과
                 </v-btn>
                 <v-btn to="possible" text class="white--text">
-                    조사참여
+                    설문참여
                 </v-btn>
                 <v-btn to="trade" text class="white--text">
                     쿠폰교환

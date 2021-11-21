@@ -19,7 +19,7 @@
                     style="color:white; font-size:1.5em;"
                     class="d-flex align-center"
                 >
-                    조사참여
+                    설문참여
                 </div>
                 <div align="left" style="color:white; flex:1; margin-left:20px">
                     <div style="font-size:1.2em">
