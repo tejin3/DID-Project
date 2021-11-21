@@ -3,13 +3,13 @@
         <v-btn
             class="white--text"
             color="deep-purple accent-4"
-            @click="checked()"
+            @click="checked(), issuerContractInstance()"
         >
             검증
         </v-btn>
         <!-- 하나만 선택했을때 첫번째 모달창 -->
         <Dialog
-            :ment="'잠시만 기다려 주세요 해당 유저의 정보를 불러오는 중입니다.'"
+            :ment="'잠시만 기다려 주세요 해당 유저의 정보를 검증하는 중입니다.'"
             :dialog00="dialog"
         />
 
@@ -23,6 +23,11 @@
                 <!-- 검증자 : 행정안정부(0x12223fsd12121),
                     BC카드(0xd12df33232343)
                     {{ decMsg }} -->
+                <v-card-text>
+                    검증기관 :
+                    BC카드(0x71Ee5C1a0E156D353e692EE17d4A6235d949e538)
+                </v-card-text>
+                <v-card-text> 검증결과 : {{ same }} </v-card-text>
                 <v-card-text>
                     {{ decMsg }}
                 </v-card-text>
@@ -66,6 +71,7 @@
 <script>
 import Dialog from './Dialog.vue'
 import Dialog1 from './Dialog1.vue'
+import getContract2 from '@/service/getContract2'
 
 export default {
     components: { Dialog, Dialog1 },
@@ -80,6 +86,12 @@ export default {
             default: function() {
                 return []
             }
+        },
+        vcList2: {
+            type: Array,
+            default: function() {
+                return []
+            }
         }
     },
 
@@ -90,18 +102,26 @@ export default {
             dialog2: false,
             dialog3: false,
             dialog4: false,
-            decMsg: null
+            decMsg: null,
+            iC: null,
+            verificationEncMsg: null,
+            encMsg: null,
+            vcList3: null,
+            same: null
         }
+    },
+    created() {
+        this.vcList3 = this.vcList2
     },
 
     watch: {
         // 하나만 선택했을 때 모달창 온오프
-        dialog(val) {
-            if (!val) return
-            // this.decrypt()
-            setTimeout(() => this.modalUp(), 4000)
-            // alert('hello')
-        },
+        // dialog(val) {
+        //     if (!val) return
+        //     // this.decrypt()
+        //     setTimeout(() => this.modalUp(), 4000)
+        //     // alert('hello')
+        // },
         // 중복선택 했을때 모달창 온오프
         dialog3(val) {
             if (!val) return
@@ -131,8 +151,10 @@ export default {
                     method: 'eth_decrypt',
                     params: [this.userVp, this.$store.state.web3.coinbase]
                 })
+                await this.encryptedMessage()
                 this.dialog = true
-                setTimeout(() => this.modalUp(), 4000)
+                this.verificationCall()
+                // setTimeout(() => this.modalUp(), 4000)
             } catch {
                 alert('암호를 풀 수 없습니다')
             }
@@ -152,6 +174,116 @@ export default {
                 this.dialog3 = true
                 setTimeout(() => this.modalUp1(), 4000)
             }
+        },
+        issuerContractInstance() {
+            console.log('연결시도')
+            if (this.iC === null) {
+                console.log('연결완료')
+                var getContract223 = getContract2()
+                this.iC = getContract223
+                console.log('ContractInstance', this.iC)
+
+                // this.verificationCall실행해서 결과가 나오면 실행됨
+                this.iC.events.Approval({}, async (error, event) => {
+                    console.log('여기는 2')
+
+                    console.log(error)
+                    console.log(event)
+
+                    // 검증기관에서 하는 역할. 지금은 우리가 대신함.
+                    console.log('암호화', this.encMsg)
+                    this.forCompany1(
+                        event.returnValues[0],
+                        this.encMsg
+                        // .slice(2, 20)
+                    )
+                })
+            }
+        },
+        // 검증기관에서 유저 암호화된 공개키로 암호화 해서 등록
+        forCompany1(verificationCallCount, encryptVC) {
+            console.log('여기는 3')
+
+            this.iC.methods
+                // vc이름과 유저 암호화된 공개키로 암호화된 데이터
+                .forCompany(verificationCallCount, encryptVC)
+                .send({ from: this.$store.state.web3.coinbase })
+                // 내 주소
+                .then(receipt => {
+                    console.log(receipt)
+                    this.encryptForCompany1(verificationCallCount)
+                })
+        },
+        // 검증기관에서 보내준 유저 암호화된 공개키로 암호화한 VC 데이터 불러오기
+        encryptForCompany1(verificationCallCount) {
+            console.log('여기는 4')
+
+            this.iC.methods
+                .encryptForCompany(verificationCallCount)
+                .call()
+                .then(result => {
+                    this.verificationEncMsg = result
+                    this.modalUp()
+                    console.log(
+                        '검증기관에서 유저 암호화된 공개키로 암호화',
+                        this.verificationEncMsg
+                    )
+                    console.log(
+                        '내가 복호화한 데이터를 유저 암호화된 공개키로 암호화',
+                        this.encMsg
+                    )
+                    if (this.verificationEncMsg === this.encMsg) {
+                        this.same = true
+                    } else {
+                        this.same = false
+                    }
+                })
+        },
+        // 검증 업체에 검증 요청, 유저의 암호화된 공개키, 검증하려는 vc이름
+        // 검증해다랄고 요청 보냄
+        verificationCall() {
+            console.log('여기는 1')
+            console.log('vclist가져오니', this.vcList3)
+
+            const listUp = this.vcList3.toString()
+            console.log(listUp)
+            console.log('여기는 때문?')
+            this.iC.methods
+                .approval(
+                    'oYDUi/TuHJetEVDypjFJywDbcIUPXpzqj8U5eGHeWSs=',
+                    listUp
+                )
+                .send({ from: this.$store.state.web3.coinbase })
+                // 내 주소
+                .then(receipt => {
+                    console.log(receipt)
+                    // if (receipt === this.userVp) {
+                    //     alert('성공')
+                    // } else {
+                    //     alert('실패')
+                    // }
+                })
+        },
+        encryptedMessage() {
+            console.log('여기는 0')
+
+            const sigUtil = require('eth-sig-util')
+            // eth-sig-util: A small collection of Ethereum signing functions
+            const msg = JSON.stringify(this.decMsg)
+            console.log(this.decMsg)
+            console.log(msg)
+            // Buffer는 binary의 데이터를 담을 수 있는 object
+            const buf = Buffer.from(
+                JSON.stringify(
+                    sigUtil.encrypt(
+                        'oYDUi/TuHJetEVDypjFJywDbcIUPXpzqj8U5eGHeWSs=',
+                        { data: msg },
+                        'x25519-xsalsa20-poly1305'
+                    )
+                ),
+                'utf8'
+            )
+            return (this.encMsg = '0x' + buf.toString('hex'))
         }
     }
 }

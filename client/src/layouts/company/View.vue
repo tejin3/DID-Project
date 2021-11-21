@@ -196,6 +196,7 @@
                                     <v-chip>
                                         <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
                                         <DialogScroll
+                                            :vcList5="m.vcList"
                                             title="vp 확인"
                                             :completePeople="
                                                 users.filter(
@@ -218,6 +219,7 @@
 </template>
 <script>
 import DialogScroll from './DialogScroll.vue'
+
 export default {
     name: 'CompanyView',
     components: { DialogScroll },

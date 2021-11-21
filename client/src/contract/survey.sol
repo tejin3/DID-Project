@@ -9,7 +9,8 @@ contract survey {
     mapping (uint => mapping(address => bool)) public surveyUser;
 
     mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
-    
+    // 한번에 확인 할 수 있는 함수를 만들자
+
     mapping(uint => string) public companyPublic;
 
     event addUser(uint, address);

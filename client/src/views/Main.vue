@@ -25,18 +25,17 @@
                         height="100vh"
                     >
                         <v-row class="fill-height">
-                            <v-col cols="12" sm="6" md="8">
+                            <v-col cols="12" sm="6" md="7">
                                 <v-img
-                                    width="700px"
                                     src="@/assets/img/main/mainImg.png"
                                     aspect-ratio="2.4"
                                     style="margin-left:-2rem; margin-top:1rem"
                                 ></v-img>
                             </v-col>
-                            <v-col cols="4" md="4" class="">
+                            <v-col cols="4" md="5">
                                 <v-img
-                                    class="custom-img mt-5 mr-10"
-                                    src="@/assets/img/main/bank-book.png"
+                                    class="custom-img"
+                                    src="@/assets/img/main/bank-book1.png"
                                     aspect-ratio="1"
                                     ><h3 class="test22">
                                         {{ text }}
@@ -341,13 +340,13 @@ export default {
 
 .test22 {
     position: absolute;
-    left: 12%;
-    top: 30%;
+    left: 24%;
+    top: 28%;
 }
 .test33 {
     position: absolute;
-    left: 12%;
-    top: 45%;
+    left: 24%;
+    top: 40%;
 }
 // .test1:hover {
 //     margin-left: 20vh;

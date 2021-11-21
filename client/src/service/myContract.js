@@ -174,6 +174,153 @@ export const surveyABI = [
     }
 ]
 
+export const issuerABI = [
+    {
+        inputs: [],
+        stateMutability: 'nonpayable',
+        type: 'constructor'
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: false,
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            },
+            {
+                indexed: false,
+                internalType: 'string',
+                name: '',
+                type: 'string'
+            },
+            {
+                indexed: false,
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            },
+            {
+                indexed: false,
+                internalType: 'string',
+                name: '',
+                type: 'string'
+            }
+        ],
+        name: 'Approval',
+        type: 'event'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'string',
+                name: '_surveyUser',
+                type: 'string'
+            },
+            {
+                internalType: 'string',
+                name: '_VCName',
+                type: 'string'
+            }
+        ],
+        name: 'approval',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        stateMutability: 'nonpayable',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'encryptForCompany',
+        outputs: [
+            {
+                internalType: 'string',
+                name: '',
+                type: 'string'
+            }
+        ],
+        stateMutability: 'view',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_VCsNum',
+                type: 'uint256'
+            },
+            {
+                internalType: 'string',
+                name: '_encrypt',
+                type: 'string'
+            }
+        ],
+        name: 'forCompany',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function'
+    },
+    {
+        inputs: [],
+        name: 'owner',
+        outputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address'
+            }
+        ],
+        stateMutability: 'view',
+        type: 'function'
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        name: 'verificationRecodes',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: 'VCsNum',
+                type: 'uint256'
+            },
+            {
+                internalType: 'string',
+                name: 'surveyUser',
+                type: 'string'
+            },
+            {
+                internalType: 'address',
+                name: 'surveyCompany',
+                type: 'address'
+            },
+            {
+                internalType: 'uint256',
+                name: 'time',
+                type: 'uint256'
+            }
+        ],
+        stateMutability: 'view',
+        type: 'function'
+    }
+]
+
 export const vcABI = [
     {
         inputs: [],
