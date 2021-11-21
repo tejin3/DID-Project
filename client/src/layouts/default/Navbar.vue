@@ -1,8 +1,9 @@
+// 메인 navbar
 <template>
     <!-- 네비바 전체 윤곽 -->
     <div>
-        <!-- drawer is true -->
-        <v-app-bar elevation="0" color="transparent">
+
+        <v-app-bar elevation="0" color="transparent" class="mt-3">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold white--text">
@@ -155,4 +156,6 @@ module.exports = {
     z-index: 1;
     border: 4px solid #ffd233;
 }
+
+
 </style>

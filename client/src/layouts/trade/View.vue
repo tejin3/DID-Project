@@ -3,7 +3,7 @@
             <!-- 왼쪽 layout -->
         <v-row no-gutters>
              <v-col cols="6" md="2" class="trade-bg-color">
-                <v-card width="200" height="141" class="border">
+                <v-card width="200" height="141"  class="border">
                     <v-card-text>
                         <br />
                         <div class="text-h4 text--primary text-center ">
@@ -368,7 +368,7 @@ export default {
 }
 .hi {
     position: absolute;
-    left: 25%;
+    left: 30%;
 }
 
 .trade-bg-color{
@@ -376,8 +376,7 @@ export default {
 }
 
 .border {
-    border-radius: 10px;
-    top:120px;
-    left:50px
+    top:250px;
+    left:40px;
 }
 </style>

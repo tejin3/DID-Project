@@ -1,8 +1,9 @@
+// 메인 외 나머지 navbar
 <template>
     <!-- 네비바 전체 윤곽 -->
     <div>
-        <!-- drawer is true -->
-        <v-app-bar elevation="0" color="transparent">
+
+        <v-app-bar  elevate-on-scroll elevation="10" color="white" >
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold black--text">
@@ -24,7 +25,7 @@
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
-                        class="address pl-7 pr-4 pt-2"
+                        class="address2 pl-7 pr-4 pt-2"
                         color="#Fee440"
                         style="color:black;font-weight:bold"
                     >
@@ -151,8 +152,17 @@ module.exports = {
 .avatar2 {
     position: fixed;
     left: 73.8rem;
-    top: 0.5rem;
+    top: 0.85rem;
     z-index: 1;
     border: 4px solid #ffd233;
 }
+
+.address2 {
+top:0.4rem
+}
+
+
+
+
+
 </style>
