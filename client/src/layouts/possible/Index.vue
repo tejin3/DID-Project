@@ -1,14 +1,14 @@
 <template>
-    <v-container fluid>
+    <v-container fluid class="pa-0">
         <v-row no-gutters>
             <!-- 왼쪽 layout -->
             <v-col
                 cols="6"
                 md="2"
                 class="possible-bg-color"
-                style="padding-top:201px"
+                style="padding-top:220px"
             >
-                <v-row justify="center" class="pa-0 ">
+                <v-row justify="center" class="pa-0">
                     <v-col cols="2" sm="12" md="10" lg="10">
                         <v-sheet elevation="5">
                             <v-sheet
