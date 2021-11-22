@@ -6,7 +6,7 @@
         <v-tabs right elevate-on-scroll elevation="5" color="white" height="55">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
-                <v-toolbar-title class="font-weight-bold black--text mt-4 ml-5">
+                <v-toolbar-title class="font-weight-bold black--text mt-4 ml-7">
                     {{ title }}
                 </v-toolbar-title>
             </router-link>
@@ -23,12 +23,12 @@
                     class="py-2 mr-2 mt-1 black--text"
                     v-if="this.loginStatus == true"
                 >
-                    <v-avatar class="avatar2" size="40">
+                    <v-avatar class="avatar2" size="40" color="#ff8bbd">
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
                         class="address2 pl-7 pr-4 pt-2"
-                        color="#7AD9FF"
+                        color="#ff8bbd"
                         style="color:black;font-weight:bold"
                     >
                         {{

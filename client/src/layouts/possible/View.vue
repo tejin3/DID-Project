@@ -14,13 +14,12 @@
                                 <span>카테고리</span>
                             </v-sheet>
                             <div class="pa-4">
-                                <v-chip-group active-class="warning" column>
+                                <v-chip-group active-class="werning" column>
                                     <v-chip
                                         color="#7b45fd"
                                         class="white--text"
                                         v-for="tag in tags"
                                         :key="tag"
-                                        @click="category"
                                     >
                                         {{ tag }}
                                     </v-chip>
@@ -252,6 +251,7 @@
                                 >
                                     <v-card-subtitle
                                         class="text-subtitle-1 font-weight-bold"
+                                        color="#7b45fd"
                                     >
                                         적립금:
                                         {{ d.survey_price }}
@@ -382,8 +382,7 @@ export default {
             icon: 'mdi-calendar-range',
             isShow: false,
             keyList: [],
-            web3: {},
-            surveyCategory: []
+            web3: {}
         }
     },
 
@@ -601,6 +600,7 @@ export default {
                 // console.log('vvv', this.surveys)
             })
             console.log(this.surveys)
+<<<<<<< HEAD
         },
 
         async category() {
@@ -621,6 +621,8 @@ export default {
                     // }
                 })
             })
+=======
+>>>>>>> cacdc4b889c1bd7469130348e148d93165e19676
         }
 
         // getVcContractInstance() {

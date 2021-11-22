@@ -58,19 +58,19 @@
                                         col="2"
                                     >
                                         <v-card
-                                            class="mx-auto py-2 px-2 rounded-xl"
+                                            class="mx-auto py-2 px-1 rounded-xl"
                                             max-height="120"
-                                            width="200"
+                                            width="150"
                                         >
                                             <v-card-text>
                                                 <v-row>
                                                     <v-col
                                                         cols="5"
-                                                        class="mt-1"
+                                                        class="mt-2"
                                                     >
                                                         <v-img
                                                             src="@/assets/img/mypage/user.png"
-                                                            width="100"
+                                                            width="40"
                                                         ></v-img>
                                                     </v-col>
                                                     <v-col
@@ -78,12 +78,12 @@
                                                         class="mt-2"
                                                     >
                                                         <p
-                                                            class="text-subtitle1 text--primary"
+                                                            class="text--primary" style="font-size:0.8rem"
                                                         >
                                                             {{ vc }}
                                                         </p>
                                                         <p
-                                                            class="text-body2 text--primary"
+                                                            class="text--primary" style="font-size:0.5rem"
                                                         >
                                                             {{ issuer[i] }}
                                                         </p>
@@ -335,7 +335,7 @@ export default {
             qrValue: '',
             size: 130,
             barcodeValue: '',
-            barcodeText: '9 899423 420854',
+            barcodeText: '',
             modalOpen: false
         }
     },
@@ -369,9 +369,11 @@ export default {
         },
         showCode(name) {
             this.dialog = true
-            this.qrValue = 'goods_name'
+            this.qrValue = name
             this.barcodeValue = 'goods_name'
-            this.barcodeText = '9 899423 420854'
+            var spacer = ' '
+            var number = String(Math.floor((Math.random()) * (10 ** 13)))
+            this.barcodeText = [number.slice(0, 1), spacer, number.slice(1, 7), spacer, number.slice(7, 12)].join('')
         },
 
         // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다

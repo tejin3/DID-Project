@@ -189,7 +189,7 @@ export default {
     unmounted() {},
     methods: {
         changeTest() {
-            this.$router.push({ path: 'survey' })
+            this.$router.push({ path: 'survey?surveyId=3' })
         },
         goBack() {
             this.$emit('child', this.modal)

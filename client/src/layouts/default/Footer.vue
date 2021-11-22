@@ -1,4 +1,5 @@
 <template>
+<div>
     <v-footer color="white" padless>
         <v-row justify="center" no-gutters>
             <v-btn
@@ -24,6 +25,7 @@
             </v-col>
         </v-row>
     </v-footer>
+    </div>
 </template>
 <script>
 module.exports = {

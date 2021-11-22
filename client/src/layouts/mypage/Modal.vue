@@ -30,11 +30,12 @@
                     </v-sheet>
                     <v-col col="12" class="center">
                         <v-card-actions>
-                            <v-btn color="yellow darken-1">
+                            <v-btn dark color="#ff8bbd">
                                 <span class="pt-2">코드 스캐너</span>
                             </v-btn>
                             <v-btn
-                                color="yellow darken-1"
+                                dark
+                                color="#ff8bbd"
                                 @click="$emit('close-modal')"
                             >
                                 <span class="pt-2">닫기</span>
