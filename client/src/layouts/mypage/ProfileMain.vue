@@ -369,9 +369,10 @@ export default {
         },
         showCode(name) {
             this.dialog = true
-            this.qrValue = 'goods_name'
+            this.qrValue = name
             this.barcodeValue = 'goods_name'
-            this.barcodeText = '9 899423 420854'
+            // var spacer = ' '
+            // this.barcodeText = [Math.floor((Math.random()) * (10 ** 13)).slice(0,1), spacer, Math.floor((Math.random()) * (10 ** 13)).slice(1,7), spacer, Math.floor((Math.random()) * (10 ** 13)).slice(7,12)].jsoin('')
         },
 
         // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다
