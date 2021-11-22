@@ -6,7 +6,7 @@
                 cols="6"
                 md="2"
                 class="possible-bg-color"
-                style="margin-top:285px"
+                style="padding-top:230px"
             >
                 <v-row justify="center" class="pa-0 ">
                     <v-col cols="2" sm="12" md="10" lg="10">
@@ -46,7 +46,7 @@
                 <!--조사참여 bn글씨 시작 -->
                 <v-container
                     class="d-flex justify-center align-center"
-                    style="margin-bottom:20px; margin-top:85px"
+                    style="margin-bottom:20px;"
                 >
                     <img
                         src="@/assets/img/trade/banner-2.png"
