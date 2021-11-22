@@ -105,7 +105,6 @@
             @close-modal="dialog2 = false"
         ></SurveyModal>
 
-        <SurveyStartModal :surveymodalOfen="surveymodalOfen" @child="parents" />
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -115,10 +114,9 @@
 import SurveyModal from './Modal.vue'
 import vc from '../possible/vc.json'
 import getContract from '@/service/getContract'
-import SurveyStartModal from './SurveyStartModal'
 export default {
     name: 'MainSurvey',
-    components: { SurveyModal, SurveyStartModal },
+    components: { SurveyModal },
     data() {
         return {
             items: [
@@ -147,7 +145,6 @@ export default {
             answers: ['test'],
             dialog: false,
             dialog2: false,
-            surveymodalOfen: true,
             model: 0,
             condition: {},
             vp: [],
@@ -220,10 +217,6 @@ export default {
     },
     unmounted() {},
     methods: {
-        parents(modal) {
-            console.log('부모가 받았어', modal)
-            this.surveymodalOfen = modal
-        },
         test() {
             console.log(
                 'this.t_ordersthis.t_ordersthis.t_ordersthis.t_orders',

@@ -1,8 +1,9 @@
 <template>
-    <v-container fluid class="mt-16">
+    <v-container class="mt-16 bg-half">
         <!-- 왼쪽 layout -->
+
         <v-row no-gutters>
-            <v-col cols="6" md="2" class="trade-bg-color">
+            <v-col cols="6" md="2" class="trade-bg-color ">
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
@@ -31,8 +32,10 @@
         </div> -->
                     <!--쿠폰교환 bn글씨 시작 -->
                     <v-container
+
                         class="d-flex justify-center align-center "
                         style="margin-bottom:20px; margin-top:20px"
+
                     >
                         <!-- style="margin-left:50" -->
                         <img
@@ -83,13 +86,13 @@
                             color="hsl(258, 98%, 70%)"
                             class="d-flex justify-space-around"
                         >
-                            <v-btn>
+                            <v-btn @click="showGoods">
                                 <span>전체</span>
 
                                 <v-icon>mdi-widgets</v-icon>
                             </v-btn>
 
-                            <v-btn>
+                            <v-btn @click="goodsDrink">
                                 <span>커피/음료</span>
 
                                 <v-icon>
@@ -97,32 +100,32 @@
                                 </v-icon>
                             </v-btn>
 
-                            <v-btn>
+                            <v-btn @click="goodsBread">
                                 <span>베이커리/도넛</span>
 
                                 <v-icon>mdi-cake-variant</v-icon>
                             </v-btn>
-                            <v-btn>
+                            <v-btn @click="goodsIcecream">
                                 <span>아이스크림</span>
 
                                 <v-icon>mdi-ice-cream</v-icon>
                             </v-btn>
-                            <v-btn>
+                            <v-btn @click="goodsFood">
                                 <span>햄버거/치킨/피자</span>
 
                                 <v-icon>mdi-food</v-icon>
                             </v-btn>
-                            <v-btn>
+                            <v-btn @click="goodsMart">
                                 <span>마트/편의점</span>
 
                                 <v-icon>mdi-store</v-icon>
                             </v-btn>
-                            <v-btn>
+                            <v-btn @click="goodsGiftCard">
                                 <span>상품권</span>
 
                                 <v-icon>mdi-ticket</v-icon>
                             </v-btn>
-                            <v-btn>
+                            <v-btn @click="goodsMovie">
                                 <span>영화</span>
 
                                 <v-icon>mdi-video</v-icon>
@@ -302,7 +305,8 @@ export default {
             user: {},
             value: 1,
             overlay: false,
-            coupon: []
+            coupon: [],
+            drink: []
         }
     },
     setup() {},
@@ -350,6 +354,180 @@ export default {
             })
             this.coupon = result
             console.log('ggggg', this.coupon)
+        },
+
+        async goodsDrink() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (
+                        item.goods_id === 1 ||
+                        item.goods_id === 3 ||
+                        item.goods_id === 15
+                    ) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsBread() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (item.goods_id === 2 || item.goods_id === 5) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsIcecream() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (item.goods_id === 4) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsFood() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (
+                        item.goods_id === 6 ||
+                        item.goods_id === 7 ||
+                        item.goods_id === 8
+                    ) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsMart() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (item.goods_id === 13 || item.goods_id === 14) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsGiftCard() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (
+                        item.goods_id === 9 ||
+                        item.goods_id === 10 ||
+                        item.goods_id === 11
+                    ) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
+        },
+        async goodsMovie() {
+            // goods배열 초기화
+            this.goods = []
+            await this.$api('/trade', 'get').then(res => {
+                console.log('goods', res)
+                res.forEach(item => {
+                    console.log('bev', item)
+                    if (item.goods_id === 12) {
+                        this.goods.push(item)
+                        console.log(this.goods)
+                    }
+
+                    for (var user of res) {
+                        if (
+                            (user.user_account = this.$store.state.web3.coinbase)
+                        ) {
+                            this.user = user
+                        }
+                    }
+                    console.log(this.user)
+                })
+            })
         }
     }
 }
@@ -379,5 +557,10 @@ export default {
 .border {
     top: 250px;
     left: 40px;
+}
+
+.bg-half {
+    width: 1523px;
+    background: linear-gradient(red 50%, white 50%);
 }
 </style>
