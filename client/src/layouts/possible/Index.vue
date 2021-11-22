@@ -39,19 +39,20 @@
                 </v-row>
             </v-col>
             <!-- 오른쪽 layout -->
-            <v-col cols="12" sm="10" ma="4">
+            <v-col cols="12" sm="10" ma="4" >
                 <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
                 <!--조사참여 bn글씨 시작 -->
                 <v-container
                     class="d-flex justify-center align-center"
-                    style="margin-bottom:20px;"
+                    style="padding-bottom:20px; padding-top:23px"
                 >
                     <img
                         src="@/assets/img/trade/banner-2.png"
                         alt=""
                         class="img-bn-class"
+                        style=" margin-right:0;"
                     />
                     <!-- style="margin:auto;" -->
 

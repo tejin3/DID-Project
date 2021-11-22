@@ -31,7 +31,7 @@
                         {{
                             `${this.$store.state.web3.coinbase.substr(
                                 0,
-                                2
+                                6
                             )}  ...
                                 ${this.$store.state.web3.coinbase.substr(
                                     38,

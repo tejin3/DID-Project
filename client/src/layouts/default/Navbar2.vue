@@ -2,7 +2,6 @@
 <template>
     <!-- 네비바 전체 윤곽 -->
 
-        <!-- drawer is true -->
         <v-tabs color="white" height="55" >
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
@@ -27,7 +26,7 @@
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
-                        class="address2 pl-5 pr-5 pt-2"
+                        class="address2 pl-7 pr-4 pt-2"
                         color="#ff8bbd"
                         style="color:black;font-weight:bold"
                     >
@@ -127,7 +126,7 @@ module.exports = {
 <style>
 .avatar2 {
     position: fixed;
-    left: 68.3rem;
+    left: 68.5rem;
     top: 0.51rem;
     z-index: 1;
     border: 4px solid #7ad9ff;
@@ -136,8 +135,6 @@ module.exports = {
 .address2 {
     top: 0.5rem;
 }
-
-
 
 .whiteNav {
     top:2px;

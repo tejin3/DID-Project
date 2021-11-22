@@ -49,8 +49,8 @@
                         <v-card-text>
                             <!-- 화면이 클 때-->
                             <v-btn class=" hidden-xs-only" @click="copyAddress">
-                                <span class="mr-3">{{
-                                    truncatedUserAddress2
+                                <span class="mr-3 text-lowercase">{{
+                                    truncatedUserAddress
                                 }}</span>
                                 <v-icon>mdi-content-copy</v-icon>
                             </v-btn>
@@ -59,11 +59,12 @@
                                 class="hidden-sm-and-up"
                                 @click="copyAddress"
                             >
-                                <span class="mr-3">{{
+                                <span class="mr-3 text-lowercase">{{
                                     truncatedUserAddress
                                 }}</span>
                                 <v-icon>mdi-content-copy</v-icon>
                             </v-btn>
+
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -75,8 +76,8 @@
 module.exports = {
     data() {
         return {
-            userAddress: '0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8'
-        }
+            // userAddress: '0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8'
+              }
     },
     methods: {
         async copyAddress() {
@@ -88,21 +89,23 @@ module.exports = {
                 console.error('Failed to copy: ', err)
             }
         }
+
     },
     computed: {
+        // truncatedUserAddress() {
+        //     return (
+        //         this.userAddress.slice(0, 5) +
+        //         '...' +
+        //         this.userAddress.slice(-3)
+        //     )
+        // },
         truncatedUserAddress() {
-            return (
-                this.userAddress.slice(0, 5) +
-                '...' +
-                this.userAddress.slice(-3)
-            )
-        },
-        truncatedUserAddress2() {
-            return (
-                this.userAddress.slice(0, 7) +
-                '......' +
-                this.userAddress.slice(-7)
-            )
+            return this.$store.state.web3.coinbase.slice(0, 2) +
+            '....' + this.$store.state.web3.coinbase.slice(38, 42)
+
+                //  this.userAddress.slice(0, 7) +
+                // '......' +
+                // this.userAddress.slice(-7)
         }
     }
 }

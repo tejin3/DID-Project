@@ -1,8 +1,9 @@
 <template>
-    <v-container class="mt-16">
-        <!-- 왼쪽 layout -->
+    <v-container fluid class="pa-0">
         <v-row no-gutters>
-            <v-col cols="6" md="2" class="trade-bg-color">
+        <!-- 왼쪽 layout -->
+
+            <v-col cols="6" md="2" class="trade-bg-color" >
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
@@ -32,7 +33,7 @@
                     <!--쿠폰교환 bn글씨 시작 -->
                     <v-container
                         class="d-flex justify-center align-center "
-                        style="margin-bottom:20px; margin-top:20px"
+                        style="padding-bottom:20px; padding-top:23px"
                     >
                         <!-- style="margin-left:50" -->
                         <img
@@ -290,6 +291,7 @@
             </v-col> -->
         </v-row>
     </v-container>
+
 </template>
 <script>
 export default {
