@@ -1,139 +1,138 @@
 <template>
-
-    <v-container fluid>
+    <v-container fluid class="mt-16">
         <v-row no-gutters>
-<!-- 왼쪽 layout -->
-    <v-col cols="6" md="2" class="possible-bg-color">
-              <v-row justify="center" class="pa-0 mt-15">
-    <v-col
-      cols="2"
-      sm="12"
-      md="10"
-      lg="10"
-    >
-            <v-sheet
-        elevation="5"
-      >
-        <v-sheet
-          class="pa-3  text-left white--text"
-          color="hsl(258, 98%, 70%)"
-          light
-
-        >
-<span>카테고리</span>
-        </v-sheet>
-        <div class="pa-4">
-          <v-chip-group
-            active-class="warning"
-            column
-          >
-            <v-chip
-            color="hsl(258, 98%, 70%)"
-            class="white--text"
-              v-for="tag in tags"
-              :key="tag"
-            >
-              {{ tag }}
-            </v-chip>
-          </v-chip-group>
-        </div>
-      </v-sheet>
-        </v-col>
-  </v-row>
-        </v-col>
-<!-- 오른쪽 layout -->
+            <!-- 왼쪽 layout -->
+            <v-col cols="6" md="2" class="possible-bg-color">
+                <v-row justify="center" class="pa-0 mt-15">
+                    <v-col cols="2" sm="12" md="10" lg="10">
+                        <v-sheet elevation="5">
+                            <v-sheet
+                                class="pa-3  text-left white--text"
+                                color="hsl(258, 98%, 70%)"
+                                light
+                            >
+                                <span>카테고리</span>
+                            </v-sheet>
+                            <div class="pa-4">
+                                <v-chip-group active-class="warning" column>
+                                    <v-chip
+                                        color="hsl(258, 98%, 70%)"
+                                        class="white--text"
+                                        v-for="tag in tags"
+                                        :key="tag"
+                                    >
+                                        {{ tag }}
+                                    </v-chip>
+                                </v-chip-group>
+                            </div>
+                        </v-sheet>
+                    </v-col>
+                </v-row>
+            </v-col>
+            <!-- 오른쪽 layout -->
             <v-col cols="12" sm="10" ma="4">
-        <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
+                <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
-        <!--조사참여 bn글씨 시작 -->
-        <v-container class="d-flex justify-center align-center">
-            <img
-                src="@/assets/img/trade/test.png"
-                alt=""
-                class="img-bn-class"
-            />
-            <!-- style="margin:auto;" -->
+                <!--조사참여 bn글씨 시작 -->
+                <v-container class="d-flex justify-center align-center">
+                    <img
+                        src="@/assets/img/trade/test.png"
+                        alt=""
+                        class="img-bn-class"
+                    />
+                    <!-- style="margin:auto;" -->
 
-            <div class="hi" style="justify-content:center; display:flex;">
-                <div
-                    align="left"
-                    style="color:white; font-size:1.5em;"
-                    class="d-flex align-center"
-                >
-                    조사참여
-                </div>
-                <div align="left" style="color:white; flex:1; margin-left:20px">
-                    <div style="font-size:1.2em">
-                        더 많이 참여하고 더 많이 받아가세요
-                    </div>
-                    <div style="font-size:0.8em">
-                        지금 서베이에 참여하고 더 많은 WeDIDsurvey 포인트를
-                        쌓아보세요.
-                    </div>
-                </div>
-            </div>
-        </v-container>
-        <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
-        <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
-        <v-dialog v-model="dialog" max-width="340">
-            <v-card>
-                <img
-                    class="metamaskCenter"
-                    width="50"
-                    src="@/assets/img/metamask.svg"
-                />
-                <br />
-                <br />
-                <v-card-text class="text-h6 text-center">
-                    지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
-                </v-card-text>
-
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-
-                    <v-btn
-                        color="blue darken-1"
-                        text
-                        @click=";[connectMask(), (dialog = false)]"
+                    <div
+                        class="hi"
+                        style="justify-content:center; display:flex;"
                     >
-                        지갑 연결하기
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
-
-
-              <v-container class="mb-5">
-                        <v-bottom-navigation
-                            :value="value"
-                            color="hsl(258, 98%, 70%)"
-                            class="d-flex justify-start"
+                        <div
+                            align="left"
+                            style="color:white; font-size:1.5em;"
+                            class="d-flex align-center"
                         >
-                            <v-btn class="ml-10 font-weight-bold text-subtitle-1"
-                            @click="getSurvey()">
-                                <span>전체 설문</span>
-                            </v-btn>
+                            조사참여
+                        </div>
+                        <div
+                            align="left"
+                            style="color:white; flex:1; margin-left:20px"
+                        >
+                            <div style="font-size:1.2em">
+                                더 많이 참여하고 더 많이 받아가세요
+                            </div>
+                            <div style="font-size:0.8em">
+                                지금 서베이에 참여하고 더 많은 WeDIDsurvey
+                                포인트를 쌓아보세요.
+                            </div>
+                        </div>
+                    </div>
+                </v-container>
+                <!-- <v-btn color="purple lighten-1" dark @click="decrypt()">복호화</v-btn> -->
+                <!-- 지갑 연결 전 참여가능한 설문 버튼 누르면 modal창 뜬다 -->
+                <v-dialog v-model="dialog" max-width="340">
+                    <v-card>
+                        <img
+                            class="metamaskCenter"
+                            width="50"
+                            src="@/assets/img/metamask.svg"
+                        />
+                        <br />
+                        <br />
+                        <v-card-text class="text-h6 text-center">
+                            지갑 연결 후 맞춤 설문 <br />확인이 가능합니다.
+                        </v-card-text>
 
-                            <v-btn class="ml-5 font-weight-bold text-subtitle-1"
-                                @click="dialog = true"
-                    v-if="this.loginStatus == false">
-                                <span>참여 가능한 설문</span>
-                            </v-btn>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
 
-                             <v-btn class="ml-5 font-weight-bold text-subtitle-1"
-                                  @click=";[matchSurvey(), canSurvey()]"
-                    v-else>
-                                <span>참여 가능한 설문</span>
+                            <v-btn
+                                color="blue darken-1"
+                                text
+                                @click=";[connectMask(), (dialog = false)]"
+                            >
+                                지갑 연결하기
                             </v-btn>
-                        </v-bottom-navigation>
-                    </v-container>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
 
-        <!-- 탭 제목 영역 -->
-        <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
-        <!-- <v-toolbar elevation="3" class="mb-5"> -->
-            <!-- 화면이 클 때 -->
-            <!-- <v-tabs
+                <v-container class="mb-5">
+                    <v-bottom-navigation
+                        :value="value"
+                        color="hsl(258, 98%, 70%)"
+                        class="d-flex justify-start"
+                    >
+                        <v-btn
+                            class="ml-10 font-weight-bold text-subtitle-1"
+                            @click="getSurvey()"
+                        >
+                            <span>전체 설문</span>
+                        </v-btn>
+
+                        <v-btn
+                            class="ml-5 font-weight-bold text-subtitle-1"
+                            @click="dialog = true"
+                            v-if="this.loginStatus == false"
+                        >
+                            <span>참여 가능한 설문</span>
+                        </v-btn>
+
+                        <v-btn
+                            class="ml-5 font-weight-bold text-subtitle-1"
+                            @click=";[matchSurvey(), canSurvey()]"
+                            v-else
+                        >
+                            <span>참여 가능한 설문</span>
+                        </v-btn>
+                    </v-bottom-navigation>
+                </v-container>
+
+                <!-- 탭 제목 영역 -->
+                <!-- <v-toolbar elevation="3" color="#94B3FD"> -->
+                <!-- <v-toolbar elevation="3" class="mb-5"> -->
+                <!-- 화면이 클 때 -->
+                <!-- <v-tabs
                 class="hidden-xs-only "
                 v-model="tab"
                 align-with-title
@@ -186,9 +185,9 @@
                     참여 가능한 설문</v-tab
                 >
             </v-tabs> -->
-            <!-- 화면이 작을 때 -->
+                <!-- 화면이 작을 때 -->
 
-            <!-- <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
+                <!-- <v-tabs color="black" class="hidden-sm-and-up" v-model="tab" grow>
                 <v-tabs-slider color="primary"></v-tabs-slider> -->
                 <!-- tap value = 0 -->
                 <!-- <v-tab class="font-weight-bold black--text">
@@ -211,118 +210,136 @@
                 >
             </v-tabs>
         </v-toolbar> -->
-        <v-container>
-            <v-row>
-                <v-col :key="i" v-for="(d, i) in surveys" sm="12" md="6" lg="3">
-                    <v-card elevation="3" class="mx-auto" max-width="344">
-                        <router-link
-                            class="text-decoration-none"
-                            :to="`/survey?surveyId=${d.survey_id}`"
+                <v-container>
+                    <v-row>
+                        <v-col
+                            :key="i"
+                            v-for="(d, i) in surveys"
+                            sm="12"
+                            md="6"
+                            lg="3"
                         >
-                            <v-img
-                                :src="
-                                    `http://localhost:3000/download/${d.survey_image_path}`
-                                "
-                                height="200px"
-                            ></v-img>
-                        </router-link>
-
-                        <v-card-title>
-                            {{ d.survey_title }}
-                        </v-card-title>
-                        <v-chip
-                            close-icon="mdi-close-outline"
-                            color="black"
-                            fill
-                            outlined
-                            class="black--text pa-0 ml-2"
-                        >
-                            <v-card-subtitle
-                                class="text-subtitle-1 font-weight-bold"
+                            <v-card
+                                elevation="3"
+                                class="mx-auto"
+                                max-width="344"
                             >
-                                적립금:
-                                {{ d.survey_price }}
-                                | 쿠폰:
-                                {{ d.survey_coupon }}
-                            </v-card-subtitle>
-                        </v-chip>
-                        <v-card-subtitle>
-                            <!-- <v-icon> mdi-alarm-check </v-icon>소요 시간:
+                                <router-link
+                                    class="text-decoration-none"
+                                    :to="`/survey?surveyId=${d.survey_id}`"
+                                >
+                                    <v-img
+                                        :src="
+                                            `http://localhost:3000/download/${d.survey_image_path}`
+                                        "
+                                        height="200px"
+                                    ></v-img>
+                                </router-link>
+
+                                <v-card-title>
+                                    {{ d.survey_title }}
+                                </v-card-title>
+                                <v-chip
+                                    close-icon="mdi-close-outline"
+                                    color="black"
+                                    fill
+                                    outlined
+                                    class="black--text pa-0 ml-2"
+                                >
+                                    <v-card-subtitle
+                                        class="text-subtitle-1 font-weight-bold"
+                                    >
+                                        적립금:
+                                        {{ d.survey_price }}
+                                        | 쿠폰:
+                                        {{ d.survey_coupon }}
+                                    </v-card-subtitle>
+                                </v-chip>
+                                <v-card-subtitle>
+                                    <!-- <v-icon> mdi-alarm-check </v-icon>소요 시간:
                             {{ d.survey_time.slice(4, 5) }}분
                             <br />
                             <br /> -->
-                            <v-icon v-text="icon"></v-icon>남은 기간
-                            <!-- <v-chip
+                                    <v-icon v-text="icon"></v-icon>남은 기간
+                                    <!-- <v-chip
                                 class="ma-1 font-weight-bold text-subtitle-2"
                                 color="deep-purple accent-3"
                                 outlined
                                 small
                             > -->
-                            <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
-                            <span
-                                class="font-weight-bold deep-purple--text ml-1 mr-2"
-                                >D-{{ dDays[i].dday }}</span
-                            >
-                            <br/>
-                            <v-icon>mdi-account-circle-outline</v-icon>참여 현황<span class="text-caption font-weight-bold deep-purple--text ml-1">{{d.survey_done_number}} / {{d.survey_total_number}}</span>
-                            <!-- </v-chip> -->
+                                    <!-- dDays배열 dday 오브젝트 하나씩 접근해서 for문 돌린다 -->
+                                    <span
+                                        class="font-weight-bold deep-purple--text ml-1 mr-2"
+                                        >D-{{ dDays[i].dday }}</span
+                                    >
+                                    <br />
+                                    <v-icon>mdi-account-circle-outline</v-icon
+                                    >참여 현황<span
+                                        class="text-caption font-weight-bold deep-purple--text ml-1"
+                                        >{{ d.survey_done_number }} /
+                                        {{ d.survey_total_number }}</span
+                                    >
+                                    <!-- </v-chip> -->
 
-                            <!-- <br />
+                                    <!-- <br />
                             {{ d.survey_start_date.slice(0, 10) }}
                             ~ {{ d.survey_end_date.slice(0, 10) }} -->
-                            <br />
-                            <v-icon> mdi-alarm-check </v-icon>소요 시간 <span class="text-caption font-weight-bold deep-purple--text ml-1">약
+                                    <br />
+                                    <v-icon> mdi-alarm-check </v-icon>소요 시간
+                                    <span
+                                        class="text-caption font-weight-bold deep-purple--text ml-1"
+                                        >약
 
-                            {{
-                                d.survey_time.slice(3, 5).replace(/(^0+)/, '')
-                            }}분</span>
-                            <!-- <br /><br />
+                                        {{
+                                            d.survey_time
+                                                .slice(3, 5)
+                                                .replace(/(^0+)/, '')
+                                        }}분</span
+                                    >
+                                    <!-- <br /><br />
                             <v-icon> mdi-alarm-check </v-icon>소요 시간:
                             {{ d.survey_time.slice(4, 5) }}분 -->
-                        </v-card-subtitle>
+                                </v-card-subtitle>
 
-                        <!-- <v-card-subtitle>
+                                <!-- <v-card-subtitle>
                             {{ d.survey_time }}
                         </v-card-subtitle> -->
 
-                        <v-card-actions>
-                            <v-btn
-                                color="deep-purple accent-3"
-                                text
-                                @click="d.isShow = !d.isShow"
-                            >
-                                상세 내용
-                            </v-btn>
+                                <v-card-actions>
+                                    <v-btn
+                                        color="deep-purple accent-3"
+                                        text
+                                        @click="d.isShow = !d.isShow"
+                                    >
+                                        상세 내용
+                                    </v-btn>
 
-                            <v-spacer></v-spacer>
+                                    <v-spacer></v-spacer>
 
-                            <v-btn icon @click="d.isShow = !d.isShow">
-                                <v-icon>{{
-                                    d.isShow
-                                        ? 'mdi-chevron-up'
-                                        : 'mdi-chevron-down'
-                                }}</v-icon>
-                            </v-btn>
-                        </v-card-actions>
-                        <!-- xcvxcvxcvxv {{ $store.state.matchedSurvey }} -->
-                        <v-expand-transition>
-                            <div v-show="d.isShow">
-                                <v-divider></v-divider>
-                                <v-card-text class="text-justify">
-                                    {{ d.survey_description }}
-                                </v-card-text>
-                            </div>
-                        </v-expand-transition>
-                    </v-card>
-                </v-col>
-                <!-- <Navbar /> -->
-            </v-row>
-        </v-container>
-
-        </v-col>
-
-           </v-row>
-
+                                    <v-btn icon @click="d.isShow = !d.isShow">
+                                        <v-icon>{{
+                                            d.isShow
+                                                ? 'mdi-chevron-up'
+                                                : 'mdi-chevron-down'
+                                        }}</v-icon>
+                                    </v-btn>
+                                </v-card-actions>
+                                <!-- xcvxcvxcvxv {{ $store.state.matchedSurvey }} -->
+                                <v-expand-transition>
+                                    <div v-show="d.isShow">
+                                        <v-divider></v-divider>
+                                        <v-card-text class="text-justify">
+                                            {{ d.survey_description }}
+                                        </v-card-text>
+                                    </div>
+                                </v-expand-transition>
+                            </v-card>
+                        </v-col>
+                        <!-- <Navbar /> -->
+                    </v-row>
+                </v-container>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
@@ -338,7 +355,16 @@ export default {
     },
     data() {
         return {
-            tags: ['쇼핑', '문화', '자동차', '음식', '아트', '주택', '인터넷', '전자제품'],
+            tags: [
+                '쇼핑',
+                '문화',
+                '자동차',
+                '음식',
+                '아트',
+                '주택',
+                '인터넷',
+                '전자제품'
+            ],
             dialog: false,
             decryptVc: [],
             vc: [],
@@ -353,7 +379,6 @@ export default {
             isShow: false,
             keyList: [],
             web3: {}
-
         }
     },
 
@@ -615,14 +640,11 @@ export default {
     background-color: purple;
 } */
 
-.possible-bg-color{
-    background-color :#F8F8F9;
-
+.possible-bg-color {
+    background-color: #f8f8f9;
 }
 
-.categoryBox{
-    top:120px;
+.categoryBox {
+    top: 120px;
 }
-
-
 </style>
