@@ -26,7 +26,7 @@
                     </v-avatar>
                     <v-chip
                         class="address2 pl-7 pr-4 pt-2"
-                        color="#Fee440"
+                        color="#7AD9FF"
                         style="color:black;font-weight:bold"
                     >
                         {{
@@ -125,7 +125,7 @@ module.exports = {
     left: 58rem;
     top: 0.85rem;
     z-index: 1;
-    border: 4px solid #ffd233;
+    border: 4px solid #7AD9FF;
 }
 
 .address2 {
