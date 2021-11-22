@@ -3,7 +3,7 @@
     <!-- 네비바 전체 윤곽 -->
     <div>
         <!-- drawer is true -->
-        <v-app-bar elevate-on-scroll elevation="2" color="white">
+        <v-app-bar fixed elevate-on-scroll elevation="2" color="white">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold black--text">
@@ -122,18 +122,13 @@ module.exports = {
 <style>
 .avatar2 {
     position: fixed;
-    left: 73.8rem;
+    left: 58rem;
     top: 0.85rem;
     z-index: 1;
     border: 4px solid #ffd233;
 }
 
 .address2 {
-top:0.4rem
+    top: 0.4rem;
 }
-
-
-
-
-
 </style>

@@ -173,7 +173,7 @@
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
                                                         class="deep-purple--text font-weight-bold"
-                                                        >10</span
+                                                        >9</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <v-card-actions>
