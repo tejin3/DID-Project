@@ -35,12 +35,12 @@
             we :DID survey
         </p> -->
                 <!--조사참여 bn글씨 시작 -->
-                <v-container class="d-flex justify-center align-center">
+                <v-container class="d-flex justify-center align-center mt-200">
                     <img
-                        src="@/assets/img/trade/banner-.png"
+                        src="@/assets/img/trade/banner-2.png"
                         alt=""
                         class="img-bn-class"
-                        style="margin-bottom:20px "
+                        style="margin-bottom:20px;"
                     />
                     <!-- style="margin:auto;" -->
 
