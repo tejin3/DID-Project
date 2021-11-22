@@ -32,10 +32,11 @@
                     <!--쿠폰교환 bn글씨 시작 -->
                     <v-container
                         class="d-flex justify-center align-center "
-                        style="margin-left:50"
+                        style="margin-bottom:20px; margin-top:20px"
                     >
+                        <!-- style="margin-left:50" -->
                         <img
-                            src="@/assets/img/trade/test.png"
+                            src="@/assets/img/trade/banner-2.png"
                             alt=""
                             class="img-bn-class"
                             style=" margin-right:0;"
