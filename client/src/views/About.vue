@@ -1,5 +1,32 @@
 <template>
     <v-container class="mt-16">
+        <!--조사참여 bn글씨 시작 -->
+        <v-container
+            class="d-flex justify-center align-center"
+            style="margin-bottom:20px; margin-top:85px"
+        >
+            <div class="hi" style="justify-content:center; display:flex;">
+                <!-- <div
+                    align="left"
+                    style="color:black; font-size:1.5em;"
+                    class="d-flex align-center"
+                >
+                    설문참여
+                </div> -->
+                <div
+                    align="center"
+                    style="color:black; flex:1; margin-left:20px"
+                >
+                    <div style="font-size:1.2em">
+                        더 많이 참여하고 더 많이 받아가세요
+                    </div>
+                    <div style="font-size:0.8em">
+                        지금 서베이에 참여하고 더 많은 WeDIDsurvey 포인트를
+                        쌓아보세요.
+                    </div>
+                </div>
+            </div>
+        </v-container>
         <v-row no-gutters align="center" class="testLine">
             <v-col align="center">
                 <h1 class="textColor">

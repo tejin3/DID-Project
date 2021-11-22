@@ -21,12 +21,12 @@
                     class="py-2 mr-2 mt-1 black--text"
                     v-if="this.loginStatus == true"
                 >
-                    <v-avatar class="avatar2" size="40">
+                    <v-avatar class="avatar2" size="40" color="#ff8bbd">
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
                         class="address2 pl-7 pr-4 pt-2"
-                        color="#7AD9FF"
+                        color="#ff8bbd"
                         style="color:black;font-weight:bold"
                     >
                         {{
