@@ -122,7 +122,7 @@ module.exports = {
 <style>
 .avatar2 {
     position: fixed;
-    left: 73.8rem;
+    left: 58rem;
     top: 0.85rem;
     z-index: 1;
     border: 4px solid #ffd233;

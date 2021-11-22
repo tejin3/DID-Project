@@ -70,7 +70,7 @@
                         >
                             <v-btn
                                 :id="i"
-                                @click=";[complete, getReward(i)]"
+                                @click="complete(i)"
                                 color="#9568FD"
                                 dark
                                 class="my-2 mb-1 "
@@ -244,7 +244,7 @@ export default {
                 console.log(err)
             }
         },
-        async complete() {
+        async complete(btnId) {
             console.log('this.radios.length', this.radios.length)
             if (this.model + 1 !== this.questions.length) {
                 console.log(this.questions.length)
@@ -277,15 +277,14 @@ export default {
                         surveyId: this.surveyId
                     }
                 })
+                  if (btnId === 5) {
+                this.dialog = true
+            }
                 // this.callData1(this.surveyId)
             }
         },
 
-        getReward(btnId) {
-            if (btnId === 5) {
-                this.dialog = true
-            }
-        },
+
 
         getSurveyContractInstance() {
             if (this.sC === null) {
