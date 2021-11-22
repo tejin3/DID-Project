@@ -14,6 +14,7 @@
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </v-row>
+
                 <div style="border:3px solid pink; margin-bottom:30px"></div>
                 <h1>예약한 설문 📑</h1>
                 <br />
@@ -27,6 +28,16 @@
                                 max-width="200"
                                 max-height="330"
                             >
+                             <v-system-bar
+      color="white"
+      dark
+    >
+      <v-spacer></v-spacer>
+
+
+
+      <v-icon>mdi-close</v-icon>
+    </v-system-bar>
                                 <v-img
                                     :src="
                                         `http://localhost:3000/download/${d.survey_image_path}`
