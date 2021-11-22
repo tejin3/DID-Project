@@ -1,41 +1,38 @@
 <template>
     <v-container class="mt-16">
-        <div
+        <!-- <div
             style="border:3px solid #9568fd; background-color:#9568fd; margin-top:10px"
-        ></div>
+        ></div> -->
         <!--조사참여 bn글씨 시작 -->
-        <v-container
-            class="d-flex justify-center align-center"
-            style="margin-bottom:20px; margin-top:85px"
-        >
-            <div class="hi" style="justify-content:center; display:flex;">
+
+        <v-row no-gutters align="center">
+            <v-col align="center">
                 <div
                     align="center"
                     style="color:black; flex:1; margin-left:20px;"
                 >
-                    <div style="font-size:2.5em">
+                    <h1>
                         블록체인 기반 맞춤 설문조사 플랫폼 weDIDsurvey
-                    </div>
-                    <br />
+                    </h1>
+
                     <!-- <div style="font-size:1.2em">
                         weDIDsurvey에서 설문하면? 개인이 원하는 VC들만 모아 VP를
                         만들어 공개됩니다.
                     </div> -->
-                    <br />
+
                     <img
                         src="../assets/img/about/brand_concept.png"
                         alt=""
                         width="auto"
-                        height="30px"
+                        height="60px"
                     />
                 </div>
-            </div>
-        </v-container>
-        <br />
-        <div
-            style="border:3px solid #9568fd; background-color:#9568fd; margin-top:30px"
-        ></div>
-
+                <br />
+                <div
+                    style="border:2px solid #9568fd; background-color:#9568fd; width:800px; align:center;"
+                ></div>
+            </v-col>
+        </v-row>
         <v-row no-gutters align="center" class="testLine">
             <v-col align="center">
                 <h1 class="textColor">
