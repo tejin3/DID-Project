@@ -1,9 +1,9 @@
 // 메인 외 나머지 navbar
 <template>
     <!-- 네비바 전체 윤곽 -->
-    <div>
+
         <!-- drawer is true -->
-        <v-tabs right elevate-on-scroll elevation="5" color="white" height="55">
+        <v-tabs color="white" height="55" >
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold black--text mt-4 ml-7">
@@ -15,19 +15,19 @@
 
             <!-- 네비바 오른쪽 부분 2 : 화면이 클 때 -->
 
-            <v-tabs class="hidden-xs-only mt-2">
+
                 <v-tabs-slider color="hsl(258, 98%, 70%)"></v-tabs-slider>
                 <span
                     to="mypage"
                     text
-                    class="py-2 mr-2 mt-1 black--text"
+                    class=" mr-2 mt-1 black--text"
                     v-if="this.loginStatus == true"
                 >
                     <v-avatar class="avatar2" size="40" color="#ff8bbd">
                         <img src="@/assets/img/profile.jpg" alt="John" />
                     </v-avatar>
                     <v-chip
-                        class="address2 pl-7 pr-4 pt-2"
+                        class="address2 pl-5 pr-5 pt-2"
                         color="#ff8bbd"
                         style="color:black;font-weight:bold"
                     >
@@ -45,7 +45,7 @@
                 </span>
                 <v-tab
                     to="about"
-                    class="black--text text-none font-weight-bold"
+                    class="black--text text-none font-weight-bold whiteNav"
                 >
                     About
                 </v-tab>
@@ -53,7 +53,7 @@
                     to="company"
                     text
                     plain="false"
-                    class="black--text font-weight-bold"
+                    class="black--text font-weight-bold whiteNav navAddress"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0x68993b9454f760e81c8e7630ace72b3638f6f6f7
@@ -61,15 +61,15 @@
                 >
                     설문결과
                 </v-tab>
-                <v-tab to="possible" text class="black--text font-weight-bold">
+                <v-tab to="possible" text class="whiteNav black--text font-weight-bold">
                     설문참여
                 </v-tab>
-                <v-tab to="trade" text class="black--text font-weight-bold">
+                <v-tab to="trade" text class="whiteNav black--text font-weight-bold">
                     쿠폰교환
                 </v-tab>
                 <v-tab
                     text
-                    class="black--text font-weight-bold"
+                    class="whiteNav black--text font-weight-bold"
                     @click="login()"
                     v-if="this.loginStatus == false"
                 >
@@ -79,7 +79,7 @@
                 <v-tab
                     to="mypage"
                     text
-                    class="black--text font-weight-bold"
+                    class="whiteNav black--text font-weight-bold"
                     v-if="this.loginStatus == true"
                 >
                     마이페이지
@@ -87,15 +87,15 @@
 
                 <v-tab
                     text
-                    class="black--text font-weight-bold"
+                    class="whiteNav black--text font-weight-bold"
                     @click="logout()"
                     v-if="this.loginStatus == true"
                 >
                     로그아웃
                 </v-tab>
             </v-tabs>
-        </v-tabs>
-    </div>
+
+
 </template>
 
 <script>
@@ -127,13 +127,24 @@ module.exports = {
 <style>
 .avatar2 {
     position: fixed;
-    left: 58rem;
-    top: 0.85rem;
+    left: 68.3rem;
+    top: 0.51rem;
     z-index: 1;
     border: 4px solid #7ad9ff;
 }
 
 .address2 {
-    top: 0.4rem;
+    top: 0.5rem;
 }
+
+
+
+.whiteNav {
+    top:2px;
+}
+
+.navAddress {
+    left: 2px;
+}
+
 </style>
