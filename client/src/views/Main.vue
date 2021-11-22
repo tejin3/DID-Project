@@ -115,15 +115,6 @@
 </template>
 <script>
 import DefaultBar from '../layouts/default/Navbar.vue'
-// import { Flicking } from '@egjs/vue-flicking'
-import { AutoPlay, Arrow } from '@egjs/flicking-plugins'
-import '@egjs/flicking-plugins/dist/arrow.css'
-
-const plugins = [
-    new AutoPlay({ duration: 4000, direction: 'NEXT', stopOnHover: true }),
-    new Arrow()
-]
-
 export default {
     name: '',
     // components: { DefaultBar, Flicking },
@@ -131,7 +122,6 @@ export default {
     data() {
         return {
             surveys: [],
-            plugins,
             model: 0,
             wheelTimer: null,
             dDays: '',
@@ -223,33 +213,6 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '~@egjs/vue-flicking/dist/flicking.css';
-@import '~@egjs/flicking-plugins/dist/flicking-plugins.css';
-@keyframes sample-ani {
-    0% {
-        transform: translate(0, -50px);
-    }
-    100% {
-        transform: translate(0, -30px);
-    }
-}
-// @keyframes sample-ani2 {
-//     0% {
-//         transform: translate(0, 20px);
-//     }
-//     100% {
-//         transform: translate(10, 10);
-//     }
-// }
-// @keyframes sample-ani3 {
-//     0% {
-//         transform: translate(10, 10);
-//     }
-//     100% {
-//         transform: translate(0, 20px);
-//     }
-// }
-
 .outline {
     border: 2px solid black;
 }
@@ -298,16 +261,6 @@ export default {
 .Viewport {
     height: 350px;
 }
-// @keyframes sample-ani-test {
-//     0% {
-//         transform: translate(0, 50);
-//     }
-//     50% {
-//     }
-//     100% {
-//         transform: translate(0, -50px);
-//     }
-// }
 
 .test {
     align-items: center;
@@ -349,7 +302,7 @@ export default {
     top: 40%;
 }
 // .test1:hover {
-//     margin-left: 20vh;
+//     margin-left: 20
 // }
 
 /* 키프레임 이름 = 애니메이션 이름 */
@@ -358,7 +311,7 @@ export default {
         left: 40%;
     }
     100% {
-        left: 50%;
+        left: 48%;
     }
 }
 // .test111:hover {

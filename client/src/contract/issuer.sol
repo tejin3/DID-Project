@@ -17,7 +17,7 @@ contract issuer {
     // 검증 요청하면 기록됨. (검증번호, 설문조사 참가자 암호화된 공개키, 의뢰업체 주소, 요청시간)
     struct verificationRecode {
          uint VCsNum;
-       address surveyUser;
+       string surveyUser;
         address surveyCompany;
         
         uint time; 
@@ -25,7 +25,7 @@ contract issuer {
      verificationRecode[] public verificationRecodes;
     // 검증번호,설문조사 참가자 암호화된 공개키, 의뢰업체 주소, 검증할 VC이름
     // 검증기관이 이벤트로 이 정보들을 받아서 체인에 바로 기록함
-    event Approval (uint, address, address, string);
+    event Approval (uint, string, address, string);
      
     // 검증번호, 설문조사 참가자 암호화된 공개키와 VC정보를 암호화한 데이터
      mapping (uint => string) public encryptForCompany;
@@ -34,7 +34,7 @@ contract issuer {
          owner = msg.sender;
      }
      
-     function approval(address _surveyUser, string memory _VCName)public returns(uint){
+     function approval(string memory _surveyUser, string memory _VCName)public returns(uint){
          emit Approval (verificationRecodes.length, _surveyUser,  tx.origin, _VCName);
          verificationRecodes.push(verificationRecode(verificationRecodes.length, _surveyUser, tx.origin, block.timestamp));
          return verificationRecodes.length;
