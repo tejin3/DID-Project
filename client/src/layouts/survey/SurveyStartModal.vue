@@ -12,10 +12,12 @@
                 <div align="left">
                     <img src="../../assets/img/logo.png" width="20px" alt="" />
                 </div>
-                <div style="border:3px solid pink; margin-bottom:30px"></div>
+                <div
+                    style="border:2px solid pink; margin-bottom:10px; background-color:pink;"
+                ></div>
                 <h1>설문참여 가이드 📑</h1>
-                <br />
 
+                <!--첫번째 블럭-->
                 <v-card class="d-flex justify-center mb-6" flat>
                     <!--왼쪽 카드-->
                     <v-card class="mr-2" max-width="300" outlined>
@@ -68,6 +70,52 @@
                         <v-card-actions> </v-card-actions>
                     </v-card>
                 </v-card>
+
+                <!--두번째 블럭-->
+                <v-card class="d-flex justify-center mb-6" flat>
+                    <!--왼쪽 카드-->
+                    <v-card class="mr-2" max-width="300" outlined>
+                        <v-list-item three-line>
+                            <!-- <v-list-item-avatar tile> </v-list-item-avatar> -->
+
+                            <v-list-item-content>
+                                <h4 align="left">
+                                    불량응답 안내
+                                </h4>
+                                <h5 align="left" style="color:grey">
+                                    당사는 조사 종료 후 검증 시스템을 통해
+                                    응답신뢰성을 관리 하고있습니다. 검증작업
+                                    결과 패널님의 응답이 불성실 하다고 확인될
+                                    경우 불량응답 처리를 하여, 불량응답을 3회 한
+                                    경우 직권탈퇴 및 적립금이 소멸 될 수 있으니
+                                    이 점 유의해 주시기 바랍니다.
+                                </h5>
+                            </v-list-item-content>
+                        </v-list-item>
+
+                        <v-card-actions> </v-card-actions>
+                    </v-card>
+                    <!--오른쪽 카드-->
+                    <v-card class="ml-2" max-width="300" outlined>
+                        <v-list-item three-line>
+                            <v-list-item-content>
+                                <h4 align="left">
+                                    지적재산권 보호
+                                </h4>
+                                <h5 align="left" style="color:grey">
+                                    조사를 통해서 습득한 모든 정보에 대한
+                                    지적재산권을 당사와 조사의뢰 회사에 있으며,
+                                    조사내용을 제 3자에게 발설하거나 관련자료나
+                                    조사 화면을 유포한 경우에는 법 불이익을 받을
+                                    수 있습니다.
+                                </h5>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-card-actions> </v-card-actions>
+                    </v-card>
+                </v-card>
+
+                <!--teble블럭-->
                 <table>
                     <tr>
                         <th>
@@ -94,7 +142,8 @@
                             약 3분소요
                         </td>
                         <td>
-                            적립금 : 5000 원 | 쿠폰 : 9
+                            적립금 : 5000 원 |<br />
+                            쿠폰 : 9
                         </td>
                     </tr>
                 </table>
@@ -151,7 +200,7 @@ export default {
 </script>
 <style scoped>
 .margin-s {
-    margin: auto 5px;
+    margin-left: 10px;
 }
 .modalblack-bg {
     position: absolute;
@@ -171,7 +220,7 @@ export default {
     top: 50%;
     left: 50%;
     width: 800px;
-    height: 550px;
+    height: 650px;
     border-radius: 10px;
     transform: translateX(-50%) translateY(-50%);
     z-index: 1;
@@ -180,15 +229,19 @@ table {
     border: 2px solid black;
     border-collapse: collapse;
     text-align: center;
+    margin: 0 auto;
 }
 th,
 td {
     border: 0.5px solid;
     padding: 10px 5px;
-    width: 200px;
+    width: 155px;
 }
 th {
     background-color: pink;
     color: white;
+}
+.v-card__actions {
+    padding: 0px;
 }
 </style>
