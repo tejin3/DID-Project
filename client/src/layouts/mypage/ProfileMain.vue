@@ -58,19 +58,19 @@
                                         col="2"
                                     >
                                         <v-card
-                                            class="mx-auto py-2 px-2 rounded-xl"
+                                            class="mx-auto py-2 px-1 rounded-xl"
                                             max-height="120"
-                                            width="200"
+                                            width="150"
                                         >
                                             <v-card-text>
                                                 <v-row>
                                                     <v-col
                                                         cols="5"
-                                                        class="mt-1"
+                                                        class="mt-2"
                                                     >
                                                         <v-img
                                                             src="@/assets/img/mypage/user.png"
-                                                            width="100"
+                                                            width="40"
                                                         ></v-img>
                                                     </v-col>
                                                     <v-col
@@ -78,12 +78,12 @@
                                                         class="mt-2"
                                                     >
                                                         <p
-                                                            class="text-subtitle1 text--primary"
+                                                            class="text--primary" style="font-size:0.8rem"
                                                         >
                                                             {{ vc }}
                                                         </p>
                                                         <p
-                                                            class="text-body2 text--primary"
+                                                            class="text--primary" style="font-size:0.5rem"
                                                         >
                                                             {{ issuer[i] }}
                                                         </p>
