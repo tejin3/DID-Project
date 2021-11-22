@@ -66,7 +66,7 @@
                                 더 많이 참여하고 더 많이 받아가세요
                             </div>
                             <div style="font-size:0.8em">
-                                지금 서베이에 참여하고 더 많은 WeDIDsurvey
+                                지금 서베이에 참여하고 더 많은 weDIDsurvey
                                 포인트를 쌓아보세요.
                             </div>
                         </div>
@@ -311,7 +311,7 @@
 
                                 <v-card-actions>
                                     <v-btn
-                                        color="deep-purple accent-3"
+                                        color="deep-purple"
                                         text
                                         @click="d.isShow = !d.isShow"
                                     >
@@ -608,13 +608,17 @@ export default {
                 console.log('hello', res)
                 res.forEach(item => {
                     console.log('qq', item)
-                    for (var tag of this.tags) {
-                        console.log('tag', tag)
-                        if ((tag[0] === item.survey_id) === 3) {
-                            this.surveyCategory.push(item)
-                            console.log('abc', this.surveyCategory)
-                        }
-                    }
+                    // for (var tag in this.tags) {
+                    //     console.log('tag', tag)
+                    //     tag.forEach(item2 => {
+                    //         console.log('dddd', item2)
+
+                    //     })
+                    // if (tag[0] === (item.survey_id === 3)) {
+                    //     this.surveyCategory.push(tag[0])
+                    //     console.log('abc', this.surveyCategory)
+                    // }
+                    // }
                 })
             })
         }
