@@ -14,24 +14,30 @@
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
                 </v-row>
+
                 <div style="border:3px solid pink; margin-bottom:30px"></div>
                 <h1>예약한 설문 📑</h1>
                 <br />
 
-                <div v-if="this.survey.length !== 0">
+                <div v-if="this.survey.length >= 1">
                     <v-row>
-                        <v-col cols="3" :key="i" v-for="(d, i) in survey">
+
+                        <v-col cols="4" :key="i" v-for="(d, i) in survey">
                             <v-card
-                                class="panel mx-3 rounded-xl card-panel"
+                                class="card panel mx-5 rounded-xl card-panel"
                                 max-width="200"
                                 max-height="330"
                             >
+
                                 <v-img
+                                class="surveyImg"
                                     :src="
                                         `http://localhost:3000/download/${d.survey_image_path}`
                                     "
-                                    height="130"
+                                    height="140"
                                 ></v-img>
+
+                                <v-btn class="xBtn" text><v-icon  large>mdi-close-circle</v-icon></v-btn>
 
                                 <v-card-title class="text-h7">
                                     {{ d.survey_title }}
@@ -50,12 +56,12 @@
                                 <v-card-subtitle>
                                     <v-icon v-text="icon"></v-icon>남은 기간
                                     <v-chip
-                                        class="ma-1 font-weight-bold text-subtitle-2"
+                                        class=" font-weight-bold text-subtitle-2"
                                         color="deep-purple accent-3"
                                         outlined
                                         defalut
                                     >
-                                        D-{{ dDays[i].dday }}
+                                        D-{{ dDays[i] }}
                                     </v-chip>
                                 </v-card-subtitle>
                                 <v-btn
@@ -69,7 +75,10 @@
                     </v-row>
                 </div>
                 <div v-else>
+                    <p class="text-h5 font-weight-black align-self-center mt-10">
                     하고싶은 설문들을 예약해보세요
+                    </p>
+                    <v-img width="200" src="@/assets/img/main/pngegg.png"></v-img>
                 </div>
             </div>
         </v-dialog>
@@ -83,33 +92,36 @@ export default {
     data() {
         return {
             survey: null,
-            dDays: '',
+            dDays: [4, 21],
             isReserved: false
         }
     },
     setup() {},
     created() {
         this.getSurveyById()
-        this.discountDay()
+        // this.discountDay()
     },
     mounted() {},
     unmounted() {},
     methods: {
         async getSurveyById() {
-            console.log('안나와', this.$store.state.reservedSurvey)
             try {
                 var survey = await this.$api('/survey', 'post', {
-                    param: [2, 4]
+                    param: this.$store.state.reservedSurvey
                 })
                 this.survey = survey
                 console.log(this.survey)
             } catch (err) {
                 console.log(err)
             }
-        },
-        async discountDay() {
-            this.dDays = await this.$api('/date', 'get')
         }
+        // async discountDay() {
+        //     if (this.$store.state.reservedSurvey !== 0) {
+        //     this.dDays = await this.$api('/date', 'get')
+        //     } else {
+        //         console.log('no dday')
+        //     }
+        // }
     }
 }
 </script>
@@ -154,5 +166,13 @@ td {
 th {
     background-color: pink;
     color: white;
+}
+.surveyImg {
+position:relative;
+}
+.xBtn {
+ position:absolute;
+  top:0.3em;
+  right:-0.5em;
 }
 </style>

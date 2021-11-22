@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="mt-16">
+    <v-container fluid>
         <v-row no-gutters>
             <!-- 왼쪽 layout -->
             <v-col cols="6" md="2" class="possible-bg-color">
@@ -8,7 +8,7 @@
                         <v-sheet elevation="5">
                             <v-sheet
                                 class="pa-3  text-left white--text"
-                                color="hsl(258, 98%, 70%)"
+                                color="#7b45fd"
                                 light
                             >
                                 <span>카테고리</span>
@@ -16,7 +16,7 @@
                             <div class="pa-4">
                                 <v-chip-group active-class="warning" column>
                                     <v-chip
-                                        color="hsl(258, 98%, 70%)"
+                                        color="#7b45fd"
                                         class="white--text"
                                         v-for="tag in tags"
                                         :key="tag"
@@ -36,9 +36,12 @@
             we :DID survey
         </p> -->
                 <!--조사참여 bn글씨 시작 -->
-                <v-container class="d-flex justify-center align-center">
+                <v-container
+                    class="d-flex justify-center align-center"
+                    style="margin-bottom:20px; margin-top:85px"
+                >
                     <img
-                        src="@/assets/img/trade/test.png"
+                        src="@/assets/img/trade/banner-2.png"
                         alt=""
                         class="img-bn-class"
                     />
@@ -53,7 +56,7 @@
                             style="color:white; font-size:1.5em;"
                             class="d-flex align-center"
                         >
-                            조사참여
+                            설문참여
                         </div>
                         <div
                             align="left"
@@ -242,7 +245,7 @@
                                 </v-card-title>
                                 <v-chip
                                     close-icon="mdi-close-outline"
-                                    color="black"
+                                    color="#c3aafe"
                                     fill
                                     outlined
                                     class="black--text pa-0 ml-2"

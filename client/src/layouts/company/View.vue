@@ -7,10 +7,10 @@
                 class=" my-3 d-flex justify-center align-center"
             >
                 <img
-                    src="@/assets/img/trade/test.png"
+                    src="@/assets/img/trade/banner-2.png"
                     alt=""
                     class="img-bn-class"
-                    style="margin:auto;"
+                    style="margin:auto; margin-bottom:20px; margin-top:20px;"
                 />
 
                 <div class="hi" style="justify-content:center; display:flex;">

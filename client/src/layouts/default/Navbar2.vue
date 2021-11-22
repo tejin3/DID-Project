@@ -26,7 +26,7 @@
                     </v-avatar>
                     <v-chip
                         class="address2 pl-7 pr-4 pt-2"
-                        color="#Fee440"
+                        color="#7AD9FF"
                         style="color:black;font-weight:bold"
                     >
                         {{
@@ -57,7 +57,7 @@
                     설문결과
                 </v-btn>
                 <v-btn to="possible" text class="black--text">
-                    조사참여
+                    설문참여
                 </v-btn>
                 <v-btn to="trade" text class="black--text">
                     쿠폰교환
@@ -125,7 +125,7 @@ module.exports = {
     left: 58rem;
     top: 0.85rem;
     z-index: 1;
-    border: 4px solid #ffd233;
+    border: 4px solid #7ad9ff;
 }
 
 .address2 {
