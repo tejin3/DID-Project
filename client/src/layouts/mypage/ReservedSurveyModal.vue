@@ -24,26 +24,20 @@
 
                         <v-col cols="4" :key="i" v-for="(d, i) in survey">
                             <v-card
-                                class="panel mx-5 rounded-xl card-panel"
+                                class="card panel mx-5 rounded-xl card-panel"
                                 max-width="200"
                                 max-height="330"
                             >
-                             <v-system-bar
-      color="white"
-      dark
-    >
-      <v-spacer></v-spacer>
 
-
-
-      <v-icon>mdi-close</v-icon>
-    </v-system-bar>
                                 <v-img
+                                class="surveyImg"
                                     :src="
                                         `http://localhost:3000/download/${d.survey_image_path}`
                                     "
-                                    height="130"
+                                    height="140"
                                 ></v-img>
+
+                                <v-btn class="xBtn" text><v-icon  large>mdi-close-circle</v-icon></v-btn>
 
                                 <v-card-title class="text-h7">
                                     {{ d.survey_title }}
@@ -62,7 +56,7 @@
                                 <v-card-subtitle>
                                     <v-icon v-text="icon"></v-icon>남은 기간
                                     <v-chip
-                                        class="ma-1 font-weight-bold text-subtitle-2"
+                                        class=" font-weight-bold text-subtitle-2"
                                         color="deep-purple accent-3"
                                         outlined
                                         defalut
@@ -172,5 +166,13 @@ td {
 th {
     background-color: pink;
     color: white;
+}
+.surveyImg {
+position:relative;
+}
+.xBtn {
+ position:absolute;
+  top:0.3em;
+  right:-0.5em;
 }
 </style>
