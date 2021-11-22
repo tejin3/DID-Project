@@ -2,8 +2,13 @@
     <v-container fluid>
         <v-row no-gutters>
             <!-- 왼쪽 layout -->
-            <v-col cols="6" md="2" class="possible-bg-color">
-                <v-row justify="center" class="pa-0 mt-15">
+            <v-col
+                cols="6"
+                md="2"
+                class="possible-bg-color"
+                style="margin-top:285px"
+            >
+                <v-row justify="center" class="pa-0 ">
                     <v-col cols="2" sm="12" md="10" lg="10">
                         <v-sheet elevation="5">
                             <v-sheet
@@ -14,7 +19,10 @@
                                 <span>카테고리</span>
                             </v-sheet>
                             <div class="pa-4">
-                                <v-chip-group active-class="warning" column>
+                                <v-chip-group
+                                    active-class="pink accent-1"
+                                    column
+                                >
                                     <v-chip
                                         color="#7b45fd"
                                         class="white--text"
@@ -229,14 +237,12 @@
                                 max-width="344"
                                 @click="showStartModal"
                             >
-
-                                    <v-img
-                                        :src="
-                                            `http://localhost:3000/download/${d.survey_image_path}`
-                                        "
-                                        height="200px"
-                                    ></v-img>
-
+                                <v-img
+                                    :src="
+                                        `http://localhost:3000/download/${d.survey_image_path}`
+                                    "
+                                    height="200px"
+                                ></v-img>
 
                                 <v-card-title>
                                     {{ d.survey_title }}
@@ -344,7 +350,6 @@
         </v-row>
         <SurveyStartModal :surveymodalOfen="surveymodalOfen" @child="parents" />
     </v-container>
-
 </template>
 
 <script>
@@ -652,7 +657,7 @@ export default {
             this.surveymodalOfen = modal
         },
         showStartModal() {
-           this.surveymodalOfen = true
+            this.surveymodalOfen = true
         }
     }
 }
