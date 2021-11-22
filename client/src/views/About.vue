@@ -14,12 +14,6 @@
                     <h1>
                         블록체인 기반 맞춤 설문조사 플랫폼 weDIDsurvey
                     </h1>
-
-                    <!-- <div style="font-size:1.2em">
-                        weDIDsurvey에서 설문하면? 개인이 원하는 VC들만 모아 VP를
-                        만들어 공개됩니다.
-                    </div> -->
-
                     <img
                         src="../assets/img/about/brand_concept.png"
                         alt=""
@@ -27,7 +21,6 @@
                         height="60px"
                     />
                 </div>
-                <br />
                 <div
                     style="border:2px solid #9568fd; background-color:#9568fd; width:800px; align:center;"
                 ></div>
