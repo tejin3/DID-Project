@@ -6,7 +6,7 @@
                 cols="6"
                 md="2"
                 class="possible-bg-color"
-                style="padding-top:230px"
+                style="padding-top:201px"
             >
                 <v-row justify="center" class="pa-0 ">
                     <v-col cols="2" sm="12" md="10" lg="10">
