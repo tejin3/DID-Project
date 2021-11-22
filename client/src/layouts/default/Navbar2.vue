@@ -3,7 +3,7 @@
     <!-- 네비바 전체 윤곽 -->
     <div>
         <!-- drawer is true -->
-        <v-app-bar fixed elevate-on-scroll elevation="2" color="white">
+        <v-app-bar fixed elevate-on-scroll elevation="5" color="white">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
                 <v-toolbar-title class="font-weight-bold black--text">
