@@ -20,6 +20,7 @@
                                         class="white--text"
                                         v-for="tag in tags"
                                         :key="tag"
+                                        @click="category"
                                     >
                                         {{ tag }}
                                     </v-chip>
@@ -381,7 +382,8 @@ export default {
             icon: 'mdi-calendar-range',
             isShow: false,
             keyList: [],
-            web3: {}
+            web3: {},
+            surveyCategory: []
         }
     },
 
@@ -599,6 +601,22 @@ export default {
                 // console.log('vvv', this.surveys)
             })
             console.log(this.surveys)
+        },
+
+        async category() {
+            await this.$api('/surveys', 'get').then(res => {
+                console.log('hello', res)
+                res.forEach(item => {
+                    console.log('qq', item)
+                    for (var tag of this.tags) {
+                        console.log('tag', tag)
+                        if ((tag[0] === item.survey_id) === 3) {
+                            this.surveyCategory.push(item)
+                            console.log('abc', this.surveyCategory)
+                        }
+                    }
+                })
+            })
         }
 
         // getVcContractInstance() {
