@@ -29,7 +29,7 @@
                             weDIDsurvey의 정확한 설문 결과를 확인하세요
                         </div>
                         <div style="font-size:0.8em">
-                            우리 WeDIDsurvey에서는 설문 참가자들이 제공한
+                            우리 weDIDsurvey에서는 설문 참가자들이 제공한
                             신원증명을 확인 할 수 있습니다
                         </div>
                     </div>

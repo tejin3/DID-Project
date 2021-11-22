@@ -1,9 +1,8 @@
 <template>
-    <v-container class="mt-16 bg-half">
+    <v-container class="mt-16">
         <!-- 왼쪽 layout -->
-
         <v-row no-gutters>
-            <v-col cols="6" md="2" class="trade-bg-color ">
+            <v-col cols="6" md="2" class="trade-bg-color">
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
@@ -32,10 +31,8 @@
         </div> -->
                     <!--쿠폰교환 bn글씨 시작 -->
                     <v-container
-
                         class="d-flex justify-center align-center "
                         style="margin-bottom:20px; margin-top:20px"
-
                     >
                         <!-- style="margin-left:50" -->
                         <img
@@ -61,7 +58,7 @@
                                     교환하세요!
                                 </div>
                                 <div style="font-size:0.8em">
-                                    우리 WeDIDsurvey에서는 의뢰업체들과 협력하에
+                                    우리 weDIDsurvey에서는 의뢰업체들과 협력하에
                                     보다 할인된 가격으로 만나보실 수 있습니다.
                                 </div>
                             </div>
@@ -533,13 +530,13 @@ export default {
 }
 </script>
 <style scoped>
-.grey-bg {
+/* .grey-bg {
     top: 0;
     left: 0;
     position: absolute;
     background: rgba(0, 0, 0, 0.7);
     padding: 20px;
-}
+} */
 .img-bn-class {
     display: flex;
     align-items: center;
@@ -557,10 +554,5 @@ export default {
 .border {
     top: 250px;
     left: 40px;
-}
-
-.bg-half {
-    width: 1523px;
-    background: linear-gradient(red 50%, white 50%);
 }
 </style>

@@ -335,7 +335,7 @@ export default {
             qrValue: '',
             size: 130,
             barcodeValue: '',
-            barcodeText: '9 899423 420854',
+            barcodeText: '',
             modalOpen: false
         }
     },
@@ -371,8 +371,9 @@ export default {
             this.dialog = true
             this.qrValue = name
             this.barcodeValue = 'goods_name'
-            // var spacer = ' '
-            // this.barcodeText = [Math.floor((Math.random()) * (10 ** 13)).slice(0,1), spacer, Math.floor((Math.random()) * (10 ** 13)).slice(1,7), spacer, Math.floor((Math.random()) * (10 ** 13)).slice(7,12)].jsoin('')
+            var spacer = ' '
+            var number = String(Math.floor((Math.random()) * (10 ** 13)))
+            this.barcodeText = [number.slice(0, 1), spacer, number.slice(1, 7), spacer, number.slice(7, 12)].join('')
         },
 
         // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다

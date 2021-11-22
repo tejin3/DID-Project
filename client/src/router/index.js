@@ -103,7 +103,7 @@ const routes = [
                 component: About
             }
         ]
-        }
+    }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -2,7 +2,6 @@
 <template>
     <!-- 네비바 전체 윤곽 -->
     <div>
-
         <v-app-bar elevation="0" color="transparent" class="mt-3">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
@@ -41,7 +40,7 @@
                         }}
                     </v-chip>
                 </span>
-                <v-btn to="possible" text class="white--text">
+                <v-btn to="possible" text class="white--text text-none">
                     About
                 </v-btn>
                 <v-btn
@@ -127,6 +126,4 @@ module.exports = {
     z-index: 1;
     border: 4px solid #ffd233;
 }
-
-
 </style>

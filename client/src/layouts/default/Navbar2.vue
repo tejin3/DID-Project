@@ -3,10 +3,10 @@
     <!-- 네비바 전체 윤곽 -->
     <div>
         <!-- drawer is true -->
-        <v-app-bar fixed elevate-on-scroll elevation="5" color="white">
+        <v-tabs right elevate-on-scroll elevation="5" color="white" height="55">
             <!-- 네비바 왼쪽 부분 -->
             <router-link class="text-decoration-none" to="/">
-                <v-toolbar-title class="font-weight-bold black--text">
+                <v-toolbar-title class="font-weight-bold black--text mt-4 ml-7">
                     {{ title }}
                 </v-toolbar-title>
             </router-link>
@@ -14,7 +14,9 @@
             <v-spacer></v-spacer>
 
             <!-- 네비바 오른쪽 부분 2 : 화면이 클 때 -->
-            <v-toolbar-items class="hidden-xs-only">
+
+            <v-tabs class="hidden-xs-only mt-2">
+                <v-tabs-slider color="hsl(258, 98%, 70%)"></v-tabs-slider>
                 <span
                     to="mypage"
                     text
@@ -41,55 +43,58 @@
                         }}
                     </v-chip>
                 </span>
-                <v-btn to="about">
-                    about
-                </v-btn>
-                <v-btn
+                <v-tab
+                    to="about"
+                    class="black--text text-none font-weight-bold"
+                >
+                    About
+                </v-tab>
+                <v-tab
                     to="company"
                     text
                     plain="false"
-                    class="black--text"
+                    class="black--text font-weight-bold"
                     v-if="
                         this.$store.state.web3.coinbase ==
                             0x68993b9454f760e81c8e7630ace72b3638f6f6f7
                     "
                 >
                     설문결과
-                </v-btn>
-                <v-btn to="possible" text class="black--text">
+                </v-tab>
+                <v-tab to="possible" text class="black--text font-weight-bold">
                     설문참여
-                </v-btn>
-                <v-btn to="trade" text class="black--text">
+                </v-tab>
+                <v-tab to="trade" text class="black--text font-weight-bold">
                     쿠폰교환
-                </v-btn>
-                <v-btn
+                </v-tab>
+                <v-tab
                     text
-                    class="black--text"
+                    class="black--text font-weight-bold"
                     @click="login()"
                     v-if="this.loginStatus == false"
                 >
                     지갑연결
-                </v-btn>
+                </v-tab>
 
-                <v-btn
+                <v-tab
                     to="mypage"
                     text
-                    class="black--text"
+                    class="black--text font-weight-bold"
                     v-if="this.loginStatus == true"
                 >
                     마이페이지
-                </v-btn>
+                </v-tab>
 
-                <v-btn
+                <v-tab
                     text
-                    class="black--text"
+                    class="black--text font-weight-bold"
                     @click="logout()"
                     v-if="this.loginStatus == true"
                 >
                     로그아웃
-                </v-btn>
-            </v-toolbar-items>
-        </v-app-bar>
+                </v-tab>
+            </v-tabs>
+        </v-tabs>
     </div>
 </template>
 
