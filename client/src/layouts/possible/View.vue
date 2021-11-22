@@ -8,7 +8,7 @@
                         <v-sheet elevation="5">
                             <v-sheet
                                 class="pa-3  text-left white--text"
-                                color="hsl(258, 98%, 70%)"
+                                color="#7b45fd"
                                 light
                             >
                                 <span>카테고리</span>
@@ -16,7 +16,7 @@
                             <div class="pa-4">
                                 <v-chip-group active-class="warning" column>
                                     <v-chip
-                                        color="hsl(258, 98%, 70%)"
+                                        color="#7b45fd"
                                         class="white--text"
                                         v-for="tag in tags"
                                         :key="tag"
@@ -244,7 +244,7 @@
                                 </v-card-title>
                                 <v-chip
                                     close-icon="mdi-close-outline"
-                                    color="black"
+                                    color="#c3aafe"
                                     fill
                                     outlined
                                     class="black--text pa-0 ml-2"
