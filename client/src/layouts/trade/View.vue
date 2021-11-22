@@ -1,9 +1,9 @@
 <template>
-    <v-container fluid>
-            <!-- 왼쪽 layout -->
+    <v-container fluid class="mt-16">
+        <!-- 왼쪽 layout -->
         <v-row no-gutters>
-             <v-col cols="6" md="2" class="trade-bg-color">
-                <v-card width="200" height="141"  class="border">
+            <v-col cols="6" md="2" class="trade-bg-color">
+                <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
                         <div class="text-h4 text--primary text-center ">
@@ -371,12 +371,12 @@ export default {
     left: 30%;
 }
 
-.trade-bg-color{
-    background-color :#F8F8F9;
+.trade-bg-color {
+    background-color: #f8f8f9;
 }
 
 .border {
-    top:250px;
-    left:40px;
+    top: 250px;
+    left: 40px;
 }
 </style>

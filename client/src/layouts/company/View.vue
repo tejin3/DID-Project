@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-16">
         <!-- 헤더부분 -->
         <v-container>
             <v-card

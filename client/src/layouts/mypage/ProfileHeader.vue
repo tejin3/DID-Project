@@ -1,6 +1,6 @@
 <template>
     <v-sheet>
-        <v-container class="fill-height">
+        <v-container class="fill-height mt-16">
             <v-row justify="center" class="text-center">
                 <v-col>
                     <!-- 프로필 카드 -->
