@@ -1,18 +1,18 @@
 <template>
     <v-container fluid class="pa-0">
         <v-row no-gutters>
-        <!-- 왼쪽 layout -->
+            <!-- 왼쪽 layout -->
 
-            <v-col cols="6" md="2" class="trade-bg-color" >
+            <v-col cols="6" md="2" class="trade-bg-color">
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
                         <div class="text-h4 text--primary text-center ">
-                            🎫
                             {{ coupon[0].user_coupon }}
                         </div>
                         <br />
                         <p class="text-center">
+                            🎫
                             현재 내 쿠폰
                         </p>
                     </v-card-text>
@@ -291,7 +291,6 @@
             </v-col> -->
         </v-row>
     </v-container>
-
 </template>
 <script>
 export default {
@@ -555,6 +554,6 @@ export default {
 
 .border {
     top: 250px;
-    left: 40px;
+    left: 23.5px;
 }
 </style>
