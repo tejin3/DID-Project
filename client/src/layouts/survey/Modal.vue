@@ -81,15 +81,21 @@
                                     내가 받는 총 보상 {{ point }} 포인트
                                 </p>
                             </v-card-text>
-
-                            <v-btn
-                                color="#599CF7"
-                                dark="dark"
-                                small="small"
-                                @click=";[$emit('close-modal'), saveReward()]"
+                            <router-link
+                                class="text-decoration-none"
+                                to="/mypage"
                             >
-                                포인트 받기
-                            </v-btn>
+                                <v-btn
+                                    color="#599CF7"
+                                    dark="dark"
+                                    small="small"
+                                    @click="
+                                        ;[$emit('close-modal'), saveReward()]
+                                    "
+                                >
+                                    포인트 받기
+                                </v-btn>
+                            </router-link>
                         </v-card>
                         <v-card
                             width="150"
@@ -117,14 +123,21 @@
                                     {{ coupon }} 쿠폰
                                 </p>
                             </v-card-text>
-                            <v-btn
-                                color="#599CF7"
-                                dark="dark"
-                                small="small"
-                                @click=";[$emit('close-modal'), saveReward()]"
+                            <router-link
+                                class="text-decoration-none"
+                                to="/trade"
                             >
-                                쿠폰 받기
-                            </v-btn>
+                                <v-btn
+                                    color="#599CF7"
+                                    dark="dark"
+                                    small="small"
+                                    @click="
+                                        ;[$emit('close-modal'), saveReward()]
+                                    "
+                                >
+                                    쿠폰 받기
+                                </v-btn>
+                            </router-link>
                         </v-card>
                     </v-sheet>
                     <v-card-actions>
