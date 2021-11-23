@@ -35,6 +35,7 @@
                     <!-- 설문 참여 완료한 사람들 중 아무런 vp도 공개하지 않은 사람 -->
                     <v-checkbox
                         v-else
+                        disabled
                         indeterminate
                         v-model="selected"
                         :label="
