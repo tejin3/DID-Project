@@ -23,7 +23,7 @@
                 <!-- 검증자 : 행정안정부(0x12223fsd12121),
                     BC카드(0xd12df33232343)
                     {{ decMsg }} -->
-                <v-card-text class="mt-3">
+                <v-card-text class="mt-5">
                     <h2>검증기관 :</h2>
                     BC카드(0x0d309284F3c761FD31F02084207c1f86f0B1e0af)
                 </v-card-text>
@@ -43,6 +43,7 @@
                 <v-card-text>
                     <h2>검증</h2>
                     <v-switch
+                        color="deep-purple accent-4"
                         v-model="showMessages"
                         label="검증기관이 유저 암호화된 공개키로 암호화"
                     ></v-switch>
@@ -56,6 +57,7 @@
                     </v-input>
 
                     <v-switch
+                        color="deep-purple accent-4"
                         v-model="showMessages1"
                         label="의뢰업체가 유저 암호화된 공개키로 암호화"
                     ></v-switch>

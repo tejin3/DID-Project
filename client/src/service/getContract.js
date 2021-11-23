@@ -11,8 +11,7 @@ const getContract = () => {
         surveyABI,
         // '0xed87dF7a0a3E46BA61D583548A53AFD778F76357' 정습님꺼
         // '0xAe6112eC606503f038bB9f67E6BD253318e7db51' 집
-        // '0x100932D8E41CC72f15978824F04A532130F344c1'
-        '0x64919E38aCac662487b92b415333Fac78aC5B128'
+        '0x7F6364AdE1BE83162A1aAd5AF031A880b1617C30'
     )
     return myContractInstance
 }
