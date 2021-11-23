@@ -37,6 +37,15 @@
                     {{ decMsg }}
                 </h2>
             </v-col>
+
+            <v-col sm="10" offset-sm="1" md="8" offset-md="2">
+                <v-btn elevation="2" @click="issuerContractInstance">
+                    검증기관 컨트랙트 연결
+                </v-btn>
+                <h2>
+                    {{ decMsg }}
+                </h2>
+            </v-col>
         </v-row>
     </div>
 </template>
@@ -45,6 +54,7 @@
 import ProfileHeader from '@/layouts/mypage/ProfileHeader'
 import vc from '@/assets/vc/vc.json'
 import { mapState } from 'vuex'
+// import getContract2 from '@/service/getContract2'
 
 export default {
     name: '',
@@ -153,6 +163,46 @@ export default {
             // formData.append(name, value, filename);
             // formData.append('userpic', myFileInput.files[0], 'chris.jpg')
         }
+
+        // issuerContractInstance() {
+        //     console.log('연결시도')
+        //     if (this.iC === null) {
+        //         console.log('연결완료')
+        //         var getContract223 = getContract2()
+        //         this.iC = getContract223
+        //         console.log('ContractInstance', this.iC)
+
+        //         // this.verificationCall실행해서 결과가 나오면 실행됨
+        //         this.iC.events.Approval({}, async (error, event) => {
+        //             console.log('여기는 2')
+
+        //             console.log(error)
+        //             console.log(event)
+
+        //             // 검증기관에서 하는 역할. 지금은 우리가 대신함.
+        //             console.log('암호화', this.encMsg)
+        //             this.forCompany1(
+        //                 event.returnValues[0],
+        //                 this.encMsg
+        //                 // .slice(2, 20)
+        //             )
+        //         })
+        //     }
+        // },
+        // // 검증기관에서 유저 암호화된 공개키로 암호화 해서 등록
+        // forCompany1(verificationCallCount, encryptVC) {
+        //     console.log('여기는 3')
+
+        //     this.iC.methods
+        //         // vc이름과 유저 암호화된 공개키로 암호화된 데이터
+        //         .forCompany(verificationCallCount, encryptVC)
+        //         .send({ from: this.$store.state.web3.coinbase })
+        //         // 내 주소
+        //         .then(receipt => {
+        //             console.log(receipt)
+        //             this.encryptForCompany1(verificationCallCount)
+        //         })
+        // }
     }
 }
 </script>

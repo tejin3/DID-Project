@@ -25,7 +25,7 @@
                     {{ decMsg }} -->
                 <v-card-text class="mt-3">
                     <h2>검증기관 :</h2>
-                    BC카드(0x71Ee5C1a0E156D353e692EE17d4A6235d949e538)
+                    BC카드(0x0d309284F3c761FD31F02084207c1f86f0B1e0af)
                 </v-card-text>
 
                 <v-card-text>
