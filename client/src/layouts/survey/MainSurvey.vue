@@ -2,10 +2,7 @@
     <!-- https://github.com/Jeongseup/Course-Evaluation-System/blob/main/client/src/views/AnswerTable.vue -->
     <!--오른쪽 설문조사 시작 -->
     <div>
-        <v-card
-            style="width: 100%; height: 100%; subheading mt-16 "
-            elevation="16"
-        >
+        <v-card style="width: 100%; height: 100%; subheading mt-16 ">
             <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
             <v-carousel
                 v-model="model"
@@ -104,7 +101,6 @@
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
-
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -270,14 +266,12 @@ export default {
                         surveyId: this.surveyId
                     }
                 })
-                  if (btnId === 5) {
-                this.dialog = true
-            }
+                if (btnId === 5) {
+                    this.dialog = true
+                }
                 // this.callData1(this.surveyId)
             }
         },
-
-
 
         getSurveyContractInstance() {
             if (this.sC === null) {

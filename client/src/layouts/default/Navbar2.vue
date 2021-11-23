@@ -2,7 +2,7 @@
 <template>
     <!-- 네비바 전체 윤곽 -->
 
-    <v-tabs color="white" height="55">
+    <v-tabs color="white" height="55" class="navElevation">
         <!-- 네비바 왼쪽 부분 -->
         <router-link class="text-decoration-none" to="/">
             <v-toolbar-title class="font-weight-bold black--text mt-4 ml-7">
@@ -136,5 +136,10 @@ module.exports = {
 
 .navAddress {
     left: 2px;
+}
+
+.navElevation {
+    box-shadow: 0px 0px 5px 0px;
+    z-index: 1;
 }
 </style>

@@ -12,8 +12,7 @@
                         </div>
                         <br />
                         <p class="text-center">
-                            🎫
-                            현재 내 쿠폰
+                            🎫 현재 내 쿠폰
                         </p>
                     </v-card-text>
                 </v-card>
@@ -143,7 +142,7 @@
                                 <v-card-subtitle
                                     class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
                                 >
-                                    <v-card width="200" hover height="200">
+                                    <v-card width="200" hover height="210">
                                         <v-img
                                             class="white--text align-end"
                                             :src="
@@ -185,6 +184,7 @@
                                     </div>
                                     <v-btn
                                         color="hsl(258, 98%, 70%)"
+                                        class="pt-1"
                                         outlined
                                         small
                                         @click="
@@ -545,7 +545,7 @@ export default {
 }
 .hi {
     position: absolute;
-    left: 30%;
+    left: 28%;
 }
 
 .trade-bg-color {
