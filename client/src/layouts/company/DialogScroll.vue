@@ -1,6 +1,6 @@
 <template>
     <v-row justify="center">
-        <v-dialog v-model="dialog" scrollable persistent max-width="500px">
+        <v-dialog v-model="dialog" persistent max-width="500px">
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     color="deep-purple accent-4"
@@ -19,6 +19,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text
+                    scrollable
                     style="padding: 5px;"
                     :key="i"
                     v-for="(n, i) in completePeople"
@@ -89,9 +90,11 @@ export default {
             }
         }
     },
+
     created() {
         this.vcList1 = this.vcList5
     },
+
     data() {
         return {
             dialogm1: '',
