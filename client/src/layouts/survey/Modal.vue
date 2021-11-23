@@ -6,10 +6,6 @@
                     <v-toolbar color="hsl(258, 98%, 70%)" dark>
                         VP를 추가 공개해 보실래요?</v-toolbar
                     >
-                    <!-- <v-card-title class="text-h5" >
-          VP를 추가 공개해 보실래요?
-        </v-card-title> -->
-
                     <v-card-text>
                         <v-chip-group
                             v-model="selection"
@@ -22,8 +18,6 @@
                                 <v-chip large filter
                                     >{{ aa.item }}<br />{{ aa.price }}원</v-chip
                                 >
-                                <!-- <v-chip large filter>나이<br />300원</v-chip>
-                            <v-chip large filter>소득<br />500원</v-chip> -->
                             </div>
                         </v-chip-group>
                         <p></p>
@@ -112,6 +106,7 @@
                                     color="rgba(0, 0, 0, 0) "
                                 ></v-app-bar>
                             </v-img>
+
                             <!--텍스트부분-->
                             <v-card-text>
                                 <div class="text--primary">
@@ -261,7 +256,6 @@ export default {
             // eth-sig-util: A small collection of Ethereum signing functions
             const msg = JSON.stringify(this.selectVp)
             console.log('msg', msg)
-            // 오브젝트화 시키자
 
             // Buffer는 binary의 데이터를 담을 수 있는 object
             await this.sC.methods

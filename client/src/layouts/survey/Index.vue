@@ -20,10 +20,6 @@
                 >
             </div>
         </div>
-
-        <!--left _ 맞춤설문조사 시작-->
-        <!-- style="border:5px  blue solid" -->
-        <!-- position: absolute; margin:100px; margin-top:-16px;  margin-left:-720px; border: 3px solid red -->
         <v-row class="d-flex justify-center mt-5">
             <div class="d-flex justify-center">
                 <v-col
@@ -121,14 +117,6 @@
                                                     </v-btn>
                                                 </div>
                                             </v-card-text>
-
-                                            <!-- {{ survey.isBooked }} -->
-
-                                            <!-- <v-card-actions>
-                                        <v-btn color="orange" text>
-                                            Share
-                                        </v-btn>
-                                    </v-card-actions> -->
                                         </v-card>
                                     </v-col>
                                 </v-row>
@@ -137,12 +125,10 @@
                     </v-row>
                 </v-col>
 
-                <!--left _ 맞춤설문조사 끝-->
+                <!--left 맞춤설문조사 끝-->
                 <v-col class="d-flex align-center" style="margin-bottom:-50px">
                     <main-survey />
                 </v-col>
-                <!-- {{ $store.state.matchedSurvey }}
-            {{ surveys }} -->
             </div>
         </v-row>
     </div>
@@ -179,30 +165,18 @@ export default {
             this.surveys = await this.$api('/survey', 'post', {
                 param: [2, 4]
             })
-            console.log('canSurvey', this.surveys) //
+            console.log('canSurvey()', this.surveys)
 
             var myObject = {}
-            // var surveysNum = this.surveys.length // 0,1 총 2번
-            // this.surveys [{},{}]
-            // [0] 배열은 무조건 인덱스 !
 
             for (let i = 0; i < this.surveys.length; i++) {
                 this.surveys[i].isBooked = true
-                console.log('dfdfdfdfdf2222', this.surveys[i])
-                // 배열의 인덱스 0,1 이있는데, 그거에맞춰서
-                // 예약하기 버튼을 누른 것이있다면, 예약완료 라고 띄워줌.
-
-                // console.log(this.surveys[i]['isBooked'])
-                // break
+                console.log('this.surveys[i]', this.surveys[i])
             }
             console.log('myObject _ for문dddd', myObject)
-
-            // 방금전에 빈객체에 한것처럼,
-            // 반복하면서 isBooked = false 를하고, ....
-            // myObject.isBooked = false
         },
         changeTest() {
-            console.log('test')
+            console.log(' changeTest()')
             this.isBooked = false
         },
         test(_num) {
@@ -268,8 +242,5 @@ div {
     top: 50%;
     left: 50%;
     margin-top: 40px;
-}
-.v-card__text {
-    /* padding: 0 auto; */
 }
 </style>

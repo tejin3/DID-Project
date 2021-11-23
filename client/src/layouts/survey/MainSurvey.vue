@@ -1,22 +1,12 @@
 <template>
-    <!-- https://github.com/Jeongseup/Course-Evaluation-System/blob/main/client/src/views/AnswerTable.vue -->
-    <!--오른쪽 설문조사 시작 -->
     <div>
         <v-card style="width: 100%; height: 100%; subheading mt-16 ">
-            <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
             <v-carousel
                 v-model="model"
                 :continuous="false"
                 style="width: 800px; height: 500px; mt-16 subheadings"
             >
-                <!--추가추가 {{ model }}saddsada -->
-                <!--continuous="continuous"를 준 이유 : enter 자꾸 넘어가서 시작과 동시에적용될 수 있도록 created()적용해줬다-->
                 <v-parallax style="height:100%;" aspect-ratio="1.4" src="">
-                    <!-- style="width: 100%; height: 100%; " -->
-
-                    <!--추가추가 <v-carousel-item>
-                        <h2>test</h2>
-                    </v-carousel-item> -->
                     <v-carousel-item
                         v-for="(question, i) in questions"
                         :key="i"
@@ -102,8 +92,6 @@
             @close-modal="dialog2 = false"
         ></SurveyModal>
     </div>
-
-    <!--오른쪽 설문조사 끝-->
 </template>
 
 <script>
@@ -147,9 +135,7 @@ export default {
             price: 0,
             coupon: 0,
             t_orders: [
-                // 질문1 아래는, 질문1에대한 질문지?
                 {
-                    // uniq: 0,
                     // 1번문제
                     question1: '1~2회',
                     question2: '2~3회',
@@ -198,7 +184,6 @@ export default {
     },
     setup() {},
     created() {
-        // this.questionsId = this.$route.query.question_id
         this.surveyId = this.$route.query.surveyId
         this.getQuestions()
         this.userInput = ''
@@ -218,7 +203,6 @@ export default {
                 'this.t_ordersthis.t_ordersthis.t_ordersthis.t_orders',
                 this.t_orders
             )
-            // this.model==0 === t_orders [0]
         },
         checkRadioUnique() {
             console.log('checkRadioUnique()', this.radios)
@@ -237,15 +221,14 @@ export default {
             console.log('this.radios.length', this.radios.length)
             if (this.model + 1 !== this.questions.length) {
                 console.log(this.questions.length)
-                // 만약 model이 this.questions.length와 같지않으면
                 console.log('if문_this.model', this.radios)
                 var tempObj = {}
                 tempObj.questionsId = this.model + 1
-                tempObj.answerValue = this.radios + 1 // userInput을 담는것은 answerValue이다.
+                tempObj.answerValue = this.radios + 1
 
                 console.log('this.tempObjthis.tempObjthis.tempObj', tempObj)
 
-                this.answers.push(tempObj) // ansers로 가니까 this.tempObj가 초기화
+                this.answers.push(tempObj)
 
                 console.log('this.answers', this.answers)
                 this.userInput = ''
@@ -269,7 +252,6 @@ export default {
                 if (btnId === 5) {
                     this.dialog = true
                 }
-                // this.callData1(this.surveyId)
             }
         },
         // 컨트랙트 연결
@@ -299,10 +281,6 @@ export default {
         //             // event.returnValues[1]
         //         })
         //     }
-        // },
-
-        // submit() {
-        //     console.log(this.model, this.question, this.i)
         // },
 
         // 선택한 설문 조건 가져오기
