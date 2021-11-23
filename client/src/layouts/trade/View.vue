@@ -1,19 +1,18 @@
 <template>
     <v-container fluid class="pa-0">
         <v-row no-gutters>
-        <!-- 왼쪽 layout -->
+            <!-- 왼쪽 layout -->
 
-            <v-col cols="6" md="2" class="trade-bg-color" >
+            <v-col cols="6" md="2" class="trade-bg-color">
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
                         <br />
                         <div class="text-h4 text--primary text-center ">
-                            🎫
                             {{ coupon[0].user_coupon }}
                         </div>
                         <br />
                         <p class="text-center">
-                            현재 내 쿠폰
+                            🎫 현재 내 쿠폰
                         </p>
                     </v-card-text>
                 </v-card>
@@ -143,7 +142,7 @@
                                 <v-card-subtitle
                                     class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
                                 >
-                                    <v-card width="200" hover height="200">
+                                    <v-card width="200" hover height="210">
                                         <v-img
                                             class="white--text align-end"
                                             :src="
@@ -185,6 +184,7 @@
                                     </div>
                                     <v-btn
                                         color="hsl(258, 98%, 70%)"
+                                        class="pt-1"
                                         outlined
                                         small
                                         @click="
@@ -291,7 +291,6 @@
             </v-col> -->
         </v-row>
     </v-container>
-
 </template>
 <script>
 export default {
@@ -546,7 +545,7 @@ export default {
 }
 .hi {
     position: absolute;
-    left: 30%;
+    left: 28%;
 }
 
 .trade-bg-color {
@@ -555,6 +554,6 @@ export default {
 
 .border {
     top: 250px;
-    left: 40px;
+    left: 23.5px;
 }
 </style>

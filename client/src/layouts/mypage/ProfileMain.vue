@@ -78,12 +78,14 @@
                                                         class="mt-2"
                                                     >
                                                         <p
-                                                            class="text--primary" style="font-size:0.8rem"
+                                                            class="text--primary"
+                                                            style="font-size:0.8rem"
                                                         >
                                                             {{ vc }}
                                                         </p>
                                                         <p
-                                                            class="text--primary" style="font-size:0.5rem"
+                                                            class="text--primary"
+                                                            style="font-size:0.5rem"
                                                         >
                                                             {{ issuer[i] }}
                                                         </p>
@@ -234,27 +236,29 @@
                         </v-row>
                     </v-tab-item>
                     <!-- tap value = 1, 쿠폰 탭일 때 -->
-                    <v-tab-item class="pt-16">
+                    <v-tab-item class="pt-10">
                         <span class="ma-10 text-h6"
                             >현재, 미사용 쿠폰
-                            <span class="red--text font-weight-bold">5</span
+                            <span class="red--text font-weight-bold">3</span
                             >개가 있어요!</span
                         >
 
-                        <v-row class="mt-10">
+                        <v-row class="mt-13">
                             <v-col
-                                class="testLine ma-10 pa-0"
+                                class="testLine ma-10 pa-0 text--center"
+                                cols="2"
                                 v-for="card in cards"
                                 :key="card.goods_id"
                             >
                                 <v-card
                                     width="200"
-                                    height="330"
+                                    height="310"
+                                    class="d-xl-flex"
                                     @click="showCode(card.goods_name)"
                                 >
                                     <v-img
                                         class="white--text align-end"
-                                        height="170px"
+                                        height="200"
                                         :src="
                                             require(`@/assets/img/trade/${card.goods_image_path}`)
                                         "
@@ -269,13 +273,13 @@
                                         {{ card.goods_issuer }}
                                     </v-card-subtitle>
                                     <v-card-subtitle
-                                        class="black--text font-weight-bold text-center"
+                                        class="pt-0 pb-0 black--text font-weight-bold text-center"
                                     >
                                         {{ card.goods_name }}
                                     </v-card-subtitle>
                                     <v-divider></v-divider>
                                     <v-card-text
-                                        class="text--primary text-center"
+                                        class="pt-1 pb-1 text--primary text-center"
                                     >
                                         유효기간 <br />{{
                                             card.goods_valid.slice(0, 10)
@@ -363,7 +367,9 @@ export default {
                     //     this.$store.state.web3.coinbase.toUpperCase() &&
                     item.user_goods_amount !== 0
                 ) {
-                    this.cards.push(item)
+                    if (this.cards.length < 3) {
+                        this.cards.push(item)
+                    }
                 }
             }
         },
@@ -372,8 +378,14 @@ export default {
             this.qrValue = name
             this.barcodeValue = 'goods_name'
             var spacer = ' '
-            var number = String(Math.floor((Math.random()) * (10 ** 13)))
-            this.barcodeText = [number.slice(0, 1), spacer, number.slice(1, 7), spacer, number.slice(7, 12)].join('')
+            var number = String(Math.floor(Math.random() * 10 ** 13))
+            this.barcodeText = [
+                number.slice(0, 1),
+                spacer,
+                number.slice(1, 7),
+                spacer,
+                number.slice(7, 12)
+            ].join('')
         },
 
         // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다

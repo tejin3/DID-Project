@@ -10,7 +10,7 @@
             >
                 <v-row justify="center" class="pa-0">
                     <v-col cols="2" sm="12" md="10" lg="10">
-                        <v-sheet elevation="5">
+                        <v-sheet elevation="3">
                             <v-sheet
                                 class="pa-3  text-left white--text"
                                 color="#7b45fd"
@@ -39,7 +39,7 @@
                 </v-row>
             </v-col>
             <!-- 오른쪽 layout -->
-            <v-col cols="12" sm="10" ma="4" >
+            <v-col cols="12" sm="10" ma="4">
                 <!-- <p class="font-weight-bold text-h2 text-center" style="margin:0 auto;">
             we :DID survey
         </p> -->
@@ -258,9 +258,9 @@
                                     <v-card-subtitle
                                         class="text-subtitle-1 font-weight-bold"
                                     >
-                                        적립금:
+                                        적립금
                                         {{ d.survey_price }}
-                                        | 쿠폰:
+                                        | 쿠폰
                                         {{ d.survey_coupon }}
                                     </v-card-subtitle>
                                 </v-chip>

@@ -2,10 +2,7 @@
     <!-- https://github.com/Jeongseup/Course-Evaluation-System/blob/main/client/src/views/AnswerTable.vue -->
     <!--오른쪽 설문조사 시작 -->
     <div>
-        <v-card
-            style="width: 100%; height: 100%; subheading mt-16 "
-            elevation="16"
-        >
+        <v-card style="width: 100%; height: 100%; subheading mt-16 ">
             <!-- <v-carousel hide-delimiters v-model="model" :continuous="false"> -->
             <v-carousel
                 v-model="model"
@@ -104,7 +101,6 @@
             v-if="dialog2"
             @close-modal="dialog2 = false"
         ></SurveyModal>
-
     </div>
 
     <!--오른쪽 설문조사 끝-->
@@ -113,7 +109,7 @@
 <script>
 import SurveyModal from './Modal.vue'
 import vc from '../possible/vc.json'
-import getContract from '@/service/getContract'
+// import getContract from '@/service/getContract'
 export default {
     name: 'MainSurvey',
     components: { SurveyModal },
@@ -270,41 +266,40 @@ export default {
                         surveyId: this.surveyId
                     }
                 })
-                  if (btnId === 5) {
-                this.dialog = true
-            }
+                if (btnId === 5) {
+                    this.dialog = true
+                }
                 // this.callData1(this.surveyId)
             }
         },
+        // 컨트랙트 연결
+        // getSurveyContractInstance() {
+        //     if (this.sC === null) {
+        //         console.log('startSurvey')
+        //         var getContract21 = getContract()
+        //         this.sC = getContract21
+        //         console.log('surveyContractInstance', this.sC)
+        //         // 이벤트 받기
+        //         this.sC.events.addUser({}, async (error, event) => {
+        //             console.log(error)
+        //             console.log(event)
 
-
-
-        getSurveyContractInstance() {
-            if (this.sC === null) {
-                console.log('startSurvey')
-                var getContract21 = getContract()
-                this.sC = getContract21
-                console.log('surveyContractInstance', this.sC)
-                this.sC.events.addUser({}, async (error, event) => {
-                    console.log(error)
-                    console.log(event)
-
-                    // this.user_account = event.returnValues[1]
-
-                    await this.$api('/CompletePeople', 'post', {
-                        param: {
-                            survey_id: event.returnValues[0],
-                            user_account: event.returnValues[1],
-                            user_vp: this.$store.state.encMsg
-                        }
-                    })
-                    // // 설문조사 번호
-                    // event.returnValues[0]
-                    // // 설문조사 완료한 사람의 주소
-                    // event.returnValues[1]
-                })
-            }
-        },
+        //             // this.user_account = event.returnValues[1]
+        //             // 설문 중복체크를 위해 체인에 정보를 기록하고 난 후 이벤트를 받아서 DB에 데이터 저장
+        //             await this.$api('/CompletePeople', 'post', {
+        //                 param: {
+        //                     survey_id: event.returnValues[0],
+        //                     user_account: event.returnValues[1],
+        //                     user_vp: this.$store.state.encMsg
+        //                 }
+        //             })
+        //             // // 설문조사 번호
+        //             // event.returnValues[0]
+        //             // // 설문조사 완료한 사람의 주소
+        //             // event.returnValues[1]
+        //         })
+        //     }
+        // },
 
         // submit() {
         //     console.log(this.model, this.question, this.i)
