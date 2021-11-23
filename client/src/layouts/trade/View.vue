@@ -152,54 +152,51 @@
                                         </v-img>
                                     </v-card>
                                 </v-card-subtitle>
-                                <v-card-subtitle>
-                                    <v-card-subtitle
-                                        class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+
+                                <v-card-subtitle
+                                    class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
+                                >
+                                    <v-icon color="hsl(258, 98%, 70%)"
+                                        >mdi-tag</v-icon
                                     >
-                                        <v-icon color="hsl(258, 98%, 70%)"
-                                            >mdi-tag</v-icon
-                                        >
-                                        {{ good.goods_coupon }}
-                                    </v-card-subtitle>
-                                    <v-card-subtitle
-                                        class="pb-1 pt-1 text-center text-body-3"
-                                    >
-                                        {{ good.goods_issuer }}
-                                    </v-card-subtitle>
-                                    <v-card-subtitle
-                                        class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
-                                        style="height:50px"
-                                    >
-                                        {{ good.goods_name }}
-                                    </v-card-subtitle>
-                                    <div
-                                        class="text-decoration-line-through text--disabled text-caption"
-                                    >
-                                        {{ good.goods_original_price }}원
-                                    </div>
-                                    <div
-                                        class="font-weight-black font-weight-bold"
-                                    >
-                                        {{ good.goods_discounted_price }}원
-                                    </div>
-                                    <v-btn
-                                        color="hsl(258, 98%, 70%)"
-                                        class="pt-1"
-                                        outlined
-                                        small
-                                        @click="
-                                            ;[
-                                                (dialog = true),
-                                                exchangeGoods(
-                                                    i + 1,
-                                                    good.goods_coupon
-                                                )
-                                            ]
-                                        "
-                                    >
-                                        교환하기
-                                    </v-btn>
+                                    {{ good.goods_coupon }}
                                 </v-card-subtitle>
+                                <v-card-subtitle
+                                    class="pb-1 pt-1 text-center text-body-3"
+                                >
+                                    {{ good.goods_issuer }}
+                                </v-card-subtitle>
+                                <v-card-subtitle
+                                    class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
+                                    style="height:50px"
+                                >
+                                    {{ good.goods_name }}
+                                </v-card-subtitle>
+                                <div
+                                    class="text-decoration-line-through text--disabled text-caption"
+                                >
+                                    {{ good.goods_original_price }}원
+                                </div>
+                                <div class="font-weight-black font-weight-bold">
+                                    {{ good.goods_discounted_price }}원
+                                </div>
+                                <v-btn
+                                    color="hsl(258, 98%, 70%)"
+                                    class="pt-1"
+                                    outlined
+                                    small
+                                    @click="
+                                        ;[
+                                            (dialog = true),
+                                            exchangeGoods(
+                                                i + 1,
+                                                good.goods_coupon
+                                            )
+                                        ]
+                                    "
+                                >
+                                    교환하기
+                                </v-btn>
 
                                 <!-- </v-card> -->
                             </v-col>
@@ -301,7 +298,7 @@ export default {
             dialog: false,
             goods: [],
             user: {},
-            value: 1,
+            value: 0,
             overlay: false,
             coupon: [],
             drink: []

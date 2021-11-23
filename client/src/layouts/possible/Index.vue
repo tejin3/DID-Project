@@ -392,6 +392,7 @@ export default {
             isShow: false,
             keyList: [],
             web3: {},
+            value: 1,
             surveyCategory: [],
             surveymodalOfen: false
         }

@@ -51,7 +51,7 @@
             class="black--text font-weight-bold whiteNav navAddress"
             v-if="
                 this.$store.state.web3.coinbase ==
-                    0x68993b9454f760e81c8e7630ace72b3638f6f6f7
+                    0xee442796570052932841b7588ab037255ce81183
             "
         >
             설문결과
