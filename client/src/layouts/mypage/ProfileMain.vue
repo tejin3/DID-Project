@@ -239,19 +239,21 @@
                     <v-tab-item class="pt-10">
                         <span class="ma-10 text-h6"
                             >현재, 미사용 쿠폰
-                            <span class="red--text font-weight-bold">5</span
+                            <span class="red--text font-weight-bold">3</span
                             >개가 있어요!</span
                         >
 
-                        <v-row class="mt-10">
+                        <v-row class="mt-13">
                             <v-col
-                                class="testLine ma-10 pa-0"
+                                class="testLine ma-10 pa-0 text--center"
+                                cols="2"
                                 v-for="card in cards"
                                 :key="card.goods_id"
                             >
                                 <v-card
                                     width="200"
                                     height="310"
+                                    class="d-xl-flex"
                                     @click="showCode(card.goods_name)"
                                 >
                                     <v-img
@@ -365,7 +367,9 @@ export default {
                     //     this.$store.state.web3.coinbase.toUpperCase() &&
                     item.user_goods_amount !== 0
                 ) {
-                    this.cards.push(item)
+                    if (this.cards.length < 3) {
+                        this.cards.push(item)
+                    }
                 }
             }
         },
