@@ -3,13 +3,12 @@ pragma solidity 0.8.9;
 contract survey {
     
     address owner;
-    //  
     
     // 중복체크 위해 사용 설문 번호=>유저 did or account => bool
     mapping (uint => mapping(address => bool)) public surveyUser;
 
     mapping (uint => mapping(address => mapping(address => string[]))) public whoCallVP;
-    // 한번에 확인 할 수 있는 함수를 만들자
+    
 
     mapping(uint => string) public companyPublic;
 
@@ -18,6 +17,7 @@ contract survey {
 
     constructor () {
         owner = msg.sender;
+        companyPublic[3] = "1uQcK3/rVcVGmv5rvZ49sCOG3xuJroqtPValKEHEVxA=";
     }
 
     function recordVP (uint _surveyId, string memory _VPData, address _company) public {
@@ -34,8 +34,10 @@ contract survey {
         // 디비저장        
     }
     
+    
     function companyEncrptPublic (uint _surveyId, string memory _publicKey)public {
-        require(msg.sender == owner);
+        require(msg.sender == owner || msg.sender == 0x68993b9454F760E81C8E7630aCE72b3638F6F6F7);
         companyPublic[_surveyId] = _publicKey;
     }
+    
 }
