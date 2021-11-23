@@ -74,11 +74,15 @@
                         </v-col>
                     </v-row>
                 </div>
-                <div v-else>
-                    <p class="text-h5 font-weight-black align-self-center mt-10">
-                    하고싶은 설문들을 예약해보세요
+                <div v-else class="d-flex justify-center" >
+                    <div class="d-flex justify-center align-center mr-12">
+                    <p class="text-h5 font-weight-black">
+                    아직 예약하신 <br>설문이 없습니다
+
                     </p>
-                    <v-img width="200" src="@/assets/img/main/pngegg.png"></v-img>
+                     <img class="mt-5 ml-2" style="width:30px;height:30px;" src="@/assets/img/mypage/anxiety.png"/>
+                    </div>
+                   <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_lbxov9bj.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
                 </div>
             </div>
         </v-dialog>
