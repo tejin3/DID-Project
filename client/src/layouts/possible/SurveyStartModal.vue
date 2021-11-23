@@ -178,11 +178,16 @@ export default {
     components: {},
     data() {
         return {
-            modal: false
+            modal: false,
+            surveys: [],
+            dDays: ''
         }
     },
     setup() {},
     created() {
+        this.getSurvey()
+        this.getIsShow()
+        this.discountDay()
         this.modal.surveymodalOfen = this.surveymodalOfen
     },
     mounted() {},
@@ -193,7 +198,15 @@ export default {
         },
         goBack() {
             this.$emit('child', this.modal)
+        },
+        // 제일 처음 모든 설문지 보여준다
+        async getSurvey() {
+            console.log('hi', this.$get())
+            this.surveys = await this.$api('/surveys', 'get')
         }
+    },
+    async discountDay() {
+        this.dDays = await this.$api('/date', 'get')
     }
 }
 </script>
