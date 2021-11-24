@@ -179,7 +179,7 @@ export default {
     data() {
         return {
             modal: false,
-            surveys: [],
+            getSurveys: [],
             dDays: ''
         }
     },
@@ -201,8 +201,7 @@ export default {
         },
         // 제일 처음 모든 설문지 보여준다
         async getSurvey() {
-            console.log('hi', this.$get())
-            this.surveys = await this.$api('/surveys', 'get')
+            this.getSurveys = await this.$api('/surveys', 'get')
         }
     },
     async discountDay() {
