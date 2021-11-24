@@ -64,7 +64,6 @@
                                 }}</span>
                                 <v-icon>mdi-content-copy</v-icon>
                             </v-btn>
-
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -74,49 +73,22 @@
 </template>
 <script>
 module.exports = {
-    data() {
-        return {
-            // userAddress: '0x965ca4F0648c223C3B09e1E8bA46F9f71f7df1b8'
-              }
-    },
     methods: {
         async copyAddress() {
             try {
                 const userAddress = this.userAddress
                 await navigator.clipboard.writeText(userAddress)
-                console.log('Successfully, Address Copy!')
-            } catch (err) {
-                console.error('Failed to copy: ', err)
-            }
+            } catch (err) {}
         }
-
     },
     computed: {
-        // truncatedUserAddress() {
-        //     return (
-        //         this.userAddress.slice(0, 5) +
-        //         '...' +
-        //         this.userAddress.slice(-3)
-        //     )
-        // },
         truncatedUserAddress() {
-            return this.$store.state.web3.coinbase.slice(0, 2) +
-            '....' + this.$store.state.web3.coinbase.slice(38, 42)
-
-                //  this.userAddress.slice(0, 7) +
-                // '......' +
-                // this.userAddress.slice(-7)
+            return (
+                this.$store.state.web3.coinbase.slice(0, 2) +
+                '....' +
+                this.$store.state.web3.coinbase.slice(38, 42)
+            )
         }
     }
 }
 </script>
-<style scoped>
-/* #profile h1:after {
-    content: '';
-    border-bottom: 3px solid grey;
-    width: 8rem;
-    display: block;
-    margin: 0 auto;
-    margin-top: 1rem;
-} */
-</style>

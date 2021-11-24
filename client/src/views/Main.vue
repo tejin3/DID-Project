@@ -18,7 +18,6 @@
             >
                 <v-carousel-item @wheel.prevent="test($event)">
                     <!--투잡해? 문구 시작-->
-                    <!-- src="@/assets/img/main/mainImg.png" -->
                     <v-sheet
                         class="my-16"
                         color="hsl(258, 98%, 70%)"
@@ -117,7 +116,6 @@
 import DefaultBar from '../layouts/default/Navbar.vue'
 export default {
     name: '',
-    // components: { DefaultBar, Flicking },
     components: { DefaultBar },
     data() {
         return {
@@ -155,15 +153,12 @@ export default {
     unmounted() {},
     methods: {
         async getSurvey() {
-            // console.log('hi', this.$get()
             this.surveys = await this.$get('/surveys')
         },
-        // onScroll() {
-        //     this.model++
-        // },
+
         async metamask() {
             await this.$store.dispatch('registerWeb3')
-            // await this.$store.dispatch('web3Register')
+
             this.goPossible()
         },
         goPossible() {
@@ -172,7 +167,6 @@ export default {
             } else {
                 window.alert('조금만 더 기다려주세요 ^^')
             }
-            // this.repeat()
         },
         async discountDay() {
             this.dDays = await this.$api('/date', 'get')
@@ -194,17 +188,13 @@ export default {
         },
         doScroll(sidx) {
             console.log(sidx)
-            // sidx = sidx < 0 ? 0 : sidx
-            // sidx = sidx > aElSection.length - 1 ? aElSection.length - 1 : sidx
         },
         textCall() {
-            // this.text = ''
             setTimeout(() => {
                 this.text = '상위 10% 한달 평균 수익 : 77만원'
             }, 2100)
         },
         textCall1() {
-            // this.text1 = ''
             setTimeout(() => {
                 this.text1 = '한달 최고 수익 : 119만원'
             }, 5900)
@@ -221,9 +211,8 @@ export default {
 }
 
 .scrollSelect {
-    /* background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0 / cover; */
     background: url('../assets/img/shapes/sc_img.png') no-repeat 0 0;
-    /* display: flex; */
+
     align-items: center;
     justify-content: center;
     width: 120px;
@@ -269,18 +258,9 @@ export default {
     animation: sample-ani-test 3s linear infinite alternate;
 }
 
-// .test1 {
-//     position: absolute;
-//     left: 40%;
-//     // border: 1px saddlebrown solid;
-//     transition-property: margin-left;
-//     transition-duration: 2s;
-
-// }
 .test1 {
     position: absolute;
-    // left: 40%;
-    // border: 1px saddlebrown solid;
+
     transition-property: margin-left;
     transition-duration: 3s;
     animation-name: tejin3;
@@ -301,9 +281,6 @@ export default {
     left: 24%;
     top: 40%;
 }
-// .test1:hover {
-//     margin-left: 20
-// }
 
 /* 키프레임 이름 = 애니메이션 이름 */
 @keyframes tejin3 {
@@ -314,7 +291,4 @@ export default {
         left: 48%;
     }
 }
-// .test111:hover {
-//     margin: 0px;
-// }
 </style>

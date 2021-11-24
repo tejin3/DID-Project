@@ -1,10 +1,5 @@
 <template>
     <v-container class="mt-16">
-        <!-- <div
-            style="border:3px solid #9568fd; background-color:#9568fd; margin-top:10px"
-        ></div> -->
-        <!--조사참여 bn글씨 시작 -->
-
         <v-row no-gutters align="center">
             <v-col align="center">
                 <div
@@ -50,7 +45,6 @@
         </v-row>
         <v-row no-gutters align="center" class="testLine">
             <v-col align="center">
-                <!-- Technology vector created by macrovector -->
                 <v-img
                     transition="scale-transition"
                     width="350"
@@ -88,7 +82,6 @@
                 </h2>
             </v-col>
             <v-col align="center">
-                <!-- Technology vector created by macrovector -->
                 <v-img
                     transition="scale-transition"
                     width="350"

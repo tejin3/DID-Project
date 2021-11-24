@@ -16,11 +16,6 @@ router.get("/conditions", conditionController.index);
 router.post("/condition", conditionController.show);
 // router.post("/condition", conditionController.company);
 
-// 설문지 조건 업데이트, 삭제 - 미구현
-// router.post("/update", conditionController.update);
-// router.post("/store", conditionController.store);
-// router.post("/delete", conditionController.destroy);
-
 // 설문지 controller
 router.get("/surveys", surveyController.index);
 router.post("/survey", surveyController.showById);

@@ -210,7 +210,6 @@
                     </v-container>
                 </v-card>
             </v-col>
-            <!-- 오른쪽 layout -->
         </v-row>
     </v-container>
 </template>
@@ -240,20 +239,19 @@ export default {
     methods: {
         async showGoods() {
             this.goods = await this.$api('/trade', 'get')
-            console.log(this.goods)
+
             await this.$api('/users', 'get').then(res => {
-                console.log(res)
                 for (var user of res) {
                     if ((user.user_account = this.$store.state.web3.coinbase)) {
                         this.user = user
                     }
                 }
-                console.log(this.user)
             })
         },
         tradeCompleted() {},
         // 트레이드 버튼 클릭시 쿠폰과 상품이 교환된다
         async exchangeGoods(goodId, goodsCoupon) {
+            // 보유 쿠폰 개수가 교환할 상품의 쿠폰 개수보다 많아야 한다
             await this.$api('/exchange', 'post', {
                 param: {
                     goods_id: goodId,
@@ -289,7 +287,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -351,7 +348,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -359,12 +355,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 13 || item.goods_id === 14) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -374,7 +367,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -382,16 +374,13 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (
                         item.goods_id === 9 ||
                         item.goods_id === 10 ||
                         item.goods_id === 11
                     ) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -401,7 +390,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -409,12 +397,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 12) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -424,7 +409,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         }
