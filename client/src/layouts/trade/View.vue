@@ -169,7 +169,7 @@
                                             ;[
                                                 (dialog = true),
                                                 exchangeGoods(
-                                                    i + 1,
+                                                    good.goods_id,
                                                     good.goods_coupon
                                                 )
                                             ]
