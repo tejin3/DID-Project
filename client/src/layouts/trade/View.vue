@@ -264,7 +264,7 @@ export default {
 
         async getUser() {
             var result = await this.$api('/user', 'post', {
-                param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'
+                param: this.$store.state.web3.coinbase
             })
             this.coupon = result
         },
