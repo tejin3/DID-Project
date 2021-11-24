@@ -101,7 +101,7 @@
                                                         color="white"
                                                         x-small
                                                     >
-                                                        예약하기
+                                                        찜하기
                                                     </v-btn>
                                                     <v-btn
                                                         v-else

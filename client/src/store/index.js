@@ -71,12 +71,12 @@ export default new Vuex.Store({
             state.encMsg = data
         },
 
-        // 예약한 설문 store에 저장
+        // 찜한 설문 store에 저장
         addReservedSurvey(state, data) {
             state.reservedSurvey.push(data)
         },
 
-        // 예약한 설문 store에 초기화
+        // 찜한 설문 store에 초기화
         initReservedSurvey(state) {
             state.reservedSurvey = []
         }

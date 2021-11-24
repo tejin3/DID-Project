@@ -189,7 +189,7 @@
                                                 height="150px"
                                             >
                                                 <v-card-title class="text-h5">
-                                                    예약한 설문
+                                                    찜한 설문
                                                 </v-card-title>
                                                 <v-card-subtitle class="text-h4"
                                                     ><span

@@ -16,7 +16,7 @@
                 </v-row>
 
                 <div style="border:3px solid pink; margin-bottom:30px"></div>
-                <h1>예약한 설문 📑</h1>
+                <h1>내가 찜한 설문 📑</h1>
                 <br />
 
                 <div v-if="this.survey.length >= 1">
