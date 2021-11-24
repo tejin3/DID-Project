@@ -37,7 +37,7 @@
                         }}
                     </v-chip>
                 </span>
-                <v-btn to="possible" text class="white--text text-none">
+                <v-btn to="about" text class="white--text text-none">
                     About
                 </v-btn>
                 <v-btn
