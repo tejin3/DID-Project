@@ -334,13 +334,14 @@ export default {
             size: 130,
             barcodeValue: '',
             barcodeText: '',
-            modalOpen: false
+            modalOpen: false,
+            decryptVc: {}
         }
     },
     created() {
         this.showUserGoods()
         this.getUser()
-        this.decrypt()
+        this.setting()
     },
 
     methods: {
@@ -363,6 +364,7 @@ export default {
             }
         },
         showCode(name) {
+            console.log(this.decryptVc)
             this.dialog = true
             this.qrValue = name
             this.barcodeValue = 'goods_name'
@@ -378,15 +380,8 @@ export default {
         },
 
         // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다
-        async decrypt() {
-            var decryptVc = await window.ethereum.request({
-                method: 'eth_decrypt',
-                params: [
-                    localStorage.getItem('intoVp'),
-                    this.$store.state.web3.coinbase
-                ]
-            })
-            var vcs = JSON.parse(decryptVc)
+        async setting() {
+            var vcs = this.$store.state.decryptVc
             for (var i = 0; i < vcs.verifiableCredentials.data.length; i++) {
                 const vcItem =
                     vcs.verifiableCredentials.data[i].credentialSubject

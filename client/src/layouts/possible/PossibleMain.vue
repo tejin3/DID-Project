@@ -98,6 +98,8 @@
                         >
                             <span>참여 가능한 설문</span>
                         </v-btn>
+                        <div>
+                        </div>
                     </v-bottom-navigation>
                 </v-container>
 
@@ -236,8 +238,7 @@ export default {
                 '인터넷',
                 '전자제품'
             ],
-            decryptVc: [],
-            vc: [],
+            decryptVc: {},
             conditions: [],
             vcItemList: [],
             passSurveyList: [],
@@ -254,8 +255,8 @@ export default {
         }
     },
     created() {
-        this.decrypt()
-        this.canSurvey()
+        this.getVC()
+        this.getSurvey()
         this.discountDay()
         this.getIsShow()
     },
@@ -312,12 +313,13 @@ export default {
 
         // vcList.json에서 항목의 key/value를 가져와 vcItemList에 담기
         getVC: function() {
+            this.decryptVc = this.$store.state.decryptVc
             for (
                 var i = 0;
-                i < this.vc.verifiableCredentials.data.length;
+                i < this.decryptVc.verifiableCredentials.data.length;
                 i++
             ) {
-                const vcItem = this.vc.verifiableCredentials.data[i]
+                const vcItem = this.decryptVc.verifiableCredentials.data[i]
                     .credentialSubject.infomation.value
 
                 // 항목의 key와 value값 추출
@@ -393,23 +395,6 @@ export default {
                 case '==':
                     return param1.indexOf(param2)
             }
-        },
-
-        // Local Storage에서 암호화 VC 파일을 불러서 복호화 한다
-        async decrypt() {
-            this.decryptVc = await window.ethereum.request({
-                method: 'eth_decrypt',
-                params: [
-                    localStorage.getItem('intoVp'),
-                    this.$store.state.web3.coinbase
-                ]
-            })
-
-            // 복호화된 string VC를 다시 Json object로 바꾼다
-            this.vc = JSON.parse(this.decryptVc)
-            // 복호화 VC를 store에 저장
-            this.$store.commit('addDecryptVc', this.vc)
-            this.getVC()
         },
 
         // isShow 넣기
