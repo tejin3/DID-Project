@@ -119,14 +119,13 @@ export default {
                 }
             ],
             sC: null,
-            t_order: 0, // t_orders에서 가져온  { } 하나를 관리
+            t_order: 0,
             radios: 0,
             vc,
             questions: null,
             value: '',
             custom: true,
             userInput: '',
-            answers: ['test'],
             dialog: false,
             dialog2: false,
             model: 0,
@@ -190,7 +189,6 @@ export default {
         this.answerValue = []
         this.answers = []
         this.getSurveyById()
-        this.test()
         this.getSurveyContractInstance()
     },
     mounted() {
@@ -198,39 +196,26 @@ export default {
     },
     unmounted() {},
     methods: {
-        test() {
-            console.log(
-                'this.t_ordersthis.t_ordersthis.t_ordersthis.t_orders',
-                this.t_orders
-            )
-        },
         checkRadioUnique() {
             console.log('checkRadioUnique()', this.radios)
         },
+
         async getQuestions() {
             try {
                 this.questions = await this.$api('/questions', 'post', {
                     param: [this.surveyId]
                 })
                 console.log(this.questions[0].quesiton_content)
-            } catch (err) {
-                console.log(err)
-            }
+            } catch (err) {}
         },
+
         async complete(btnId) {
-            console.log('this.radios.length', this.radios.length)
             if (this.model + 1 !== this.questions.length) {
-                console.log(this.questions.length)
-                console.log('if문_this.model', this.radios)
                 var tempObj = {}
                 tempObj.questionsId = this.model + 1
                 tempObj.answerValue = this.radios + 1
 
-                console.log('this.tempObjthis.tempObjthis.tempObj', tempObj)
-
                 this.answers.push(tempObj)
-
-                console.log('this.answers', this.answers)
                 this.userInput = ''
                 this.model++
             } else {
@@ -239,7 +224,6 @@ export default {
                 tempObj.answerValue = this.userInput
 
                 this.answers.push(tempObj)
-                console.log(' this.answers.push', this.answers)
                 this.userInput = ''
 
                 this.$api('/answers', 'post', {
@@ -254,19 +238,16 @@ export default {
                 }
             }
         },
+
         // 컨트랙트 연결
         getSurveyContractInstance() {
             if (this.sC === null) {
-                console.log('startSurvey')
                 var getContract21 = getContract()
                 this.sC = getContract21
-                console.log('surveyContractInstance', this.sC)
                 // 이벤트 받기
                 this.sC.events.addUser({}, async (error, event) => {
                     console.log(error)
                     console.log(event)
-
-                    // this.user_account = event.returnValues[1]
                     // 설문 중복체크를 위해 체인에 정보를 기록하고 난 후 이벤트를 받아서 DB에 데이터 저장
                     await this.$api('/CompletePeople', 'post', {
                         param: {
@@ -275,10 +256,6 @@ export default {
                             user_vp: this.$store.state.encMsg
                         }
                     })
-                    // // 설문조사 번호
-                    // event.returnValues[0]
-                    // // 설문조사 완료한 사람의 주소
-                    // event.returnValues[1]
                 })
             }
         },
@@ -306,12 +283,10 @@ export default {
             this.vp = rawVp.filter((element, index) => {
                 return rawVp.indexOf(element) === index
             })
-            console.log(this.vp)
         },
 
         // 해당 설문의 보상 포인트와 쿠폰을 가져온다
         async getSurveyById() {
-            console.log(this.surveyId)
             try {
                 const survey = await this.$api('/survey', 'post', {
                     param: [this.surveyId]
@@ -319,9 +294,7 @@ export default {
                 this.price = survey[0].survey_price
                 this.coupon = survey[0].survey_coupon
                 this.companyAccount = survey[0].user_account
-            } catch (err) {
-                console.log(err)
-            }
+            } catch (err) {}
         }
     }
 }
