@@ -200,21 +200,16 @@ export default {
                     )
                     .send({ from: this.$store.state.web3.coinbase })
                     // 내 주소
-                    .then(receipt => {
-                        console.log(receipt)
-                    })
+                    .then(receipt => {})
                 this.encryptedMessage()
             } else {
                 // 선택한 vp가 있을 때
                 for (var index of this.selection) {
                     this.selectVp.push(this.vp[parseInt(index)])
-                    console.log(this.selectVp)
                 }
                 for (var het of this.selectVp) {
                     stringVp = stringVp + ',' + Object.keys(het)
                 }
-                console.log(stringVp)
-                console.log(this.sC)
                 this.sC.methods
                     .recordVP(
                         this.surveyId,
@@ -224,9 +219,7 @@ export default {
                     )
                     .send({ from: this.$store.state.web3.coinbase })
                     // 내 주소
-                    .then(receipt => {
-                        console.log(receipt)
-                    })
+                    .then(receipt => {})
                 this.encryptedMessage()
             }
         },
@@ -237,7 +230,6 @@ export default {
                 this.point += this.aa[index].price
             }
             this.point += this.price
-            console.log(this.price)
         },
         // 받기 버튼을 누르면 DB로 포인트와 쿠폰 전달
         async saveReward() {
@@ -255,14 +247,10 @@ export default {
             const sigUtil = require('eth-sig-util')
             // eth-sig-util: A small collection of Ethereum signing functions
             const msg = JSON.stringify(this.selectVp)
-            console.log('msg', msg)
-
-            // Buffer는 binary의 데이터를 담을 수 있는 object
             await this.sC.methods
                 .companyPublic(this.surveyId)
                 .call()
                 .then(result => {
-                    console.log('회사 암호화된 공개키', result)
                     const buf = Buffer.from(
                         JSON.stringify(
                             sigUtil.encrypt(
@@ -275,7 +263,6 @@ export default {
                     )
                     return (this.encMsg = '0x' + buf.toString('hex'))
                 })
-            console.log('암호화됨', this.encMsg)
             this.$store.commit('encMsg', this.encMsg)
         }
     }

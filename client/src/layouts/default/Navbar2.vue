@@ -1,7 +1,5 @@
-// 메인 외 나머지 navbar
 <template>
-    <!-- 네비바 전체 윤곽 -->
-
+    <!-- 메인 외 나머지 navbar -->
     <v-tabs color="white" height="55" class="navElevation">
         <!-- 네비바 왼쪽 부분 -->
         <router-link class="text-decoration-none" to="/">
@@ -13,7 +11,6 @@
         <v-spacer></v-spacer>
 
         <!-- 네비바 오른쪽 부분 2 : 화면이 클 때 -->
-
         <v-tabs-slider color="hsl(258, 98%, 70%)"></v-tabs-slider>
         <span
             to="mypage"
