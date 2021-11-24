@@ -19,7 +19,7 @@
             <!-- 오른쪽 layout -->
             <v-col cols="12" sm="10" ma="4">
                 <v-card>
-                    <!--쿠폰교환 bn글씨 시작 -->
+                    <!-- 상단 배너 -->
                     <v-container
                         class="d-flex justify-center align-center "
                         style="padding-bottom:20px; padding-top:23px"
@@ -112,64 +112,72 @@
                                 v-for="(good, i) in goods"
                                 :key="i"
                             >
-                                <v-card-subtitle
-                                    class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
+                                <v-card
+                                    width="200"
+                                    hover
+                                    elevation="0"
+                                    class="pb-2"
                                 >
-                                    <v-card width="200" hover height="210">
-                                        <v-img
-                                            class="white--text align-end"
-                                            :src="
-                                                require(`@/assets/img/trade/${good.goods_image_path}`)
-                                            "
+                                    <v-card>
+                                        <v-card-subtitle
+                                            class="purple--text font-weight-bold text-subtitle-1 text-center pr-0 pl-0 pb-1 pt-1"
                                         >
-                                        </v-img>
+                                            <v-img
+                                                class="white--text align-end"
+                                                :src="
+                                                    require(`@/assets/img/trade/${good.goods_image_path}`)
+                                                "
+                                            >
+                                            </v-img>
+                                        </v-card-subtitle>
                                     </v-card>
-                                </v-card-subtitle>
-
-                                <v-card-subtitle
-                                    class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
-                                >
-                                    <v-icon color="hsl(258, 98%, 70%)"
-                                        >mdi-tag</v-icon
+                                    <v-card-subtitle
+                                        class="purple--text font-weight-bold text-subtitle-1 text-center pb-1 pt-1"
                                     >
-                                    {{ good.goods_coupon }}
-                                </v-card-subtitle>
-                                <v-card-subtitle
-                                    class="pb-1 pt-1 text-center text-body-3"
-                                >
-                                    {{ good.goods_issuer }}
-                                </v-card-subtitle>
-                                <v-card-subtitle
-                                    class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
-                                    style="height:50px"
-                                >
-                                    {{ good.goods_name }}
-                                </v-card-subtitle>
-                                <div
-                                    class="text-decoration-line-through text--disabled text-caption"
-                                >
-                                    {{ good.goods_original_price }}원
-                                </div>
-                                <div class="font-weight-black font-weight-bold">
-                                    {{ good.goods_discounted_price }}원
-                                </div>
-                                <v-btn
-                                    color="hsl(258, 98%, 70%)"
-                                    class="pt-1"
-                                    outlined
-                                    small
-                                    @click="
-                                        ;[
-                                            (dialog = true),
-                                            exchangeGoods(
-                                                i + 1,
-                                                good.goods_coupon
-                                            )
-                                        ]
-                                    "
-                                >
-                                    교환하기
-                                </v-btn>
+                                        <v-icon color="hsl(258, 98%, 70%)"
+                                            >mdi-tag</v-icon
+                                        >
+                                        {{ good.goods_coupon }}
+                                    </v-card-subtitle>
+                                    <v-card-subtitle
+                                        class="pb-1 pt-1 text-center text-body-3"
+                                    >
+                                        {{ good.goods_issuer }}
+                                    </v-card-subtitle>
+                                    <v-card-subtitle
+                                        class="pb-0 pt-0 black--text font-weight-bold text-body-2 text-center"
+                                        style="height:50px"
+                                    >
+                                        {{ good.goods_name }}
+                                    </v-card-subtitle>
+                                    <div
+                                        class="text-decoration-line-through text--disabled text-caption"
+                                    >
+                                        {{ good.goods_original_price }}원
+                                    </div>
+                                    <div
+                                        class="font-weight-black font-weight-bold"
+                                    >
+                                        {{ good.goods_discounted_price }}원
+                                    </div>
+                                    <v-btn
+                                        color="hsl(258, 98%, 70%)"
+                                        class="pt-1"
+                                        outlined
+                                        small
+                                        @click="
+                                            ;[
+                                                (dialog = true),
+                                                exchangeGoods(
+                                                    i + 1,
+                                                    good.goods_coupon
+                                                )
+                                            ]
+                                        "
+                                    >
+                                        교환하기
+                                    </v-btn>
+                                </v-card>
 
                                 <!-- </v-card> -->
                             </v-col>
@@ -259,23 +267,19 @@ export default {
                 param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'
             })
             this.coupon = result
-            console.log('ggggg', this.coupon)
         },
 
         async goodsDrink() {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (
                         item.goods_id === 1 ||
                         item.goods_id === 3 ||
                         item.goods_id === 15
                     ) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -293,12 +297,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 2 || item.goods_id === 5) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -308,7 +309,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -316,12 +316,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 4) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -331,7 +328,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -339,16 +335,13 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (
                         item.goods_id === 6 ||
                         item.goods_id === 7 ||
                         item.goods_id === 8
                     ) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {

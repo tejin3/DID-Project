@@ -20,9 +20,6 @@
                     검증 결과
                 </v-card-title>
 
-                <!-- 검증자 : 행정안정부(0x12223fsd12121),
-                    BC카드(0xd12df33232343)
-                    {{ decMsg }} -->
                 <v-card-text class="mt-5">
                     <h2>검증기관 :</h2>
                     BC카드(0x0d309284F3c761FD31F02084207c1f86f0B1e0af)
@@ -168,13 +165,6 @@ export default {
     },
 
     watch: {
-        // 하나만 선택했을 때 모달창 온오프
-        // dialog(val) {
-        //     if (!val) return
-        //     // this.decrypt()
-        //     setTimeout(() => this.modalUp(), 4000)
-        //     // alert('hello')
-        // },
         // 중복선택 했을때 모달창 온오프
         dialog3(val) {
             if (!val) return
@@ -188,14 +178,10 @@ export default {
         modalUp() {
             this.dialog = false
             this.dialog1 = true
-
-            // alert('검증결과 : 정상')
         },
         modalUp1() {
             this.dialog3 = false
             this.dialog4 = true
-
-            // alert('검증결과 : 정상')
         },
         // 암호화된 Vp 파일을 가져와 복호화 한다
         async decrypt() {
@@ -310,11 +296,6 @@ export default {
                 // 내 주소
                 .then(receipt => {
                     console.log(receipt)
-                    // if (receipt === this.userVp) {
-                    //     alert('성공')
-                    // } else {
-                    //     alert('실패')
-                    // }
                 })
         },
         encryptedMessage() {
