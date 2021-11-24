@@ -8,7 +8,6 @@
     </div>
 </template>
 <script>
-// import MyPond from '@/components/Cards/MyPond'
 import ProfileHeader from '@/layouts/mypage/ProfileHeader'
 import ProfileMain from '@/layouts/mypage/ProfileMain'
 

@@ -21,23 +21,25 @@
 
                 <div v-if="this.survey.length >= 1">
                     <v-row>
-
                         <v-col cols="4" :key="i" v-for="(d, i) in survey">
                             <v-card
                                 class="card panel mx-5 rounded-xl card-panel"
                                 max-width="200"
                                 max-height="330"
                             >
-
                                 <v-img
-                                class="surveyImg"
+                                    class="surveyImg"
                                     :src="
                                         `http://localhost:3000/download/${d.survey_image_path}`
                                     "
                                     height="140"
                                 ></v-img>
 
-                                <v-btn class="xBtn" text><v-icon  large>mdi-close-circle</v-icon></v-btn>
+                                <v-btn class="xBtn" text
+                                    ><v-icon large
+                                        >mdi-close-circle</v-icon
+                                    ></v-btn
+                                >
 
                                 <v-card-title class="text-h7">
                                     {{ d.survey_title }}
@@ -74,15 +76,25 @@
                         </v-col>
                     </v-row>
                 </div>
-                <div v-else class="d-flex justify-center" >
+                <div v-else class="d-flex justify-center">
                     <div class="d-flex justify-center align-center mr-12">
-                    <p class="text-h5 font-weight-black">
-                    아직 예약하신 <br>설문이 없습니다
-
-                    </p>
-                     <img class="mt-5 ml-2" style="width:30px;height:30px;" src="@/assets/img/mypage/anxiety.png"/>
+                        <p class="text-h5 font-weight-black">
+                            아직 예약하신 <br />설문이 없습니다
+                        </p>
+                        <img
+                            class="mt-5 ml-2"
+                            style="width:30px;height:30px;"
+                            src="@/assets/img/mypage/anxiety.png"
+                        />
                     </div>
-                   <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_lbxov9bj.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop autoplay></lottie-player>
+                    <lottie-player
+                        src="https://assets7.lottiefiles.com/packages/lf20_lbxov9bj.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 300px; height: 300px;"
+                        loop
+                        autoplay
+                    ></lottie-player>
                 </div>
             </div>
         </v-dialog>
@@ -103,7 +115,6 @@ export default {
     setup() {},
     created() {
         this.getSurveyById()
-        // this.discountDay()
     },
     mounted() {},
     unmounted() {},
@@ -114,18 +125,8 @@ export default {
                     param: this.$store.state.reservedSurvey
                 })
                 this.survey = survey
-                console.log(this.survey)
-            } catch (err) {
-                console.log(err)
-            }
+            } catch (err) {}
         }
-        // async discountDay() {
-        //     if (this.$store.state.reservedSurvey !== 0) {
-        //     this.dDays = await this.$api('/date', 'get')
-        //     } else {
-        //         console.log('no dday')
-        //     }
-        // }
     }
 }
 </script>
@@ -137,8 +138,6 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    /* background-color: rgb(33, 33, 33); */
-    /* opacity: 0.9; */
     padding: 20px;
     z-index: 2;
 }
@@ -172,11 +171,11 @@ th {
     color: white;
 }
 .surveyImg {
-position:relative;
+    position: relative;
 }
 .xBtn {
- position:absolute;
-  top:0.3em;
-  right:-0.5em;
+    position: absolute;
+    top: 0.3em;
+    right: -0.5em;
 }
 </style>

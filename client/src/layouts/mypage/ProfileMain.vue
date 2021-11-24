@@ -1,8 +1,6 @@
 <template>
     <v-sheet>
-        <!-- <v-container class="fill-height"> -->
         <v-container>
-            <!-- defalut cols is 12 -->
             <!-- 탭 제목 영역 -->
             <v-toolbar elevation="3" color="white">
                 <!-- 화면이 클 때 -->
@@ -18,7 +16,7 @@
                         <v-icon class="mr-2">mdi-account-box</v-icon>
                         개인정보
                     </v-tab>
-                    <!-- tap value = -->
+                    <!-- tap value = 1 -->
                     <v-tab class="font-weight-bold">
                         <v-icon class="mr-2">mdi-tag</v-icon>
                         쿠폰함</v-tab
@@ -263,10 +261,6 @@
                                             require(`@/assets/img/trade/${card.goods_image_path}`)
                                         "
                                     >
-                                        <!-- <v-card-title
-                                            class="black--text font-weight-bold"
-                                            >{{ card.title }}</v-card-title
-                                        > -->
                                     </v-img>
 
                                     <v-card-subtitle class="pb-0 text-center">
@@ -362,11 +356,7 @@ export default {
             var result = await this.$api('/userGoods', 'get')
 
             for (var item of result) {
-                if (
-                    // item.user_account.toUpperCase() ===
-                    //     this.$store.state.web3.coinbase.toUpperCase() &&
-                    item.user_goods_amount !== 0
-                ) {
+                if (item.user_goods_amount !== 0) {
                     if (this.cards.length < 3) {
                         this.cards.push(item)
                     }
@@ -442,11 +432,7 @@ export default {
     }
 }
 </script>
-<style scoped>
-/* .testLine {
-    border: solid 3px orange;
-} */
-</style>
+<style scoped></style>
 <style scoped>
 svg {
     font-size: 2rem;
@@ -457,11 +443,7 @@ svg {
     position: absolute;
     right: 57%;
 }
-/* .vc {
-    text-decoration: underline;
-    text-decoration-color: #651fff;
-    text-underline-position: under;
-} */
+
 .vc {
     position: relative;
 }

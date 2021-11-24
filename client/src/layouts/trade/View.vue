@@ -2,7 +2,6 @@
     <v-container fluid class="pa-0">
         <v-row no-gutters>
             <!-- 왼쪽 layout -->
-
             <v-col cols="6" md="2" class="trade-bg-color">
                 <v-card width="200" height="141" class="border">
                     <v-card-text>
@@ -25,7 +24,6 @@
                         class="d-flex justify-center align-center "
                         style="padding-bottom:20px; padding-top:23px"
                     >
-                        <!-- style="margin-left:50" -->
                         <img
                             src="@/assets/img/trade/banner-2.png"
                             alt=""
@@ -55,19 +53,6 @@
                             </div>
                         </div>
                     </v-container>
-
-                    <!-- <p class="text-center">
-            weDIDsurvey의 다양한 상품을 할인된 가격으로 실속있게 교환하세요
-        </p> -->
-
-                    <!-- <v-container>
-            <v-card class="mb-10">
-                <v-img src="@/assets/img/banner.jpg"> </v-img>
-            </v-card>
-        </v-container> -->
-                    <!-- <TradeHeader />
-        <TradeCategory />
-        <TradeMain /> -->
                     <v-container class="mb-5">
                         <v-bottom-navigation
                             :value="value"
@@ -124,7 +109,6 @@
                     <!--hover했을떄 효과 및 카드-->
                     <v-container>
                         <v-row>
-                            <!-- class="testLine ma-6 pa-0 " -->
                             <v-col
                                 class="testLine text-center"
                                 v-for="(good, i) in goods"
@@ -225,66 +209,9 @@
                                 </v-card>
                             </v-dialog>
                         </v-row>
-                        <!-- <v-row>
-                <v-col
-                    class="mr-auto"
-                    v-for="count in 4"
-                    :key="count"
-                    cols="12"
-                    sm="4"
-                    md="2"
-                >
-                    <v-hover v-slot="{ hover }" open-delay="200">
-                        <v-card
-                            width="150"
-                            :elevation="hover ? 16 : 2"
-                            :class="{ 'on-hover': hover }"
-                            class="mx-auto"
-                            max-width="150"
-                        >
-                            <v-img
-                                height="150"
-                                src="@/assets/img/bucks-cafe.png"
-                            >
-                                <v-app-bar flat color="rgba(0, 0, 0, 0) ">
-                                </v-app-bar>
-                            </v-img> -->
-                        <!--텍스트부분-->
-                        <!-- <v-card-text>
-                                <div class="text--primary">
-                                    10 coupons
-                                </div>
-                                <p>
-                                    Starbucks Americano
-                                </p>
-
-                                <v-btn text color="deep-purple accent-4">
-                                    Trade
-                                </v-btn>
-                            </v-card-text>
-                        </v-card>
-                    </v-hover>
-                </v-col>
-            </v-row> -->
                     </v-container>
                 </v-card>
             </v-col>
-            <!-- 오른쪽 layout -->
-            <!-- <v-col cols="6" md="2" class="trade-bg-color">
-                <v-card width="200" height="141" class="border">
-                    <v-card-text>
-                        <br />
-                        <div class="text-h4 text--primary text-center ">
-                            🎫
-                            {{ coupon[0].user_coupon }}
-                        </div>
-                        <br />
-                        <p class="text-center">
-                            현재 내 쿠폰
-                        </p>
-                    </v-card-text>
-                </v-card>
-            </v-col> -->
         </v-row>
     </v-container>
 </template>
@@ -314,15 +241,13 @@ export default {
     methods: {
         async showGoods() {
             this.goods = await this.$api('/trade', 'get')
-            console.log(this.goods)
+
             await this.$api('/users', 'get').then(res => {
-                console.log(res)
                 for (var user of res) {
                     if ((user.user_account = this.$store.state.web3.coinbase)) {
                         this.user = user
                     }
                 }
-                console.log(this.user)
             })
         },
         tradeCompleted() {},
@@ -330,7 +255,6 @@ export default {
         // 트레이드 버튼 클릭시 쿠폰과 상품이 교환된다
         async exchangeGoods(goodId, goodsCoupon) {
             // 보유 쿠폰 개수가 교환할 상품의 쿠폰 개수보다 많아야 한다
-            // if (this.user.user_coupon >= goodsCoupon) {
             await this.$api('/exchange', 'post', {
                 param: {
                     goods_id: goodId,
@@ -338,9 +262,6 @@ export default {
                     user_coupon: goodsCoupon
                 }
             })
-            // } else {
-            //     alert('보유하신 쿠폰이 부족합니다')
-            // }
         },
         async getUser() {
             var result = await this.$api('/user', 'post', {
@@ -369,7 +290,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -431,7 +351,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -439,12 +358,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 13 || item.goods_id === 14) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -454,7 +370,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -462,16 +377,13 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (
                         item.goods_id === 9 ||
                         item.goods_id === 10 ||
                         item.goods_id === 11
                     ) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -481,7 +393,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         },
@@ -489,12 +400,9 @@ export default {
             // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
-                console.log('goods', res)
                 res.forEach(item => {
-                    console.log('bev', item)
                     if (item.goods_id === 12) {
                         this.goods.push(item)
-                        console.log(this.goods)
                     }
 
                     for (var user of res) {
@@ -504,7 +412,6 @@ export default {
                             this.user = user
                         }
                     }
-                    console.log(this.user)
                 })
             })
         }
@@ -512,13 +419,6 @@ export default {
 }
 </script>
 <style scoped>
-/* .grey-bg {
-    top: 0;
-    left: 0;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-} */
 .img-bn-class {
     display: flex;
     align-items: center;
