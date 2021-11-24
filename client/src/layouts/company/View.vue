@@ -190,9 +190,6 @@
                             </v-card-text>
                             <v-card-text>
                                 <v-chip-group column>
-                                    <!-- 설문조사 번호에 알맞은 vcList 만들기 -->
-                                    <!-- :key="k" v-for="(w, k) in m.vcList" -->
-
                                     <v-chip>
                                         <!-- 설문 번호랑 완료한 사람 전체 리스트에서 같은 설문 번호 매칭 -->
                                         <DialogScroll
