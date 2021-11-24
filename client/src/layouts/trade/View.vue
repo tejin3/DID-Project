@@ -249,7 +249,6 @@ export default {
             })
         },
         tradeCompleted() {},
-        // 트레이드 버튼 클릭시 쿠폰과 상품이 교환된다
         async exchangeGoods(goodId, goodsCoupon) {
             // 보유 쿠폰 개수가 교환할 상품의 쿠폰 개수보다 많아야 한다
             await this.$api('/exchange', 'post', {
@@ -268,7 +267,6 @@ export default {
         },
 
         async goodsDrink() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -291,7 +289,6 @@ export default {
             })
         },
         async goodsBread() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -310,7 +307,6 @@ export default {
             })
         },
         async goodsIcecream() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -329,7 +325,6 @@ export default {
             })
         },
         async goodsFood() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -352,7 +347,6 @@ export default {
             })
         },
         async goodsMart() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -371,7 +365,6 @@ export default {
             })
         },
         async goodsGiftCard() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
@@ -394,7 +387,6 @@ export default {
             })
         },
         async goodsMovie() {
-            // goods배열 초기화
             this.goods = []
             await this.$api('/trade', 'get').then(res => {
                 res.forEach(item => {
