@@ -6,7 +6,7 @@
                 cols="6"
                 md="2"
                 class="possible-bg-color"
-                style="padding-top:220px"
+                style="padding-top:10px"
             >
                 <v-row justify="center" class="pa-0">
                     <v-col cols="2" sm="12" md="10" lg="10">
@@ -93,13 +93,12 @@
 
                         <v-btn
                             class="ml-5 font-weight-bold text-subtitle-1"
-                            @click=";[ canSurvey()]"
+                            @click=";[canSurvey()]"
                             v-else
                         >
                             <span>참여 가능한 설문</span>
                         </v-btn>
-                        <div>
-                        </div>
+                        <div></div>
                     </v-bottom-navigation>
                 </v-container>
 
@@ -218,7 +217,7 @@ import SurveyStartModal from './SurveyStartModal.vue'
 
 export default {
     name: 'PossibleMain',
-     components: {
+    components: {
         SurveyStartModal
     },
     computed: {
@@ -260,9 +259,7 @@ export default {
         this.discountDay()
         this.getIsShow()
     },
-    mounted() {
-
-    },
+    mounted() {},
     unmounted() {},
     methods: {
         // 제일 처음 모든 설문지 보여준다
@@ -369,7 +366,6 @@ export default {
                         snippet[2],
                         snippet[1]
                     )
-
 
                     if (checkResult === true || checkResult === 0) {
                         pass.push(snippet[0])
