@@ -115,13 +115,13 @@
                                 elevation="3"
                                 class="mx-auto"
                                 max-width="344"
-                                @click="showStartModal"
                             >
                                 <v-img
                                     :src="
                                         `http://localhost:3000/download/${d.survey_image_path}`
                                     "
                                     height="200px"
+                                    @click="showStartModal"
                                 ></v-img>
 
                                 <v-card-title>
