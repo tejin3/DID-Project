@@ -26,14 +26,6 @@ const getWeb3 = async () => {
             alert('메타마스트 접속에 실패하였습니다. 다시 시도해 주세요')
         }
     }
-    // lse if (window.web3) {
-    //     console.log('hello4')
-
-    //     // Use Mist/MetaMask's provider.
-    //     const web3 = new Web3(Web3.givenProvider)
-    //     // this.$store.commit('web3Save', window.web3)
-    //     console.log('Injected web3 detected.')
-    // }
 }
 
 export default getWeb3

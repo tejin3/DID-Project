@@ -13,18 +13,6 @@ import About from '../views/About.vue'
 import DefaultLayout from '../layouts/default/Index'
 import DefaultLayout2 from '../layouts/default/Index2'
 import PossibleLayout from '../layouts/possible/Index'
-// import CompanyLayout from '../layouts/company/Index'
-
-// import MyPageLayout from '../layouts/mypage/Index'
-// import Test1 from '../views/Test1.vue'
-// import MyPage from '../views/MyPage.vue'
-
-// import Test from '../views/Test.vue'
-// import uploadTest from '../views/uploadTest.vue'
-// import Test1 from '../views/Test1.vue'
-
-import Test5 from '../views/Test5.vue'
-import Filter from '../layouts/test2/filter.vue'
 
 Vue.use(VueRouter)
 
@@ -75,27 +63,11 @@ const routes = [
                 name: 'MyPage',
                 component: MyPage
             },
-            {
-                path: '/test5',
-                name: 'Test5',
-                component: Test5
-            },
-            {
-                path: '/filter',
-                name: 'Filter',
-                component: Filter
-            },
+
             {
                 path: '/company',
                 name: 'Company',
                 component: Company
-                // children: [
-                //     {
-                //         path: '/company',
-                //         name: 'Company',
-                //         component: CompanyLayout
-                //     }
-                // ]
             },
             {
                 path: '/about',
