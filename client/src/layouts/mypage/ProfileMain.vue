@@ -173,7 +173,7 @@
                                                 <v-card-subtitle class="text-h4"
                                                     ><span
                                                         class="deep-purple--text font-weight-bold"
-                                                        >9</span
+                                                        >2</span
                                                     >개</v-card-subtitle
                                                 >
                                                 <v-card-actions>
@@ -237,7 +237,7 @@
                     <v-tab-item class="pt-10">
                         <span class="ma-10 text-h6"
                             >현재, 미사용 쿠폰
-                            <span class="red--text font-weight-bold">3</span
+                            <span class="red--text font-weight-bold">4</span
                             >개가 있어요!</span
                         >
 
