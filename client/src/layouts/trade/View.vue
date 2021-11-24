@@ -248,9 +248,10 @@ export default {
                 }
             })
         },
-        tradeCompleted() {},
+        // 보유 쿠폰으로 상품과 교환한다
+        // DB에서 쿠폰 개수가 줄고, 상품이 추가됨
         async exchangeGoods(goodId, goodsCoupon) {
-            // 보유 쿠폰 개수가 교환할 상품의 쿠폰 개수보다 많아야 한다
+            // 유저가 선택한 상품이 유저 계정에 추가됨
             await this.$api('/exchange', 'post', {
                 param: {
                     goods_id: goodId,
@@ -258,7 +259,9 @@ export default {
                     user_coupon: goodsCoupon
                 }
             })
+            await this.getUser()
         },
+
         async getUser() {
             var result = await this.$api('/user', 'post', {
                 param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'

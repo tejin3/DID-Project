@@ -42,6 +42,7 @@ router.get("/trade", tradeController.showGoods);
 router.get("/users", tradeController.showUsers);
 router.post("/user", tradeController.showUser);
 router.post("/exchange", tradeController.exchangeGoods);
+router.post("/coupon", tradeController.subtractCoupon);
 
 // mypage controller
 router.get("/userGoods", mypageController.showUserGoods);

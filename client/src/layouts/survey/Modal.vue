@@ -42,7 +42,7 @@
                             color="#599CF7"
                             dark
                             @click="
-                                ;[$emit('next-modal'), createVP(), totalPoint()]
+                                ;[$emit('next-modal'), createVP(), vpPoint()]
                             "
                         >
                             동의
@@ -72,7 +72,7 @@
                                     + {{ price }} 포인트
                                 </div>
                                 <p style="height:4em">
-                                    내가 받는 총 보상 {{ point }} 포인트
+                                    내가 받는 총 보상 {{ point + price }} 포인트
                                 </p>
                             </v-card-text>
                             <router-link
@@ -113,7 +113,7 @@
                                     + {{ coupon }} 쿠폰
                                 </div>
                                 <p style="height:4em;">
-                                    내가 받는 총 보상 {{ price }} 포인트
+                                    내가 받는 총 보상 {{ point }} 포인트
                                     <br />
                                     {{ coupon }} 쿠폰
                                 </p>
@@ -127,7 +127,11 @@
                                     dark="dark"
                                     small="small"
                                     @click="
-                                        ;[$emit('close-modal'), saveReward()]
+                                        ;[
+                                            $emit('close-modal'),
+                                            selectPoint(),
+                                            saveReward()
+                                        ]
                                     "
                                 >
                                     쿠폰 받기
@@ -224,13 +228,18 @@ export default {
             }
         },
 
-        // 동의 버튼을 누를시 적립되는 포인트
-        totalPoint() {
+        // 동의 버튼을 누르면 추가되는 포인트
+        vpPoint() {
             for (var index of this.selection) {
                 this.point += this.aa[index].price
             }
+        },
+
+        // 동의 버튼을 누르고 포인트를 받기를 선택할시에 적립되는 포인트
+        selectPoint() {
             this.point += this.price
         },
+
         // 받기 버튼을 누르면 DB로 포인트와 쿠폰 전달
         async saveReward() {
             this.$api('/reward', 'post', {

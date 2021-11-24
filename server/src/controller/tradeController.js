@@ -55,4 +55,22 @@ const exchangeGoods = async (req, res) => {
   }
 };
 
-module.exports = { showGoods, exchangeGoods, showUsers, showUser };
+const subtractCoupon = async (req, res) => {
+  const coupon = req.body.param;
+  try {
+    await mysql.query("subtractCoupon", [coupon.coupon, coupon.account]);
+    res.status(200).send({ message: "success" });
+  } catch (err) {
+    res.status(500).send({
+      error: err,
+    });
+  }
+};
+
+module.exports = {
+  showGoods,
+  exchangeGoods,
+  subtractCoupon,
+  showUsers,
+  showUser,
+};

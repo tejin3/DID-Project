@@ -42,6 +42,11 @@ module.exports = {
       "update t_user_goods T1 right join t_user T2 on(T2.user_account = T1.user_account) set T1.user_goods_amount = user_goods_amount + 1 , T2.user_coupon = T2.user_coupon - ? where T1.user_account = ? and T1.goods_id = ?",
   },
 
+  subtractCoupon: {
+    query:
+      "update t_user set user_coupon = user_coupon - ? where user_account = ? ",
+  },
+
   getUser: {
     query: "select * from t_user",
   },

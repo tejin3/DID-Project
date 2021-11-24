@@ -251,7 +251,6 @@
                                 <v-card
                                     width="200"
                                     height="310"
-                                    class="d-xl-flex"
                                     @click="showCode(card.goods_name)"
                                 >
                                     <v-img
@@ -357,7 +356,7 @@ export default {
 
             for (var item of result) {
                 if (item.user_goods_amount !== 0) {
-                    if (this.cards.length < 3) {
+                    if (this.cards.length < 5) {
                         this.cards.push(item)
                     }
                 }
