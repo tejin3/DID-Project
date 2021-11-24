@@ -245,7 +245,7 @@ export default {
             surveys: [],
             proofSurveys: [],
             dDays: '',
-            value: 1,
+            value: 0,
             icon: 'mdi-calendar-range',
             isShow: false,
             keyList: [],
