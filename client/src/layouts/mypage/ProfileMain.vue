@@ -349,7 +349,6 @@ export default {
                 param: '0x15B21E6b74c88AC8cA39F9e3Ad4B2ff5Faccc513'
             })
             this.user = result
-            console.log(this.user)
         },
 
         async showUserGoods() {

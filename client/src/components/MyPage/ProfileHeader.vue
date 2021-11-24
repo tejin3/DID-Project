@@ -77,10 +77,7 @@ module.exports = {
             try {
                 const userAddress = this.userAddress
                 await navigator.clipboard.writeText(userAddress)
-                console.log('Successfully, Address Copy!')
-            } catch (err) {
-                console.error('Failed to copy: ', err)
-            }
+            } catch (err) {}
         }
     },
     computed: {
