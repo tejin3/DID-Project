@@ -1,41 +1,35 @@
 <template>
     <div class="mt-16">
         <!-- 헤더부분 -->
-        <v-container>
-            <v-card
-                elevation="3"
-                class=" my-3 d-flex justify-center align-center"
-            >
-                <img
-                    src="@/assets/img/trade/banner-2.png"
-                    alt=""
-                    class="img-bn-class"
-                    style="margin:auto; margin-bottom:20px; margin-top:20px;"
-                />
 
-                <div class="hi" style="justify-content:center; display:flex;">
-                    <div
-                        align="left"
-                        style="color:white; font-size:1.5em;"
-                        class="d-flex align-center"
-                    >
-                        설문 결과
-                    </div>
-                    <div
-                        align="left"
-                        style="color:white; flex:1; margin-left:10px"
-                    >
-                        <div style="font-size:1.2em">
-                            weDIDsurvey의 정확한 설문 결과를 확인하세요
-                        </div>
-                        <div style="font-size:0.8em">
-                            우리 weDIDsurvey에서는 설문 참가자들이 제공한
-                            신원증명을 확인 할 수 있습니다
-                        </div>
-                    </div>
+        <!-- <div class="banner"> -->
+        <div class="img" style="justify-content:center; display:flex;">
+            <div class="text pt-1" style="color:white;  margin-left:20px">
+                <div
+                    align="left"
+                    style="color:white; font-size:1.5em;"
+                    class="d-flex align-center mr-5"
+                >
+                    설문 결과
                 </div>
-            </v-card>
-        </v-container>
+                <div>
+                    <span style="font-size:1.2em">
+                        weDIDsurvey의 정확한 설문 결과를 확인하세요</span
+                    ><br />
+                    <span style="font-size:0.8em">
+                        우리 weDIDsurvey에서는 설문 참가자들이 제공한 신원증명을
+                        확인 할 수 있습니다
+                    </span>
+                </div>
+            </div>
+            <img
+                src="@/assets/img/trade/banner-2.png"
+                class="img-bn-class justify-center align-center"
+            />
+        </div>
+
+        <!-- </div> -->
+
         <!-- 헤더부분 끝 -->
 
         <!-- 중간에 네비 처럼 생긴애-->
