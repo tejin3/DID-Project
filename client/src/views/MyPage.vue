@@ -1,5 +1,4 @@
 <template>
-    <!-- 이상하면 div로 변경 -->
     <v-app>
         <mypage-layout />
     </v-app>
