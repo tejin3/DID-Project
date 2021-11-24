@@ -269,14 +269,6 @@ export default {
     animation: sample-ani-test 3s linear infinite alternate;
 }
 
-// .test1 {
-//     position: absolute;
-//     left: 40%;
-//     // border: 1px saddlebrown solid;
-//     transition-property: margin-left;
-//     transition-duration: 2s;
-
-// }
 .test1 {
     position: absolute;
     // left: 40%;
@@ -301,9 +293,6 @@ export default {
     left: 24%;
     top: 40%;
 }
-// .test1:hover {
-//     margin-left: 20
-// }
 
 /* 키프레임 이름 = 애니메이션 이름 */
 @keyframes tejin3 {
@@ -314,7 +303,4 @@ export default {
         left: 48%;
     }
 }
-// .test111:hover {
-//     margin: 0px;
-// }
 </style>
