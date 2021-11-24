@@ -3,9 +3,8 @@ const mysql = require("../config/mysql");
 
 const index = async (req, res) => {
     try {
-        // const result = await sys.db("confirm", req.body.param[0]);
         const results = await mysql.query("getSurveys");
-        // console.table(results);
+
         res.status(200).send(results);
     } catch (err) {
         res.status(500).send({
@@ -31,8 +30,7 @@ const showById = async (req, res) => {
     } else {
         try {
             const results = await mysql.query("getSurveyByIds", [surveyIds]);
-            // [[2,3,4]]
-            // console.table(results);
+
             res.status(200).send(results);
         } catch (err) {
             res.status(500).send({
