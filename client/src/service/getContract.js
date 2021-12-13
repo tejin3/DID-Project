@@ -10,7 +10,7 @@ const getContract = () => {
     const myContractInstance = new web3.eth.Contract(
         surveyABI,
         //    서베이 컨트랙트 주소
-        '0xd574d51Ef1A874eC43B17B6166cc21E1A4b19aE3'
+        '0xcd835DD7040BF924349fA794F460f18442dA6F17'
     )
     return myContractInstance
 }

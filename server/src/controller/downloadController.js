@@ -19,7 +19,9 @@ const index = async (req, res) => {
 const store = (req, res, next) => {
     console.log("store");
     // Remember, the middleware will call it's next function
-    // so we can inject our controller manually as the next()
+    // so we can inject our controller manually as the next(
+        
+    // /download , upload(), (req, res) ..
     upload.single("attachment")(req, res, async () => {
         const file = req.file;
         const description = req.body.description;
